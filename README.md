@@ -41,6 +41,13 @@ node video/render.mjs --format 11  --out video/build/render/master_11_prores.mov
 video/tools/deliver.sh                            # 6) entregables
 ```
 
+Ajustar un tramo sin re-renderizar todo (por ejemplo, una llave de cámara en `layout.mjs`): se re-renderizan
+solo esos cuadros y se empalman en el ProRes por copia de flujo; el resto del master no se recodifica.
+
+```bash
+video/tools/splice.sh 916 1060 1160 && video/tools/deliver.sh 916
+```
+
 Vista rápida de cuadros sueltos: `node video/render.mjs --format 916 --scale 0.5 --subs 1 --frames 120,300 --png /tmp/x`.
 
 ## Página: parámetros de URL

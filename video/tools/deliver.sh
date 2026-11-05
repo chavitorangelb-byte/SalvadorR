@@ -3,11 +3,14 @@
 #   video/out/siniestro_<formato>_master_60fps.mp4     H.264 alta calidad, 60 fps
 #   video/out/siniestro_<formato>_whatsapp_30fps.mp4   H.264 -preset veryfast, 30 fps (promedia pares de cuadros)
 #   video/out/stems/{voz,musica,sfx,master}.wav
+# Uso: video/tools/deliver.sh [916] [11]    (sin argumentos: los dos formatos)
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 OUT=video/out
 mkdir -p "$OUT/stems"
-for F in 916 11; do
+FORMATS=("$@")
+[ ${#FORMATS[@]} -gt 0 ] || FORMATS=(916 11)
+for F in "${FORMATS[@]}"; do
   SRC="video/build/render/master_${F}_prores.mov"
   [ -f "$SRC" ] || { echo "falta $SRC"; continue; }
   NAME=$([ "$F" = 916 ] && echo 9x16 || echo 1x1)

@@ -36,7 +36,8 @@ function vertical() {
       [T.orbit[1], { anchor: [195, 470], pos: [410, 955], s: 1.42, yaw: -9, pitch: 3, roll: 0, ease: 'sine' }],
       [T.scrollCare[0], { anchor: C, pos: [540, 960], s: base, yaw: 0, pitch: 0, roll: 0 }],
       [T.pushCare[0], { anchor: C, pos: [540, 960], s: base, yaw: 0, pitch: 0, roll: 0 }],
-      [T.pushCare[1], { anchor: 'careSteps', pos: [540, 990], s: 1.95, yaw: 0, pitch: 0, roll: 0 }],
+      // 1220 (no 990): asi el titulo "Cuidados despues de tu tatuaje" queda debajo de los 250 px superiores
+      [T.pushCare[1], { anchor: 'careSteps', pos: [540, 1220], s: 1.95, yaw: 0, pitch: 0, roll: 0 }],
       [T.scrollVisit[1], { anchor: [195, 440], pos: [540, 960], s: 1.55, yaw: 0, pitch: 0, roll: 0 }],
       [T.inkCirclePin[1], { anchor: 'pin', pos: [540, 880], s: 1.72, yaw: 0, pitch: 0, roll: 0 }],
       [T.pullBack[0], { anchor: 'pin', pos: [540, 880], s: 1.72, yaw: 0, pitch: 0, roll: 0 }],
