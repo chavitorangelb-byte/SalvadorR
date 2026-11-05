@@ -1,0 +1,746 @@
+[
+ {
+  "t": 0,
+  "sfx": "impacto_f0",
+  "dur": 1.0,
+  "db": -11
+ },
+ {
+  "t": 0.03,
+  "sfx": "cristal_barra",
+  "dur": 0.35,
+  "db": -10
+ },
+ {
+  "t": 0.1,
+  "sfx": "tinta_entra",
+  "dur": 0.27,
+  "db": -16
+ },
+ {
+  "t": 0.3,
+  "sfx": "tinta_bajo_texto",
+  "dur": 1.6,
+  "db": -22
+ },
+ {
+  "t": 0.31,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 0.352,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 0.406,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 0.461,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 0.51,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 0.559,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 0.611,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 0.655,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 0.697,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 0.762,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 0.835,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 0.889,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 0.939,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 0.989,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.04,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.093,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 1.162,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.227,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.276,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 1.328,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.38,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.428,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 1.474,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.523,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.578,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 1.629,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.675,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.726,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 1.777,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -13.0
+ },
+ {
+  "t": 1.823,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -12.0
+ },
+ {
+  "t": 1.872,
+  "sfx": "tecla",
+  "dur": 0.045,
+  "db": -14.0
+ },
+ {
+  "t": 2.02,
+  "sfx": "enter",
+  "dur": 0.09,
+  "db": -9
+ },
+ {
+  "t": 2.12,
+  "sfx": "barra_sale",
+  "dur": 0.42,
+  "db": -15
+ },
+ {
+  "t": 2.2,
+  "sfx": "tinta_contorno",
+  "dur": 0.82,
+  "db": -15
+ },
+ {
+  "t": 2.58,
+  "sfx": "celular_entra",
+  "dur": 0.65,
+  "db": -14
+ },
+ {
+  "t": 2.95,
+  "sfx": "pantalla_enciende",
+  "dur": 0.35,
+  "db": -18
+ },
+ {
+  "t": 3.52,
+  "sfx": "celular_asienta",
+  "dur": 0.16,
+  "db": -18
+ },
+ {
+  "t": 3.55,
+  "sfx": "push_in",
+  "dur": 0.85,
+  "db": -20
+ },
+ {
+  "t": 4.52,
+  "sfx": "tinta_subraya_23",
+  "dur": 0.7,
+  "db": -15
+ },
+ {
+  "t": 5.3,
+  "sfx": "pull_back",
+  "dur": 0.55,
+  "db": -20
+ },
+ {
+  "t": 5.86,
+  "sfx": "scroll_gallery",
+  "dur": 0.62,
+  "db": -15
+ },
+ {
+  "t": 6.325,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 6.46,
+  "sfx": "tarjeta_sale_cristo",
+  "dur": 0.5,
+  "db": -15
+ },
+ {
+  "t": 6.52,
+  "sfx": "tarjeta_sale_leon",
+  "dur": 0.5,
+  "db": -15
+ },
+ {
+  "t": 6.57,
+  "sfx": "tarjeta_sale_quetzalcoatl",
+  "dur": 0.5,
+  "db": -15
+ },
+ {
+  "t": 7.28,
+  "sfx": "tarjetas_vuelven",
+  "dur": 0.4,
+  "db": -20
+ },
+ {
+  "t": 7.66,
+  "sfx": "tarjeta_regresa_cristo",
+  "dur": 0.16,
+  "db": -14
+ },
+ {
+  "t": 7.678,
+  "sfx": "tarjeta_regresa_leon",
+  "dur": 0.16,
+  "db": -14
+ },
+ {
+  "t": 7.693,
+  "sfx": "tarjeta_regresa_quetzalcoatl",
+  "dur": 0.16,
+  "db": -14
+ },
+ {
+  "t": 7.8,
+  "sfx": "tap_filtro",
+  "dur": 0.12,
+  "db": -11
+ },
+ {
+  "t": 7.9,
+  "sfx": "reordena",
+  "dur": 0.42,
+  "db": -16
+ },
+ {
+  "t": 8.18,
+  "sfx": "tinta_subraya_estilo",
+  "dur": 0.34,
+  "db": -17
+ },
+ {
+  "t": 8.47,
+  "sfx": "tap_filtro",
+  "dur": 0.12,
+  "db": -11
+ },
+ {
+  "t": 8.57,
+  "sfx": "reordena",
+  "dur": 0.42,
+  "db": -16
+ },
+ {
+  "t": 8.92,
+  "sfx": "tinta_circulo_cta",
+  "dur": 0.34,
+  "db": -16
+ },
+ {
+  "t": 9.3,
+  "sfx": "tap",
+  "dur": 0.07,
+  "db": -10
+ },
+ {
+  "t": 9.36,
+  "sfx": "scroll_formTop",
+  "dur": 0.59,
+  "db": -15
+ },
+ {
+  "t": 9.802,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 9.98,
+  "sfx": "tap",
+  "dur": 0.07,
+  "db": -10
+ },
+ {
+  "t": 10,
+  "sfx": "teclado_sube",
+  "dur": 0.22,
+  "db": -18
+ },
+ {
+  "t": 10.311,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.355,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.4,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.444,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.489,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.534,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.578,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.623,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.668,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.712,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.757,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.801,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.846,
+  "sfx": "tecla_formulario",
+  "dur": 0.045,
+  "db": -14
+ },
+ {
+  "t": 10.9,
+  "sfx": "teclado_baja",
+  "dur": 0.22,
+  "db": -19
+ },
+ {
+  "t": 11,
+  "sfx": "scroll_chips",
+  "dur": 0.26,
+  "db": -15
+ },
+ {
+  "t": 11.195,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 11.3,
+  "sfx": "tap_opcion",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 11.52,
+  "sfx": "tap_opcion",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 11.74,
+  "sfx": "tap_opcion",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 11.8,
+  "sfx": "scroll_photo",
+  "dur": 0.24,
+  "db": -15
+ },
+ {
+  "t": 11.98,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 12.08,
+  "sfx": "tap_foto",
+  "dur": 0.07,
+  "db": -11
+ },
+ {
+  "t": 12.1,
+  "sfx": "tinta_subraya_whatsapp",
+  "dur": 0.36,
+  "db": -17
+ },
+ {
+  "t": 12.13,
+  "sfx": "subida_foto",
+  "dur": 0.5,
+  "db": -16
+ },
+ {
+  "t": 12.46,
+  "sfx": "tinta_circulo_enviar",
+  "dur": 0.3,
+  "db": -16
+ },
+ {
+  "t": 12.48,
+  "sfx": "scroll_submit",
+  "dur": 0.26,
+  "db": -15
+ },
+ {
+  "t": 12.63,
+  "sfx": "foto_lista",
+  "dur": 0.55,
+  "db": -17
+ },
+ {
+  "t": 12.675,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 12.78,
+  "sfx": "tap",
+  "dur": 0.07,
+  "db": -10
+ },
+ {
+  "t": 12.88,
+  "sfx": "pop_whatsapp",
+  "dur": 0.16,
+  "db": -9
+ },
+ {
+  "t": 12.9,
+  "sfx": "whatsapp_3d",
+  "dur": 0.32,
+  "db": -16
+ },
+ {
+  "t": 13.45,
+  "sfx": "whatsapp_regresa",
+  "dur": 0.16,
+  "db": -15
+ },
+ {
+  "t": 13.47,
+  "sfx": "scroll_top",
+  "dur": 0.47,
+  "db": -12
+ },
+ {
+  "t": 13.66,
+  "sfx": "tinta_circulo_idioma",
+  "dur": 0.31,
+  "db": -16
+ },
+ {
+  "t": 13.822,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 13.9,
+  "sfx": "orbita",
+  "dur": 2.7,
+  "db": -24
+ },
+ {
+  "t": 14,
+  "sfx": "tap_idioma",
+  "dur": 0.07,
+  "db": -10
+ },
+ {
+  "t": 14.03,
+  "sfx": "morph_en",
+  "dur": 0.87,
+  "db": -15
+ },
+ {
+  "t": 14.34,
+  "sfx": "tinta_subraya_inglés",
+  "dur": 0.32,
+  "db": -17
+ },
+ {
+  "t": 16.3,
+  "sfx": "tap_idioma",
+  "dur": 0.07,
+  "db": -10
+ },
+ {
+  "t": 16.33,
+  "sfx": "morph_es",
+  "dur": 0.53,
+  "db": -17
+ },
+ {
+  "t": 16.95,
+  "sfx": "scroll_care",
+  "dur": 0.77,
+  "db": -15
+ },
+ {
+  "t": 17.527,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 17.76,
+  "sfx": "push_cuidados",
+  "dur": 0.74,
+  "db": -21
+ },
+ {
+  "t": 18.58,
+  "sfx": "scroll_visit",
+  "dur": 0.64,
+  "db": -15
+ },
+ {
+  "t": 19.06,
+  "sfx": "rebote",
+  "dur": 0.05,
+  "db": -24
+ },
+ {
+  "t": 19.26,
+  "sfx": "tinta_circulo_pin",
+  "dur": 0.7,
+  "db": -16
+ },
+ {
+  "t": 19.31,
+  "sfx": "pin_late",
+  "dur": 0.8,
+  "db": -19
+ },
+ {
+  "t": 20.1,
+  "sfx": "pull_back_cierre",
+  "dur": 0.86,
+  "db": -16
+ },
+ {
+  "t": 20.1,
+  "sfx": "tinta_escribe_1",
+  "dur": 0.76,
+  "db": -16
+ },
+ {
+  "t": 20.88,
+  "sfx": "tinta_escribe_2",
+  "dur": 0.54,
+  "db": -16
+ },
+ {
+  "t": 21.48,
+  "sfx": "texto_se_va",
+  "dur": 0.32,
+  "db": -22
+ },
+ {
+  "t": 21.86,
+  "sfx": "tinta_escribe_3",
+  "dur": 0.54,
+  "db": -16
+ },
+ {
+  "t": 22.42,
+  "sfx": "tinta_escribe_4",
+  "dur": 0.94,
+  "db": -16
+ },
+ {
+  "t": 23.5,
+  "sfx": "salida",
+  "dur": 0.46,
+  "db": -20
+ },
+ {
+  "t": 23.96,
+  "sfx": "placa_entra",
+  "dur": 0.6,
+  "db": -15
+ },
+ {
+  "t": 24,
+  "sfx": "golpe_24",
+  "dur": 1.0,
+  "db": -13
+ },
+ {
+  "t": 24.42,
+  "sfx": "barrido_luz",
+  "dur": 1.0,
+  "db": -19
+ },
+ {
+  "t": 24.62,
+  "sfx": "tinta_firma",
+  "dur": 0.74,
+  "db": -15
+ },
+ {
+  "t": 25.46,
+  "sfx": "texto_final",
+  "dur": 0.35,
+  "db": -22
+ }
+]
