@@ -163,11 +163,11 @@ def main():
     pre = vo2 + mu_d + fx_d
     g_master = 10 ** ((-14.0 - integrated(pre)) / 20)
     vo_f, mu_f, fx_f = vo2 * g_master, mu_d * g_master, fx_d * g_master
-    master, gr = limiter(vo_f + mu_f + fx_f, -1.25)
+    master, gr = limiter(vo_f + mu_f + fx_f, -1.7)
     # el limitador baja un poco el integrado: compensa una vez y vuelve a limitar
     adj = 10 ** ((-14.0 - integrated(master)) / 20)
     vo_f, mu_f, fx_f = vo_f * adj, mu_f * adj, fx_f * adj
-    master, gr = limiter(vo_f + mu_f + fx_f, -1.25)
+    master, gr = limiter(vo_f + mu_f + fx_f, -1.7)
 
     write(A / "stems/vo.wav", vo_f)
     write(A / "stems/music.wav", mu_f)

@@ -89,4 +89,4 @@ La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los
 ## Sonido
 
 - 124 cues de efectos sintetizados (tecleo, taps, scroll con fricción, filtros, subida de archivo, pop, tinta como aguja, etc.).
-- Mezcla: master -14.04 LUFS / -1.25 dBTP · voz -15.17 LUFS · música ≥ 12.4 dB por debajo de cada palabra (peor: "su").
+- Mezcla: master -14.05 LUFS / -1.7 dBTP · voz -15.12 LUFS · música ≥ 12.4 dB por debajo de cada palabra (peor: "Siniestro").
