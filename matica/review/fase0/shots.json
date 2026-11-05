@@ -1,0 +1,78 @@
+[
+  {
+    "file": "01_portada.png",
+    "label": "Portada"
+  },
+  {
+    "file": "02_de_la_casa.png",
+    "label": "De la casa"
+  },
+  {
+    "file": "03_menu_cafe.png",
+    "label": "Menú · Café (Latte caliente $60)"
+  },
+  {
+    "file": "04_latte_frio.png",
+    "label": "Latte: Frío $65 (foto cambia)"
+  },
+  {
+    "file": "05_especiales.png",
+    "label": "Los especiales"
+  },
+  {
+    "file": "06_waffles.png",
+    "label": "Waffles de yuca"
+  },
+  {
+    "file": "07_ficha_waffle.png",
+    "label": "Ficha · Jamón serrano y matícas"
+  },
+  {
+    "file": "08_ficha_cold_brew.png",
+    "label": "Ficha · Cold brew tonic (sabor)"
+  },
+  {
+    "file": "09_barra_pedido.png",
+    "label": "Barra de pedido: 2 · $180"
+  },
+  {
+    "file": "10_pedido.png",
+    "label": "Pedido: $85 + $95 = $180, dos salidas"
+  },
+  {
+    "file": "11_whatsapp.png",
+    "label": "Pedir para recoger: mensaje (Tu WhatsApp aquí)"
+  },
+  {
+    "file": "12_pide.png",
+    "label": "Pide"
+  },
+  {
+    "file": "13_asi_se_vive.png",
+    "label": "Así se vive Matíca"
+  },
+  {
+    "file": "14_resenas.png",
+    "label": "Reseñas"
+  },
+  {
+    "file": "15_resena_2.png",
+    "label": "Reseña 2"
+  },
+  {
+    "file": "16_visitanos.png",
+    "label": "Visítanos"
+  },
+  {
+    "file": "17_pie.png",
+    "label": "Horario, enlaces y pie"
+  },
+  {
+    "file": "18_pedido_vacio.png",
+    "label": "Pedido vacío"
+  },
+  {
+    "file": "19_ficha_americano.png",
+    "label": "Ficha sin foto: Americano frío + leche vegetal = $60"
+  }
+]

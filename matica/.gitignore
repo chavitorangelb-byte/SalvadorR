@@ -1,0 +1,6 @@
+tools/node_modules/
+# Capturas originales de Instagram/Google: pesadas (72 MB) y varias traen datos de terceros
+# (nombres y fotos de quienes dejaron reseña, fotos de clientes). Los assets derivados sí se versionan.
+assets/capturas/
+# Intermedios pesados del video (capturas 3x, pruebas)
+video/build/

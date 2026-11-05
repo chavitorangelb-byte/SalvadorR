@@ -1,0 +1,90 @@
+[
+  {
+    "id": "fachada",
+    "w": 1320,
+    "h": 1530,
+    "file": "img/fachada.webp",
+    "kb": 306,
+    "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoQABMAPsFOoUqnpCMhsAgA8BgJYgDA3CLHuxPG4RaRJoJbR1u8AP7ohzE3qBHanmKqlt49m/CND1t0SQVmCFTh11QvYEurdH3zSH68sKkgGX+jd8qjBTn6MwsN2X77X2f6fE/NpHlE1HPia2ODt/HKqtHnzbWpu2dTbr/ZsQ8gYFgA"
+  },
+  {
+    "id": "arepa",
+    "w": 1320,
+    "h": 873,
+    "file": "img/arepa.webp",
+    "kb": 80,
+    "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABQAgCdASoQAAsAAsBIJYgCdAYwTNxpYM6yFIAA/vX103A3CdNUBUlHr32noeY+DjTny+cOWSMjHu1D+DkjWMNCXtLYw5H+xW5DJUrju5PYpn04zY6VfNllB6OjRXo/jUPeNKFNUwMzAcdtCSBdT2y2Z4lDA4AA"
+  },
+  {
+    "id": "latte-caliente",
+    "w": 404,
+    "h": 268,
+    "file": "img/latte-caliente.webp",
+    "kb": 16,
+    "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACQAgCdASoQAAsAAsBIJbACdGaAECsUrLZ91NzEAAD+9f4GbJbRJ3PQkb3NI2yw/7Q8AdX86unubiJ6dXaWQKoK324VGEKJ546u6BFqHCqYbhXECOW4VC0Bb9WPtuxLtXmQyM9Mbgw95i7+p9dzP4EgprfU4lss3zMCRU6LQAA="
+  },
+  {
+    "id": "latte-frio",
+    "w": 328,
+    "h": 414,
+    "file": "img/latte-frio.webp",
+    "kb": 16,
+    "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBACdASoQABQAPsFOoEqnpCMhsAgA8BgJagCdMoAlvhi6r/p23prxtEhxE8AA/uU1vYNUzfxcuvgj1YDvGBCcdKSReRot5EKWxYhB9zKhFOxtC/SLw1YASuBCc4SS2nCQcmrGblM6trlieV+juY5yf/uAqeaTHxbHmnRyzxTZK76DuH2PLYy1d/MMVdxXvjDlKK96httNkT+JjglCM73HXDIm5v0evZtAAA=="
+  },
+  {
+    "id": "filtrados",
+    "w": 370,
+    "h": 260,
+    "file": "img/filtrados.webp",
+    "kb": 21,
+    "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADQAQCdASoQAAsAAsBIJQBOgMWHeKxgsAD+1RTpuR4OFBzAi/57J7iU2OfFNzGXubE5JbUG3dyr44jSgo+IMHUOn3dQEddVW8r/UFioWXox1k9jr311Xd35c0BXz1J+Y0QS3kEcKZraBa8AAAA="
+  },
+  {
+    "id": "mesa",
+    "w": 438,
+    "h": 494,
+    "file": "img/mesa.webp",
+    "kb": 34,
+    "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADwAwCdASoQABIAPsFOoEqnpCMhsAgA8BgJYwCdABuw/FZ/L7fFblU0AP7nL52ATqqq4iRZZQx/SbqXbOV5aO+8ToLscmUnFh/TVm0DFB+Mw6DwcvIgCTBCkQUKhnjPptCw0g8+gePhhNPdCC+VuNkRYnQuTB6/950Br/l595frQ91UYOFwIO+MuRI9SFlZE/LsYjwA"
+  },
+  {
+    "id": "bodegon",
+    "w": 438,
+    "h": 500,
+    "file": "img/bodegon.webp",
+    "kb": 45,
+    "lqip": "data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAAAQBACdASoQABIAPsFOoEqnpCMhsAgA8BgJYwCo9YuQwEBqMP25/zh+AAD+iV5WlDx9BjneVZ3sG+82fgyEefel666bjF1a0+7xB1ynEEr/Z89an7Acfiwrv4DAsONwjbY9Mt1ThsyQ45AzhH68hdmmlEx76zHcytpuf9nc3Gsfpt3wZF5Vzheh9XkrcfASd0gSqEzN1JT4L+JByGaPC8j9b+UJ5UXuvKcRvurGr4W6qxdsL4AAAA=="
+  },
+  {
+    "id": "cold-brew-tonic",
+    "w": 438,
+    "h": 460,
+    "file": "img/cold-brew-tonic.webp",
+    "kb": 23,
+    "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAADwAwCdASoQABEAPsFOoEqnpCMhsAgA8BgJZACdMoAC+s6MYQjRW47oAP5NC9afgZt0zT6Iru+tJUG4Sw8nT3P9DZa6Btt6cma4IKk8TOiL+oTabIgO18fYCkb5CzaO2xR1m3rZsDe7MJ1lp0soR3B1OFXFCw3PI1XCYxTPwLFb74wNIZnWhKgTTK6GkH32NmpgbesGhH/40eZBQDtmnyTpbs9D5lQpaEmgAA=="
+  },
+  {
+    "id": "waffles",
+    "w": 362,
+    "h": 408,
+    "file": "img/waffles.webp",
+    "kb": 35,
+    "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABwBACdASoQABIAPsFOoEqnpCMhsAgA8BgJZgCdMoAltxlenxL1VZ0apYxeOAD+W/6xA0LDemSVF7fH9XmLdfEWFT9EvTtKGl/rjvg8VWoDb4mNm3pTn61FTpBAp+xKkXzAd/E0LNN75HEfKk+AWVQV+9Wm7Lv3Wz32xvXTWJv42S9cLfeSCZxfzHK10SuxfHA5drKl/6sJwwSfTunoq3ZZ4kAAAA=="
+  },
+  {
+    "id": "waffle-jamon",
+    "w": 250,
+    "h": 250,
+    "file": "img/waffle-jamon.webp",
+    "kb": 16,
+    "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAACQAgCdASoQABAAAsBIJaACdAYt92ccyQ5U7RAPAAD9N9c0rxDoN+FrkdjXnv4tPZfQVMk22/h1N/luDpG4RKepF24yT03WoznPOkL3HHYmBN/X6sFsY4J1AtujXzcLSZb/bfxCXZ7N/CtZ+sVRri5s7K6g6OFQ+SAAAA=="
+  },
+  {
+    "id": "sandwich",
+    "w": 258,
+    "h": 258,
+    "file": "img/sandwich.webp",
+    "kb": 15,
+    "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABQAgCdASoQABAAAsBIJbACdB2gDYwKSptFXgAA4n5c0a71uuipllCeeNTPRwaJKwaROTzeqiBUwiKpiHARH+H1sOsttTSL7WImi9lg0H46Phi/zt26eiGX9aIUKzmKhbeJIDaB5gEjn4sZ5qe6i/MM9j+cWUE2l+78qPSEfSsY98/bapHeQ+I90IAAAA=="
+  }
+]
