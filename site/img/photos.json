@@ -1,0 +1,34 @@
+[
+  {
+    "id": "cristo",
+    "w": 1320,
+    "h": 912,
+    "file": "img/cristo.webp",
+    "kb": 158,
+    "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAQCdASoQAAsAAsBMJZQC7AD0sXkDrAD98H6Gp1lBkNFWWg/STrWdzydr7Rd2O97ZhO4nW4Ltz2cK/6PVjD0aE/Okuxu5tgExsDDmha/9q3yK4ijTEyEnoxm2XHCvQjpZztCqLgYoAAAA"
+  },
+  {
+    "id": "espartano",
+    "w": 1120,
+    "h": 630,
+    "file": "img/espartano.webp",
+    "kb": 91,
+    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAQCdASoQAAkAAsBMJQBOgMWRiCWMBoAA/uiqds/1N29cTXjSvUqvotJCqSgpfNK/EUFR3vL0GO/Gy3owa8HhHZOk3k2RscPj1z8lpKcfpf8Pkv9aXe+5lf/G/K5QAAA="
+  },
+  {
+    "id": "quetzalcoatl",
+    "w": 1120,
+    "h": 1400,
+    "file": "img/quetzalcoatl.webp",
+    "kb": 103,
+    "lqip": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADQBACdASoQABQAPtFUo0uoJKMhsAgBABoJZACdDiACPA91Z3DD2bEa1WbhJDR7AADifbgRfunpZR3bkl2MnqYz4dVKBs/J2zcxYIBAM0laed1CQ6+mGZYXQybypJ6blZ/7CDMexplBV24SWjVDdZyD9ARBBmej9W/piA/CydZW4WKWor4jgV8abtp3fkLS2KRs3NNnzeaKIg7HuRs4S/Z6BY0YPrzWgYm9g2cVYmrU+uwiatT60gAA"
+  },
+  {
+    "id": "leon",
+    "w": 460,
+    "h": 576,
+    "file": "img/leon.webp",
+    "kb": 36,
+    "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACQBACdASoQABQAPtFUo0uoJKMhsAgBABoJZwDE3agSAosurvqfYujwkU83uwAA/ux/3vPdne9bZYdWLn4tMEhZ/Pqa9eYBwBhgMyimI9dI0iVjhspoJsVqmy/iJGIT25zLKmFQhlcmo74pOp02lfvijn+D1aEy+5FlDAYjTwJvdA3MM83EAMszQapgGzpr1XkXKnrmJQAAAA=="
+  }
+]

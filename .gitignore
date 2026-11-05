@@ -1,0 +1,5 @@
+tools/node_modules/
+__pycache__/
+*.pyc
+# Menor identificable: no se usa y no se versiona
+assets/extra_retrato_bebe_pecho_NO_USAR.jpg
