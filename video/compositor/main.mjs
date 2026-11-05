@@ -77,6 +77,7 @@ const fontsToLoad = [
   new FontFace('Barlow', 'url(../../site/fonts/barlow-latin-500-normal.woff2)', { weight: '500' }),
   new FontFace('Barlow', 'url(../../site/fonts/barlow-latin-600-normal.woff2)', { weight: '600' }),
   new FontFace('Barlow', 'url(../../site/fonts/barlow-latin-700-normal.woff2)', { weight: '700' }),
+  new FontFace('Inter', 'url(./vendor/Inter-SemiBold.otf)', { weight: '600' }),
 ];
 for (const f of fontsToLoad) document.fonts.add(await f.load());
 
@@ -130,40 +131,77 @@ const camera = new THREE.PerspectiveCamera(LY.fov, W / H, 0.1, 200);
 camera.position.set(0, 0, ZC); camera.lookAt(0, 0, 0);
 const FPX = (H / 2) / Math.tan((LY.fov / 2) * deg);        // focal en px de diseno
 
-// celular: pantalla 390x844 px CSS = 3.90 x 8.44 unidades
-const SW = 3.9, SH = 8.44, BEZ = 0.2;
+// celular estilo iPhone moderno (sin logos ni marcas): pantalla 390x844 pt con esquinas de 47.33 pt,
+// bisel delgado de cristal negro, aro de titanio, marco plano con chaflan, botones e isla dinamica.
+const SW = 3.9, SH = 8.44, SCR_R = 0.4733;
+const BEZ = 0.135;                                   // del borde de la pantalla al canto exterior
+const BODY_W = SW + 2 * BEZ, BODY_H = SH + 2 * BEZ, BODY_R = SCR_R + BEZ;
+const DEPTH = 0.46, CHAMF = 0.016;
 const phoneRoot = new THREE.Group(); scene.add(phoneRoot);
 const phoneOff = new THREE.Group(); phoneRoot.add(phoneOff);
-// matcap procedural de metal oscuro: una sola lectura de textura, reflejo que sigue a la camara
-function matcapTex(base, hi) {
+function rrPath(target, w, h, r) {
+  const x0 = -w / 2, y0 = -h / 2, x1 = w / 2, y1 = h / 2;
+  target.moveTo(x0 + r, y0); target.lineTo(x1 - r, y0); target.absarc(x1 - r, y0 + r, r, -Math.PI / 2, 0, false);
+  target.lineTo(x1, y1 - r); target.absarc(x1 - r, y1 - r, r, 0, Math.PI / 2, false);
+  target.lineTo(x0 + r, y1); target.absarc(x0 + r, y1 - r, r, Math.PI / 2, Math.PI, false);
+  target.lineTo(x0, y0 + r); target.absarc(x0 + r, y0 + r, r, Math.PI, Math.PI * 1.5, false);
+  return target;
+}
+// matcap procedural: una sola lectura de textura y reflejo que sigue a la camara
+function matcapTex(stops, { streaks = 0, spot = null } = {}) {
   const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
-  const g = x.createRadialGradient(100, 86, 6, 128, 128, 128);
-  g.addColorStop(0, hi); g.addColorStop(0.18, '#8a8a8a'); g.addColorStop(0.45, base); g.addColorStop(0.82, '#0e0e0e'); g.addColorStop(1, '#6E6E6E');
+  const g = x.createRadialGradient(96, 84, 4, 128, 128, 128);
+  stops.forEach(([o, col]) => g.addColorStop(o, col));
   x.fillStyle = g; x.fillRect(0, 0, 256, 256);
-  x.globalAlpha = 0.5; x.fillStyle = '#C9C9C9'; x.beginPath(); x.ellipse(180, 190, 30, 12, -0.6, 0, Math.PI * 2); x.fill();
+  let sd = 7; const rnd = () => ((sd = (Math.imul(sd, 1664525) + 1013904223) >>> 0) / 4294967296);
+  for (let i = 0; i < streaks; i++) { x.globalAlpha = 0.025 + 0.05 * rnd(); x.fillStyle = rnd() > 0.5 ? '#fff' : '#000'; x.fillRect(0, rnd() * 256, 256, 0.5 + rnd()); }
+  if (spot) { x.globalAlpha = spot.a; x.fillStyle = spot.c; x.beginPath(); x.ellipse(spot.x, spot.y, spot.rx, spot.ry, spot.rot, 0, Math.PI * 2); x.fill(); }
+  x.globalAlpha = 1;
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
-const glassMat = new THREE.MeshBasicMaterial({ color: 0x060606 });
-const frameMat = new THREE.MeshMatcapMaterial({ matcap: matcapTex('#2a2a2a', '#EDEAE6'), color: 0xffffff });
-const bodyShape = roundRectShape(SW + 2 * BEZ - 0.09, SH + 2 * BEZ - 0.09, 0.58);
-const body = new THREE.Mesh(new THREE.ExtrudeGeometry(bodyShape, { depth: 0.30, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 5, curveSegments: 28 }), [glassMat, frameMat]);
-body.geometry.translate(0, 0, -0.35);
+// titanio natural oscuro: se lee como metal sobre el fondo negro
+const frameMat = new THREE.MeshMatcapMaterial({ matcap: matcapTex(
+  [[0, '#f4f2ee'], [0.10, '#c9c6c0'], [0.34, '#7a7771'], [0.62, '#3a3936'], [0.86, '#1b1b1a'], [1, '#9a978f']],
+  { streaks: 260, spot: { x: 178, y: 188, rx: 36, ry: 10, rot: -0.6, c: '#efede9', a: 0.5 } }) });
+const glassMat = new THREE.MeshMatcapMaterial({ matcap: matcapTex([[0, '#4a4a4a'], [0.16, '#161616'], [0.55, '#050505'], [1, '#1c1c1c']]) });
+const bodyGeo = new THREE.ExtrudeGeometry(rrPath(new THREE.Shape(), BODY_W - 2 * CHAMF, BODY_H - 2 * CHAMF, BODY_R - CHAMF),
+  { depth: DEPTH - 2 * CHAMF, bevelEnabled: true, bevelThickness: CHAMF, bevelSize: CHAMF, bevelSegments: 3, curveSegments: 40 });
+bodyGeo.translate(0, 0, -(DEPTH - CHAMF));
+const body = new THREE.Mesh(bodyGeo, [glassMat, frameMat]);
 phoneOff.add(body);
-const BODY_W = SW + 2 * BEZ, BODY_H = SH + 2 * BEZ, BODY_R = 0.625;
+// aro de titanio visible alrededor del cristal frontal
+const rimShape = rrPath(new THREE.Shape(), BODY_W, BODY_H, BODY_R);
+rimShape.holes.push(rrPath(new THREE.Path(), BODY_W - 0.075, BODY_H - 0.075, BODY_R - 0.0375));
+const rim = new THREE.Mesh(new THREE.ShapeGeometry(rimShape, 40), frameMat);
+rim.position.z = CHAMF + 0.0006; phoneOff.add(rim);
+// botones laterales (accion, volumen + y -, lateral) en sus posiciones reales
+const MM = BODY_H / 146.6;
+const btnGeo = (len) => { const g = new THREE.ExtrudeGeometry(rrPath(new THREE.Shape(), 0.16, len, 0.07), { depth: 0.028, bevelEnabled: false, curveSegments: 10 }); g.rotateY(Math.PI / 2); return g; };
+for (const [side, top, len] of [[-1, 27, 7], [-1, 41, 11], [-1, 55, 11], [1, 44, 18]]) {
+  const b = new THREE.Mesh(btnGeo(len * MM), frameMat);
+  b.position.set(side > 0 ? BODY_W / 2 - 0.006 : -BODY_W / 2 - 0.022, BODY_H / 2 - (top + len / 2) * MM, -DEPTH / 2 + CHAMF / 2);
+  phoneOff.add(b);
+}
+const body_ = body;
 
-// barra de estado y teclado (generados en canvas a 3x)
+// barra de estado estilo iOS con isla dinamica (generada a 3x)
 function statusCanvas() {
-  const c = document.createElement('canvas'); c.width = 1170; c.height = 141;
+  const c = document.createElement('canvas'); c.width = 1170; c.height = 180;
   const x = c.getContext('2d'); x.scale(3, 3);
-  x.fillStyle = BONE; x.font = '600 16px "Barlow"'; x.textBaseline = 'middle'; x.fillText('11:55', 32, 25);
-  // senal, wifi y bateria genericos
-  for (let i = 0; i < 4; i++) { x.globalAlpha = i < 3 ? 1 : 0.35; x.fillRect(300 + i * 5.5, 30 - (4 + i * 2.6), 3.6, 4 + i * 2.6); }
-  x.globalAlpha = 1; x.lineWidth = 2; x.strokeStyle = BONE;
-  x.beginPath(); x.arc(334, 31, 9, -Math.PI * 0.75, -Math.PI * 0.25); x.stroke();
-  x.beginPath(); x.arc(334, 31, 4.5, -Math.PI * 0.75, -Math.PI * 0.25); x.stroke();
-  x.lineWidth = 1.4; x.globalAlpha = 0.6; x.strokeRect(347, 19.5, 22, 11); x.globalAlpha = 1; x.fillRect(349, 21.5, 15, 7); x.fillRect(370, 23, 1.6, 4);
-  // camara frontal (perforacion generica)
-  x.fillStyle = '#000'; x.beginPath(); x.arc(195, 21, 5.6, 0, Math.PI * 2); x.fill();
+  x.fillStyle = '#F5F4F2'; x.font = '600 17px "Inter"'; x.textBaseline = 'middle'; x.textAlign = 'center';
+  x.fillText('11:55', 56, 30.5);
+  // senal: 4 barras redondeadas
+  for (let i = 0; i < 4; i++) { const h = 4.2 + i * 2.5; x.beginPath(); x.roundRect(289 + i * 4.9, 35.5 - h, 3.2, h, 1); x.fill(); }
+  // wifi: 3 arcos + punto
+  x.lineCap = 'round'; x.strokeStyle = '#F5F4F2';
+  for (const [r, w] of [[10.5, 2.2], [6.8, 2.2], [3.2, 2.2]]) { x.lineWidth = w; x.beginPath(); x.arc(320, 36.5, r, -Math.PI * 0.76, -Math.PI * 0.24); x.stroke(); }
+  // bateria
+  x.globalAlpha = 0.42; x.lineWidth = 1.1; x.beginPath(); x.roundRect(335.5, 24.5, 25, 12, 3.6); x.stroke();
+  x.beginPath(); x.roundRect(361.6, 28.4, 1.6, 4.4, 0.8); x.fill();
+  x.globalAlpha = 1; x.beginPath(); x.roundRect(337.6, 26.6, 17.5, 7.8, 2.1); x.fill();
+  // isla dinamica
+  x.fillStyle = '#000'; x.beginPath(); x.roundRect(195 - 62.5, 11, 125, 37, 18.5); x.fill();
+  x.fillStyle = '#0d0d10'; x.beginPath(); x.arc(195 + 43, 29.5, 5.2, 0, Math.PI * 2); x.fill();
   const t = new THREE.CanvasTexture(c); t.flipY = false; t.colorSpace = THREE.SRGBColorSpace; return t;
 }
 const KB_ROWS = ['qwertyuiop', 'asdfghjklñ', 'zxcvbnm'];
@@ -221,7 +259,7 @@ const screenMat = new THREE.ShaderMaterial({
     float sdRR(vec2 p, vec2 b, float r){ vec2 q = abs(p) - b + r; return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r; }
     void main(){
       vec2 css = vec2(vUv.x * 390.0, (1.0 - vUv.y) * 844.0);
-      float sd = sdRR(css - vec2(195.0, 422.0), vec2(195.0, 422.0), 44.0);
+      float sd = sdRR(css - vec2(195.0, 422.0), vec2(195.0, 422.0), 47.33);
       float aa = fwidth(sd);
       float mask = 1.0 - smoothstep(-aa, aa, sd);
       // refraccion en el borde curvo del cristal
@@ -233,7 +271,7 @@ const screenMat = new THREE.ShaderMaterial({
       float kbTop = 844.0 - 325.0 * uKbY;
       if (uKbY > 0.001 && css.y > kbTop) { vec4 k = texture2D(uKb, vec2(css.x / 390.0, (css.y - kbTop) / 325.0)); col = mix(col, k.rgb, k.a); }
       // barra de estado e indicador de inicio
-      if (css.y < 47.0) { vec4 s = texture2D(uStatus, vec2(css.x / 390.0, css.y / 47.0)); col = mix(col, s.rgb, s.a); }
+      if (css.y < 60.0) { vec4 s = texture2D(uStatus, vec2(css.x / 390.0, css.y / 60.0)); col = mix(col, s.rgb, s.a); }
       float hi = sdRR(css - vec2(195.0, 836.0), vec2(67.0, 2.5), 2.5);
       col = mix(col, vec3(0.80), (1.0 - smoothstep(-0.7, 0.7, hi)) * 0.8 * step(uKbY, 0.001));
       // toques: onda suave
@@ -261,7 +299,7 @@ screen.position.z = 0.002; screen.renderOrder = 2;
 phoneOff.add(screen);
 
 // tarjetas 3D y boton de WhatsApp: la misma pieza de interfaz, ahora con grosor y sombra
-const darkSide = new THREE.MeshMatcapMaterial({ matcap: matcapTex('#1a1a1a', '#8a8a8a'), color: 0xffffff });
+const darkSide = new THREE.MeshMatcapMaterial({ matcap: matcapTex([[0, '#8a8a8a'], [0.25, '#3a3a3a'], [0.6, '#151515'], [1, '#4a4a4a']]), color: 0xffffff });
 const shadowMat = (op) => new THREE.ShaderMaterial({ transparent: true, depthWrite: false,
   uniforms: { uSoft: { value: 0.1 }, uOp: { value: op }, uAsp: { value: 1 } },
   vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
