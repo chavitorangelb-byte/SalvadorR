@@ -1,7 +1,7 @@
 // Capas de texto 2D (canvas -> textura) para tipografia cinetica, frases escritas por la tinta,
 // la barra de busqueda y la end card. Cada capa solo se re-sube cuando cambia.
 import * as THREE from './vendor/three.module.js';
-import { clamp, easeOut, easeIn } from '../timeline/timeline.mjs';
+import { clamp, easeOut, easeIn, resolveOut, resolveUnderline, voWord } from '../timeline/timeline.mjs';
 
 export const DISPLAY = '900 {s}px "Big Shoulders Display"';
 export const TEXT = (w) => `${w} {s}px "Barlow"`;
@@ -53,6 +53,7 @@ const BONE = '#EDEAE6', SILVER = '#C9C9C9';
 export class KineticGroup {
   constructor(scene, def, col, vo, scale) {
     this.def = def; this.col = col;
+    this.out = resolveOut(def.out, vo);
     const ref = (pair) => { const line = vo.find((l) => l.id === pair[0]); return line.words[pair[1]].t0; };
     // tamano: el mas grande que cabe en la columna
     let widest = 0;
@@ -73,7 +74,7 @@ export class KineticGroup {
           this.glyphs.push({ ch, x: col.x + m.xs[ci], y: top + this.lh * (li + 1) - this.size * 0.14, w: m.xs[ci + 1] - m.xs[ci], t0: t0 - 0.2 + k * 0.026, gi: this.glyphs.length });
           ci++;
         });
-        this.words.push({ text: w.text, t0, x0: col.x + m.xs[start], x1: col.x + m.xs[ci], base: top + this.lh * (li + 1) - this.size * 0.14, underline: w.underline });
+        this.words.push({ text: w.text, t0, x0: col.x + m.xs[start], x1: col.x + m.xs[ci], base: top + this.lh * (li + 1) - this.size * 0.14, underline: w.underline ? resolveUnderline(w.underline, voWord(vo, w.vo)) : null });
         ci++;   // espacio
       });
     });
@@ -81,7 +82,7 @@ export class KineticGroup {
     this.layer = new TextLayer(scene, col.x - pad, top - this.size * 0.4, col.w + pad * 2, blockH + this.size * 0.9, scale);
   }
   update(t) {
-    const out = this.def.out;
+    const out = this.out;
     const first = Math.min(...this.glyphs.map((g) => g.t0));
     if (t < first - 0.01 || t > out[1] + 0.3) { this.layer.hide(); return; }
     const states = this.glyphs.map((g, i) => {

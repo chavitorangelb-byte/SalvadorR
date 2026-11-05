@@ -16,22 +16,22 @@ Todo sale de `video/timeline/timeline.mjs`; este documento se genera desde ahí.
 | Cierre | 20.10–23.95 s | f1206–f1437 |
 | End card | 23.95–27.00 s | f1437–f1620 |
 
-## Locución (ElevenLabs vía vidIQ, voz Brian, 1 toma)
+## Locución (ElevenLabs vía vidIQ, voz Eric, 1 toma)
 
-La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los tiempos originales (la línea 2 dura ~4 s y la última terminaba en 27.8 s). La última frase va 5 % más rápida (sin cambio de tono).
+La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los tiempos originales (la línea 2 dura ~4 s y la última terminaba en 27.8 s). Con la voz de Eric ninguna frase necesitó aceleración; la última se adelantó 0.3 s.
 
 | Frase | Entra | Palabras (aterrizaje) |
 |---|---|---|
-| Alguien acaba de buscar tu estudio. | 0.40 s (f0024) | Alguien f0024 · acaba f0044 · de f0059 · buscar f0071 · tu f0085 · estudio. f0097 |
-| Esto es lo que debería encontrar: | 2.60 s (f0156) | Esto f0156 · es f0170 · lo f0176 · que f0183 · debería f0192 · encontrar. f0216 |
-| veintitrés años de oficio. | 4.51 s (f0271) | Veintitrés f0275 · años f0311 · de f0328 · oficio. f0341 |
-| Tu trabajo, ordenado por estilo. | 6.62 s (f0397) | Tu f0398 · trabajo, f0403 · ordenado f0452 · por f0477 · estilo. f0488 |
-| Cotizaciones con su idea, directo a tu WhatsApp. | 9.40 s (f0564) | Cotizaciones f0576 · con f0611 · su f0632 · idea, f0646 · directo f0680 · a f0710 · tu f0716 · WhatsApp. f0722 |
-| Y en inglés, para quien viene de fuera. | 14.00 s (f0840) | Y f0840 · en f0845 · inglés, f0851 · para f0893 · quien f0899 · viene f0910 · de f0926 · fuera. f0935 |
-| Veintitrés años de oficio. | 20.10 s (f1206) | Veintitrés f1208 · años f1238 · de f1253 · oficio. f1264 |
-| Ahora, su propia página. | 21.90 s (f1314) | Ahora, f1314 · su f1347 · propia f1361 · página. f1379 |
-| Siniestro Tattoo. | 23.98 s (f1439) | Siniestro f1452 · Tattoo. f1486 |
-| Así se vería con Elévate. | 25.53 s (f1532) | Así f1532 · se f1543 · vería f1553 · con f1570 · Elévate. f1579 |
+| Alguien acaba de buscar tu estudio. | 0.40 s (f0024) | Alguien f0024 · acaba f0046 · de f0064 · buscar f0077 · tu f0089 · estudio. f0104 |
+| Esto es lo que debería encontrar: | 2.60 s (f0156) | Esto f0156 · es f0175 · lo f0190 · que f0197 · debería f0203 · encontrar. f0224 |
+| veintitrés años de oficio. | 4.51 s (f0271) | Veintitrés f0271 · años f0301 · de f0315 · oficio. f0327 |
+| Tu trabajo, ordenado por estilo. | 6.62 s (f0397) | Tu f0397 · trabajo, f0401 · ordenado f0452 · por f0476 · estilo. f0487 |
+| Cotizaciones con su idea, directo a tu WhatsApp. | 9.45 s (f0567) | Cotizaciones f0567 · con f0602 · su f0619 · idea, f0629 · directo f0665 · a f0698 · tu f0703 · WhatsApp. f0710 |
+| Y en inglés, para quien viene de fuera. | 14.00 s (f0840) | Y f0840 · en f0854 · inglés, f0860 · para f0902 · quien f0912 · viene f0922 · de f0935 · fuera. f0944 |
+| Veintitrés años de oficio. | 20.10 s (f1206) | Veintitrés f1206 · años f1231 · de f1247 · oficio. f1259 |
+| Ahora, su propia página. | 21.90 s (f1314) | Ahora, f1314 · su f1347 · propia f1353 · página. f1369 |
+| Siniestro Tattoo. | 23.98 s (f1439) | Siniestro f1439 · Tattoo. f1474 |
+| Así se vería con Elévate. | 25.24 s (f1514) | Así f1514 · se f1529 · vería f1540 · con f1560 · Elévate. f1572 |
 
 ## Momentos clave
 
@@ -82,11 +82,11 @@ La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los
 ## Tipografía cinética (fuera de la pantalla del celular, por glifo, stagger 26 ms)
 
 - TU TRABAJO, / POR ESTILO · sale 9.04–9.30 s (f0542–f0558)
-- COTIZACIONES · sale 11.06–11.26 s (f0664–f0676)
+- COTIZACIONES · sale 10.73–10.95 s (f0644–f0657)
 - DIRECTO A / TU WHATSAPP · sale 13.28–13.46 s (f0797–f0808)
 - TAMBIÉN / EN INGLÉS · sale 16.18–16.44 s (f0971–f0986)
 
 ## Sonido
 
 - 124 cues de efectos sintetizados (tecleo, taps, scroll con fricción, filtros, subida de archivo, pop, tinta como aguja, etc.).
-- Mezcla: master -14.05 LUFS / -1.7 dBTP · voz -15.12 LUFS · música ≥ 12.4 dB por debajo de cada palabra (peor: "Siniestro").
+- Mezcla: master -14.03 LUFS / -1.7 dBTP · voz -14.89 LUFS · música ≥ 12.3 dB por debajo de cada palabra (peor: "Tu").

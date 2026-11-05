@@ -330,9 +330,9 @@
   "db": -16
  },
  {
-  "t": 8.18,
+  "t": 8.16,
   "sfx": "tinta_subraya_estilo",
-  "dur": 0.34,
+  "dur": 0.35,
   "db": -17
  },
  {
@@ -504,6 +504,12 @@
   "db": -15
  },
  {
+  "t": 11.88,
+  "sfx": "tinta_subraya_whatsapp",
+  "dur": 0.35,
+  "db": -17
+ },
+ {
   "t": 11.98,
   "sfx": "rebote",
   "dur": 0.05,
@@ -514,12 +520,6 @@
   "sfx": "tap_foto",
   "dur": 0.07,
   "db": -11
- },
- {
-  "t": 12.1,
-  "sfx": "tinta_subraya_whatsapp",
-  "dur": 0.36,
-  "db": -17
  },
  {
   "t": 12.13,
@@ -612,9 +612,9 @@
   "db": -15
  },
  {
-  "t": 14.34,
+  "t": 14.39,
   "sfx": "tinta_subraya_inglés",
-  "dur": 0.32,
+  "dur": 0.35,
   "db": -17
  },
  {
@@ -672,25 +672,25 @@
   "db": -19
  },
  {
+  "t": 20.06,
+  "sfx": "tinta_escribe_1",
+  "dur": 0.72,
+  "db": -16
+ },
+ {
   "t": 20.1,
   "sfx": "pull_back_cierre",
   "dur": 0.86,
   "db": -16
  },
  {
-  "t": 20.1,
-  "sfx": "tinta_escribe_1",
-  "dur": 0.76,
-  "db": -16
- },
- {
-  "t": 20.88,
+  "t": 20.74,
   "sfx": "tinta_escribe_2",
-  "dur": 0.54,
+  "dur": 0.62,
   "db": -16
  },
  {
-  "t": 21.48,
+  "t": 21.62,
   "sfx": "texto_se_va",
   "dur": 0.32,
   "db": -22
@@ -698,13 +698,13 @@
  {
   "t": 21.86,
   "sfx": "tinta_escribe_3",
-  "dur": 0.54,
+  "dur": 0.29,
   "db": -16
  },
  {
-  "t": 22.42,
+  "t": 22.41,
   "sfx": "tinta_escribe_4",
-  "dur": 0.94,
+  "dur": 0.7,
   "db": -16
  },
  {

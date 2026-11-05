@@ -76,7 +76,7 @@ export const T = {
   inkCirclePin: [19.26, 19.96],
   pullBack: [20.10, 20.96],
   write1: [20.10, 21.42],
-  clear1: [21.48, 21.80],
+  clear1: [21.62, 21.86],
   write2: [21.86, 23.36],
   breath: 23.00,
   outroFade: [23.50, 23.96],
@@ -141,18 +141,18 @@ export const PROBES = [
 export const KINETIC = [
   { id: 'k-trabajo', scene: 'portafolio', out: [9.04, 9.30], lines: [
     [{ text: 'TU', vo: ['L3', 0] }, { text: 'TRABAJO,', vo: ['L3', 1] }],
-    [{ text: 'POR', vo: ['L3', 3] }, { text: 'ESTILO', vo: ['L3', 4], underline: [8.18, 8.52] }],
+    [{ text: 'POR', vo: ['L3', 3] }, { text: 'ESTILO', vo: ['L3', 4], underline: 'auto' }],
   ] },
-  { id: 'k-cotiza', scene: 'cotiza', out: [11.06, 11.26], lines: [
+  { id: 'k-cotiza', scene: 'cotiza', out: { beforeVo: ['L4', 4], lead: 0.36, dur: 0.22 }, lines: [
     [{ text: 'COTIZACIONES', vo: ['L4', 0] }],
   ] },
   { id: 'k-whatsapp', scene: 'cotiza', out: [13.28, 13.46], lines: [
     [{ text: 'DIRECTO', vo: ['L4', 4] }, { text: 'A', vo: ['L4', 5] }],
-    [{ text: 'TU', vo: ['L4', 6] }, { text: 'WHATSAPP', vo: ['L4', 7], underline: [12.10, 12.46] }],
+    [{ text: 'TU', vo: ['L4', 6] }, { text: 'WHATSAPP', vo: ['L4', 7], underline: 'auto' }],
   ] },
   { id: 'k-ingles', scene: 'ingles', out: [16.18, 16.44], lines: [
     [{ text: 'TAMBIÉN', vo: ['L5', 0] }],
-    [{ text: 'EN', vo: ['L5', 1] }, { text: 'INGLÉS', vo: ['L5', 2], underline: [14.34, 14.66] }],
+    [{ text: 'EN', vo: ['L5', 1] }, { text: 'INGLÉS', vo: ['L5', 2], underline: 'auto' }],
   ] },
 ];
 
@@ -166,6 +166,18 @@ export const ENDCARD = {
   tagline: 'Así se vería tu página · Elevate Negocios',
   disclaimer: 'Demo de cortesía de Elevate Negocios · pieza no oficial',
 };
+
+// Resuelve tiempos que dependen de la voz real (salida antes de una palabra, subrayado sobre la palabra)
+export const voWord = (vo, [line, i]) => vo.find((l) => l.id === line).words[i];
+export function resolveOut(out, vo) {
+  if (Array.isArray(out)) return out;
+  const t = voWord(vo, out.beforeVo).t0 - out.lead;
+  return [t, t + out.dur];
+}
+export function resolveUnderline(u, word) {
+  if (u === 'auto') return [word.t0 + 0.05, word.t0 + 0.40];
+  return u;
+}
 
 // ---------- Utilidades deterministas ----------
 export const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));

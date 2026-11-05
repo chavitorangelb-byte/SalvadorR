@@ -655,7 +655,7 @@ function updateInk(t, scrollY) {
       if (!w.underline) continue;
       const st = ink('u-' + w.text);
       const [a, b] = w.underline;
-      const out = g.def.out;
+      const out = g.out;
       if (t < a || t > out[1]) { st.set(null); continue; }
       const y = w.base + g.size * 0.16;
       const pts = smoothPath([[w.x0 - 6, y + 4], [(w.x0 + w.x1) / 2, y + 7], [w.x1 + 10, y + 2]], 18);

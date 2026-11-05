@@ -19,8 +19,8 @@ out.push(`60 fps · ${TL.FRAMES} cuadros · 27.0 s (24 s de pieza + 3 s de end c
 out.push('Todo sale de `video/timeline/timeline.mjs`; este documento se genera desde ahí.', '');
 out.push('## Escenas', '', '| Escena | Tiempo | Cuadros |', '|---|---|---|');
 for (const s of TL.SCENES) out.push(`| ${s.name} | ${s.t0.toFixed(2)}–${s.t1.toFixed(2)} s | ${f(s.t0)}–${f(s.t1)} |`);
-out.push('', '## Locución (ElevenLabs vía vidIQ, voz Brian, 1 toma)', '');
-out.push('La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los tiempos originales (la línea 2 dura ~4 s y la última terminaba en 27.8 s). La última frase va 5 % más rápida (sin cambio de tono).', '');
+out.push('', '## Locución (ElevenLabs vía vidIQ, voz Eric, 1 toma)', '');
+out.push('La línea de tiempo se ajustó a la toma real: el ritmo natural no cabía en los tiempos originales (la línea 2 dura ~4 s y la última terminaba en 27.8 s). Con la voz de Eric ninguna frase necesitó aceleración; la última se adelantó 0.3 s.', '');
 out.push('| Frase | Entra | Palabras (aterrizaje) |', '|---|---|---|');
 for (const l of vo) out.push(`| ${l.text} | ${r(l.t0)} | ${l.words.map((w) => `${w.w} ${f(w.t0)}`).join(' · ')} |`);
 out.push('', '## Momentos clave', '', '| Momento | Tiempo |', '|---|---|');
@@ -38,7 +38,7 @@ const names = {
 };
 for (const [k, n] of Object.entries(names)) out.push(`| ${n} | ${r(T[k])} |`);
 out.push('', '## Tipografía cinética (fuera de la pantalla del celular, por glifo, stagger 26 ms)', '');
-for (const g of TL.KINETIC) out.push(`- ${g.lines.map((l) => l.map((w) => w.text).join(' ')).join(' / ')} · sale ${r(g.out)}`);
+for (const g of TL.KINETIC) out.push(`- ${g.lines.map((l) => l.map((w) => w.text).join(' ')).join(' / ')} · sale ${r(TL.resolveOut(g.out, vo))}`);
 out.push('', '## Sonido', '');
 out.push(`- ${sfx.length} cues de efectos sintetizados (tecleo, taps, scroll con fricción, filtros, subida de archivo, pop, tinta como aguja, etc.).`);
 out.push(`- Mezcla: master ${mix.master_LUFS} LUFS / ${mix.master_dBTP} dBTP · voz ${mix.voz_LUFS} LUFS · música ≥ ${mix.palabra_peor.dif} dB por debajo de cada palabra (peor: "${mix.palabra_peor.w}").`);

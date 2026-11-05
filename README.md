@@ -66,5 +66,5 @@ Marcadores honestos (pendientes del dueño): **Tus precios aquí**, **Tu horario
 - Quitar `<meta name="robots" content="noindex">` y la línea de demo del pie.
 - Dominio y hosting.
 
-Voz: ElevenLabs (voz Brian) generada vía vidIQ. Fuentes: Big Shoulders Display y Barlow, SIL OFL 1.1.
+Voz: ElevenLabs (voz Eric) generada vía vidIQ; la toma anterior con Brian queda en `video/audio/vo/` como alternativa. Fuentes: Big Shoulders Display y Barlow, SIL OFL 1.1.
 Música y efectos: sintetizados en código, sin muestras.

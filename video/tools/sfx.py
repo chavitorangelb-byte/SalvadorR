@@ -256,11 +256,14 @@ for name, key, seed in (("tinta_circulo_cta", "inkCircleCta", 6), ("tinta_circul
                         ("tinta_circulo_idioma", "inkCircleLang", 8), ("tinta_circulo_pin", "inkCirclePin", 9)):
     a, b = T[key]
     put(name, needle(b - a, seed, 1.5), a, -16)
+VO = json.loads((ROOT / "video/timeline/vo_words.json").read_text())
+vow = lambda line, i: next(l for l in VO if l["id"] == line)["words"][i]
 for g in TL["KINETIC"]:
     for line in g["lines"]:
         for w in line:
             if "underline" in w:
-                a, b = w["underline"]
+                u = w["underline"]
+                a, b = (vow(*w["vo"])["t0"] + 0.05, vow(*w["vo"])["t0"] + 0.40) if u == "auto" else u
                 put(f"tinta_subraya_{w['text'].lower()}", needle(b - a, 12 + len(cues), 1.3), a, -17)
 
 put("morph_en", shimmer(T["morphEN"][1] - T["morphEN"][0], 13), T["morphEN"][0], -15)
@@ -269,7 +272,9 @@ put("orbita", whoosh(T["orbit"][1] - T["orbit"][0], 15, 160, 900) * 0.6, T["orbi
 put("push_cuidados", whoosh(0.74, 16, 220, 1300), T["pushCare"][0], -21)
 put("pin_late", ping(), T["inkCirclePin"][0] + 0.05, -19)
 put("pull_back_cierre", whoosh(0.86, 17, 1500, 220), T["pullBack"][0], -16)
-for i, (a, b) in enumerate([(T["write1"][0], 20.86), (20.88, T["write1"][1]), (T["write2"][0], 22.40), (22.42, T["write2"][1])]):
+l6a, l6b = next(l for l in VO if l["id"] == "L6a")["words"], next(l for l in VO if l["id"] == "L6b")["words"]
+spans = [(l6a[0]["t0"] - 0.04, l6a[1]["t1"]), (l6a[2]["t0"] - 0.04, l6a[-1]["t1"]), (l6b[0]["t0"] - 0.04, l6b[0]["t1"]), (l6b[1]["t0"] - 0.04, l6b[-1]["t1"])]
+for i, (a, b) in enumerate(spans):
     put(f"tinta_escribe_{i + 1}", needle(b - a, 18 + i, 1.0), a, -16)
 put("texto_se_va", whoosh(0.32, 19, 2600, 600), T["clear1"][0], -22)
 put("salida", whoosh(0.46, 20, 1200, 200), T["outroFade"][0], -20)
