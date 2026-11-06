@@ -13,7 +13,7 @@ meta = json.loads((P / 'meta.json').read_text())
 # producto: (fraccion vertical del centro del grabado, usa mascara para el ancho)
 CFG = {'termo_negro_1': (0.635, False), 'termo_negro_2': (0.635, False), 'termo_negro_3': (0.64, False),
        'vaso_rosa_1': (0.50, False), 'vaso_rosa_2': (0.56, False), 'vaso_verde_2': (0.58, False), 'vaso_verde_1': (0.55, False),
-       'vaso_azul_1': (0.62, False), 'vaso_azul_2': (0.62, False), 'vaso_asa_crema': (0.415, True), 'vaso_asa_blanco': (0.50, True)}
+       'vaso_azul_1': (0.62, False), 'vaso_azul_2': (0.62, False), 'vaso_asa_crema': (0.335, True), 'vaso_asa_blanco': (0.50, True)}
 for k, (fy, use_mask) in CFG.items():
     im = cv2.imread(str(P / f'{k}.png'), cv2.IMREAD_UNCHANGED); h = im.shape[0]
     m = cv2.imread(str(P / f'{k}_mask.png'), 0) if use_mask else im[..., 3]
