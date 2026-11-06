@@ -150,7 +150,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
   function ringStyle(t) {
     const show = env(t, S2.t0 - 0.1, S2.t0 + 0.3, S5.t0 - 0.1, S5.t0 + 0.35) + env(t, S8.t0 + 0.3, S8.t0 + 1.4, 40, 41);
     const dim = t < S3.t0 ? 1 : t < S4.t0 ? lerp(1, 0.45, sm(seg(t, S3.t0, S3.t0 + 0.5))) + lerp(0, 0.55, sm(seg(t, S4.t0 - 0.3, S4.t0 + 0.2))) : t < S8.t0 ? 1 : 0.5;
-    const blur = t < S3.t0 ? 1 : t < S4.t0 ? 2.4 : t < S5.t0 ? 1.1 : 4.5;
+    const blur = t < S3.t0 ? 1 : t < S4.t0 ? 2.6 : t < S5.t0 ? 1 : 6;
     const base = t < S8.t0 ? L.ring.base : L.s8.ringBase;
     return { show, dim, blur, base };
   }
@@ -173,7 +173,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const h = RH_[key] * s * pop;
       const sx = c.cx + (x - c.cx) * s;               // perspectiva alrededor del centro
       const it = item(c, key, sx, yb, h, { z: zz, opacity: st.show * clamp(seg(t, te, te + 0.12)) * lerp(0.55, 1, (front + 1) / 2) * st.dim,
-        blur: (2 + Math.abs(zz - 200) * 0.012) * st.blur, refl: t < S8.t0, shadow: 0.6, reflGap: 2, specI: 0.6, specX: 0.3 + 0.15 * Math.sin(a), ...extra });
+        blur: (0.4 + Math.max(0, zz - 150) * 0.006) * st.blur, refl: t < S8.t0, shadow: 0.6, reflGap: 2, specI: 0.6, specX: 0.3 + 0.15 * Math.sin(a), ...extra });
       // grano de luz al entrar: golpe suave
       it.tint = [1 + 0.6 * Math.exp(-(t - te) * 7), 1 + 0.35 * Math.exp(-(t - te) * 7), 1 + 0.35 * Math.exp(-(t - te) * 7)];
       out.push(it);
@@ -466,8 +466,8 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const hh = lerp(L.heroH, L.heroH * 0.88, pullBack) * lerp(1, 0.8, 1 - heroVis);
       const it = item(c, 'termo_negro_1', L.heroX, hb, hh, {
         z: -200, opacity: heroVis, refl: true, reflGap: 4, reflFade: 0.18, shadow: 0.7,
-        eng: { label: 'logo', phase: -0.55 + 0.11 * t, ang: 1.55 },
-        rim: 1.0 * (1 - pullBack * 0.6), rimY: ((t * 0.42) % 1.3) - 0.15, specI: 1, specX: 0.32 + 0.06 * Math.sin(t * 0.8),
+        eng: { label: 'logo', phase: 0.07 * Math.sin(t * 0.9), ang: 1.55 },
+        rim: 1.0 * (1 - pullBack * 0.6), rimY: ((t * 0.42) % 1.3) - 0.15, specI: 1, specX: 0.32 + 0.09 * Math.sin(t * 0.9),
       });
       prods.push(it);
       sc.bg.floorY = hb; sc.bg.floorI = 0.8 * heroVis;
