@@ -229,7 +229,7 @@ export async function createScene(host, { reduced = false } = {}) {
 
   /* ---------- gotas de agua (Impermeable) ---------- */
   const DROPS = 90;
-  const dropMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: .02, metalness: 0, transparent: true, opacity: .55, clearcoat: 1, envMapIntensity: 2.6, ior: 1.33 });
+  const dropMat = new THREE.MeshPhysicalMaterial({ color: 0x1a2430, roughness: .03, metalness: .1, transparent: true, opacity: .82, clearcoat: 1, clearcoatRoughness: .02, envMapIntensity: 3.2, specularIntensity: 1, ior: 1.33 });
   const drops = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 14, 10), dropMat, DROPS);
   drops.instanceMatrix.setUsage(THREE.DynamicDrawUsage); drops.count = 0; drops.frustumCulled = false; cap.add(drops);
   const D = Array.from({ length: DROPS }, () => ({ p: new THREE.Vector3(), v: new THREE.Vector3(), r: 0, on: 0, alive: false }));
@@ -244,14 +244,15 @@ export async function createScene(host, { reduced = false } = {}) {
   const VX = 56, VZ = 40, vxMin = -1.1, vxMax = 1.1, vzMin = .25, vzMax = 1.92; const visTab = new Float32Array(VX * VZ).fill(NaN);
   { const P = new THREE.Vector3(); for (let i = 0; i <= 220; i++) for (let j = 0; j <= 60; j++) { visorPoint(-1 + 2 * i / 220, j / 60, P); const gx = Math.round((P.x - vxMin) / (vxMax - vxMin) * (VX - 1)), gz = Math.round((P.z - vzMin) / (vzMax - vzMin) * (VZ - 1)); if (gx >= 0 && gx < VX && gz >= 0 && gz < VZ) { const k = gz * VX + gx; visTab[k] = Number.isNaN(visTab[k]) ? P.y : Math.max(visTab[k], P.y); } } }
   const visorY = (x, z) => { const gx = Math.round((x - vxMin) / (vxMax - vxMin) * (VX - 1)), gz = Math.round((z - vzMin) / (vzMax - vzMin) * (VZ - 1)); if (gx < 0 || gx >= VX || gz < 0 || gz >= VZ) return NaN; return visTab[gz * VX + gx]; };
-  let rainUntil = 0;
+  let rainUntil = 0, spawnAcc = 0;
   const M4 = new THREE.Matrix4(), Q = new THREE.Quaternion(), S = new THREE.Vector3(), up3 = new THREE.Vector3(0, 1, 0);
   function stepDrops(dt, now) {
     let alive = 0;
     if (now < rainUntil) {
-      for (let k = 0; k < 3; k++) { const d = D.find((x) => !x.alive); if (!d) break;
+      spawnAcc += dt * 34;
+      for (; spawnAcc >= 1; spawnAcc--) { const d = D.find((x) => !x.alive); if (!d) break;
         const ang = Math.random() * Math.PI * 2, rr = Math.sqrt(Math.random());
-        d.p.set(Math.sin(ang) * rr * 1.0, 2.2 + Math.random() * .6, CAP.zA + Math.cos(ang) * rr * 1.5 + .35); d.v.set(0, -2.5, 0); d.r = .022 + Math.random() * .03; d.on = 0; d.alive = true; }
+        d.p.set(Math.sin(ang) * rr * .9, 2.0 + Math.random() * .5, CAP.zA + Math.cos(ang) * rr * 1.4 + .4); d.v.set(0, -2.2, 0); d.r = .022 + Math.random() * .03; d.on = 0; d.alive = true; }
     }
     for (const d of D) {
       if (!d.alive) continue;
@@ -264,13 +265,13 @@ export async function createScene(host, { reduced = false } = {}) {
         const n = new THREE.Vector3(nx, -slope, nz).normalize();
         d.p.x = nx * (rc + d.r); d.p.z = CAP.zA + nz * (rc + d.r);
         const vn = d.v.dot(n); if (vn < 0) d.v.addScaledVector(n, -vn * (d.on ? 1 : 1.35));
-        d.v.multiplyScalar(d.on ? .985 : .6); d.on = 1;
+        d.v.multiplyScalar(d.on ? .9 : .5); d.on = 1;
       }
       const vy = visorY(d.p.x, d.p.z);
       if (!Number.isNaN(vy) && d.p.y < vy + d.r && d.p.y > vy - .08) {
         d.p.y = vy + d.r; const vn = d.v.y; if (vn < 0) d.v.y = -vn * (d.on ? 0 : .3);
         const gx = (visorY(d.p.x + .03, d.p.z) - visorY(d.p.x - .03, d.p.z)) / .06 || 0, gz = (visorY(d.p.x, d.p.z + .03) - visorY(d.p.x, d.p.z - .03)) / .06 || 0;
-        d.v.x -= gx * 4 * dt * 9.8 * .3; d.v.z -= gz * 4 * dt * 9.8 * .3 - .15 * dt; d.v.multiplyScalar(.99); d.on = 1;
+        d.v.x -= gx * 4 * dt * 9.8 * .3; d.v.z -= gz * 4 * dt * 9.8 * .3 - .15 * dt; d.v.multiplyScalar(.93); d.on = 1;
       }
       if (d.p.y < -1.4) { d.alive = false; continue; }
       const sp = d.v.length(); const stretch = d.on ? 1 : 1 + Math.min(.8, sp * .12);
@@ -353,8 +354,13 @@ export async function createScene(host, { reduced = false } = {}) {
       if (yaw != null) view.yaw = goal.yaw = yaw; if (pitch != null) view.pitch = goal.pitch = pitch; if (dist != null) view.dist = goal.dist = dist;
       if (fov) { camera.fov = fov; camera.updateProjectionMatrix(); } invalidate(); kick();
     },
-    water() { rainUntil = performance.now() + 3600; setView('front'); goal.pitch = .38; kick(); },
+    water() { rainUntil = performance.now() + 4200; setView('front'); goal.pitch = .38; kick(); },
     stopAuto() { autoRot = false; },
+    _simWater(sec) { // QA: simula la lluvia en pasos de 1/60 s sin depender de los fps
+      const t0 = performance.now(); rainUntil = t0 + 4200;
+      for (let k = 0; k < sec * 60; k++) stepDrops(1 / 60, t0 + k * 1000 / 60);
+      rainUntil = 0; placeCamera(); renderer.render(scene, camera); return drops.count;
+    },
     snapshot(w = 1080, h = 1350) {
       const prev = { W, H, dpr };
       renderer.setPixelRatio(1); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
