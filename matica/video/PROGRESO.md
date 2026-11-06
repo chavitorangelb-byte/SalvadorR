@@ -23,6 +23,9 @@ Rama: `claude/matica-cafe`. Todo el proyecto vive en `matica/` (Siniestro intact
 5. [ ] Fase 7: finales 9:16 (1080x1920 60 fps master + H.264 30 fps `-preset veryfast`) y re-layout real 1:1;
    stems (voz/música/efectos); HTML de la página aparte.
 
+Calidad de fotos: ninguna foto se ve por encima de su resolución real. El push al waffle quedó en 2.05x
+(la miniatura waffle-jamon.webp mide 250 px y se muestra a 92 px CSS); el del Latte en 2.2x (latte-caliente 268 px).
+
 Notas de mezcla: la voz queda en -13.9 LUFS integrados (el brief pedía ≈ -16): con el master en -14 y la música
 12 dB abajo de cada palabra, la voz es casi todo el loudness. Avisado a Salvador.
 

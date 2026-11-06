@@ -225,7 +225,7 @@ Cada fila es una transición: en ese tramo el celular va hacia lo indicado (lo q
 | f0436–f0453 | — | — | 1.00 | — |  |
 | f0494–f0524 | 0.71 | — | — | -9° | la tarjeta flota en profundidad |
 | f0553–f0648 | 0.30 | — | — | 5° | cruza a la izquierda: texto a la derecha |
-| f0708–f0729 | — | — | 2.20 → jamonCard | — | "Jamón serrano y matícas $95" legible |
+| f0708–f0729 | — | — | 2.05 → jamonCard | — | "Jamón serrano y matícas $95" legible (la foto de 250 px nunca pasa de su resolución real) |
 | f0749–f0772 | — | — | 1.00 | — |  |
 | f0766–f0792 | 0.70 | — | — | -4° | "Agregar" se levanta |
 | f0928–f0949 | — | — | 1.95 → exits | — | total $180 y las dos salidas legibles |

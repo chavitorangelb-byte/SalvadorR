@@ -285,7 +285,7 @@ export function lock(vo) {
     { t: T.pullLatte, push: 1 },
     { t: T.cardOut, x: 0.71, rotY: -9, note: 'la tarjeta flota en profundidad' },
     { t: [T.cardBack[0], T.panelWaffles[1]], x: 0.30, rotY: 5, note: 'cruza a la izquierda: texto a la derecha' },
-    { t: T.pushJamon, push: 2.2, focus: 'jamonCard', note: '"Jamón serrano y matícas $95" legible' },
+    { t: T.pushJamon, push: 2.05, focus: 'jamonCard', note: '"Jamón serrano y matícas $95" legible (la foto de 250 px nunca pasa de su resolución real)' },
     { t: T.pullJamon, push: 1 },
     { t: [r3(T.sheetUp[1] - 0.20), r3(T.lift + 0.15)], x: 0.70, rotY: -4, note: '"Agregar" se levanta' },
     { t: T.pushExits, push: 1.95, focus: 'exits', note: 'total $180 y las dos salidas legibles' },
