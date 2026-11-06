@@ -8,8 +8,8 @@ import { fabric, shared, textures } from './materials.js';
 export const MODELS = {
   tela: { crown: 'tela', front: 'tela', visor: 'tela' },
   gamuza: { crown: 'gamuza', front: 'gamuza', visor: 'gamuza' },
-  micro: { crown: 'gamuza', front: 'gamuza', visor: 'gamuza', perf: true, lining: '#14070a' },
-  impermeable: { crown: 'poly', front: 'poly', visor: 'poly', perf: true, lining: '#3a080c' },
+  micro: { crown: 'gamuza', front: 'gamuza', visor: 'gamuza', perf: true, lining: '#a89890' },
+  impermeable: { crown: 'poly', front: 'poly', visor: 'poly', perf: true, lining: '#ff9a8a' },
   trucker: { crown: 'malla', front: 'gamuza', visor: 'gamuza', mesh: true },
   bicolor: { crown: 'tela', front: 'tela', visor: 'gamuza' },
 };
@@ -30,7 +30,7 @@ export async function createScene(host, { reduced = false } = {}) {
   if (!renderer.getContext()) throw new Error('sin webgl');
   let dpr = Math.min(devicePixelRatio || 1, 2);
   renderer.setPixelRatio(dpr);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = .98;
+  renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = .92;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x000000, 0);
   host.append(renderer.domElement);
@@ -43,8 +43,8 @@ export async function createScene(host, { reduced = false } = {}) {
   const camera = new THREE.PerspectiveCamera(27, 1, .1, 50);
   const key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(-2.2, 3.2, 3.4); scene.add(key);
   const fill = new THREE.DirectionalLight(0xffe9e2, .35); fill.position.set(3, .8, 2.2); scene.add(fill);
-  const rim = new THREE.DirectionalLight(0xff2a35, 3.4); rim.position.set(2.6, 2.2, -3.4); scene.add(rim);
-  const rim2 = new THREE.DirectionalLight(0xff3b44, 1.5); rim2.position.set(-3, .6, -2.5); scene.add(rim2);
+  const rim = new THREE.DirectionalLight(0xff4d55, 2.0); rim.position.set(2.6, 2.2, -3.4); scene.add(rim);
+  const rim2 = new THREE.DirectionalLight(0xffd6d6, .7); rim2.position.set(-3, .6, -2.5); scene.add(rim2);
 
   // sombra de contacto
   const sc = document.createElement('canvas'); sc.width = sc.height = 256;
@@ -64,8 +64,8 @@ export async function createScene(host, { reduced = false } = {}) {
     sweat: new THREE.MeshStandardMaterial({ color: 0x0c0c0e, roughness: .85, side: THREE.DoubleSide }),
     hole: new THREE.MeshBasicMaterial({ color: 0x050505 }),
     plastic: new THREE.MeshPhysicalMaterial({ color: 0x0d0d0f, roughness: .35, clearcoat: .6, side: THREE.DoubleSide }),
-    label: new THREE.MeshPhysicalMaterial({ map: labelTex, metalness: .82, roughness: .3, clearcoat: .6, clearcoatRoughness: .2, alphaTest: .5, side: THREE.DoubleSide, envMapIntensity: 1.4 }),
-    lining: new THREE.MeshStandardMaterial({ color: 0x0b0405, roughness: .9, emissive: 0x6a0a10, emissiveIntensity: .35, side: THREE.DoubleSide }),
+    label: new THREE.MeshPhysicalMaterial({ map: labelTex, metalness: .45, roughness: .32, clearcoat: .7, clearcoatRoughness: .15, alphaTest: .5, side: THREE.DoubleSide, envMapIntensity: 1.8, emissive: 0xffffff, emissiveMap: labelTex, emissiveIntensity: .18 }),
+    lining: new THREE.MeshStandardMaterial({ color: 0x060606, roughness: .9, emissive: 0xffd2c8, emissiveIntensity: .22, side: THREE.DoubleSide }),
   };
   const cache = new Map();
   const getFab = (kind, role, color, opts = {}) => {
@@ -154,7 +154,7 @@ export async function createScene(host, { reduced = false } = {}) {
     eyeletMat.color.set(st.colors.crown).multiplyScalar(.75);
     const M = MODELS[st.model];
     linings.forEach((l) => { l.visible = !!M.perf; });
-    statics.lining.emissive.set(M.lining || '#6a0a10');
+    statics.lining.emissive.set(M.lining || '#ffd2c8');
     parts.eyelets.visible = !M.mesh;
     applyTech();
   }

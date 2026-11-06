@@ -5,7 +5,7 @@ import { messages, setWa } from '../lib/whatsapp.js';
 import { processLogo, defaultLogo } from './logo.js';
 
 export const COLORS = {
-  negro: ['Negro', '#141416'], rojo: ['Rojo DIPROLASER', '#c81e28'], camel: ['Camel', '#a3683f'], beige: ['Beige', '#cfbb9b'],
+  negro: ['Negro', '#141416'], rojo: ['Rojo DIPROLASER', '#c81e28'], camel: ['Camel', '#9a6139'], beige: ['Beige', '#c9b596'],
   gris: ['Gris', '#6b6e73'], marino: ['Azul marino', '#1c2742'], olivo: ['Verde olivo', '#4e5a2b'], blanco: ['Blanco', '#ecece6'],
 };
 const MODEL_NAMES = { tela: 'Tela', gamuza: 'Gamuza', micro: 'Microperforada', impermeable: 'Impermeable perforada', trucker: 'Trucker', bicolor: 'Bicolor' };
