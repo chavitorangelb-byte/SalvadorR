@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 F=$1; OUT=out; mkdir -p $OUT build/final
 # piezas en orden (a2 completa a cuando el render de a se corto por tiempo)
 : > build/final/${F}_list.txt
-for p in a a2 b; do [ -f build/final/${F}_$p.mov ] && echo "file '$PWD/build/final/${F}_$p.mov'" >> build/final/${F}_list.txt; done
+for p in a a2 b c; do [ -f build/final/${F}_$p.mov ] && echo "file '$PWD/build/final/${F}_$p.mov'" >> build/final/${F}_list.txt; done
 cat build/final/${F}_list.txt
 ffmpeg -v error -y -f concat -safe 0 -i build/final/${F}_list.txt -c copy build/final/${F}_full.mov
 N=$(ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of csv=p=0 build/final/${F}_full.mov)
