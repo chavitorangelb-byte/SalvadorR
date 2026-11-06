@@ -12,6 +12,7 @@ La interfaz del video **es** la página real, capturada cuadro por cuadro.
 | `siniestro_1x1_master_60fps.mp4` / `siniestro_1x1_whatsapp_30fps.mp4` | Reencuadre real 1080×1080 |
 | `stems/voz.wav`, `stems/musica.wav`, `stems/sfx.wav`, `stems/master.wav` | Stems a 48 kHz / 24 bits (suman el master antes del limitador) |
 | `pagina_siniestro_tattoo.html` | La página en un solo archivo |
+| `siniestro_pagina_para_cliente.jpg` | Imagen para el cliente: seis pantallas reales de la página en celular (2160×4320) |
 | `video/BRIEF.md` | Brief con tiempos exactos por fotograma (generado desde la línea de tiempo) |
 
 ## Estructura
@@ -21,7 +22,7 @@ La interfaz del video **es** la página real, capturada cuadro por cuadro.
 | `assets/` | Originales recibidos. No se editan. |
 | `site/` | La página: `index.html` + `img/` + `fonts/`. Fuente de verdad. |
 | `dist/siniestro-tattoo-demo.html` | La página en un solo archivo (fuentes e imágenes incrustadas). |
-| `tools/` | Recorte del logo, fotos, empaquetado y capturas de revisión de la página. |
+| `tools/` | Recorte del logo, fotos, empaquetado, capturas de revisión y `client_board.js` (la imagen para el cliente). |
 | `video/timeline/` | `timeline.mjs` (línea de tiempo maestra, compartida por captura y compositor), voz por palabra, cues de SFX. |
 | `video/capture/` | `capture.mjs` (página a 60 fps y 3× con reloj virtual), `morph.py` (morph SDF ES→EN). |
 | `video/compositor/` | `frame(t)` en Three.js: celular de cristal 3D, tarjetas 3D, tinta, tipografía cinética, end card. |
