@@ -1,0 +1,561 @@
+{
+ "n": 111,
+ "escala": 0.738827421895365,
+ "cues": [
+  {
+   "t": 0.0,
+   "sfx": "drone_swell",
+   "db": -14
+  },
+  {
+   "t": 0.05,
+   "sfx": "shimmer_hilo_rojo",
+   "db": -20
+  },
+  {
+   "t": 0.69,
+   "sfx": "whoosh_llegan",
+   "db": -12
+  },
+  {
+   "t": 2.24,
+   "sfx": "chime_quedan",
+   "db": -20
+  },
+  {
+   "t": 2.22,
+   "sfx": "thump_quedan",
+   "db": -16
+  },
+  {
+   "t": 2.4,
+   "sfx": "shimmer_hilo_rojo_2",
+   "db": -24
+  },
+  {
+   "t": 3.2,
+   "sfx": "swoosh_carrusel",
+   "db": -11
+  },
+  {
+   "t": 3.45,
+   "sfx": "golpe_producto_0",
+   "db": -12
+  },
+  {
+   "t": 3.47,
+   "sfx": "tick_producto_0",
+   "db": -22
+  },
+  {
+   "t": 3.6,
+   "sfx": "golpe_producto_1",
+   "db": -12
+  },
+  {
+   "t": 3.62,
+   "sfx": "tick_producto_1",
+   "db": -22
+  },
+  {
+   "t": 4.18,
+   "sfx": "golpe_producto_2",
+   "db": -12
+  },
+  {
+   "t": 4.2,
+   "sfx": "tick_producto_2",
+   "db": -22
+  },
+  {
+   "t": 5.08,
+   "sfx": "golpe_producto_3",
+   "db": -12
+  },
+  {
+   "t": 5.1,
+   "sfx": "tick_producto_3",
+   "db": -22
+  },
+  {
+   "t": 6.3,
+   "sfx": "golpe_producto_4",
+   "db": -12
+  },
+  {
+   "t": 6.32,
+   "sfx": "tick_producto_4",
+   "db": -22
+  },
+  {
+   "t": 7.7,
+   "sfx": "golpe_producto_5",
+   "db": -24
+  },
+  {
+   "t": 7.72,
+   "sfx": "tick_producto_5",
+   "db": -32
+  },
+  {
+   "t": 8.3,
+   "sfx": "golpe_producto_6",
+   "db": -24
+  },
+  {
+   "t": 8.32,
+   "sfx": "tick_producto_6",
+   "db": -32
+  },
+  {
+   "t": 8.9,
+   "sfx": "golpe_producto_7",
+   "db": -24
+  },
+  {
+   "t": 8.92,
+   "sfx": "tick_producto_7",
+   "db": -32
+  },
+  {
+   "t": 3.71,
+   "sfx": "whoosh_tarjeta_0",
+   "db": -18
+  },
+  {
+   "t": 4.01,
+   "sfx": "tink_cristal_tarjeta_0",
+   "db": -17
+  },
+  {
+   "t": 4.7,
+   "sfx": "whoosh_tarjeta_1",
+   "db": -18
+  },
+  {
+   "t": 5.0,
+   "sfx": "tink_cristal_tarjeta_1",
+   "db": -17
+  },
+  {
+   "t": 5.58,
+   "sfx": "whoosh_tarjeta_2",
+   "db": -18
+  },
+  {
+   "t": 5.88,
+   "sfx": "tink_cristal_tarjeta_2",
+   "db": -17
+  },
+  {
+   "t": 6.8,
+   "sfx": "burbuja_sube_0",
+   "db": -20
+  },
+  {
+   "t": 6.93,
+   "sfx": "burbuja_sube_1",
+   "db": -20
+  },
+  {
+   "t": 7.06,
+   "sfx": "burbuja_sube_2",
+   "db": -20
+  },
+  {
+   "t": 7.19,
+   "sfx": "burbuja_sube_3",
+   "db": -20
+  },
+  {
+   "t": 7.29,
+   "sfx": "gloop_caja",
+   "db": -14
+  },
+  {
+   "t": 7.6,
+   "sfx": "gloop_mono",
+   "db": -17
+  },
+  {
+   "t": 7.69,
+   "sfx": "liston_tensa",
+   "db": -20
+  },
+  {
+   "t": 8.16,
+   "sfx": "tapa_madera",
+   "db": -16
+  },
+  {
+   "t": 8.18,
+   "sfx": "cinta_papel_abre",
+   "db": -15
+  },
+  {
+   "t": 8.51,
+   "sfx": "papel_seda",
+   "db": -21
+  },
+  {
+   "t": 8.26,
+   "sfx": "luz_calida",
+   "db": -19
+  },
+  {
+   "t": 8.65,
+   "sfx": "chime_gracias",
+   "db": -22
+  },
+  {
+   "t": 9.15,
+   "sfx": "whoosh_regalo_0",
+   "db": -20
+  },
+  {
+   "t": 9.27,
+   "sfx": "whoosh_regalo_1",
+   "db": -20
+  },
+  {
+   "t": 9.39,
+   "sfx": "whoosh_regalo_2",
+   "db": -20
+  },
+  {
+   "t": 10.27,
+   "sfx": "tink_etiqueta",
+   "db": -16
+  },
+  {
+   "t": 10.32,
+   "sfx": "etiqueta_cuerda",
+   "db": -26
+  },
+  {
+   "t": 10.7,
+   "sfx": "whoosh_vaso_sube",
+   "db": -14
+  },
+  {
+   "t": 10.8,
+   "sfx": "swoosh_carrusel_rapido",
+   "db": -17
+  },
+  {
+   "t": 11.28,
+   "sfx": "tink_chip",
+   "db": -16
+  },
+  {
+   "t": 12.68,
+   "sfx": "tink_chip_negocio",
+   "db": -19
+  },
+  {
+   "t": 14.04,
+   "sfx": "tink_chip_nombre",
+   "db": -19
+  },
+  {
+   "t": 11.38,
+   "sfx": "barrido_luz_borra_0",
+   "db": -20
+  },
+  {
+   "t": 11.5,
+   "sfx": "laser_escribe_0",
+   "db": -22
+  },
+  {
+   "t": 11.5,
+   "sfx": "chispas_0",
+   "db": -24
+  },
+  {
+   "t": 12.12,
+   "sfx": "barrido_luz_borra_1",
+   "db": -20
+  },
+  {
+   "t": 12.24,
+   "sfx": "laser_escribe_1",
+   "db": -22
+  },
+  {
+   "t": 12.24,
+   "sfx": "chispas_1",
+   "db": -24
+  },
+  {
+   "t": 12.86,
+   "sfx": "barrido_luz_borra_2",
+   "db": -20
+  },
+  {
+   "t": 12.98,
+   "sfx": "laser_escribe_2",
+   "db": -22
+  },
+  {
+   "t": 12.98,
+   "sfx": "chispas_2",
+   "db": -24
+  },
+  {
+   "t": 13.6,
+   "sfx": "barrido_luz_borra_3",
+   "db": -20
+  },
+  {
+   "t": 13.72,
+   "sfx": "laser_escribe_3",
+   "db": -22
+  },
+  {
+   "t": 13.72,
+   "sfx": "chispas_3",
+   "db": -24
+  },
+  {
+   "t": 14.34,
+   "sfx": "barrido_luz_borra_4",
+   "db": -20
+  },
+  {
+   "t": 14.46,
+   "sfx": "laser_escribe_4",
+   "db": -22
+  },
+  {
+   "t": 14.46,
+   "sfx": "chispas_4",
+   "db": -24
+  },
+  {
+   "t": 11.63,
+   "sfx": "barrido_liquido_color_0",
+   "db": -21
+  },
+  {
+   "t": 12.37,
+   "sfx": "barrido_liquido_color_1",
+   "db": -21
+  },
+  {
+   "t": 13.11,
+   "sfx": "barrido_liquido_color_2",
+   "db": -21
+  },
+  {
+   "t": 13.85,
+   "sfx": "barrido_liquido_color_3",
+   "db": -21
+  },
+  {
+   "t": 14.59,
+   "sfx": "barrido_liquido_color_4",
+   "db": -21
+  },
+  {
+   "t": 14.95,
+   "sfx": "cristal_diagonal",
+   "db": -15
+  },
+  {
+   "t": 15.09,
+   "sfx": "laser_enciende",
+   "db": -20
+  },
+  {
+   "t": 15.44,
+   "sfx": "laser_graba",
+   "db": -23
+  },
+  {
+   "t": 15.44,
+   "sfx": "laser_chisporroteo",
+   "db": -21
+  },
+  {
+   "t": 15.62,
+   "sfx": "whoosh_laser_txt",
+   "db": -19
+  },
+  {
+   "t": 16.4,
+   "sfx": "uv_zumbido",
+   "db": -26
+  },
+  {
+   "t": 16.5,
+   "sfx": "impresora_pasada_c",
+   "db": -18
+  },
+  {
+   "t": 16.77,
+   "sfx": "impresora_pasada_m",
+   "db": -18
+  },
+  {
+   "t": 17.04,
+   "sfx": "impresora_pasada_y",
+   "db": -18
+  },
+  {
+   "t": 17.36,
+   "sfx": "impresora_pasada_k",
+   "db": -18
+  },
+  {
+   "t": 17.05,
+   "sfx": "shimmer_color_txt",
+   "db": -21
+  },
+  {
+   "t": 18.1,
+   "sfx": "transicion_calida",
+   "db": -20
+  },
+  {
+   "t": 18.97,
+   "sfx": "etiqueta_gira_0",
+   "db": -18
+  },
+  {
+   "t": 19.45,
+   "sfx": "etiqueta_gira_1",
+   "db": -18
+  },
+  {
+   "t": 19.93,
+   "sfx": "etiqueta_gira_2",
+   "db": -18
+  },
+  {
+   "t": 20.41,
+   "sfx": "etiqueta_gira_3",
+   "db": -18
+  },
+  {
+   "t": 20.71,
+   "sfx": "gracias_aire",
+   "db": -26
+  },
+  {
+   "t": 22.25,
+   "sfx": "gotas_se_juntan_0",
+   "db": -22
+  },
+  {
+   "t": 22.34,
+   "sfx": "gotas_se_juntan_1",
+   "db": -22
+  },
+  {
+   "t": 22.43,
+   "sfx": "gotas_se_juntan_2",
+   "db": -22
+  },
+  {
+   "t": 22.52,
+   "sfx": "gotas_se_juntan_3",
+   "db": -22
+  },
+  {
+   "t": 22.61,
+   "sfx": "gotas_se_juntan_4",
+   "db": -22
+  },
+  {
+   "t": 22.7,
+   "sfx": "gloop_x",
+   "db": -16
+  },
+  {
+   "t": 22.25,
+   "sfx": "subida_logo",
+   "db": -16
+  },
+  {
+   "t": 23.0,
+   "sfx": "impacto_logo",
+   "db": -8
+  },
+  {
+   "t": 23.05,
+   "sfx": "barrido_plata",
+   "db": -18
+  },
+  {
+   "t": 24.01,
+   "sfx": "tink_promocionales",
+   "db": -22
+  },
+  {
+   "t": 26.25,
+   "sfx": "whoosh_logo_sube",
+   "db": -19
+  },
+  {
+   "t": 26.66,
+   "sfx": "pop_palabra_consiente",
+   "db": -22
+  },
+  {
+   "t": 27.09,
+   "sfx": "pop_palabra_a8",
+   "db": -22
+  },
+  {
+   "t": 27.29,
+   "sfx": "pop_palabra_tus",
+   "db": -22
+  },
+  {
+   "t": 27.37,
+   "sfx": "pop_palabra_clientes",
+   "db": -22
+  },
+  {
+   "t": 27.79,
+   "sfx": "chime_este_anio",
+   "db": -22
+  },
+  {
+   "t": 28.59,
+   "sfx": "tink_pildora",
+   "db": -15
+  },
+  {
+   "t": 29.33,
+   "sfx": "tick_numero_n449",
+   "db": -17
+  },
+  {
+   "t": 30.11,
+   "sfx": "tick_numero_n212",
+   "db": -17
+  },
+  {
+   "t": 31.42,
+   "sfx": "tick_numero_n8627",
+   "db": -17
+  },
+  {
+   "t": 31.87,
+   "sfx": "redes_suave",
+   "db": -28
+  },
+  {
+   "t": 32.65,
+   "sfx": "envios_suave",
+   "db": -26
+  },
+  {
+   "t": 33.0,
+   "sfx": "cierre_aire",
+   "db": -26
+  }
+ ]
+}
