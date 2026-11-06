@@ -98,7 +98,7 @@ void main(){
   vec3 c = mix(top, bot, smoothstep(0.0, uRes.y, p.y)*0.6);
   float d = length((p-uGlow)/vec2(1.0,0.82))/uGlowR;
   c += uGlowCol * uGlowI * exp(-d*d*2.2) ;
-  c += uGlowCol * uGlowI * 0.25 * exp(-d*0.9);
+  c += uGlowCol * uGlowI * 0.18 * exp(-d*0.9);
   float d2 = length(p-uGlow2)/uGlow2R;
   c += uGlow2Col * uGlow2I * exp(-d2*d2*2.0);
   // piso de cristal negro: un poco mas claro, linea de horizonte suave
@@ -183,7 +183,7 @@ void main(){
     float k = smoothstep(edge, -edge, s);
     vec3 rc = mix(a, b, k);
     float lip = exp(-pow(s/16.0, 2.0)) * (uColAMode != uColBMode || uColA != uColB ? 1.0 : 0.0);
-    rc += vec3(1.0,0.92,0.88) * lip * 0.55;        // filo de luz liquida
+    rc += vec3(1.0,0.92,0.88) * lip * 0.28;        // filo de luz liquida
     col = mix(col, rc, m);
   }
   // grabado envuelto al cilindro
@@ -208,7 +208,7 @@ void main(){
         float shade = clamp(luma(textureLod(uTex, uv, 3.0).rgb/max(textureLod(uTex,uv,3.0).a,0.01)) / max(uLumMed,0.03), 0.55, 1.5);
         float brush = 0.92 + 0.08*noise(vec2(px.x*0.2, px.y*9.0));
         float lam = 0.35 + 0.65*pow(max(cos(th - 0.35), 0.0), 1.6);
-        float spec = pow(max(cos(th - uSpecX), 0.0), 40.0) * 0.6;
+        float spec = pow(max(cos(th - uSpecX), 0.0), 40.0) * 0.32;
         vec3 steel = vec3(0.70,0.71,0.73) * lam * brush * mix(1.0, shade, 0.35) + spec;
         vec3 dark = col * 0.35;
         vec3 eng = uEngKind < 0.5 ? steel : dark;
@@ -262,7 +262,7 @@ void main(){
   }
   if (uSpecI > 0.0) {
     float sx = exp(-pow((uv.x - uSpecX)*9.0, 2.0));
-    col += vec3(1.0) * sx * uSpecI * 0.18 * (uHasMask > 0.5 ? textureLod(uMask, uv, 1.0).r : 0.4);
+    col += vec3(1.0) * sx * uSpecI * 0.10 * (uHasMask > 0.5 ? textureLod(uMask, uv, 1.0).r : 0.4);
   }
   float a = c.a * uOpacity;
   if (uFlip > 0.5) a *= uReflFade * smoothstep(0.55, 1.0, vUV.y) ;
@@ -305,8 +305,9 @@ float shape(vec2 p, vec4 s, float kind){
     return min(min(min(l1,l2),kn),min(t1,t2));
   }
   // X del logo: dos barras cruzadas
-  float a = sdBar(p, c, 0.80, vec2(0.66*sz, 0.13*sz));
-  float b = sdBar(p, c, -0.80, vec2(0.66*sz, 0.13*sz));
+  // medidas de la X del logo actual: brazos a 43 grados, largo 1.11, grueso 0.126 (en unidades de medio ancho)
+  float a = sdBar(p, c + vec2(0.0, 0.022*sz), 0.75, vec2(1.11*sz, 0.126*sz));
+  float b = sdBar(p, c + vec2(0.0, 0.022*sz), -0.75, vec2(1.11*sz, 0.126*sz));
   return min(a,b);
 }
 float field(vec2 p){
@@ -338,7 +339,7 @@ void main(){
   float spec = pow(max(dot(reflect(-L, n), vec3(0,0,1)), 0.0), 60.0);
   float fres = pow(1.0 - n.z, 3.0);
   vec3 base = vec3(0.89,0.149,0.184);
-  vec3 col = base*(0.35 + 0.75*dif) * mix(0.55, 1.0, h) + vec3(1.0,0.85,0.85)*spec*1.1 + vec3(1.0,0.35,0.35)*fres*0.35;
+  vec3 col = base*(0.35 + 0.75*dif) * mix(0.55, 1.0, h) + vec3(1.0,0.85,0.85)*spec*0.65 + vec3(1.0,0.35,0.35)*fres*0.25;
   col *= 0.85 + 0.15*fbm(p*0.02 + uT*0.3);
   o = vec4(col*a, a);
 }`;
@@ -356,7 +357,7 @@ void main(){
 // --- copia / composicion final con bloom ---------------------------------------------------
 const FS_COPY = COMMON + `
 uniform sampler2D uTex; uniform sampler2D uBloom; uniform float uBloomI;
-void main(){ vec2 uv = fboUV(); vec4 c = texture(uTex, uv); vec3 b = texture(uBloom, uv).rgb; c.rgb += max(b - 0.18, 0.0) * uBloomI; o = vec4(c.rgb, 1.0); }`;
+void main(){ vec2 uv = fboUV(); vec4 c = texture(uTex, uv); vec3 b = texture(uBloom, uv).rgb; c.rgb += max(b - 0.30, 0.0) * uBloomI; o = vec4(c.rgb, 1.0); }`;
 
 // --- panel de cristal oscuro (glassmorphism real: muestrea el fondo desenfocado) ---------------
 const FS_GLASS = COMMON + `

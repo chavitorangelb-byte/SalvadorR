@@ -68,8 +68,8 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     vaso: { x: 700, base: 1000, h: 680 }, chip: { x: 290, y: 540 },
     s5: { rot: -1.38, termo: { x: 290, b: 840, h: 500 }, mug: { x: 800, b: 860, h: 470 }, head: { x: 290 }, laserTxt: [270, 150], colorTxt: [800, 925], colorTxt2: [800, 1005] },
     s6: { cx: 540, cy: 720, scale: 0.78, title: [130, 240], titleSize: [128, 96] },
-    s7: { x: 540, y: 470, logoW: 620, promoY: 820 },
-    s8: { logoY: 140, logoW: 300, promoY: 255, l1: 380, l2: 480, l3: 590, size: 88, pill: [540, 760, 760, 120], redes: 880, envios: 930, ringBase: 1180 },
+    s7: { x: 540, y: 460, logoW: 600, promoY: 820 },
+    s8: { logoY: 150, logoW: 260, promoY: 275, l1: 380, l2: 480, l3: 590, size: 88, pill: [540, 760, 760, 120], redes: 880, envios: 930, ringBase: 1180 },
     floorY: 960, glowY: 560,
   } : {
     heroX: 540, heroBase: 1395, heroH: 690, pedW: 460,
@@ -82,8 +82,8 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     vaso: { x: 540, base: 1420, h: 860 }, chip: { x: 540, y: 395 },
     s5: { rot: -0.17, termo: { x: 330, b: 900, h: 560 }, mug: { x: 760, b: 1560, h: 520 }, laserTxt: [790, 560], colorTxt: [300, 1215], colorTxt2: [300, 1330] },
     s6: { cx: 540, cy: 1180, scale: 1, title: [420, 560], titleSize: [150, 112] },
-    s7: { x: 540, y: 880, logoW: 700, promoY: 1175 },
-    s8: { logoY: 400, logoW: 420, promoY: 560, l1: 720, l2: 830, l3: 960, size: 100, pill: [540, 1160, 880, 140], redes: 1340, envios: 1410, ringBase: 1720 },
+    s7: { x: 540, y: 860, logoW: 700, promoY: 1215 },
+    s8: { logoY: 395, logoW: 380, promoY: 580, l1: 720, l2: 830, l3: 960, size: 100, pill: [540, 1160, 880, 140], redes: 1340, envios: 1410, ringBase: 1720 },
     floorY: 1330, glowY: 1000,
   };
 
@@ -173,7 +173,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const h = RH_[key] * s * pop;
       const sx = c.cx + (x - c.cx) * s;               // perspectiva alrededor del centro
       const it = item(c, key, sx, yb, h, { z: zz, opacity: st.show * clamp(seg(t, te, te + 0.12)) * lerp(0.55, 1, (front + 1) / 2) * st.dim,
-        blur: (0.4 + Math.max(0, zz - 150) * 0.006) * st.blur, refl: t < S8.t0, shadow: 0.6, reflGap: 2, specI: 0.6, specX: 0.3 + 0.15 * Math.sin(a), ...extra });
+        blur: (0.4 + Math.max(0, zz - 150) * 0.006) * st.blur, refl: t < S8.t0, shadow: 0.6, reflGap: 2, specI: 0.25, specX: 0.3 + 0.15 * Math.sin(a), ...extra });
       // grano de luz al entrar: golpe suave
       it.tint = [1 + 0.6 * Math.exp(-(t - te) * 7), 1 + 0.35 * Math.exp(-(t - te) * 7), 1 + 0.35 * Math.exp(-(t - te) * 7)];
       out.push(it);
@@ -336,7 +336,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     if (L1 > 0) {
       ctx.globalCompositeOperation = 'lighter';
       const rg = ctx.createRadialGradient(0, -B.e * 0.5, 4, 0, -B.e * 0.5, B.e * 1.4);
-      rg.addColorStop(0, `rgba(255,214,140,${0.85 * L1})`); rg.addColorStop(0.35, `rgba(216,178,92,${0.35 * L1})`); rg.addColorStop(1, 'rgba(216,178,92,0)');
+      rg.addColorStop(0, `rgba(255,214,140,${0.45 * L1})`); rg.addColorStop(0.35, `rgba(216,178,92,${0.18 * L1})`); rg.addColorStop(1, 'rgba(216,178,92,0)');
       ctx.fillStyle = rg; ctx.fillRect(-B.e * 2, -B.e * 3, B.e * 4, B.e * 3.6);
       // rayos
       for (let i = 0; i < 9; i++) {
@@ -346,7 +346,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
         ctx.beginPath(); ctx.moveTo(0, -B.e * 0.5);
         ctx.lineTo(Math.cos(a - wdt) * len, -B.e * 0.5 + Math.sin(a - wdt) * len); ctx.lineTo(Math.cos(a + wdt) * len, -B.e * 0.5 + Math.sin(a + wdt) * len); ctx.closePath();
         const lg = ctx.createLinearGradient(0, -B.e * 0.5, Math.cos(a) * len, -B.e * 0.5 + Math.sin(a) * len);
-        lg.addColorStop(0, `rgba(255,220,150,${0.22 * L1 * (0.7 + 0.3 * Math.sin(t * 2 + i))})`); lg.addColorStop(1, 'rgba(255,220,150,0)');
+        lg.addColorStop(0, `rgba(255,220,150,${0.09 * L1 * (0.7 + 0.3 * Math.sin(t * 2 + i))})`); lg.addColorStop(1, 'rgba(255,220,150,0)');
         ctx.fillStyle = lg; ctx.fill();
       }
     }
@@ -456,7 +456,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     const glass = [];
     const prodsBack = [], prods = [];
     const breathe = 0.86 + 0.14 * Math.sin(t * TAU / 3.2);
-    const sc = { bg: { glow: [CX, L.glowY], glowR: 520, glowI: 0.55 * breathe, floorY: L.floorY, floorI: 0, glow2: [CX, L.glowY], glow2R: 400, glow2I: 0 }, layers, top, glass, bloom: 0.35, fade: 1 };
+    const sc = { bg: { glow: [CX, L.glowY], glowR: 520, glowI: 0.42 * breathe, floorY: L.floorY, floorI: 0, glow2: [CX, L.glowY], glow2R: 400, glow2I: 0 }, layers, top, glass, bloom: 0.12, fade: 1 };
 
     // ===== Heroe S1-S2: termo negro sobre pedestal =========================================
     const heroVis = 1 - sm(seg(t, S3.t0 - 0.05, S3.t0 + 0.55));
@@ -467,7 +467,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const it = item(c, 'termo_negro_1', L.heroX, hb, hh, {
         z: -200, opacity: heroVis, refl: true, reflGap: 4, reflFade: 0.18, shadow: 0.7,
         eng: { label: 'logo', phase: 0.07 * Math.sin(t * 0.9), ang: 1.55 },
-        rim: 1.0 * (1 - pullBack * 0.6), rimY: ((t * 0.42) % 1.3) - 0.15, specI: 1, specX: 0.32 + 0.09 * Math.sin(t * 0.9),
+        rim: 0.6 * (1 - pullBack * 0.6), rimY: ((t * 0.42) % 1.3) - 0.15, specI: 0.35, specX: 0.32 + 0.09 * Math.sin(t * 0.9),
       });
       prods.push(it);
       sc.bg.floorY = hb; sc.bg.floorI = 0.8 * heroVis;
@@ -543,7 +543,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     const opened = t >= T.dales;
     if (boxOn) {
       sc.bg.glow = [B.x, B.y - B.e * 0.2]; sc.bg.glowI = lerp(sc.bg.glowI, 0.4, 0.5);
-      sc.bg.glow2 = [B.x, B.y - B.e * 0.9]; sc.bg.glow2R = 520; sc.bg.glow2I = 0.55 * lidPose(t).p * (1 - boxOut);
+      sc.bg.glow2 = [B.x, B.y - B.e * 0.9]; sc.bg.glow2R = 520; sc.bg.glow2I = 0.30 * lidPose(t).p * (1 - boxOut);
       const by = B.y + boxOut * 260;
       const BB = { ...B, y: by };
       const alpha = boxIn * (1 - boxOut);
@@ -564,7 +564,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
         const bob = Math.sin(t * 1.6 + i * 2) * 6;
         const base = lerp(B.y - B.e * 0.2, g.b, p) + bob - out * 420;
         const x = lerp(B.x, g.x, p);
-        prods.push(item(c, g.k, x, base, g.h * lerp(0.6, 1, p), { z: -260, opacity: clamp(p * 4) * (1 - out), warm: 0.35, specI: 0.4, shadow: 0 }));
+        prods.push(item(c, g.k, x, base, g.h * lerp(0.6, 1, p), { z: -260, opacity: clamp(p * 4) * (1 - out), warm: 0.22, specI: 0.2, shadow: 0 }));
       });
     }
     layers.push({ type: 'products', items: prods });
@@ -611,7 +611,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const base = lerp(V.base + 380, V.base, s4in) + s4out * 60;
       const ns = nameState(t);
       const it = item(c, 'vaso_rosa_1', V.x - s4out * 520, base, V.h * lerp(1, 0.8, s4out), {
-        z: -220, opacity: s4in * (1 - s4out), refl: true, reflGap: 3, reflFade: 0.2, shadow: 0.8, specI: 1, specX: 0.3,
+        z: -220, opacity: s4in * (1 - s4out), refl: true, reflGap: 3, reflFade: 0.2, shadow: 0.8, specI: 0.35, specX: 0.3,
         recolor: heroColor(t), eng: { label: ns.label, reveal: ns.reveal, wipe: ns.wipe, ang: ns.ang, phase: 0.04 * Math.sin(t * 0.7) },
       });
       prods.push(it);
@@ -660,12 +660,12 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       const termoX = lerp(tx, S6P.termo.x, s5out), termoB = lerp(Z.termo.b, S6P.termo.b, s5out), termoH = lerp(Z.termo.h, S6P.termo.h, s5out);
       const mugX = lerp(mx, S6P.mug.x, s5out), mugB = lerp(Z.mug.b, S6P.mug.b, s5out), mugH = lerp(Z.mug.h, S6P.mug.h, s5out);
       const rasterP = seg(t, T.grabado, T.impreso + 0.45);
-      const termo = item(c, 'termo_negro_1', termoX, termoB, termoH, { z: -150, opacity: tIn, specI: 0.8, specX: 0.3, warm: 0.3 * s5out, shadow: 0.6,
+      const termo = item(c, 'termo_negro_1', termoX, termoB, termoH, { z: -150, opacity: tIn, specI: 0.3, specX: 0.3, warm: 0.3 * s5out, shadow: 0.6,
         eng: { label: 'logo', ang: 1.55, raster: true, reveal: t < T.grabado ? -0.01 : lerp(-0.01, 1.01, rasterP), phase: 0 } });
       const pf = (a, b) => seg(t, a, b);
       const C0 = T.impreso, CD = 0.27;
       const cmyk = [pf(C0, C0 + CD), pf(C0 + CD, C0 + 2 * CD), pf(C0 + 2 * CD, C0 + 3 * CD), pf(C0 + 3 * CD + 0.05, C0 + 4 * CD + 0.05)].map((v) => lerp(-0.01, 1.01, eio(v)));
-      const mug = item(c, 'vaso_asa_crema', mugX, mugB, mugH, { z: -150, opacity: tIn, specI: 0.6, specX: 0.3, warm: 0.3 * s5out, shadow: 0.6,
+      const mug = item(c, 'vaso_asa_crema', mugX, mugB, mugH, { z: -150, opacity: tIn, specI: 0.25, specX: 0.3, warm: 0.3 * s5out, shadow: 0.6,
         print: { on: true, ang: 1.45, cmyk } });
       prods.push(termo, mug);
       sc.bg.glow = [termoX, termoB - termoH * 0.5]; sc.bg.glowR = 420;
@@ -738,7 +738,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     const s6out = eio(seg(t, S6.t1 - 0.55, S6.t1 + 0.15));
     if (s6in > 0 && s6out < 1) {
       const Q = s6Pos(), Z = L.s6, k = Z.scale;
-      sc.bg.glow2 = [Z.cx, Z.cy - 300 * k]; sc.bg.glow2R = 620; sc.bg.glow2I = 0.62 * s6in * (1 - s6out); sc.bg.glow2Col = [0.85, 0.62, 0.30];
+      sc.bg.glow2 = [Z.cx, Z.cy - 300 * k]; sc.bg.glow2R = 620; sc.bg.glow2I = 0.36 * s6in * (1 - s6out); sc.bg.glow2Col = [0.85, 0.62, 0.30];
       sc.bg.glow = [Z.cx, Z.cy - 120 * k]; sc.bg.glowI *= 0.7;
       const fade = s6in * (1 - s6out);
       const recede = (b) => b - s6out * 40;
@@ -764,12 +764,12 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
       ];
       items6.forEach(([key, p, ex], i) => {
         const e = eo(seg(t, S6.t0 - 0.2 + i * 0.1, S6.t0 + 0.45 + i * 0.1));
-        prods.push(item(c, key, p.x, recede(p.b) + (1 - e) * 60, p.h * (1 - s6out * 0.15), { ...ex, opacity: e * (1 - s6out), warm: 0.4, specI: 0.4, shadow: 0.7, blur: s6out * 6 }));
+        prods.push(item(c, key, p.x, recede(p.b) + (1 - e) * 60, p.h * (1 - s6out * 0.15), { ...ex, opacity: e * (1 - s6out), warm: 0.25, specI: 0.2, shadow: 0.7, blur: s6out * 6 }));
       });
       if (t >= S6.t0 + 0.4) {
         // el termo y el vaso ya llegaron desde S5
-        prods.push(item(c, 'termo_negro_1', Q.termo.x, recede(Q.termo.b), Q.termo.h * (1 - s6out * 0.15), { z: 10, opacity: 1 - s6out, warm: 0.35, specI: 0.6, shadow: 0.7, blur: s6out * 6, eng: { label: 'logo', ang: 1.55, phase: 0.05 * Math.sin(t * 0.6) } }));
-        prods.push(item(c, 'vaso_asa_crema', Q.mug.x, recede(Q.mug.b), Q.mug.h * (1 - s6out * 0.15), { z: 10, opacity: 1 - s6out, warm: 0.35, specI: 0.5, shadow: 0.7, blur: s6out * 6, print: { on: true, ang: 1.45, cmyk: [1.01, 1.01, 1.01, 1.01] } }));
+        prods.push(item(c, 'termo_negro_1', Q.termo.x, recede(Q.termo.b), Q.termo.h * (1 - s6out * 0.15), { z: 10, opacity: 1 - s6out, warm: 0.22, specI: 0.25, shadow: 0.7, blur: s6out * 6, eng: { label: 'logo', ang: 1.55, phase: 0.05 * Math.sin(t * 0.6) } }));
+        prods.push(item(c, 'vaso_asa_crema', Q.mug.x, recede(Q.mug.b), Q.mug.h * (1 - s6out * 0.15), { z: 10, opacity: 1 - s6out, warm: 0.22, specI: 0.2, shadow: 0.7, blur: s6out * 6, print: { on: true, ang: 1.45, cmyk: [1.01, 1.01, 1.01, 1.01] } }));
       }
       // etiquetas
       // cada etiqueta con su lugar: arriba del producto, o colgada del asa en el vaso
@@ -807,7 +807,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
     const logoIn = seg(t, T.dipro - 0.02, T.dipro + 0.5);
     if (t > T.dipro - 0.1) {
       sc.bg.glow = [X.x, X.y]; sc.bg.glowI = lerp(sc.bg.glowI, 0.75 * breathe, sm(seg(t, S7.t0, T.dipro)));
-      sc.bloom = 0.35 + 0.6 * Math.exp(-Math.max(0, t - T.dipro) * 4);
+      sc.bloom = 0.12 + 0.25 * Math.exp(-Math.max(0, t - T.dipro) * 4);
       // el logo sube y se hace chico en S8
       const up = eio(seg(t, S8.t0 - 0.2, S8.t0 + 0.45));
       const S8L = L.s8;
@@ -822,7 +822,7 @@ export function buildStory({ W, H, FORMAT, A, SAFE }) {
         ctx.restore();
         // destello de impacto
         const fl = Math.exp(-Math.max(0, t - T.dipro) * 6) * (t > T.dipro ? 1 : 0);
-        if (fl > 0.01) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const rg = ctx.createRadialGradient(lx, ly, 0, lx, ly, lw * 0.8); rg.addColorStop(0, `rgba(255,220,220,${0.35 * fl})`); rg.addColorStop(1, 'rgba(255,60,60,0)'); ctx.fillStyle = rg; ctx.fillRect(lx - lw, ly - lw, lw * 2, lw * 2); ctx.restore(); }
+        if (fl > 0.01) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; const rg = ctx.createRadialGradient(lx, ly, 0, lx, ly, lw * 0.8); rg.addColorStop(0, `rgba(255,220,220,${0.15 * fl})`); rg.addColorStop(1, 'rgba(255,60,60,0)'); ctx.fillStyle = rg; ctx.fillRect(lx - lw, ly - lw, lw * 2, lw * 2); ctx.restore(); }
         // PROMOCIONALES PERSONALIZADOS
         const pp = seg(t, T.promo - 0.2, T.promo + 0.7);
         if (pp > 0) {
