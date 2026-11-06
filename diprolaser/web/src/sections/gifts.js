@@ -185,6 +185,9 @@ export async function initGifts({ aura } = {}) {
     cv.setAttribute('role', 'img');
     cv.setAttribute('aria-label', `${p.name}${hex ? ` color ${COLORS[color][0].toLowerCase()}` : ''} con ${sample === 'logo' ? (state.logo ? 'tu logo' : 'el logo de DIPROLASER') : `la marca ${sample}`} grabada`);
     const el = items[idx].el;
+    // el canvas ocupa el lugar de la foto con su misma proporción
+    const box = el.getBoundingClientRect(); const k = Math.min(box.width / e.w, box.height / e.h) || .3;
+    cv.style.width = `${Math.round(e.w * k)}px`; cv.style.height = `${Math.round(e.h * k)}px`;
     if (!el.contains(cv)) { el.querySelector('img').hidden = true; el.append(cv); }
   }
 
@@ -302,11 +305,11 @@ async function initGiftBox(section) {
   const picks = ['vaso_azul_1', 'termo_negro_2', 'llavero_cinta_roja', 'vaso_rosa_1', 'anfora_negra_grabado_diprolaser'];
   holder.innerHTML = picks.map((f) => `<img src="img/promo/${slug(f)}-400.webp" alt="" width="200" height="300" loading="lazy" decoding="async">`).join('');
   const imgs = [...holder.children];
-  const spots = [[-150, -210, -14], [-62, -260, -6], [10, -300, 4], [84, -250, 9], [158, -200, 16]];
+  const spots = [[-128, -150, -14], [-58, -196, -6], [8, -222, 3], [74, -192, 8], [138, -146, 15]];
   const apply = (p) => {
     const lid = Math.min(1, p / .45);
-    box.style.setProperty('--lid-y', `${-lid * 120}px`);
-    box.style.setProperty('--lid-r', `${-lid * 64}deg`);
+    box.style.setProperty('--lid-y', `${-lid * 96}px`);
+    box.style.setProperty('--lid-r', `${-lid * 16}deg`);
     box.style.setProperty('--glow', String(Math.min(1, Math.max(0, (p - .2) / .4))));
     imgs.forEach((im, i) => {
       const t = Math.min(1, Math.max(0, (p - .3 - i * .06) / .45));

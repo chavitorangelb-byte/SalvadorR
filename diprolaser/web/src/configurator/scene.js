@@ -30,7 +30,7 @@ export async function createScene(host, { reduced = false } = {}) {
   if (!renderer.getContext()) throw new Error('sin webgl');
   let dpr = Math.min(devicePixelRatio || 1, 2);
   renderer.setPixelRatio(dpr);
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.08;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = .98;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setClearColor(0x000000, 0);
   host.append(renderer.domElement);
@@ -39,12 +39,12 @@ export async function createScene(host, { reduced = false } = {}) {
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
-  scene.environmentIntensity = .55;
+  scene.environmentIntensity = .38;
   const camera = new THREE.PerspectiveCamera(27, 1, .1, 50);
-  const key = new THREE.DirectionalLight(0xffffff, 2.3); key.position.set(-2.2, 3.2, 3.4); scene.add(key);
-  const fill = new THREE.DirectionalLight(0xffe9e2, .55); fill.position.set(3, .8, 2.2); scene.add(fill);
-  const rim = new THREE.DirectionalLight(0xff2a35, 4.2); rim.position.set(2.6, 2.2, -3.4); scene.add(rim);
-  const rim2 = new THREE.DirectionalLight(0xff3b44, 2.2); rim2.position.set(-3, .6, -2.5); scene.add(rim2);
+  const key = new THREE.DirectionalLight(0xffffff, 1.9); key.position.set(-2.2, 3.2, 3.4); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xffe9e2, .35); fill.position.set(3, .8, 2.2); scene.add(fill);
+  const rim = new THREE.DirectionalLight(0xff2a35, 3.4); rim.position.set(2.6, 2.2, -3.4); scene.add(rim);
+  const rim2 = new THREE.DirectionalLight(0xff3b44, 1.5); rim2.position.set(-3, .6, -2.5); scene.add(rim2);
 
   // sombra de contacto
   const sc = document.createElement('canvas'); sc.width = sc.height = 256;
@@ -172,10 +172,10 @@ export async function createScene(host, { reduced = false } = {}) {
   }
 
   /* ---------- cámara y controles ---------- */
-  const target = new THREE.Vector3(0, .02, .32);
-  const view = { yaw: -.55, pitch: .2, dist: 6.4 };
+  const target = new THREE.Vector3(0, -.04, .3);
+  const view = { yaw: -.55, pitch: .2, dist: 6.7 };
   const goal = { ...view };
-  const VIEWS = { front: { yaw: 0, pitch: .12, dist: 6.2 }, side: { yaw: -Math.PI / 2, pitch: .1, dist: 6.6 }, back: { yaw: Math.PI, pitch: .18, dist: 6.4 }, visor: { yaw: -.35, pitch: 1.0, dist: 5.6 }, under: { yaw: -.5, pitch: -.24, dist: 6 } };
+  const VIEWS = { front: { yaw: 0, pitch: .14, dist: 6.5 }, side: { yaw: -Math.PI / 2, pitch: .1, dist: 6.9 }, back: { yaw: Math.PI, pitch: .2, dist: 6.7 }, visor: { yaw: -.35, pitch: .95, dist: 7.0 }, under: { yaw: -.5, pitch: -.24, dist: 6 } };
   let vel = 0, lastInput = 0, autoRot = !reduced, dirty = true;
   const invalidate = () => { dirty = true; };
   function placeCamera() {

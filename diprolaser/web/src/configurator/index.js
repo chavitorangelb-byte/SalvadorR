@@ -46,9 +46,10 @@ export async function initConfigurator({ aura } = {}) {
 
   /* ---------- resumen + WhatsApp ---------- */
   const name = (k) => COLORS[k][0];
+  const low = (k) => { const n = COLORS[k][0]; return n.charAt(0).toLowerCase() + n.slice(1); }; // DIPROLASER siempre en mayúsculas
   function sync() {
     const c = cfg.colors;
-    summaryText.textContent = `${MODEL_NAMES[cfg.model]} · Corona ${name(c.crown).toLowerCase()}, visera ${name(c.visor).toLowerCase()}, abajo ${name(c.under).toLowerCase()} · ${TECH_NAMES[cfg.tech]}${state.logo ? ' · Con tu logo' : ''}`;
+    summaryText.textContent = `${MODEL_NAMES[cfg.model]} · Corona ${low(c.crown)}, visera ${low(c.visor)}, abajo ${low(c.under)} · ${TECH_NAMES[cfg.tech]}${state.logo ? ' · Con tu logo' : ''}`;
     setWa('cfg', messages.cfg({ model: MODEL_NAMES[cfg.model], crown: name(c.crown), visor: name(c.visor), under: name(c.under), tech: TECH_NAMES[cfg.tech], hasLogo: !!state.logo }));
     host.setAttribute('aria-label', `Vista 3D de tu gorra: ${summaryText.textContent}`);
     fallback?.update(cfg);

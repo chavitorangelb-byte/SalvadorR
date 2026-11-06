@@ -301,12 +301,45 @@
         </header>
         <div class="giftbox" data-giftbox aria-hidden="true">
           <div class="giftbox__glow"></div>
+          <svg class="giftbox__svg giftbox__svg--back" viewBox="0 0 330 310">
+            <defs>
+              <linearGradient id="gbTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3a42"/><stop offset="1" stop-color="#141418"/></linearGradient>
+              <linearGradient id="gbIn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050506"/><stop offset="1" stop-color="#1b1b20"/></linearGradient>
+              <linearGradient id="gbRib" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a5121a"/><stop offset=".45" stop-color="#ff3a43"/><stop offset="1" stop-color="#c4161f"/></linearGradient>
+              <radialGradient id="gbBow" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#ff6a70"/><stop offset=".6" stop-color="#d81c26"/><stop offset="1" stop-color="#8e0d14"/></radialGradient>
+            </defs>
+            <ellipse cx="170" cy="292" rx="150" ry="16" fill="rgba(0,0,0,.6)"/>
+            <polygon points="48,150 108,128 292,128 232,150" fill="url(#gbIn)"/>
+            <g class="giftbox__lid">
+              <polygon points="38,142 102,118 302,118 238,142" fill="url(#gbTop)"/>
+              <polygon points="38,142 238,142 238,166 38,166" fill="#1c1c21"/>
+              <polygon points="238,142 302,118 302,140 238,166" fill="#101013"/>
+              <polygon points="128,142 152,142 216,118 192,118" fill="url(#gbRib)"/>
+              <rect x="128" y="142" width="24" height="24" fill="url(#gbRib)"/>
+              <polygon points="38,128 302,128" fill="none"/>
+              <polygon points="70,130 270,130 270,136 70,136" fill="#ff3a43" opacity=".0"/>
+              <g transform="translate(170 126)">
+                <ellipse cx="-30" cy="-10" rx="34" ry="16" transform="rotate(-18)" fill="url(#gbBow)"/>
+                <ellipse cx="30" cy="-10" rx="34" ry="16" transform="rotate(18)" fill="url(#gbBow)"/>
+                <path d="M-6 0 L-26 26 L-14 24 L-8 34 Z" fill="#b3141c"/><path d="M6 0 L26 26 L14 24 L8 34 Z" fill="#b3141c"/>
+                <rect x="-10" y="-14" width="20" height="18" rx="6" fill="#ff4a52"/>
+              </g>
+            </g>
+          </svg>
           <div class="giftbox__items" data-gift-items></div>
-          <div class="giftbox__box">
-            <div class="giftbox__lid"><span class="ribbon-v"></span><span class="ribbon-h"></span><span class="bow"></span></div>
-            <div class="giftbox__body"><span class="ribbon-v"></span></div>
-          </div>
-        </div>
+          <svg class="giftbox__svg giftbox__svg--front" viewBox="0 0 330 310">
+            <defs>
+              <linearGradient id="gbFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a31"/><stop offset="1" stop-color="#09090b"/></linearGradient>
+              <linearGradient id="gbSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#131317"/><stop offset="1" stop-color="#050506"/></linearGradient>
+              <linearGradient id="gbRib2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a5121a"/><stop offset=".45" stop-color="#ff3a43"/><stop offset="1" stop-color="#c4161f"/></linearGradient>
+            </defs>
+            <polygon points="48,150 232,150 232,284 48,284" fill="url(#gbFront)"/>
+            <polygon points="232,150 292,128 292,258 232,284" fill="url(#gbSide)"/>
+            <rect x="128" y="150" width="24" height="134" fill="url(#gbRib2)"/>
+            <polygon points="252,143 270,136 270,266 252,276" fill="#9e1219"/>
+            <line x1="48" y1="150.5" x2="232" y2="150.5" stroke="rgba(255,255,255,.22)"/>
+          </svg>
+        </div></div>
       </div>
 
       <div class="gifts__shop">

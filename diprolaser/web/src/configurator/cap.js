@@ -3,7 +3,7 @@
 // abertura trasera con snapback, visera precurva con grosor y canto, banda interior y etiqueta hexagonal.
 import * as THREE from 'three';
 
-export const CAP = { Rx: .93, Rz: 1.04, H: 1.13, zA: -.1 };
+export const CAP = { Rx: .93, Rz: 1.04, H: 1.16, zA: -.24 };
 // costuras (radianes desde el frente): frente/lateral, lateral/trasero, centro trasero
 const S1 = 60 * Math.PI / 180, S2 = 126 * Math.PI / 180;
 export const PANELS = {
@@ -18,7 +18,7 @@ const v3 = () => new THREE.Vector3();
 
 export function basePoint(th, out = v3()) {
   // superelipse: frente más plano (A-frame), atrás más redondo
-  const e = lerp(1, .86, (1 + Math.cos(th)) / 2);
+  const e = lerp(1, .78, ((1 + Math.cos(th)) / 2) ** 1.5);
   const s = Math.sin(th), c = Math.cos(th);
   return out.set(CAP.Rx * Math.sign(s) * Math.abs(s) ** e, 0, CAP.Rz * Math.sign(c) * Math.abs(c) ** e);
 }
@@ -26,10 +26,10 @@ const _B = v3(), _D = v3(), _P1 = v3(), _P2 = v3(), _A = v3();
 function crownRaw(th, t, out) {
   basePoint(th, _B);
   const w = (1 + Math.cos(th)) / 2; // 1 = frente, 0 = atrás
-  const h1 = lerp(.44, .82, w ** 1.4), r2 = lerp(.62, .47, w);
+  const h1 = lerp(.38, 1.0, w ** .95), r2 = lerp(.72, .5, w ** .8);
   _D.set(_B.x, 0, _B.z - CAP.zA).normalize();
   _A.set(0, CAP.H, CAP.zA);
-  _P1.copy(_B).addScaledVector(_D, -lerp(.02, .075, w)); _P1.y += h1;
+  _P1.copy(_B).addScaledVector(_D, -lerp(.01, .09, w)); _P1.y += h1;
   _P2.copy(_A).addScaledVector(_D, r2);
   const u = 1 - t;
   return out.set(0, 0, 0)
@@ -100,7 +100,7 @@ function panelGeometry([th0, th1], nu, nv) {
 }
 
 /* ---------------- Visera ---------------- */
-export const VIS = { thIn: 72 * Math.PI / 180, thOut: 80 * Math.PI / 180, Ox: 1.035, Oz: 1.86, drop: .12, curve: .2, thick: .03 };
+export const VIS = { thIn: 72 * Math.PI / 180, thOut: 80 * Math.PI / 180, Ox: 1.02, Oz: 1.84, drop: .2, curve: .3, thick: .03 };
 const _I = v3(), _O = v3();
 export function visorPoint(s, t, out = v3()) {
   basePoint(s * VIS.thIn, _I).multiplyScalar(.985);
@@ -314,7 +314,7 @@ export function conformRim(shape, cx, cy, w, h, off, depth, n = 96) {
 }
 
 /* ---------------- Etiqueta hexagonal sobre la visera ---------------- */
-export const LABEL = { s: -.40, t: .62, size: .30, rot: -.5 };
+export const LABEL = { s: -.38, t: .6, size: .42, rot: -.45 };
 function labelGeometry(n = 24) {
   const pos = [], nor = [], uv = [], idx = [];
   const P = v3(), N = v3();

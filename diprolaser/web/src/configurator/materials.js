@@ -78,7 +78,7 @@ export function textures() {
 }
 
 export const KINDS = {
-  tela: { normal: 'tela', rough: .9, sheen: .3, sheenRough: .8, nscale: .55, rep: 9 },
+  tela: { normal: 'tela', rough: .92, sheen: .14, sheenRough: .8, nscale: .55, rep: 9 },
   gamuza: { normal: 'gamuza', rough: .97, sheen: 1, sheenRough: .5, nscale: .7, rep: 6 },
   poly: { normal: 'poly', rough: .5, sheen: .15, sheenRough: .6, nscale: .35, rep: 14, clearcoat: .2 },
   malla: { normal: 'poly', rough: .7, sheen: .2, sheenRough: .7, nscale: .4, rep: 14, alpha: 'mesh', arep: 12 },
@@ -91,7 +91,7 @@ export function fabric({ kind = 'tela', color = '#111214', role = 'crown', perfo
   const K = KINDS[kind]; const T = textures();
   const m = new THREE.MeshPhysicalMaterial({
     color: lin(color), roughness: K.rough, metalness: 0,
-    sheen: K.sheen, sheenRoughness: K.sheenRough, sheenColor: lin(color).lerp(new THREE.Color(1, 1, 1), .25),
+    sheen: K.sheen, sheenRoughness: K.sheenRough, sheenColor: lin(color).lerp(new THREE.Color(1, 1, 1), .12),
     normalMap: T[K.normal], normalScale: new THREE.Vector2(K.nscale, K.nscale),
     clearcoat: K.clearcoat || 0, clearcoatRoughness: .55,
     side: THREE.DoubleSide,
@@ -149,11 +149,11 @@ export function fabric({ kind = 'tela', color = '#111214', role = 'crown', perfo
         float thread = 0.; float emb = 0.;
         if (uRole <= 1) {
           float sd = vSt.x, al = vSt.y, ed = vSt.z, ar = vSt.w;
-          thread = max(row(sd, .016, .0034), row(sd, .03, .0034)) * dash(al, .03, .62) * step(.01, al);
-          thread = max(thread, (row(ed, .035, .0036) + row(ed, .05, .0036)) * dash(ar, .03, .62));
+          thread = max(row(sd, .016, .0026), row(sd, .03, .0026)) * dash(al, .03, .62) * step(.01, al);
+          thread = max(thread, (row(ed, .035, .0028) + row(ed, .05, .0028)) * dash(ar, .03, .62));
         } else if (uRole == 2 || uRole == 3) {
           float t = vUv2.y; float al = vSt.y;
-          for (int k = 0; k < 8; k++) { float tk = .955 - float(k) * .072; thread = max(thread, row(t, tk, .0075) * dash(al, .032, .6)); }
+          for (int k = 0; k < 8; k++) { float tk = .955 - float(k) * .072; thread = max(thread, row(t, tk, .0058) * dash(al, .032, .6)); }
         }
         #ifdef HAS_DECAL
           vec2 duv = (vUv2 - uDecal.xy) / uDecal.zw + .5;
@@ -185,7 +185,7 @@ export function fabric({ kind = 'tela', color = '#111214', role = 'crown', perfo
           }
         #endif
         float Lb = dot(diffuseColor.rgb, vec3(.2126, .7152, .0722));
-        diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * 1.7 + vec3(.028), thread * (Lb < .05 ? 1. : .55));
+        diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * 1.35 + vec3(.010), thread * (Lb < .05 ? .9 : .5));
         if (!gl_FrontFacing) diffuseColor.rgb = uInner;`)
       .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
         roughnessFactor = mix(roughnessFactor, .42, clamp(emb, 0., 1.));

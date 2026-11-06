@@ -22,9 +22,9 @@ export function initMapa() {
     <path d="${mx.d}" fill="url(#mxfill)" stroke="rgba(255,90,97,.55)" stroke-width="1.6"/>
     <path d="${mx.d}" fill="none" stroke="rgba(227,38,47,.35)" stroke-width="8" filter="url(#blur6)"/>
     <g class="arcs">${arcs.map((a) => `
-      <path d="${a.d}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.2"/>
-      <path class="arc" d="${a.d}" fill="none" stroke="url(#arc)" stroke-width="2.2" stroke-linecap="round" pathLength="100" style="--d:${(a.i * .23).toFixed(2)}s"/>
-      <circle class="end" cx="${a.x}" cy="${a.y}" r="3.2" style="--d:${(a.i * .23 + 1.6).toFixed(2)}s"/>`).join('')}
+      <path d="${a.d}" fill="none" stroke="rgba(255,90,97,.16)" stroke-width="1.6"/>
+      <path class="arc" d="${a.d}" fill="none" stroke="url(#arc)" stroke-width="4" stroke-linecap="round" pathLength="100" style="--d:${(a.i * .23).toFixed(2)}s"/>
+      <circle class="end" cx="${a.x}" cy="${a.y}" r="4" style="--d:${(a.i * .23 + 1.6).toFixed(2)}s"/>`).join('')}
     </g>
     <circle cx="${ax}" cy="${ay}" r="60" fill="url(#agsglow)" class="ags-glow"/>
     <circle cx="${ax}" cy="${ay}" r="7" fill="#fff"/>
@@ -34,14 +34,14 @@ export function initMapa() {
   </svg>`;
   const style = document.createElement('style');
   style.textContent = `
-    .ags__map .arc { stroke-dasharray: 18 100; stroke-dashoffset: 118; filter: drop-shadow(0 0 4px rgba(255,80,80,.8)); }
+    .ags__map .arc { stroke-dasharray: 22 100; stroke-dashoffset: 122; filter: drop-shadow(0 0 6px rgba(255,80,80,.95)); }
     .ags__map.is-on .arc { animation: arcrun 3.2s var(--ease-io) var(--d) infinite; }
     .ags__map .end { fill: #ffd48a; opacity: 0; }
     .ags__map.is-on .end { animation: endpop 3.2s ease-out var(--d) infinite; }
     .ags__map .ags-ring { transform-box: fill-box; transform-origin: center; animation: ring 2.4s ease-out infinite; }
     .ags__map .ags-glow { animation: breathe 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
     .ags__map .ags-label { font: 700 22px var(--f-display); font-stretch: 80%; letter-spacing: .08em; text-transform: uppercase; fill: #fff; paint-order: stroke; stroke: #050506; stroke-width: 6px; }
-    @keyframes arcrun { 0% { stroke-dashoffset: 118; } 60%, 100% { stroke-dashoffset: -2; } }
+    @keyframes arcrun { 0% { stroke-dashoffset: 122; } 62%, 100% { stroke-dashoffset: -2; } }
     @keyframes endpop { 0%, 8% { opacity: 0; r: 2; } 14% { opacity: 1; r: 5; } 40%, 100% { opacity: 0; r: 2; } }
     @keyframes ring { from { transform: scale(1); opacity: 1; } to { transform: scale(4); opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .ags__map .arc { stroke-dasharray: none; stroke-dashoffset: 0; opacity: .6; } .ags__map .end { opacity: 1; } }`;

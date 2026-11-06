@@ -64,15 +64,15 @@ void main(){
   float asp = uRes.x / uRes.y;
   float g1 = exp(-3.2 * dot((uv - a1) * vec2(asp, 1.), (uv - a1) * vec2(asp, 1.)));
   float g2 = exp(-2.6 * dot((uv - a2) * vec2(asp, 1.), (uv - a2) * vec2(asp, 1.)));
-  col += uCol * (g1 * .30 + g2 * .22) * uAura;
-  col += vec3(.89, .15, .18) * g2 * .06;
+  col += uCol * (g1 * .15 + g2 * .10) * uAura;
+  col += vec3(.89, .15, .18) * g2 * .025;
   // luz roja que respira
   float breathe = .82 + .18 * sin(uTime * 1.5);
   float dl = length(frag - uLight) / uLightR;
   float light = exp(-dl * dl * 1.6) * uLightAmt * breathe;
-  col += vec3(.95, .13, .17) * light * .55 + vec3(1., .45, .4) * light * light * .12;
+  col += vec3(.95, .13, .17) * light * .42 + vec3(1., .45, .4) * light * light * .08;
   // rejilla hexagonal tenue, solo donde hay luz (como en sus videos)
-  col += vec3(.9, .2, .22) * hexGrid(frag) * (light * .22 + (g1 + g2) * uAura * .05);
+  col += vec3(.9, .2, .22) * hexGrid(frag) * (light * .16 + (g1 + g2) * uAura * .025);
   // viñeta
   col *= 1. - .55 * pow(length((uv - .5) * vec2(1., .9)), 2.2);
   // actor líquido
@@ -166,7 +166,7 @@ export function initAura() {
       s.lightR = Math.max(lr.width * 1.5, 260);
     }
     s.lightAmt = Math.max(0, Math.min(1, hr.bottom / H)) * 0.9 + 0.1;
-    if (!s.hero.active) { s.light = [W * 0.5, H * 0.42]; s.lightR = Math.max(W, H) * 0.55; s.lightAmt = 0.32; }
+    if (!s.hero.active) { s.light = [W * 0.5, H * 0.38]; s.lightR = Math.max(W, H) * 0.5; s.lightAmt = 0.16; }
 
     // fronteras entre secciones: el líquido aparece en la más cercana al centro
     let best = null, bestD = Infinity, bi = 0;
