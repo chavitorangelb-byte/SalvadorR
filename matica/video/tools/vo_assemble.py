@@ -63,26 +63,38 @@ def main(words_path):
     SPEECH = peak - 28.0      # habla (deja fuera respiraciones y ruido de fondo)
     TAIL = peak - 36.0        # cola de la última palabra
 
+    SIL_IN = 12               # un inicio solo cuenta si viene después de >= 120 ms de silencio
+    SIL_OUT = 15              # un final, si le siguen >= 150 ms (las oclusivas t/k/p duran menos)
+
     def onset(t):
-        """Primer cuadro de habla sostenida (>= 30 ms) cerca del inicio que dio Whisper."""
-        a, b = int(max(0, t - 0.30) / 0.01), int((t + 0.15) / 0.01)
-        for k in range(a, b):
-            if np.all(db[k:k + 3] > SPEECH):
-                return k * 0.01
-        return t
+        """Inicio real: el primer cuadro de habla sostenida tras el ÚLTIMO silencio de >= 120 ms
+        cerca del inicio que dio Whisper. Así no se cuela la cola de la palabra anterior ni la
+        oclusión interna de una palabra ("Ma-t-íca"). Sin ese silencio, se respeta a Whisper."""
+        a, b = int(max(0, t - 0.40) / 0.01), int(min(len(db) - 3, (t + 0.15) / 0.01))
+        best = None
+        run = 0
+        for k in range(max(0, a - SIL_IN), b):
+            if db[k] <= SPEECH:
+                run += 1
+            else:
+                if run >= SIL_IN and k >= a and np.all(db[k:k + 3] > SPEECH):
+                    best = k
+                run = 0
+        return best * 0.01 if best is not None else t
 
     def offset(t_last_start, t):
-        """Fin real: último cuadro sobre la cola antes de 80 ms seguidos de silencio."""
-        a, b = int(t_last_start / 0.01), int(min(len(db) * 0.01, t + 0.30) / 0.01)
+        """Fin real: último cuadro sobre la cola antes de >= 150 ms seguidos de silencio,
+        nunca antes del final que dio Whisper menos 0.25 s."""
+        a, b = int(t_last_start / 0.01), int(min(len(db) * 0.01, t + 0.40) / 0.01)
         idx = np.where(db[a:b] > TAIL)[0]
         if not len(idx):
             return t
         end = idx[0]
         for k in idx:
-            if k - end > 8:
+            if k - end > SIL_OUT:
                 break
             end = k
-        return (a + end + 1) * 0.01
+        return max((a + end + 1) * 0.01, t - 0.25)
 
     clips = []
     for cid, line, rng, v0, vmin, vmax in CLIPS:

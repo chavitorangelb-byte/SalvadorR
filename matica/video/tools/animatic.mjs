@@ -23,6 +23,7 @@ fs.mkdirSync(FRAMES, { recursive: true });
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 
 const TL = JSON.parse(fs.readFileSync(path.join(VIDEO, 'timeline', 'timeline.json'), 'utf8'));
+const TAKE = JSON.parse(fs.readFileSync(path.join(VIDEO, 'timeline', 'vo_words.json'), 'utf8')).take;
 const rel = (p) => path.relative(BUILD, p).split(path.sep).join('/');
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Poppins;font-weight:400;src:url(${rel(path.join(MATICA, 'site/fonts/poppins-latin-400-normal.woff2'))})}
@@ -202,7 +203,7 @@ function draw(t) {
       y += 24;
     }
   }
-  label('voz guía (Eric, vidIQ) · se reemplaza con la toma de ElevenLabs', W / 2, H - 22, 9, 'rgba(244,241,234,.35)', 500, 'center');
+  label('voz: ${TAKE}', W / 2, H - 22, 9, 'rgba(244,241,234,.35)', 500, 'center');
 }
 window.draw = draw;
 </script></body></html>`;

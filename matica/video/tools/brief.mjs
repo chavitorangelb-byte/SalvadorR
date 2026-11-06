@@ -15,22 +15,22 @@ const start = (v) => (Array.isArray(v) ? v[0] : v);
 
 const NAMES = {
   hit0: 'Golpe en f0 (pizarra oscura)', dropFall: 'Una gota de cold brew cae', barIn: 'Salpica y abre la barra de búsqueda de cristal (genérica, sin logo)',
-  caret: 'La gota late como cursor ("Alguien busca…")', type: `La gota escribe "${TL.QUERY}" (cada palabra mientras se dice)`, enter: 'Enter (tiempo 5 del compás)',
+  caret: 'La gota late como cursor ("Alguien busca…")', type: `La gota escribe "${TL.QUERY}" (cada palabra mientras se dice)`, enter: 'Enter (compás 2, tiempo 2)',
   barOut: 'La barra se recoge en la gota', dropOutline: 'La gota se estira y dibuja el contorno del celular', phoneIn: 'Aparece el cristal 3D (bisel, grosor, reflejo)',
   phoneSettle: 'El celular gira 12° y se asienta', screenOn: 'Enciende la pantalla', pageIntro: 'Carga la portada real: fachada, logo, "Café de especialidad", chips',
-  heroPush: 'Push-in suave: se leen "Pet friendly" y "Working friendly"', dropCircleMenu: 'La gota rodea "Ver menú"', tapMenu: 'Tap en "Ver menú" (compás 2)',
+  heroPush: 'Push-in suave: se leen "Pet friendly" y "Working friendly"', dropCircleMenu: 'La gota rodea "Ver menú"', tapMenu: 'Tap en "Ver menú" (inicio del compás 3)',
   scrollMenu: 'Scroll con inercia al menú (pestaña Café)', dropHopLatte: 'La gota rebota a la tarjeta del Latte y deja un brillo', pushLatte: 'Push-in: "Latte $60" al tamaño de un celular real',
   dropCircleFrio: 'La gota rodea "Frío"', tapFrio: 'Tap en "Frío" (cae sobre "precios")', countFrio: 'El selector desliza y el precio cuenta $60 → $65',
   pullLatte: 'Pull-back', dropHopEspeciales: 'La gota rebota a "Los especiales"', tapEspeciales: 'Tap en "Los especiales"', panelEspeciales: 'Cambia el panel',
   cardOut: 'La tarjeta "Cold brew tonic de sabor $85" (con su foto) sale al espacio 3D', cardFloat: 'Flota en profundidad (sombra, parallax)', cardBack: 'Regresa a su lugar y cae al pedido',
-  cartIn: 'Sube la barra del pedido: 1 · $85', dropHopWaffles: 'La gota rebota a "Waffles de yuca"', tapWaffles: 'Tap en "Waffles de yuca" (compás 4)', panelWaffles: 'Cambia el panel',
+  cartIn: 'Sube la barra del pedido: 1 · $85', dropHopWaffles: 'La gota rebota a "Waffles de yuca"', tapWaffles: 'Tap en "Waffles de yuca" (inicio del compás 5)', panelWaffles: 'Cambia el panel',
   pushJamon: 'Push-in a "Jamón serrano y matícas $95" con su foto e ícono sin gluten', dropUnderlineJamon: 'La gota subraya el nombre', pullJamon: 'Pull-back', tapJamon: 'Tap en la tarjeta: se abre la ficha',
-  sheetUp: 'La ficha sube', dropCircleAdd: 'La gota rodea "Agregar"', lift: 'Lift musical (compás 5)', pressAdd: 'Estado presionado real de "Agregar"', tapAdd: 'Suelta: se agrega al pedido',
+  sheetUp: 'La ficha sube', dropCircleAdd: 'La gota rodea "Agregar"', lift: 'Lift musical (inicio del compás 6)', pressAdd: 'Estado presionado real de "Agregar"', tapAdd: 'Suelta: se agrega al pedido',
   addLift3D: '"Agregar" se levanta en 3D con pop', sheetDown: 'La ficha baja', countCart: 'El total cuenta $85 → $180, contador 1 → 2', tapCartbar: 'Tap en la barra del pedido',
   cartSheetUp: 'Sube el pedido: $95 + $85 = $180 y las dos salidas', pushExits: 'Push-in: total y "Pedir para recoger" / "A domicilio por Rappi"', dropGlintPickup: 'Brillo de la gota sobre "Pedir para recoger"',
   pullExits: 'Pull-back', cartSheetDown: 'El pedido baja', scrollVive: 'Scroll con inercia a "Así se vive Matíca"', iconDog: 'Ícono de línea: perrito (trazo blanco)',
   iconLaptop: 'Ícono de línea: laptop', scrollReviews: 'Scroll a las reseñas', swipe13: 'Swipe por las reseñas 1, 2 y 3', fanOut: 'Tres tarjetas de cristal salen en abanico 3D, legibles',
-  pushReview2: 'Push-in a "Los waffles son deliciosos y de sabores únicos"', fanBack: 'Regresan', scrollVisit: 'Scroll a "Visítanos" (compás 8)', pinDrop: 'Cae el pin en Av. Las Américas 607-1',
+  pushReview2: 'Push-in a "Los waffles son deliciosos y de sabores únicos"', fanBack: 'Regresan', scrollVisit: 'Scroll a "Visítanos" (compás 9)', pinDrop: 'Cae el pin en Av. Las Américas 607-1',
   pushHours: 'Push-in al horario: "Lunes a viernes 8:00 – 20:00 · Sábado 9:00 – 14:00"', dropCircleHours: 'La gota rodea el horario', holdHours: 'Se sostiene legible',
   phoneAway: 'El celular se aleja a un lado', breath: 'Respiro musical', dropFallCenter: 'La gota cae hacia el centro', hit24: 'Golpe grave', logoIn: 'Entra el logo de Matíca (leve giro 3D, sombra suave)',
   dropOnCup: 'La gota cae sobre la taza del logo (el logo solo se mueve y escala)', sparkle: 'Se deshace en un destello mínimo', tagline: '"Así se vería tu página · Elevate Negocios"',
@@ -47,11 +47,14 @@ P('Todo sale de `video/timeline/timeline.mjs` (reglas) amarrado a `video/timelin
 P('## Escenas', '', '| Escena | Tiempo | Cuadros | Brief original |', '|---|---|---|---|');
 const orig = { hook: '0.00–2.61', llegada: '2.61–5.22', menu: '5.22–10.44', waffles: '10.44–13.05', pide: '13.05–17.00', vive: '17.00–21.00', visita: '21.00–22.80', cierre: '22.80–24.00', endcard: '24.00–27.00' };
 TL.SCENES.forEach((s) => P(`| ${s.name} | ${s.t0.toFixed(2)}–${s.t1.toFixed(2)} s | ${fr(s.t0)}–${fr(s.t1)} | ${orig[s.id]} |`));
-P('', 'Diferencia con el beat sheet: el gancho dura hasta el **Enter en 3.26 s** (tiempo 5) porque el tecleo va sincronizado con la voz y "Aguascalientes" termina en 3.24 s. Lo demás cae donde lo pediste.', '');
+const L1 = TL.VO.find((c) => c.id === 'L1');
+P('', `Diferencia con el beat sheet: el gancho dura hasta el **Enter en ${T.enter.toFixed(2)} s** (compás ${Math.floor(Math.round(T.enter / (60 / TL.BPM)) / 4) + 1}, tiempo ${(Math.round(T.enter / (60 / TL.BPM)) % 4) + 1}) porque el tecleo va sincronizado con la voz y "Aguascalientes" termina en ${L1.t1.toFixed(2)} s. Lo demás cae donde lo pediste.`, '');
 
 P('## Locución', '', '| Frase | Entra–sale | Palabras (cuadro donde empieza cada una) |', '|---|---|---|');
 TL.VO.forEach((c) => P(`| ${c.text}${c.tempo !== 1 ? ` (×${c.tempo})` : ''} | ${c.t0.toFixed(2)}–${c.t1.toFixed(2)} s · ${fr(c.t0)}–${fr(c.t1)} | ${c.words.map((w) => `${w.w} ${fr(w.t0)}`).join(' · ')} |`));
-P('', 'Ninguna frase se aceleró. "Matíca." entra en 24.27 s, justo después del golpe de 24.00; "Así se vería con Elévate." termina en 26.75 s.', '');
+const fast = TL.VO.filter((c) => c.tempo !== 1);
+const L7a = TL.VO.find((c) => c.id === 'L7a'), L7b = TL.VO.find((c) => c.id === 'L7b');
+P('', `${fast.length ? 'Se aceleraron: ' + fast.map((c) => `${c.id} ×${c.tempo}`).join(', ') + ' (sin cambio de tono).' : 'Ninguna frase se aceleró.'} "Matíca." entra en ${L7a.t0.toFixed(2)} s, después del golpe de 24.00; "Así se vería con Elévate." termina en ${L7b.t1.toFixed(2)} s.`, '');
 
 P('## Escena por escena', '');
 TL.SCENES.forEach((s) => {

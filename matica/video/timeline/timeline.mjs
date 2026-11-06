@@ -51,7 +51,7 @@ export function lock(vo) {
   const TYPED = [['café', 'café'], ['de', 'de'], ['especialidad', 'especialidad'], ['aguascalientes', 'Aguascalientes.']];
   const TYPING = typingSync(TYPED.map(([txt, spoken]) => ({ txt, w: W('L1', spoken) })));
   T.type = [TYPING[0].t, TYPING[TYPING.length - 1].t];
-  T.enter = snap(Math.max(T.type[1] + 0.08, clip("L1").t1 - 0.06));
+  T.enter = snap(Math.max(T.type[1] + 0.08, clip("L1").t1 - 0.12));
   T.barOut = span(T.enter + 0.04, 0.30);            // la barra se recoge en la gota
 
   // ---------- LLEGADA ----------
@@ -205,10 +205,20 @@ export function lock(vo) {
 
   // ---------- Tipografía cinética (por glifo, stagger 26 ms; FUERA de la pantalla del celular) ----------
   // Cada palabra aterriza en el inicio de su palabra de la locución. Nunca más de 4 palabras en pantalla.
+  // Relevo: si la voz va rápida, un grupo no entra hasta que salió el anterior, cada palabra
+  // llega al menos 0.10 s después de la previa y la última se lee al menos 0.32 s.
+  let prevOut = -1;
   const kin = (id, scene, side, words, outAt) => {
-    const lines = words.map((ln) => ln.map(([text, c, k, off = 0]) => ({ text, vo: [c, k], spoken: W(c, k).w, land: r3(W(c, k).t0 + off) })));
+    let floor = prevOut + 0.20;
+    const lines = words.map((ln) => ln.map(([text, c, k, off = 0]) => {
+      const land = r3(Math.max(W(c, k).t0 + off, floor));
+      floor = land + 0.10;
+      return { text, vo: [c, k], spoken: W(c, k).w, land };
+    }));
     const first = lines[0][0].land, last = lines.flat().reduce((a, w) => Math.max(a, w.land), 0);
-    return { id, scene, side, lines, in: r3(first - 0.10), out: span(outAt(last), 0.18) };
+    const g = { id, scene, side, lines, in: r3(first - 0.10), out: span(Math.max(outAt(last), last + 0.32), 0.18) };
+    prevOut = g.out[1];
+    return g;
   };
   const KINETIC = [
     kin('k-menu-a', 'menu', 'left', [[['TU', 'L3', 'Tu'], ['MENÚ', 'L3', 'menú']], [['COMPLETO,', 'L3', 'completo,']]],
@@ -304,7 +314,8 @@ export function typingSync(words, seed = 11) {
   let prev = -1;
   words.forEach(({ txt, w }, k) => {
     const t0 = Math.max(prev + 0.035, w.t0 - 0.03);
-    const t1 = Math.max(w.t1 - 0.04, t0 + txt.length * 0.048);
+    // la última palabra termina de escribirse cuando la voz la cierra (la cola "-tes" es decaimiento)
+    const t1 = Math.max(w.t1 - (k === words.length - 1 ? 0.20 : 0.04), t0 + txt.length * 0.048);
     if (k > 0) { out.push({ c: ' ', t: +(t0 - 0.02).toFixed(3) }); }
     const ws = [...txt].map(() => 0.8 + 0.4 * rnd());
     const tot = ws.reduce((a, b) => a + b, 0);

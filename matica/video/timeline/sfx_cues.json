@@ -15,177 +15,177 @@
   "note": "la gota toca"
  },
  {
-  "t": 1.116,
+  "t": 1.041,
   "type": "tecla",
   "note": "c"
+ },
+ {
+  "t": 1.125,
+  "type": "tecla",
+  "note": "a"
  },
  {
   "t": 1.21,
   "type": "tecla",
-  "note": "a"
- },
- {
-  "t": 1.306,
-  "type": "tecla",
   "note": "f"
  },
  {
-  "t": 1.397,
+  "t": 1.292,
   "type": "tecla",
   "note": "é"
  },
  {
-  "t": 1.43,
+  "t": 1.32,
   "type": "tecla-espacio",
   "note": " "
  },
  {
-  "t": 1.521,
+  "t": 1.411,
   "type": "tecla",
   "note": "d"
  },
  {
-  "t": 1.666,
+  "t": 1.556,
   "type": "tecla",
   "note": "e"
  },
  {
-  "t": 1.73,
+  "t": 1.62,
   "type": "tecla-espacio",
   "note": " "
  },
  {
-  "t": 1.771,
+  "t": 1.661,
   "type": "tecla",
   "note": "e"
  },
  {
-  "t": 1.819,
+  "t": 1.709,
   "type": "tecla",
   "note": "s"
  },
  {
-  "t": 1.867,
+  "t": 1.757,
   "type": "tecla",
   "note": "p"
  },
  {
-  "t": 1.91,
+  "t": 1.8,
   "type": "tecla",
   "note": "e"
  },
  {
-  "t": 1.959,
+  "t": 1.849,
   "type": "tecla",
   "note": "c"
  },
  {
-  "t": 2.01,
+  "t": 1.9,
   "type": "tecla",
   "note": "i"
  },
  {
-  "t": 2.056,
+  "t": 1.946,
   "type": "tecla",
   "note": "a"
  },
  {
-  "t": 2.103,
+  "t": 1.993,
   "type": "tecla",
   "note": "l"
  },
  {
-  "t": 2.151,
+  "t": 2.041,
   "type": "tecla",
   "note": "i"
  },
  {
-  "t": 2.203,
+  "t": 2.093,
   "type": "tecla",
   "note": "d"
  },
  {
-  "t": 2.253,
+  "t": 2.143,
   "type": "tecla",
   "note": "a"
  },
  {
-  "t": 2.301,
+  "t": 2.191,
   "type": "tecla",
   "note": "d"
  },
  {
-  "t": 2.39,
+  "t": 2.28,
   "type": "tecla-espacio",
   "note": " "
  },
  {
-  "t": 2.44,
+  "t": 2.334,
   "type": "tecla",
   "note": "a"
  },
  {
-  "t": 2.498,
+  "t": 2.398,
   "type": "tecla",
   "note": "g"
  },
  {
-  "t": 2.55,
+  "t": 2.456,
   "type": "tecla",
   "note": "u"
  },
  {
-  "t": 2.605,
+  "t": 2.518,
   "type": "tecla",
   "note": "a"
  },
  {
-  "t": 2.668,
+  "t": 2.588,
   "type": "tecla",
   "note": "s"
  },
  {
-  "t": 2.723,
+  "t": 2.649,
   "type": "tecla",
   "note": "c"
  },
  {
-  "t": 2.773,
+  "t": 2.704,
   "type": "tecla",
   "note": "a"
  },
  {
-  "t": 2.823,
+  "t": 2.76,
   "type": "tecla",
   "note": "l"
  },
  {
-  "t": 2.877,
+  "t": 2.82,
   "type": "tecla",
   "note": "i"
  },
  {
-  "t": 2.93,
+  "t": 2.879,
   "type": "tecla",
   "note": "e"
  },
  {
-  "t": 2.98,
+  "t": 2.935,
   "type": "tecla",
   "note": "n"
  },
  {
-  "t": 3.04,
+  "t": 3.002,
   "type": "tecla",
   "note": "t"
  },
  {
-  "t": 3.106,
+  "t": 3.075,
   "type": "tecla",
   "note": "e"
  },
  {
-  "t": 3.169,
+  "t": 3.145,
   "type": "tecla",
   "note": "s"
  },
@@ -250,87 +250,87 @@
   "note": "Latte"
  },
  {
-  "t": 6.44,
+  "t": 6.59,
   "type": "gota-giro",
   "note": ""
  },
  {
-  "t": 6.82,
+  "t": 6.97,
   "type": "tap",
   "note": "Frío"
  },
  {
-  "t": 6.84,
+  "t": 6.99,
   "type": "selector",
   "note": "desliza"
  },
  {
-  "t": 6.87,
+  "t": 7.02,
   "type": "conteo",
   "note": "$61"
  },
  {
-  "t": 6.906,
+  "t": 7.056,
   "type": "conteo",
   "note": "$62"
  },
  {
-  "t": 6.951,
+  "t": 7.101,
   "type": "conteo",
   "note": "$63"
  },
  {
-  "t": 7.014,
+  "t": 7.164,
   "type": "conteo",
   "note": "$64"
  },
  {
-  "t": 7.26,
+  "t": 7.41,
   "type": "conteo",
   "note": "$65"
  },
  {
-  "t": 8.05,
+  "t": 8.2,
   "type": "gota-plic",
   "note": "Los especiales"
  },
  {
-  "t": 8.07,
+  "t": 8.22,
   "type": "tap",
   "note": "Los especiales"
  },
  {
-  "t": 8.1,
+  "t": 8.25,
   "type": "pestana",
   "note": ""
  },
  {
-  "t": 8.49,
+  "t": 8.64,
   "type": "tarjeta-sale",
   "note": ""
  },
  {
-  "t": 9.04,
+  "t": 9.19,
   "type": "hielos",
   "note": "cold brew"
  },
  {
-  "t": 9.29,
+  "t": 9.44,
   "type": "hielos",
   "note": "cold brew"
  },
  {
-  "t": 9.84,
+  "t": 9.99,
   "type": "tarjeta-entra",
   "note": ""
  },
  {
-  "t": 9.95,
+  "t": 10.1,
   "type": "pedido-in",
   "note": ""
  },
  {
-  "t": 10.09,
+  "t": 10.24,
   "type": "contador",
   "note": "1"
  },
@@ -350,22 +350,22 @@
   "note": ""
  },
  {
-  "t": 11.58,
+  "t": 11.49,
   "type": "gota-trazo",
   "note": "subraya"
  },
  {
-  "t": 12.33,
+  "t": 12.24,
   "type": "tap",
   "note": "ficha"
  },
  {
-  "t": 12.35,
+  "t": 12.26,
   "type": "hoja-sube",
   "note": ""
  },
  {
-  "t": 12.59,
+  "t": 12.5,
   "type": "gota-giro",
   "note": ""
  },
@@ -450,22 +450,22 @@
   "note": "total 12/12"
  },
  {
-  "t": 14.27,
+  "t": 14.26,
   "type": "tap",
   "note": "Ver pedido"
  },
  {
-  "t": 14.29,
+  "t": 14.28,
   "type": "hoja-sube",
   "note": ""
  },
  {
-  "t": 15.44,
+  "t": 15.05,
   "type": "gota-brillo",
   "note": ""
  },
  {
-  "t": 16.25,
+  "t": 16.19,
   "type": "hoja-baja",
   "note": ""
  },
@@ -480,27 +480,27 @@
   "note": "perrito"
  },
  {
-  "t": 18.31,
+  "t": 18.42,
   "type": "trazo",
   "note": "laptop"
  },
  {
-  "t": 19.3,
+  "t": 19.19,
   "type": "scroll",
   "note": "reseñas"
  },
  {
-  "t": 19.7,
+  "t": 19.59,
   "type": "swipe",
   "note": "1 a 3"
  },
  {
-  "t": 19.91,
+  "t": 19.8,
   "type": "swipe-tick",
   "note": "pasa la 2"
  },
  {
-  "t": 20.05,
+  "t": 19.94,
   "type": "abanico-sale",
   "note": ""
  },
