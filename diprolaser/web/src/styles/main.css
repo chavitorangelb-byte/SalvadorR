@@ -240,6 +240,17 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .hero__actions { display: grid; gap: 10px; width: 100%; margin-top: 6px; }
 .hero__tag { font: 600 .8rem/1.3 var(--f-text); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
 
+/* titular del hero por letra (CSS puro, arranca con la primera pintura) */
+.js .hero__title:not(.is-kinetic) { opacity: 0; }
+.hero__title.is-kinetic .ch { animation: ch-in 1s var(--ease-out) both; animation-delay: calc(var(--i) * 30ms + 120ms); }
+@keyframes ch-in {
+  from { opacity: 0; transform: translateY(.45em) rotate(5deg); font-variation-settings: 'wght' 300, 'wdth' 125; }
+  to { opacity: 1; transform: none; font-variation-settings: 'wght' 900, 'wdth' 72; }
+}
+.hero__logo { transition: opacity 700ms var(--ease-out), transform 1100ms var(--ease-out), filter 900ms var(--ease-out); }
+.hero__logo.is-pending { opacity: 0; transform: translateX(-50%) scale(.88); filter: blur(12px); }
+.hero__logo.is-on { opacity: 1; transform: translateX(-50%); filter: none; }
+
 /* --- 2 · Cinta ------------------------------------------------------------ */
 .ribbon { padding: 0 !important; overflow: hidden; border-block: 1px solid var(--line);
   background: linear-gradient(90deg, rgba(227, 38, 47, .12), rgba(255, 255, 255, .03), rgba(227, 38, 47, .12)); }
