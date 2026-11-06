@@ -3,7 +3,8 @@
 Pieza spec privada: la página que se le propone al dueño y, después, el video vertical de 27 s que la presenta.
 La interfaz del video **es** esta página, capturada cuadro por cuadro.
 
-**Estado:** Fase 0 (página real) lista para revisión. El video empieza al aprobarla.
+**Estado:** Fase 0 aprobada. Fases 2 y 3 (brief por fotograma y línea de tiempo amarrada a la voz) listas con la
+**voz guía** de Eric; falta la toma final de ElevenLabs (se re-amarra con un comando, ver abajo).
 
 ## Estructura
 
@@ -15,6 +16,11 @@ La interfaz del video **es** esta página, capturada cuadro por cuadro.
 | `review/fase0/` | Capturas de revisión (390 × 844 a 2×), página completa y `prueba_captura_60fps.mp4`. |
 | `review/fase0_hoja_de_contacto.jpg` | Hoja de contacto de la Fase 0. |
 | `tools/` | Extracción de assets, cifras tabulares, empaquetado, pruebas y capturas. |
+| `video/BRIEF.md` | Brief del video con tiempos exactos por fotograma (se genera desde la línea de tiempo). |
+| `video/timeline/` | `script.json` (guion y márgenes), `timeline.mjs` (reglas), `vo_words.json` (voz colocada), `timeline.json` y `sfx_cues.json` (resueltos). |
+| `video/audio/vo/` | Tomas de voz y su alineación palabra por palabra. |
+| `video/tools/` | Alineación (Whisper), colocación de la voz, amarre, brief, animatic y `relock.sh`. |
+| `review/fase2/animatic_tiempos.mp4` | Animatic de tiempos con la voz y metrónomo (no es el look final). |
 
 ## Reconstruir
 
@@ -52,6 +58,23 @@ node matica/tools/capture_proof.mjs                    # prueba de captura 60 fp
 - Confirmar que los **adicionales** (leche vegetal, jarabe, extra shot) aplican a todo Café y Otras bebidas.
 - Fotos originales en alta (hoy son recortes de miniaturas de Instagram de ~400 px).
 - Al publicar: quitar `<meta name="robots" content="noindex">` y la línea de demo del pie; dominio y hosting.
+
+## Voz y línea de tiempo
+
+La toma final viene de ElevenLabs (la saca Salvador con el guion de `video/timeline/script.json`; en el texto
+para la voz va "Elévate" con acento). Para amarrar el video a una toma nueva:
+
+```bash
+pip install faster-whisper                              # una vez (el modelo medium baja solo, 1.5 GB)
+matica/video/tools/relock.sh ruta/a/la_toma.mp3         # alinea, coloca, re-amarra, brief y animatic (~3 min)
+```
+
+- `vo_align.py`: Whisper palabra por palabra; la ortografía la manda el guion.
+- `vo_assemble.py`: coloca cada frase en su segundo; los inicios tras pausa se miden con la energía del audio
+  (Whisper se equivoca ahí hasta 0.2 s). Si una frase no cabe: empuja la siguiente, adelanta esta y, al final,
+  acelera máx. 6 % sin cambiar el tono.
+- `lock.mjs`: resuelve todos los momentos con reglas amarradas a palabras de la voz y a la rejilla de 92 BPM,
+  y valida orden de la historia, máx. 4 palabras de tipografía en pantalla, respiro sin voz y ≥ 70 cues.
 
 ## Captura del video
 

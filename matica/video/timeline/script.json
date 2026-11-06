@@ -1,0 +1,62 @@
+{
+  "note": "Guion de la locución. t = inicio pedido en el brief (s de video); min/max_t = margen para acomodar la toma real; max = duración que cabe sin pisar la siguiente frase ni el beat. L7 se coloca partida ('Matíca.' + 'Así se vería con Elévate.'), entre 24.12 s y 26.75 s.",
+  "tts_note": "En el texto para la voz va 'Elévate' (con acento) para que se pronuncie como en Siniestro; en pantalla se escribe 'Elevate'.",
+  "lines": [
+    {
+      "id": "L1",
+      "text": "Alguien busca café de especialidad en Aguascalientes.",
+      "t": 0.3,
+      "min_t": 0.25,
+      "max_t": 0.45,
+      "max": 3.3
+    },
+    {
+      "id": "L2",
+      "text": "Que te encuentre a ti.",
+      "t": 3.0,
+      "min_t": 2.95,
+      "max_t": 3.9,
+      "max": 2.0
+    },
+    {
+      "id": "L3",
+      "text": "Tu menú completo, con precios, en su celular.",
+      "t": 5.6,
+      "min_t": 5.45,
+      "max_t": 5.8,
+      "max": 4.6
+    },
+    {
+      "id": "L4",
+      "text": "Waffles de yuca incluidos.",
+      "t": 10.8,
+      "min_t": 10.62,
+      "max_t": 10.95,
+      "max": 2.3
+    },
+    {
+      "id": "L5",
+      "text": "Que pidan antes y lleguen por él listo.",
+      "t": 13.4,
+      "min_t": 13.25,
+      "max_t": 13.55,
+      "max": 3.6
+    },
+    {
+      "id": "L6",
+      "text": "Pet friendly, working friendly, y con reseñas que hablan por ti.",
+      "t": 17.4,
+      "min_t": 17.25,
+      "max_t": 17.55,
+      "max": 4.2
+    },
+    {
+      "id": "L7",
+      "text": "Matíca. Así se vería con Elévate.",
+      "t": 24.4,
+      "min_t": 24.12,
+      "max_t": 24.45,
+      "max": 2.6
+    }
+  ]
+}

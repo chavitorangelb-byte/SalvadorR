@@ -1,0 +1,2449 @@
+{
+ "FPS": 60,
+ "DUR": 27,
+ "FRAMES": 1620,
+ "BPM": 92,
+ "QUERY": "café de especialidad aguascalientes",
+ "T": {
+  "hit0": 0,
+  "dropFall": [
+   0,
+   0.3
+  ],
+  "barIn": [
+   0.22,
+   0.58
+  ],
+  "caret": [
+   0.58,
+   1.1
+  ],
+  "type": [
+   1.116,
+   3.169
+  ],
+  "enter": 3.2609,
+  "barOut": [
+   3.301,
+   3.601
+  ],
+  "dropOutline": [
+   3.321,
+   4.021
+  ],
+  "phoneIn": [
+   3.541,
+   4.021
+  ],
+  "phoneSettle": [
+   3.711,
+   4.661
+  ],
+  "screenOn": 3.841,
+  "pageIntro": [
+   3.841,
+   4.691
+  ],
+  "heroPush": [
+   4.291,
+   4.941
+  ],
+  "tapMenu": 5.2174,
+  "dropCircleMenu": [
+   4.757,
+   5.177
+  ],
+  "scrollMenu": [
+   5.317,
+   6.097
+  ],
+  "dropHopLatte": [
+   6.117,
+   6.417
+  ],
+  "pushLatte": [
+   6.147,
+   6.647
+  ],
+  "tapFrio": 6.82,
+  "dropCircleFrio": [
+   6.44,
+   6.79
+  ],
+  "countFrio": [
+   6.84,
+   7.26
+  ],
+  "pullLatte": [
+   7.38,
+   7.8
+  ],
+  "dropHopEspeciales": [
+   7.75,
+   8.05
+  ],
+  "tapEspeciales": 8.07,
+  "panelEspeciales": [
+   8.07,
+   8.43
+  ],
+  "cardOut": [
+   8.49,
+   8.99
+  ],
+  "cardFloat": [
+   8.99,
+   9.47
+  ],
+  "cardBack": [
+   9.47,
+   9.89
+  ],
+  "cartIn": [
+   9.87,
+   10.32
+  ],
+  "tapWaffles": 10.4348,
+  "dropHopWaffles": [
+   10.105,
+   10.415
+  ],
+  "panelWaffles": [
+   10.435,
+   10.795
+  ],
+  "pushJamon": [
+   10.92,
+   11.52
+  ],
+  "dropUnderlineJamon": [
+   11.58,
+   11.98
+  ],
+  "pullJamon": [
+   11.95,
+   12.31
+  ],
+  "tapJamon": 12.33,
+  "sheetUp": [
+   12.35,
+   12.81
+  ],
+  "dropCircleAdd": [
+   12.59,
+   13.023
+  ],
+  "lift": 13.043478260869566,
+  "pressAdd": [
+   13.043,
+   13.163
+  ],
+  "tapAdd": 13.163,
+  "addLift3D": [
+   13.043,
+   13.563
+  ],
+  "sheetDown": [
+   13.213,
+   13.713
+  ],
+  "countCart": [
+   13.363,
+   13.983
+  ],
+  "tapCartbar": 14.27,
+  "cartSheetUp": [
+   14.29,
+   14.79
+  ],
+  "pushExits": [
+   14.89,
+   15.49
+  ],
+  "dropGlintPickup": [
+   15.44,
+   15.89
+  ],
+  "pullExits": [
+   15.89,
+   16.31
+  ],
+  "cartSheetDown": [
+   16.25,
+   16.7
+  ],
+  "scrollVive": [
+   16.956,
+   17.736
+  ],
+  "iconDog": [
+   17.35,
+   17.97
+  ],
+  "iconLaptop": [
+   18.31,
+   18.93
+  ],
+  "scrollReviews": [
+   19.3,
+   19.68
+  ],
+  "swipe13": [
+   19.7,
+   20.12
+  ],
+  "fanOut": [
+   20.05,
+   20.45
+  ],
+  "scrollVisit": [
+   21,
+   21.58
+  ],
+  "fanBack": [
+   20.82,
+   21.14
+  ],
+  "pushReview2": [
+   20.3,
+   20.79
+  ],
+  "pinDrop": [
+   21.38,
+   22.18
+  ],
+  "pushHours": [
+   21.63,
+   22.13
+  ],
+  "dropCircleHours": [
+   21.93,
+   22.48
+  ],
+  "holdHours": [
+   22.13,
+   22.8
+  ],
+  "phoneAway": [
+   22.8,
+   23.55
+  ],
+  "breath": 23,
+  "dropFallCenter": [
+   23.15,
+   23.95
+  ],
+  "hit24": 24,
+  "logoIn": [
+   24,
+   24.72
+  ],
+  "dropOnCup": [
+   24.42,
+   24.8
+  ],
+  "sparkle": [
+   24.8,
+   25.2
+  ],
+  "tagline": [
+   25.015,
+   25.565
+  ],
+  "disclaimer": [
+   25.585,
+   25.985
+  ],
+  "end": 27
+ },
+ "SCREEN": [
+  3.841,
+  23.55
+ ],
+ "SCENES": [
+  {
+   "id": "hook",
+   "t0": 0,
+   "t1": 3.2609,
+   "name": "Gancho: la gota escribe la búsqueda"
+  },
+  {
+   "id": "llegada",
+   "t0": 3.2609,
+   "t1": 5.2174,
+   "name": "Llegada: el celular y su portada real"
+  },
+  {
+   "id": "menu",
+   "t0": 5.2174,
+   "t1": 10.4348,
+   "name": "Menú: precios y Frío / Caliente"
+  },
+  {
+   "id": "waffles",
+   "t0": 10.4348,
+   "t1": 13.043478260869566,
+   "name": "Waffles de yuca"
+  },
+  {
+   "id": "pide",
+   "t0": 13.043478260869566,
+   "t1": 16.956,
+   "name": "Pide: agregar, $180 y dos salidas"
+  },
+  {
+   "id": "vive",
+   "t0": 16.956,
+   "t1": 21,
+   "name": "Así se vive: pet, working y reseñas"
+  },
+  {
+   "id": "visita",
+   "t0": 21,
+   "t1": 22.8,
+   "name": "Visítanos: pin y horario"
+  },
+  {
+   "id": "cierre",
+   "t0": 22.8,
+   "t1": 24,
+   "name": "Cierre: el celular se aparta, la gota cae"
+  },
+  {
+   "id": "endcard",
+   "t0": 24,
+   "t1": 27,
+   "name": "End card"
+  }
+ ],
+ "PAGE_ACTIONS": [
+  {
+   "t": 3.841,
+   "type": "intro"
+  },
+  {
+   "t": 5.2174,
+   "type": "tap",
+   "sel": "#cta-menu",
+   "noScroll": true
+  },
+  {
+   "t": [
+    5.317,
+    6.097
+   ],
+   "type": "scroll",
+   "to": "menu"
+  },
+  {
+   "t": 6.82,
+   "type": "tap",
+   "sel": "#item-latte [data-temp=\"cold\"]"
+  },
+  {
+   "t": 8.07,
+   "type": "tap",
+   "sel": "#tab-especiales"
+  },
+  {
+   "t": 8.49,
+   "type": "hide",
+   "sel": "#item-cold-brew-tonic",
+   "on": true
+  },
+  {
+   "t": 9.89,
+   "type": "hide",
+   "sel": "#item-cold-brew-tonic",
+   "on": false
+  },
+  {
+   "t": 9.89,
+   "type": "add",
+   "spec": {
+    "id": "cold-brew-tonic",
+    "opt": "Piloncillo"
+   }
+  },
+  {
+   "t": 10.4348,
+   "type": "tap",
+   "sel": "#tab-waffles"
+  },
+  {
+   "t": 12.33,
+   "type": "tap",
+   "sel": "#item-jamon-serrano .item-open"
+  },
+  {
+   "t": [
+    13.043,
+    13.163
+   ],
+   "type": "press",
+   "sel": "#si-add"
+  },
+  {
+   "t": 13.043,
+   "type": "hide",
+   "sel": "#si-add",
+   "on": true
+  },
+  {
+   "t": 13.163,
+   "type": "tap",
+   "sel": "#si-add",
+   "quiet": true
+  },
+  {
+   "t": 13.563,
+   "type": "hide",
+   "sel": "#si-add",
+   "on": false
+  },
+  {
+   "t": 14.27,
+   "type": "tap",
+   "sel": "#cartbar"
+  },
+  {
+   "t": 16.25,
+   "type": "closeSheet"
+  },
+  {
+   "t": [
+    16.956,
+    17.736
+   ],
+   "type": "scroll",
+   "to": "vive"
+  },
+  {
+   "t": [
+    19.3,
+    19.68
+   ],
+   "type": "scroll",
+   "to": "reviews"
+  },
+  {
+   "t": 19.7,
+   "type": "review",
+   "i": 2,
+   "dur": 0.4200000000000017
+  },
+  {
+   "t": 20.05,
+   "type": "hide",
+   "sel": "#rev-track",
+   "on": true
+  },
+  {
+   "t": [
+    21,
+    21.58
+   ],
+   "type": "scroll",
+   "to": "visit"
+  },
+  {
+   "t": 21.14,
+   "type": "hide",
+   "sel": "#rev-track",
+   "on": false
+  },
+  {
+   "t": 21.38,
+   "type": "dropPin"
+  }
+ ],
+ "PROBES": [
+  {
+   "t": 4.757,
+   "name": "ctaMenu",
+   "sel": "#cta-menu"
+  },
+  {
+   "t": 6.117,
+   "name": "latteCard",
+   "sel": "#item-latte"
+  },
+  {
+   "t": 6.44,
+   "name": "latteFrio",
+   "sel": "#item-latte [data-temp=\"cold\"]"
+  },
+  {
+   "t": 6.147,
+   "name": "lattePrice",
+   "sel": "#item-latte [data-price-for]"
+  },
+  {
+   "t": 7.75,
+   "name": "tabEspeciales",
+   "sel": "#tab-especiales"
+  },
+  {
+   "t": 8.49,
+   "name": "coldBrewCard",
+   "sel": "#item-cold-brew-tonic"
+  },
+  {
+   "t": 10.105,
+   "name": "tabWaffles",
+   "sel": "#tab-waffles"
+  },
+  {
+   "t": 10.92,
+   "name": "jamonCard",
+   "sel": "#item-jamon-serrano"
+  },
+  {
+   "t": 11.58,
+   "name": "jamonName",
+   "sel": "#item-jamon-serrano .item-name"
+  },
+  {
+   "t": 12.59,
+   "name": "siAdd",
+   "sel": "#si-add"
+  },
+  {
+   "t": 13.363,
+   "name": "cartbar",
+   "sel": "#cartbar"
+  },
+  {
+   "t": 14.89,
+   "name": "exits",
+   "sel": "#sc-body .exits"
+  },
+  {
+   "t": 14.89,
+   "name": "scTotal",
+   "sel": "#sc-total"
+  },
+  {
+   "t": 15.44,
+   "name": "exitPickup",
+   "sel": "#exit-pickup"
+  },
+  {
+   "t": 17.35,
+   "name": "perks",
+   "sel": ".perks"
+  },
+  {
+   "t": 20.05,
+   "name": "rev1",
+   "sel": "#rev-1"
+  },
+  {
+   "t": 20.05,
+   "name": "rev2",
+   "sel": "#rev-2"
+  },
+  {
+   "t": 20.05,
+   "name": "rev3",
+   "sel": "#rev-3"
+  },
+  {
+   "t": 21.63,
+   "name": "hours",
+   "sel": "#hours"
+  },
+  {
+   "t": 21.38,
+   "name": "map",
+   "sel": "#map"
+  }
+ ],
+ "KINETIC": [
+  {
+   "id": "k-menu-a",
+   "scene": "menu",
+   "side": "left",
+   "lines": [
+    [
+     {
+      "text": "TU",
+      "vo": [
+       "L3",
+       "Tu"
+      ],
+      "spoken": "Tu",
+      "land": 5.6
+     },
+     {
+      "text": "MENÚ",
+      "vo": [
+       "L3",
+       "menú"
+      ],
+      "spoken": "menú",
+      "land": 5.72
+     }
+    ],
+    [
+     {
+      "text": "COMPLETO,",
+      "vo": [
+       "L3",
+       "completo,"
+      ],
+      "spoken": "completo,",
+      "land": 5.96
+     }
+    ]
+   ],
+   "in": 5.5,
+   "out": [
+    7.3,
+    7.48
+   ]
+  },
+  {
+   "id": "k-menu-b",
+   "scene": "menu",
+   "side": "left",
+   "lines": [
+    [
+     {
+      "text": "EN",
+      "vo": [
+       "L3",
+       "en"
+      ],
+      "spoken": "en",
+      "land": 7.66
+     },
+     {
+      "text": "SU",
+      "vo": [
+       "L3",
+       "su"
+      ],
+      "spoken": "su",
+      "land": 7.86
+     }
+    ],
+    [
+     {
+      "text": "CELULAR",
+      "vo": [
+       "L3",
+       "celular."
+      ],
+      "spoken": "celular.",
+      "land": 8
+     }
+    ]
+   ],
+   "in": 7.56,
+   "out": [
+    8.59,
+    8.77
+   ]
+  },
+  {
+   "id": "k-waffles",
+   "scene": "waffles",
+   "side": "right",
+   "lines": [
+    [
+     {
+      "text": "WAFFLES",
+      "vo": [
+       "L4",
+       "Waffles"
+      ],
+      "spoken": "Waffles",
+      "land": 10.8
+     }
+    ],
+    [
+     {
+      "text": "DE",
+      "vo": [
+       "L4",
+       "de"
+      ],
+      "spoken": "de",
+      "land": 11.27
+     },
+     {
+      "text": "YUCA",
+      "vo": [
+       "L4",
+       "yuca"
+      ],
+      "spoken": "yuca",
+      "land": 11.53
+     }
+    ]
+   ],
+   "in": 10.7,
+   "out": [
+    12.29,
+    12.47
+   ]
+  },
+  {
+   "id": "k-pide",
+   "scene": "pide",
+   "side": "left",
+   "lines": [
+    [
+     {
+      "text": "PIDE",
+      "vo": [
+       "L5",
+       "pidan"
+      ],
+      "spoken": "pidan",
+      "land": 13.52
+     },
+     {
+      "text": "ANTES,",
+      "vo": [
+       "L5",
+       "antes"
+      ],
+      "spoken": "antes",
+      "land": 13.78
+     }
+    ],
+    [
+     {
+      "text": "RECOGE",
+      "vo": [
+       "L5",
+       "lleguen"
+      ],
+      "spoken": "lleguen",
+      "land": 14.6
+     },
+     {
+      "text": "LISTO",
+      "vo": [
+       "L5",
+       "listo."
+      ],
+      "spoken": "listo.",
+      "land": 15.5
+     }
+    ]
+   ],
+   "in": 13.42,
+   "out": [
+    16.25,
+    16.43
+   ]
+  },
+  {
+   "id": "k-perro",
+   "scene": "vive",
+   "side": "right",
+   "lines": [
+    [
+     {
+      "text": "TRAE",
+      "vo": [
+       "L6",
+       "Pet"
+      ],
+      "spoken": "Pet",
+      "land": 17.4
+     },
+     {
+      "text": "A",
+      "vo": [
+       "L6",
+       "Pet"
+      ],
+      "spoken": "Pet",
+      "land": 17.5
+     }
+    ],
+    [
+     {
+      "text": "TU",
+      "vo": [
+       "L6",
+       "friendly,"
+      ],
+      "spoken": "friendly,",
+      "land": 17.64
+     },
+     {
+      "text": "PERRO.",
+      "vo": [
+       "L6",
+       "friendly,"
+      ],
+      "spoken": "friendly,",
+      "land": 17.74
+     }
+    ]
+   ],
+   "in": 17.3,
+   "out": [
+    18.06,
+    18.24
+   ]
+  },
+  {
+   "id": "k-laptop",
+   "scene": "vive",
+   "side": "right",
+   "lines": [
+    [
+     {
+      "text": "TRAE",
+      "vo": [
+       "L6",
+       "working"
+      ],
+      "spoken": "working",
+      "land": 18.36
+     },
+     {
+      "text": "TU",
+      "vo": [
+       "L6",
+       "working"
+      ],
+      "spoken": "working",
+      "land": 18.5
+     }
+    ],
+    [
+     {
+      "text": "LAPTOP.",
+      "vo": [
+       "L6",
+       "friendly,#2"
+      ],
+      "spoken": "friendly,",
+      "land": 18.8
+     }
+    ]
+   ],
+   "in": 18.26,
+   "out": [
+    19.38,
+    19.56
+   ]
+  }
+ ],
+ "TYPING": [
+  {
+   "c": "c",
+   "t": 1.116
+  },
+  {
+   "c": "a",
+   "t": 1.21
+  },
+  {
+   "c": "f",
+   "t": 1.306
+  },
+  {
+   "c": "é",
+   "t": 1.397
+  },
+  {
+   "c": " ",
+   "t": 1.43
+  },
+  {
+   "c": "d",
+   "t": 1.521
+  },
+  {
+   "c": "e",
+   "t": 1.666
+  },
+  {
+   "c": " ",
+   "t": 1.73
+  },
+  {
+   "c": "e",
+   "t": 1.771
+  },
+  {
+   "c": "s",
+   "t": 1.819
+  },
+  {
+   "c": "p",
+   "t": 1.867
+  },
+  {
+   "c": "e",
+   "t": 1.91
+  },
+  {
+   "c": "c",
+   "t": 1.959
+  },
+  {
+   "c": "i",
+   "t": 2.01
+  },
+  {
+   "c": "a",
+   "t": 2.056
+  },
+  {
+   "c": "l",
+   "t": 2.103
+  },
+  {
+   "c": "i",
+   "t": 2.151
+  },
+  {
+   "c": "d",
+   "t": 2.203
+  },
+  {
+   "c": "a",
+   "t": 2.253
+  },
+  {
+   "c": "d",
+   "t": 2.301
+  },
+  {
+   "c": " ",
+   "t": 2.39
+  },
+  {
+   "c": "a",
+   "t": 2.44
+  },
+  {
+   "c": "g",
+   "t": 2.498
+  },
+  {
+   "c": "u",
+   "t": 2.55
+  },
+  {
+   "c": "a",
+   "t": 2.605
+  },
+  {
+   "c": "s",
+   "t": 2.668
+  },
+  {
+   "c": "c",
+   "t": 2.723
+  },
+  {
+   "c": "a",
+   "t": 2.773
+  },
+  {
+   "c": "l",
+   "t": 2.823
+  },
+  {
+   "c": "i",
+   "t": 2.877
+  },
+  {
+   "c": "e",
+   "t": 2.93
+  },
+  {
+   "c": "n",
+   "t": 2.98
+  },
+  {
+   "c": "t",
+   "t": 3.04
+  },
+  {
+   "c": "e",
+   "t": 3.106
+  },
+  {
+   "c": "s",
+   "t": 3.169
+  }
+ ],
+ "DROP": [
+  {
+   "t": [
+    0,
+    0.3
+   ],
+   "act": "cae desde arriba al centro (golpe en f0)"
+  },
+  {
+   "t": [
+    0.22,
+    0.58
+   ],
+   "act": "salpica y abre la barra de búsqueda de cristal"
+  },
+  {
+   "t": [
+    0.58,
+    1.1
+   ],
+   "act": "late como cursor"
+  },
+  {
+   "t": [
+    1.116,
+    3.169
+   ],
+   "act": "escribe la búsqueda letra por letra"
+  },
+  {
+   "t": 3.2609,
+   "act": "Enter: se contrae"
+  },
+  {
+   "t": [
+    3.321,
+    4.021
+   ],
+   "act": "se estira y dibuja el contorno del celular"
+  },
+  {
+   "t": [
+    4.757,
+    5.177
+   ],
+   "act": "rodea \"Ver menú\""
+  },
+  {
+   "t": [
+    6.117,
+    6.417
+   ],
+   "act": "rebota a la tarjeta del Latte (brillo)"
+  },
+  {
+   "t": [
+    6.44,
+    6.79
+   ],
+   "act": "rodea \"Frío\""
+  },
+  {
+   "t": [
+    7.75,
+    8.05
+   ],
+   "act": "rebota a \"Los especiales\" (brillo)"
+  },
+  {
+   "t": [
+    10.105,
+    10.415
+   ],
+   "act": "rebota a \"Waffles de yuca\" (brillo)"
+  },
+  {
+   "t": [
+    11.58,
+    11.98
+   ],
+   "act": "subraya \"Jamón serrano y matícas\""
+  },
+  {
+   "t": [
+    12.59,
+    13.023
+   ],
+   "act": "rodea \"Agregar\""
+  },
+  {
+   "t": [
+    15.44,
+    15.89
+   ],
+   "act": "brillo sobre \"Pedir para recoger\""
+  },
+  {
+   "t": [
+    21.93,
+    22.48
+   ],
+   "act": "rodea el horario"
+  },
+  {
+   "t": [
+    23.15,
+    23.95
+   ],
+   "act": "cae hacia el centro"
+  },
+  {
+   "t": [
+    24.42,
+    24.8
+   ],
+   "act": "cae sobre la taza del logo"
+  },
+  {
+   "t": [
+    24.8,
+    25.2
+   ],
+   "act": "se deshace en un destello mínimo"
+  }
+ ],
+ "CAMERA": [
+  {
+   "t": 3.841,
+   "x": 0.5,
+   "h": 0.66,
+   "push": 1,
+   "rotY": 12,
+   "note": "entra girado 12°"
+  },
+  {
+   "t": 4.661,
+   "x": 0.5,
+   "h": 0.68,
+   "push": 1,
+   "rotY": 0,
+   "note": "asentado al centro"
+  },
+  {
+   "t": 4.941,
+   "x": 0.5,
+   "h": 0.7,
+   "push": 1.25,
+   "note": "lee \"Café de especialidad\" y los chips"
+  },
+  {
+   "t": 5.317,
+   "x": 0.62,
+   "h": 0.66,
+   "push": 1,
+   "rotY": -5,
+   "note": "se corre a la derecha: texto a la izquierda"
+  },
+  {
+   "t": 6.647,
+   "x": 0.62,
+   "h": 0.66,
+   "push": 2.2,
+   "note": "precio del Latte legible"
+  },
+  {
+   "t": 7.8,
+   "x": 0.62,
+   "h": 0.66,
+   "push": 1
+  },
+  {
+   "t": 8.99,
+   "x": 0.64,
+   "h": 0.64,
+   "push": 1,
+   "rotY": -9,
+   "note": "la tarjeta flota en profundidad"
+  },
+  {
+   "t": 10.4348,
+   "x": 0.38,
+   "h": 0.66,
+   "push": 1,
+   "rotY": 5,
+   "note": "cruza a la izquierda: texto a la derecha"
+  },
+  {
+   "t": 11.52,
+   "x": 0.38,
+   "h": 0.66,
+   "push": 2.3,
+   "note": "\"Jamón serrano y matícas $95\" legible"
+  },
+  {
+   "t": 12.31,
+   "x": 0.38,
+   "h": 0.66,
+   "push": 1
+  },
+  {
+   "t": 13.043478260869566,
+   "x": 0.62,
+   "h": 0.68,
+   "push": 1.1,
+   "rotY": -4,
+   "note": "Agregar se levanta"
+  },
+  {
+   "t": 15.49,
+   "x": 0.62,
+   "h": 0.68,
+   "push": 1.9,
+   "note": "total $180 y las dos salidas legibles"
+  },
+  {
+   "t": 16.31,
+   "x": 0.62,
+   "h": 0.66,
+   "push": 1
+  },
+  {
+   "t": 17.736,
+   "x": 0.38,
+   "h": 0.66,
+   "push": 1,
+   "rotY": 5,
+   "note": "íconos y texto a la derecha"
+  },
+  {
+   "t": 20.45,
+   "x": 0.5,
+   "h": 0.62,
+   "push": 1,
+   "rotY": 0,
+   "note": "abanico de reseñas al frente"
+  },
+  {
+   "t": 20.79,
+   "x": 0.5,
+   "h": 0.62,
+   "push": 1.7,
+   "note": "reseña 2 legible"
+  },
+  {
+   "t": 21.58,
+   "x": 0.5,
+   "h": 0.7,
+   "push": 1
+  },
+  {
+   "t": 22.13,
+   "x": 0.5,
+   "h": 0.7,
+   "push": 2,
+   "note": "horario legible"
+  },
+  {
+   "t": 23.55,
+   "x": 0.2,
+   "h": 0.52,
+   "push": 1,
+   "rotY": 18,
+   "note": "se aparta a un lado"
+  }
+ ],
+ "MUSIC": {
+  "bpm": 92,
+  "base": "Rhodes cálido + percusión suave de madera",
+  "layers": [
+   {
+    "t": 5.2174,
+    "add": "shaker",
+    "scene": "menu"
+   },
+   {
+    "t": 10.4348,
+    "add": "bajo",
+    "scene": "waffles"
+   },
+   {
+    "t": 13.043478260869566,
+    "add": "guitarra limpia",
+    "scene": "pide",
+    "note": "lift"
+   },
+   {
+    "t": 16.956,
+    "add": "pad cálido",
+    "scene": "vive"
+   }
+  ],
+  "breath": 23,
+  "hit": 24,
+  "duckUnderVo": "≥ 12 dB por debajo de cada palabra"
+ },
+ "SFX": [
+  {
+   "t": 0,
+   "type": "golpe",
+   "note": "f0"
+  },
+  {
+   "t": 0.26,
+   "type": "cristal-in",
+   "note": "barra de búsqueda"
+  },
+  {
+   "t": 0.3,
+   "type": "gota-plic",
+   "note": "la gota toca"
+  },
+  {
+   "t": 1.116,
+   "type": "tecla",
+   "note": "c"
+  },
+  {
+   "t": 1.21,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 1.306,
+   "type": "tecla",
+   "note": "f"
+  },
+  {
+   "t": 1.397,
+   "type": "tecla",
+   "note": "é"
+  },
+  {
+   "t": 1.43,
+   "type": "tecla-espacio",
+   "note": " "
+  },
+  {
+   "t": 1.521,
+   "type": "tecla",
+   "note": "d"
+  },
+  {
+   "t": 1.666,
+   "type": "tecla",
+   "note": "e"
+  },
+  {
+   "t": 1.73,
+   "type": "tecla-espacio",
+   "note": " "
+  },
+  {
+   "t": 1.771,
+   "type": "tecla",
+   "note": "e"
+  },
+  {
+   "t": 1.819,
+   "type": "tecla",
+   "note": "s"
+  },
+  {
+   "t": 1.867,
+   "type": "tecla",
+   "note": "p"
+  },
+  {
+   "t": 1.91,
+   "type": "tecla",
+   "note": "e"
+  },
+  {
+   "t": 1.959,
+   "type": "tecla",
+   "note": "c"
+  },
+  {
+   "t": 2.01,
+   "type": "tecla",
+   "note": "i"
+  },
+  {
+   "t": 2.056,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 2.103,
+   "type": "tecla",
+   "note": "l"
+  },
+  {
+   "t": 2.151,
+   "type": "tecla",
+   "note": "i"
+  },
+  {
+   "t": 2.203,
+   "type": "tecla",
+   "note": "d"
+  },
+  {
+   "t": 2.253,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 2.301,
+   "type": "tecla",
+   "note": "d"
+  },
+  {
+   "t": 2.39,
+   "type": "tecla-espacio",
+   "note": " "
+  },
+  {
+   "t": 2.44,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 2.498,
+   "type": "tecla",
+   "note": "g"
+  },
+  {
+   "t": 2.55,
+   "type": "tecla",
+   "note": "u"
+  },
+  {
+   "t": 2.605,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 2.668,
+   "type": "tecla",
+   "note": "s"
+  },
+  {
+   "t": 2.723,
+   "type": "tecla",
+   "note": "c"
+  },
+  {
+   "t": 2.773,
+   "type": "tecla",
+   "note": "a"
+  },
+  {
+   "t": 2.823,
+   "type": "tecla",
+   "note": "l"
+  },
+  {
+   "t": 2.877,
+   "type": "tecla",
+   "note": "i"
+  },
+  {
+   "t": 2.93,
+   "type": "tecla",
+   "note": "e"
+  },
+  {
+   "t": 2.98,
+   "type": "tecla",
+   "note": "n"
+  },
+  {
+   "t": 3.04,
+   "type": "tecla",
+   "note": "t"
+  },
+  {
+   "t": 3.106,
+   "type": "tecla",
+   "note": "e"
+  },
+  {
+   "t": 3.169,
+   "type": "tecla",
+   "note": "s"
+  },
+  {
+   "t": 3.261,
+   "type": "enter",
+   "note": ""
+  },
+  {
+   "t": 3.321,
+   "type": "gota-estira",
+   "note": ""
+  },
+  {
+   "t": 3.541,
+   "type": "cristal-celular",
+   "note": ""
+  },
+  {
+   "t": 3.711,
+   "type": "giro",
+   "note": ""
+  },
+  {
+   "t": 3.841,
+   "type": "pantalla-on",
+   "note": ""
+  },
+  {
+   "t": 3.921,
+   "type": "trazo-cierra",
+   "note": ""
+  },
+  {
+   "t": 4.161,
+   "type": "ui-pop",
+   "note": "logo"
+  },
+  {
+   "t": 4.511,
+   "type": "asienta",
+   "note": ""
+  },
+  {
+   "t": 4.757,
+   "type": "gota-giro",
+   "note": ""
+  },
+  {
+   "t": 5.217,
+   "type": "tap",
+   "note": "Ver menú"
+  },
+  {
+   "t": 5.317,
+   "type": "scroll",
+   "note": "al menú"
+  },
+  {
+   "t": 6.417,
+   "type": "gota-plic",
+   "note": "Latte"
+  },
+  {
+   "t": 6.44,
+   "type": "gota-giro",
+   "note": ""
+  },
+  {
+   "t": 6.82,
+   "type": "tap",
+   "note": "Frío"
+  },
+  {
+   "t": 6.84,
+   "type": "selector",
+   "note": "desliza"
+  },
+  {
+   "t": 6.87,
+   "type": "conteo",
+   "note": "$61"
+  },
+  {
+   "t": 6.906,
+   "type": "conteo",
+   "note": "$62"
+  },
+  {
+   "t": 6.951,
+   "type": "conteo",
+   "note": "$63"
+  },
+  {
+   "t": 7.014,
+   "type": "conteo",
+   "note": "$64"
+  },
+  {
+   "t": 7.26,
+   "type": "conteo",
+   "note": "$65"
+  },
+  {
+   "t": 8.05,
+   "type": "gota-plic",
+   "note": "Los especiales"
+  },
+  {
+   "t": 8.07,
+   "type": "tap",
+   "note": "Los especiales"
+  },
+  {
+   "t": 8.1,
+   "type": "pestana",
+   "note": ""
+  },
+  {
+   "t": 8.49,
+   "type": "tarjeta-sale",
+   "note": ""
+  },
+  {
+   "t": 9.04,
+   "type": "hielos",
+   "note": "cold brew"
+  },
+  {
+   "t": 9.29,
+   "type": "hielos",
+   "note": "cold brew"
+  },
+  {
+   "t": 9.84,
+   "type": "tarjeta-entra",
+   "note": ""
+  },
+  {
+   "t": 9.95,
+   "type": "pedido-in",
+   "note": ""
+  },
+  {
+   "t": 10.09,
+   "type": "contador",
+   "note": "1"
+  },
+  {
+   "t": 10.415,
+   "type": "gota-plic",
+   "note": "Waffles de yuca"
+  },
+  {
+   "t": 10.435,
+   "type": "tap",
+   "note": "Waffles de yuca"
+  },
+  {
+   "t": 10.465,
+   "type": "pestana",
+   "note": ""
+  },
+  {
+   "t": 11.58,
+   "type": "gota-trazo",
+   "note": "subraya"
+  },
+  {
+   "t": 12.33,
+   "type": "tap",
+   "note": "ficha"
+  },
+  {
+   "t": 12.35,
+   "type": "hoja-sube",
+   "note": ""
+  },
+  {
+   "t": 12.59,
+   "type": "gota-giro",
+   "note": ""
+  },
+  {
+   "t": 13.043,
+   "type": "press",
+   "note": ""
+  },
+  {
+   "t": 13.163,
+   "type": "pop",
+   "note": "Agregar se levanta"
+  },
+  {
+   "t": 13.213,
+   "type": "hoja-baja",
+   "note": ""
+  },
+  {
+   "t": 13.381,
+   "type": "conteo",
+   "note": "total 1/12"
+  },
+  {
+   "t": 13.4,
+   "type": "conteo",
+   "note": "total 2/12"
+  },
+  {
+   "t": 13.413,
+   "type": "contador",
+   "note": "2"
+  },
+  {
+   "t": 13.42,
+   "type": "conteo",
+   "note": "total 3/12"
+  },
+  {
+   "t": 13.441,
+   "type": "conteo",
+   "note": "total 4/12"
+  },
+  {
+   "t": 13.465,
+   "type": "conteo",
+   "note": "total 5/12"
+  },
+  {
+   "t": 13.491,
+   "type": "conteo",
+   "note": "total 6/12"
+  },
+  {
+   "t": 13.52,
+   "type": "conteo",
+   "note": "total 7/12"
+  },
+  {
+   "t": 13.553,
+   "type": "conteo",
+   "note": "total 8/12"
+  },
+  {
+   "t": 13.592,
+   "type": "conteo",
+   "note": "total 9/12"
+  },
+  {
+   "t": 13.642,
+   "type": "conteo",
+   "note": "total 10/12"
+  },
+  {
+   "t": 13.712,
+   "type": "conteo",
+   "note": "total 11/12"
+  },
+  {
+   "t": 13.983,
+   "type": "conteo",
+   "note": "total 12/12"
+  },
+  {
+   "t": 14.27,
+   "type": "tap",
+   "note": "Ver pedido"
+  },
+  {
+   "t": 14.29,
+   "type": "hoja-sube",
+   "note": ""
+  },
+  {
+   "t": 15.44,
+   "type": "gota-brillo",
+   "note": ""
+  },
+  {
+   "t": 16.25,
+   "type": "hoja-baja",
+   "note": ""
+  },
+  {
+   "t": 16.956,
+   "type": "scroll",
+   "note": "así se vive"
+  },
+  {
+   "t": 17.35,
+   "type": "trazo",
+   "note": "perrito"
+  },
+  {
+   "t": 18.31,
+   "type": "trazo",
+   "note": "laptop"
+  },
+  {
+   "t": 19.3,
+   "type": "scroll",
+   "note": "reseñas"
+  },
+  {
+   "t": 19.7,
+   "type": "swipe",
+   "note": "1 a 3"
+  },
+  {
+   "t": 19.91,
+   "type": "swipe-tick",
+   "note": "pasa la 2"
+  },
+  {
+   "t": 20.05,
+   "type": "abanico-sale",
+   "note": ""
+  },
+  {
+   "t": 20.82,
+   "type": "abanico-regresa",
+   "note": ""
+  },
+  {
+   "t": 21,
+   "type": "scroll",
+   "note": "visítanos"
+  },
+  {
+   "t": 21.68,
+   "type": "pin",
+   "note": ""
+  },
+  {
+   "t": 21.93,
+   "type": "gota-giro",
+   "note": ""
+  },
+  {
+   "t": 22.8,
+   "type": "whoosh",
+   "note": "se aparta"
+  },
+  {
+   "t": 23.85,
+   "type": "gota-cae",
+   "note": ""
+  },
+  {
+   "t": 24,
+   "type": "golpe-grave",
+   "note": ""
+  },
+  {
+   "t": 24.05,
+   "type": "logo-in",
+   "note": ""
+  },
+  {
+   "t": 24.8,
+   "type": "gota-plic",
+   "note": "taza"
+  },
+  {
+   "t": 24.84,
+   "type": "destello",
+   "note": ""
+  }
+ ],
+ "ENDCARD": {
+  "tagline": "Así se vería tu página · Elevate Negocios",
+  "disclaimer": "Demo de cortesía de Elevate Negocios · pieza no oficial"
+ },
+ "VO": [
+  {
+   "id": "L1",
+   "line": "L1",
+   "text": "Alguien busca café de especialidad en Aguascalientes.",
+   "t0": 0.3,
+   "t1": 3.24,
+   "tempo": 1,
+   "src": [
+    0.06,
+    3
+   ],
+   "words": [
+    {
+     "w": "Alguien",
+     "t0": 0.3,
+     "t1": 0.72
+    },
+    {
+     "w": "busca",
+     "t0": 0.72,
+     "t1": 1.1
+    },
+    {
+     "w": "café",
+     "t0": 1.1,
+     "t1": 1.48
+    },
+    {
+     "w": "de",
+     "t0": 1.48,
+     "t1": 1.78
+    },
+    {
+     "w": "especialidad",
+     "t0": 1.78,
+     "t1": 2.3
+    },
+    {
+     "w": "en",
+     "t0": 2.3,
+     "t1": 2.44
+    },
+    {
+     "w": "Aguascalientes.",
+     "t0": 2.44,
+     "t1": 3.24
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "line": "L2",
+   "text": "Que te encuentre a ti.",
+   "t0": 3.4,
+   "t1": 4.85,
+   "tempo": 1,
+   "src": [
+    3.59,
+    5.04
+   ],
+   "words": [
+    {
+     "w": "Que",
+     "t0": 3.4,
+     "t1": 3.55
+    },
+    {
+     "w": "te",
+     "t0": 3.55,
+     "t1": 3.83
+    },
+    {
+     "w": "encuentre",
+     "t0": 3.83,
+     "t1": 4.49
+    },
+    {
+     "w": "a",
+     "t0": 4.49,
+     "t1": 4.75
+    },
+    {
+     "w": "ti.",
+     "t0": 4.75,
+     "t1": 4.85
+    }
+   ]
+  },
+  {
+   "id": "L3",
+   "line": "L3",
+   "text": "Tu menú completo, con precios, en su celular.",
+   "t0": 5.6,
+   "t1": 8.42,
+   "tempo": 1,
+   "src": [
+    5.94,
+    8.76
+   ],
+   "words": [
+    {
+     "w": "Tu",
+     "t0": 5.6,
+     "t1": 5.72
+    },
+    {
+     "w": "menú",
+     "t0": 5.72,
+     "t1": 5.96
+    },
+    {
+     "w": "completo,",
+     "t0": 5.96,
+     "t1": 6.42
+    },
+    {
+     "w": "con",
+     "t0": 6.72,
+     "t1": 6.94
+    },
+    {
+     "w": "precios,",
+     "t0": 6.94,
+     "t1": 7.42
+    },
+    {
+     "w": "en",
+     "t0": 7.66,
+     "t1": 7.86
+    },
+    {
+     "w": "su",
+     "t0": 7.86,
+     "t1": 8
+    },
+    {
+     "w": "celular.",
+     "t0": 8,
+     "t1": 8.42
+    }
+   ]
+  },
+  {
+   "id": "L4",
+   "line": "L4",
+   "text": "Waffles de yuca incluidos.",
+   "t0": 10.8,
+   "t1": 12.67,
+   "tempo": 1,
+   "src": [
+    9.67,
+    11.54
+   ],
+   "words": [
+    {
+     "w": "Waffles",
+     "t0": 10.8,
+     "t1": 11.27
+    },
+    {
+     "w": "de",
+     "t0": 11.27,
+     "t1": 11.53
+    },
+    {
+     "w": "yuca",
+     "t0": 11.53,
+     "t1": 11.95
+    },
+    {
+     "w": "incluidos.",
+     "t0": 11.95,
+     "t1": 12.67
+    }
+   ]
+  },
+  {
+   "id": "L5",
+   "line": "L5",
+   "text": "Que pidan antes y lleguen por él listo.",
+   "t0": 13.4,
+   "t1": 15.88,
+   "tempo": 1,
+   "src": [
+    12.06,
+    14.54
+   ],
+   "words": [
+    {
+     "w": "Que",
+     "t0": 13.4,
+     "t1": 13.52
+    },
+    {
+     "w": "pidan",
+     "t0": 13.52,
+     "t1": 13.78
+    },
+    {
+     "w": "antes",
+     "t0": 13.78,
+     "t1": 14.22
+    },
+    {
+     "w": "y",
+     "t0": 14.22,
+     "t1": 14.6
+    },
+    {
+     "w": "lleguen",
+     "t0": 14.6,
+     "t1": 14.92
+    },
+    {
+     "w": "por",
+     "t0": 14.92,
+     "t1": 15.16
+    },
+    {
+     "w": "él",
+     "t0": 15.16,
+     "t1": 15.5
+    },
+    {
+     "w": "listo.",
+     "t0": 15.5,
+     "t1": 15.88
+    }
+   ]
+  },
+  {
+   "id": "L6",
+   "line": "L6",
+   "text": "Pet friendly, working friendly, y con reseñas que hablan por ti.",
+   "t0": 17.4,
+   "t1": 21.24,
+   "tempo": 1,
+   "src": [
+    15.36,
+    19.2
+   ],
+   "words": [
+    {
+     "w": "Pet",
+     "t0": 17.4,
+     "t1": 17.64
+    },
+    {
+     "w": "friendly,",
+     "t0": 17.64,
+     "t1": 18.04
+    },
+    {
+     "w": "working",
+     "t0": 18.36,
+     "t1": 18.8
+    },
+    {
+     "w": "friendly,",
+     "t0": 18.8,
+     "t1": 19.24
+    },
+    {
+     "w": "y",
+     "t0": 19.52,
+     "t1": 19.7
+    },
+    {
+     "w": "con",
+     "t0": 19.7,
+     "t1": 19.88
+    },
+    {
+     "w": "reseñas",
+     "t0": 19.88,
+     "t1": 20.38
+    },
+    {
+     "w": "que",
+     "t0": 20.38,
+     "t1": 20.62
+    },
+    {
+     "w": "hablan",
+     "t0": 20.62,
+     "t1": 20.82
+    },
+    {
+     "w": "por",
+     "t0": 20.82,
+     "t1": 21.04
+    },
+    {
+     "w": "ti.",
+     "t0": 21.04,
+     "t1": 21.24
+    }
+   ]
+  },
+  {
+   "id": "L7a",
+   "line": "L7",
+   "text": "Matíca.",
+   "t0": 24.275,
+   "t1": 24.915,
+   "tempo": 1,
+   "src": [
+    19.94,
+    20.58
+   ],
+   "words": [
+    {
+     "w": "Matíca.",
+     "t0": 24.275,
+     "t1": 24.915
+    }
+   ]
+  },
+  {
+   "id": "L7b",
+   "line": "L7",
+   "text": "Así se vería con Elévate.",
+   "t0": 25.075,
+   "t1": 26.745,
+   "tempo": 1,
+   "src": [
+    21.05,
+    22.72
+   ],
+   "words": [
+    {
+     "w": "Así",
+     "t0": 25.075,
+     "t1": 25.285
+    },
+    {
+     "w": "se",
+     "t0": 25.285,
+     "t1": 25.505
+    },
+    {
+     "w": "vería",
+     "t0": 25.505,
+     "t1": 25.925
+    },
+    {
+     "w": "con",
+     "t0": 25.925,
+     "t1": 26.285
+    },
+    {
+     "w": "Elévate.",
+     "t0": 26.285,
+     "t1": 26.745
+    }
+   ]
+  }
+ ],
+ "frames": {
+  "hit0": 0,
+  "dropFall": [
+   0,
+   18
+  ],
+  "barIn": [
+   13,
+   35
+  ],
+  "caret": [
+   35,
+   66
+  ],
+  "type": [
+   67,
+   190
+  ],
+  "enter": 196,
+  "barOut": [
+   198,
+   216
+  ],
+  "dropOutline": [
+   199,
+   241
+  ],
+  "phoneIn": [
+   212,
+   241
+  ],
+  "phoneSettle": [
+   223,
+   280
+  ],
+  "screenOn": 230,
+  "pageIntro": [
+   230,
+   281
+  ],
+  "heroPush": [
+   257,
+   296
+  ],
+  "tapMenu": 313,
+  "dropCircleMenu": [
+   285,
+   311
+  ],
+  "scrollMenu": [
+   319,
+   366
+  ],
+  "dropHopLatte": [
+   367,
+   385
+  ],
+  "pushLatte": [
+   369,
+   399
+  ],
+  "tapFrio": 409,
+  "dropCircleFrio": [
+   386,
+   407
+  ],
+  "countFrio": [
+   410,
+   436
+  ],
+  "pullLatte": [
+   443,
+   468
+  ],
+  "dropHopEspeciales": [
+   465,
+   483
+  ],
+  "tapEspeciales": 484,
+  "panelEspeciales": [
+   484,
+   506
+  ],
+  "cardOut": [
+   509,
+   539
+  ],
+  "cardFloat": [
+   539,
+   568
+  ],
+  "cardBack": [
+   568,
+   593
+  ],
+  "cartIn": [
+   592,
+   619
+  ],
+  "tapWaffles": 626,
+  "dropHopWaffles": [
+   606,
+   625
+  ],
+  "panelWaffles": [
+   626,
+   648
+  ],
+  "pushJamon": [
+   655,
+   691
+  ],
+  "dropUnderlineJamon": [
+   695,
+   719
+  ],
+  "pullJamon": [
+   717,
+   739
+  ],
+  "tapJamon": 740,
+  "sheetUp": [
+   741,
+   769
+  ],
+  "dropCircleAdd": [
+   755,
+   781
+  ],
+  "lift": 783,
+  "pressAdd": [
+   783,
+   790
+  ],
+  "tapAdd": 790,
+  "addLift3D": [
+   783,
+   814
+  ],
+  "sheetDown": [
+   793,
+   823
+  ],
+  "countCart": [
+   802,
+   839
+  ],
+  "tapCartbar": 856,
+  "cartSheetUp": [
+   857,
+   887
+  ],
+  "pushExits": [
+   893,
+   929
+  ],
+  "dropGlintPickup": [
+   926,
+   953
+  ],
+  "pullExits": [
+   953,
+   979
+  ],
+  "cartSheetDown": [
+   975,
+   1002
+  ],
+  "scrollVive": [
+   1017,
+   1064
+  ],
+  "iconDog": [
+   1041,
+   1078
+  ],
+  "iconLaptop": [
+   1099,
+   1136
+  ],
+  "scrollReviews": [
+   1158,
+   1181
+  ],
+  "swipe13": [
+   1182,
+   1207
+  ],
+  "fanOut": [
+   1203,
+   1227
+  ],
+  "scrollVisit": [
+   1260,
+   1295
+  ],
+  "fanBack": [
+   1249,
+   1268
+  ],
+  "pushReview2": [
+   1218,
+   1247
+  ],
+  "pinDrop": [
+   1283,
+   1331
+  ],
+  "pushHours": [
+   1298,
+   1328
+  ],
+  "dropCircleHours": [
+   1316,
+   1349
+  ],
+  "holdHours": [
+   1328,
+   1368
+  ],
+  "phoneAway": [
+   1368,
+   1413
+  ],
+  "breath": 1380,
+  "dropFallCenter": [
+   1389,
+   1437
+  ],
+  "hit24": 1440,
+  "logoIn": [
+   1440,
+   1483
+  ],
+  "dropOnCup": [
+   1465,
+   1488
+  ],
+  "sparkle": [
+   1488,
+   1512
+  ],
+  "tagline": [
+   1501,
+   1534
+  ],
+  "disclaimer": [
+   1535,
+   1559
+  ],
+  "end": 1620
+ }
+}

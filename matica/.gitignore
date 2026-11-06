@@ -4,3 +4,6 @@ tools/node_modules/
 assets/capturas/
 # Intermedios pesados del video (capturas 3x, pruebas)
 video/build/
+# Audio intermedio del video (se regenera con video/tools/*; las tomas originales sí se versionan)
+video/audio/stems/
+video/audio/vo/*_48k.wav
