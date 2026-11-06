@@ -347,6 +347,12 @@ export async function createScene(host, { reduced = false } = {}) {
     setTech(t) { st.tech = t; applyTech(); kick(); },
     setLogo(logo) { st.logo = logo; applyTech(); kick(); },
     setView(v) { setView(v); kick(); },
+    setClear(hex, a = 1) { renderer.setClearColor(hex, a); shadow.visible = a < 1; invalidate(); kick(); },
+    setTarget(x, y, z) { target.set(x, y, z); invalidate(); kick(); },
+    setCamera({ yaw, pitch, dist, fov } = {}) { // para QA y para el hero
+      if (yaw != null) view.yaw = goal.yaw = yaw; if (pitch != null) view.pitch = goal.pitch = pitch; if (dist != null) view.dist = goal.dist = dist;
+      if (fov) { camera.fov = fov; camera.updateProjectionMatrix(); } invalidate(); kick();
+    },
     water() { rainUntil = performance.now() + 3600; setView('front'); goal.pitch = .38; kick(); },
     stopAuto() { autoRot = false; },
     snapshot(w = 1080, h = 1350) {
