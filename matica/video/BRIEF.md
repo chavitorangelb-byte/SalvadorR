@@ -68,22 +68,22 @@ Ninguna frase se aceleró. "Matíca." entra en 24.25 s, después del golpe de 24
 | f0313 | 5.22 s | Tap en "Ver menú" (inicio del compás 3) |
 | f0319–f0366 | 5.32–6.10 s | Scroll con inercia al menú (pestaña Café) |
 | f0367–f0385 | 6.12–6.42 s | La gota rebota a la tarjeta del Latte y deja un brillo |
-| f0394–f0416 | 6.57–6.93 s | Push-in: "Latte $60" al tamaño de un celular real |
+| f0388–f0415 | 6.47–6.91 s | Push-in: "Latte $60" al tamaño de un celular real |
 | f0397–f0416 | 6.61–6.94 s | La gota rodea "Frío" |
 | f0418 | 6.97 s | Tap en "Frío" (cae sobre "precios") |
 | f0419–f0445 | 6.99–7.41 s | El selector desliza y el precio cuenta $60 → $65 |
-| f0436–f0453 | 7.27–7.55 s | Pull-back |
-| f0450–f0468 | 7.50–7.80 s | La gota rebota a "Los especiales" |
-| f0469 | 7.82 s | Tap en "Los especiales" |
-| f0469–f0491 | 7.82–8.18 s | Cambia el panel |
-| f0494–f0524 | 8.24–8.74 s | La tarjeta "Cold brew tonic de sabor $85" (con su foto) sale al espacio 3D |
-| f0524–f0553 | 8.74–9.22 s | Flota en profundidad (sombra, parallax) |
-| f0553–f0578 | 9.22–9.64 s | Regresa a su lugar y cae al pedido |
-| f0577–f0604 | 9.62–10.07 s | Sube la barra del pedido: 1 · $85 |
+| f0434–f0457 | 7.23–7.61 s | Pull-back |
+| f0454–f0472 | 7.56–7.86 s | La gota rebota a "Los especiales" |
+| f0473 | 7.88 s | Tap en "Los especiales" |
+| f0473–f0494 | 7.88–8.24 s | Cambia el panel |
+| f0498–f0528 | 8.30–8.80 s | La tarjeta "Cold brew tonic de sabor $85" (con su foto) sale al espacio 3D |
+| f0528–f0557 | 8.80–9.28 s | Flota en profundidad (sombra, parallax) |
+| f0557–f0582 | 9.28–9.70 s | Regresa a su lugar y cae al pedido |
 | f0580–f0604 | 9.66–10.06 s | Swipe en las categorías: aparece "Waffles de yuca" |
+| f0581–f0608 | 9.68–10.13 s | Sube la barra del pedido: 1 · $85 |
 | f0606–f0625 | 10.11–10.41 s | La gota rebota a "Waffles de yuca" |
-| f0330–f0402 | 5.50–6.70 s | Tipografía cinética (izquierda): **TU MENÚ / COMPLETO,** |
-| f0452–f0511 | 7.53–8.52 s | Tipografía cinética (izquierda): **EN SU / CELULAR** |
+| f0330–f0400 | 5.50–6.67 s | Tipografía cinética (izquierda): **TU MENÚ / COMPLETO,** |
+| f0452–f0515 | 7.53–8.58 s | Tipografía cinética (izquierda): **EN SU / CELULAR** |
 
 ### Waffles de yuca · f0626–f0783
 
@@ -91,8 +91,8 @@ Ninguna frase se aceleró. "Matíca." entra en 24.25 s, después del golpe de 24
 |---|---|---|
 | f0626 | 10.43 s | Tap en "Waffles de yuca" (inicio del compás 5) |
 | f0626–f0648 | 10.44–10.79 s | Cambia el panel |
-| f0684–f0706 | 11.40–11.76 s | La gota rebota a la tarjeta del waffle |
-| f0708–f0729 | 11.80–12.15 s | Push-in a "Jamón serrano y matícas $95" con su foto e ícono sin gluten |
+| f0680–f0701 | 11.33–11.69 s | La gota rebota a la tarjeta del waffle |
+| f0704–f0729 | 11.73–12.15 s | Push-in a "Jamón serrano y matícas $95" con su foto e ícono sin gluten |
 | f0730–f0748 | 12.17–12.47 s | La gota subraya el nombre |
 | f0749–f0772 | 12.49–12.87 s | Pull-back |
 | f0749 | 12.49 s | Tap en la tarjeta: se abre la ficha |
@@ -113,12 +113,12 @@ Ninguna frase se aceleró. "Matíca." entra en 24.25 s, después del golpe de 24
 | f0802–f0839 | 13.36–13.98 s | El total cuenta $85 → $180, contador 1 → 2 |
 | f0856 | 14.26 s | Tap en la barra del pedido |
 | f0857–f0887 | 14.28–14.78 s | Sube el pedido: $95 + $85 = $180 y las dos salidas |
-| f0904–f0925 | 15.06–15.42 s | La gota salta a "Pedir para recoger" |
-| f0928–f0949 | 15.46–15.81 s | Push-in: total y "Pedir para recoger" / "A domicilio por Rappi" |
-| f0951–f0973 | 15.85–16.21 s | Brillo de la gota sobre "Pedir para recoger" |
-| f0971–f0988 | 16.18–16.46 s | Pull-back |
-| f0984–f1012 | 16.40–16.86 s | La gota regresa al canto del celular |
-| f0985–f1012 | 16.42–16.87 s | El pedido baja |
+| f0901–f0922 | 15.01–15.37 s | La gota salta a "Pedir para recoger" |
+| f0925–f0950 | 15.41–15.83 s | Push-in: total y "Pedir para recoger" / "A domicilio por Rappi" |
+| f0952–f0974 | 15.87–16.23 s | Brillo de la gota sobre "Pedir para recoger" |
+| f0971–f0992 | 16.18–16.54 s | Pull-back |
+| f0989–f1016 | 16.48–16.94 s | La gota regresa al canto del celular |
+| f0990–f1017 | 16.50–16.95 s | El pedido baja |
 | f0808–f0937 | 13.47–15.61 s | Tipografía cinética (izquierda): **PIDE ANTES, / RECOGE LISTO** |
 
 ### Así se vive: pet, working y reseñas · f1017–f1260
@@ -172,8 +172,8 @@ Por glifo, stagger 26 ms, Poppins Bold en mayúsculas con tracking amplio, ≥ 4
 
 | Grupo | Lado | Palabra → aterriza en | Sale |
 |---|---|---|---|
-| TU MENÚ / COMPLETO, | izq. | TU → "Tu" f0336 · MENÚ → "menú" f0344 · COMPLETO, → "completo," f0370 | f0391–f0402 |
-| EN SU / CELULAR | izq. | EN → "en" f0458 · SU → "su" f0466 · CELULAR → "celular." f0475 | f0500–f0511 |
+| TU MENÚ / COMPLETO, | izq. | TU → "Tu" f0336 · MENÚ → "menú" f0344 · COMPLETO, → "completo," f0370 | f0389–f0400 |
+| EN SU / CELULAR | izq. | EN → "en" f0458 · SU → "su" f0466 · CELULAR → "celular." f0475 | f0504–f0515 |
 | WAFFLES / DE YUCA | der. | WAFFLES → "Waffles" f0648 · DE → "de" f0672 · YUCA → "yuca" f0686 | f0706–f0716 |
 | PIDE ANTES, / RECOGE LISTO | izq. | PIDE → "pidan" f0814 · ANTES, → "antes" f0832 · RECOGE → "lleguen" f0867 · LISTO → "listo." f0907 | f0926–f0937 |
 | TRAE A / TU PERRO. | der. | TRAE → "Pet" f1044 · A → "Pet" f1050 · TU → "friendly," f1060 · PERRO. → "friendly," f1066 | f1090–f1101 |
@@ -194,15 +194,15 @@ Ajuste de copy: "TU MENÚ / COMPLETO, / EN SU CELULAR" y "TRAE A TU PERRO. / TRA
 | f0285–f0311 | rodea "Ver menú" |
 | f0367–f0385 | rebota a la tarjeta del Latte (brillo) |
 | f0397–f0416 | rodea "Frío" |
-| f0450–f0468 | rebota a "Los especiales" (brillo) |
+| f0454–f0472 | rebota a "Los especiales" (brillo) |
 | f0606–f0625 | rebota a "Waffles de yuca" (brillo) |
-| f0684–f0706 | rebota a la tarjeta del waffle (brillo) antes del push-in |
+| f0680–f0701 | rebota a la tarjeta del waffle (brillo) antes del push-in |
 | f0730–f0748 | subraya "Jamón serrano y matícas" |
 | f0760–f0781 | rodea "Agregar" |
 | f0796–f0820 | deja "Agregar" y vuelve al canto del celular |
-| f0904–f0925 | salta a "Pedir para recoger" |
-| f0951–f0973 | rebota y deja un brillo sobre "Pedir para recoger" |
-| f0984–f1012 | regresa al canto del celular |
+| f0901–f0922 | salta a "Pedir para recoger" |
+| f0952–f0974 | rebota y deja un brillo sobre "Pedir para recoger" |
+| f0989–f1016 | regresa al canto del celular |
 | f1277–f1297 | salta a la tarjeta del horario |
 | f1316–f1349 | rodea el horario |
 | f1389–f1437 | cae hacia el centro |
@@ -221,16 +221,16 @@ Cada fila es una transición: en ese tramo el celular va hacia lo indicado (lo q
 | f0223–f0280 | — | 66 % | — | 0° | se asienta |
 | f0257–f0296 | — | — | 1.20 → heroBlock | — | se leen "Café de especialidad" y los chips |
 | f0285–f0334 | 0.70 | 60 % | 1.00 | -5° | a la derecha: texto a la izquierda |
-| f0394–f0416 | — | — | 2.20 → latteCard | — | "Latte $60" y Frío / Caliente al tamaño de un celular real |
-| f0436–f0453 | — | — | 1.00 | — |  |
-| f0494–f0524 | 0.71 | — | — | -9° | la tarjeta flota en profundidad |
-| f0553–f0648 | 0.30 | — | — | 5° | cruza a la izquierda: texto a la derecha |
-| f0708–f0729 | — | — | 2.05 → jamonCard | — | "Jamón serrano y matícas $95" legible (la foto de 250 px nunca pasa de su resolución real) |
+| f0388–f0415 | — | — | 2.20 → latteCard | — | "Latte $60" y Frío / Caliente al tamaño de un celular real |
+| f0434–f0457 | — | — | 1.00 | — |  |
+| f0498–f0528 | 0.71 | — | — | -9° | la tarjeta flota en profundidad |
+| f0557–f0648 | 0.30 | — | — | 5° | cruza a la izquierda: texto a la derecha |
+| f0704–f0729 | — | — | 2.05 → jamonCard | — | "Jamón serrano y matícas $95" legible (la foto de 250 px nunca pasa de su resolución real) |
 | f0749–f0772 | — | — | 1.00 | — |  |
 | f0766–f0792 | 0.70 | — | — | -4° | "Agregar" se levanta |
-| f0928–f0949 | — | — | 1.95 → exits | — | total $180 y las dos salidas legibles |
-| f0971–f0988 | — | — | 1.00 | — |  |
-| f0991–f1035 | 0.30 | — | — | 5° | íconos y texto a la derecha |
+| f0925–f0950 | — | — | 1.95 → exits | — | total $180 y las dos salidas legibles |
+| f0971–f0992 | — | — | 1.00 | — |  |
+| f0996–f1035 | 0.30 | — | — | 5° | íconos y texto a la derecha |
 | f1151–f1220 | 0.50 | 62 % | — | 0° | abanico de reseñas al frente |
 | f1211–f1247 | — | — | — | — | se acerca a la reseña 2 |
 | f1249–f1295 | — | 68 % | — | — |  |
@@ -247,11 +247,11 @@ Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px in
 | f0313 | Tap con onda en `#cta-menu` |
 | f0319–f0366 | Scroll con inercia → menu |
 | f0418 | Tap con onda en `#item-latte [data-temp="cold"]` |
-| f0469 | Tap con onda en `#tab-especiales` |
-| f0494 | Oculta `#item-cold-brew-tonic` (la pieza vive en 3D) |
-| f0578 | Muestra `#item-cold-brew-tonic` (la pieza vive en 3D) |
-| f0578 | Se agrega al pedido: cold-brew-tonic (Piloncillo) |
+| f0473 | Tap con onda en `#tab-especiales` |
+| f0498 | Oculta `#item-cold-brew-tonic` (la pieza vive en 3D) |
 | f0580–f0604 | Swipe horizontal en `#tabs` hasta `#tab-waffles` |
+| f0582 | Muestra `#item-cold-brew-tonic` (la pieza vive en 3D) |
+| f0582 | Se agrega al pedido: cold-brew-tonic (Piloncillo) |
 | f0626 | Tap con onda en `#tab-waffles` |
 | f0749 | Tap con onda en `#item-jamon-serrano .item-open` |
 | f0783–f0790 | Presionado real `#si-add` |
@@ -259,7 +259,7 @@ Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px in
 | f0790 | Suelta: click real en `#si-add` (sin onda) |
 | f0821 | Muestra `#si-add` (la pieza vive en 3D) |
 | f0856 | Tap con onda en `#cartbar` |
-| f0985 | Cierra la hoja |
+| f0990 | Cierra la hoja |
 | f1017–f1064 | Scroll con inercia → vive |
 | f1151–f1174 | Scroll con inercia → reviews |
 | f1175 | Reseñas: va a la 3 |
@@ -286,7 +286,7 @@ Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px in
 |---|---|---|
 | golpe | 1 | f0000 |
 | cristal-in | 1 | f0016 |
-| gota-plic | 10 | f0018 f0385 f0468 f0625 f0706 f0820 f0925 f1012 … |
+| gota-plic | 10 | f0018 f0385 f0472 f0625 f0701 f0820 f0922 f1016 … |
 | tecla | 32 | f0062 f0068 f0073 f0078 f0085 f0093 f0100 f0103 … |
 | tecla-espacio | 3 | f0079 f0097 f0137 |
 | enter | 1 | f0196 |
@@ -298,23 +298,23 @@ Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px in
 | ui-pop | 1 | f0250 |
 | asienta | 1 | f0271 |
 | gota-giro | 4 | f0285 f0397 f0760 f1316 |
-| tap | 6 | f0313 f0418 f0469 f0626 f0749 f0856 |
+| tap | 6 | f0313 f0418 f0473 f0626 f0749 f0856 |
 | scroll | 4 | f0319 f1017 f1151 f1260 |
 | selector | 1 | f0419 |
 | conteo | 17 | f0421 f0423 f0426 f0430 f0445 f0803 f0804 f0805 … |
-| pestana | 2 | f0471 f0628 |
-| tarjeta-sale | 1 | f0494 |
-| hielos | 2 | f0527 f0542 |
-| tarjeta-entra | 1 | f0575 |
+| pestana | 2 | f0475 f0628 |
+| tarjeta-sale | 1 | f0498 |
+| hielos | 2 | f0531 f0546 |
+| tarjeta-entra | 1 | f0579 |
 | swipe | 2 | f0580 f1175 |
-| pedido-in | 1 | f0582 |
-| contador | 2 | f0590 f0805 |
+| pedido-in | 1 | f0586 |
+| contador | 2 | f0594 f0805 |
 | gota-trazo | 1 | f0730 |
 | hoja-sube | 2 | f0751 f0857 |
 | press | 1 | f0783 |
 | pop | 1 | f0790 |
-| hoja-baja | 2 | f0793 f0985 |
-| gota-brillo | 1 | f0951 |
+| hoja-baja | 2 | f0793 f0990 |
+| gota-brillo | 1 | f0952 |
 | trazo | 2 | f1041 f1105 |
 | swipe-tick | 1 | f1188 |
 | abanico-sale | 1 | f1196 |

@@ -3,7 +3,7 @@
  "master_dBTP": -1.7,
  "voz_LUFS": -13.88,
  "musica_LUFS": -20.62,
- "sfx_LUFS": -22.52,
+ "sfx_LUFS": -22.57,
  "ducking_max_dB": 20.2,
  "ducking_promedio_en_voz_dB": 10.6,
  "limitador_max_dB": -2.49,

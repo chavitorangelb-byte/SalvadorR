@@ -68,11 +68,11 @@ export function lock(vo) {
   T.scrollMenu = span(T.tapMenu + 0.10, 0.78);      // scroll con inercia al menú (pestaña Café)
   T.dropHopLatte = span(T.scrollMenu[1] + 0.02, 0.30);   // rebota a la tarjeta del Latte (deja brillo)
   // push-in y tipografía se relevan: el push entra cuando "TU MENÚ / COMPLETO," ya se leyó
-  T.pushLatte = span(Math.max(W('L3', 'completo,').t0 + 0.40, T.dropHopLatte[1] + 0.02), 0.36);   // hasta leer el precio al tamaño real
+  T.pushLatte = span(Math.max(W('L3', 'completo,').t0 + 0.30, T.dropHopLatte[1] + 0.02), 0.44);   // hasta leer el precio al tamaño real
   T.tapFrio = r3(Math.max(W('L3', 'precios,').t0 - 0.12, T.pushLatte[1] + 0.02));   // el conteo $60 -> $65 cae sobre "precios"
   T.dropCircleFrio = [r3(Math.max(T.dropHopLatte[1] + 0.05, T.tapFrio - 0.36)), r3(T.tapFrio - 0.03)];   // la gota va pegada al cristal: rodea mientras acerca
   T.countFrio = span(T.tapFrio + 0.02, 0.42);
-  T.pullLatte = span(Math.min(T.countFrio[1] - 0.10, W('L3', 'en').t0 - 0.36), 0.28);
+  T.pullLatte = span(Math.min(T.countFrio[1] - 0.14, W('L3', 'en').t0 - 0.40), 0.38);
   T.dropHopEspeciales = span(T.pullLatte[1] - 0.05, 0.30);
   T.tapEspeciales = r3(T.dropHopEspeciales[1] + 0.02);
   T.panelEspeciales = span(T.tapEspeciales, 0.36);
@@ -86,7 +86,7 @@ export function lock(vo) {
 
   // ---------- WAFFLES DE YUCA ----------
   T.panelWaffles = span(T.tapWaffles, 0.36);
-  T.pushJamon = span(Math.max(W('L4', 'yuca').t0 + 0.36, T.panelWaffles[1] + 0.30), 0.35);   // "Jamón serrano y matícas $95", foto e ícono sin gluten
+  T.pushJamon = span(Math.max(W('L4', 'yuca').t0 + 0.29, T.panelWaffles[1] + 0.30), 0.42);   // "Jamón serrano y matícas $95", foto e ícono sin gluten
   T.dropHopJamon = [r3(T.pushJamon[0] - 0.40), r3(T.pushJamon[0] - 0.04)];   // la gota se pasa a la tarjeta antes del push-in (guía la mirada)
   T.dropUnderlineJamon = span(T.pushJamon[1] + 0.02, 0.30);
   T.tapJamon = r3(T.dropUnderlineJamon[1] + 0.02);
@@ -104,10 +104,10 @@ export function lock(vo) {
   T.dropHomeAdd = span(T.addLift3D[0] + 0.10, 0.40); // la gota deja "Agregar" y vuelve al canto del celular
   T.tapCartbar = r3(Math.max(T.countCart[1] + 0.20, W('L5', 'antes').t1 + 0.05));
   T.cartSheetUp = span(T.tapCartbar + 0.02, 0.50);  // aparecen las dos salidas
-  T.pushExits = span(Math.max(W('L5', 'listo.').t0 + 0.35, T.cartSheetUp[1] + 0.10), 0.35);
+  T.pushExits = span(Math.max(W('L5', 'listo.').t0 + 0.30, T.cartSheetUp[1] + 0.10), 0.42);
   T.dropHopPickup = [r3(T.pushExits[0] - 0.40), r3(T.pushExits[0] - 0.04)];   // se pasa a "Pedir para recoger" antes del push-in
   T.dropGlintPickup = span(T.pushExits[1] + 0.04, 0.36);
-  T.pullExits = span(T.dropGlintPickup[1] - 0.03, 0.28);
+  T.pullExits = span(T.dropGlintPickup[1] - 0.05, 0.36);
   T.cartSheetDown = span(T.pullExits[1] - 0.04, 0.45);
   T.dropHome = span(T.pullExits[1] - 0.06, 0.46);           // la gota regresa al canto del celular
 
@@ -439,25 +439,30 @@ export function spring(k, zeta = 0.8, omega = 8.2) {
 // transiciones que se enciman se suman sin saltos. El foco del push es pegajoso: el pull-back
 // regresa desde el mismo punto que se acercó.
 export const CAM_KEYS = ['x', 'y', 'h', 'push', 'view', 'rotY', 'rotX'];
+const LOG_KEYS = new Set(['push', 'view']);             // los acercamientos se interpolan en escala logarítmica
+const camVal = (k, v) => (LOG_KEYS.has(k) ? Math.log(Math.max(v, 1e-6)) : v);
+export const smootherstep = (k) => k * k * k * (k * (6 * k - 15) + 10);
 export function cameraAt(CAMERA, t) {
   const first = CAMERA[0];
   const st = {}, last = {};
-  for (const k of CAM_KEYS) { st[k] = first[k] ?? 0; last[k] = st[k]; }
+  for (const k of CAM_KEYS) { st[k] = camVal(k, first[k] ?? (LOG_KEYS.has(k) ? 1 : 0)); last[k] = st[k]; }
   let focus = null, focusMax = 1, focusT = -1;
   for (let i = 1; i < CAMERA.length; i++) {
     const c = CAMERA[i];
     if (t < c.t[0]) {
-      for (const k of CAM_KEYS) if (c[k] !== undefined) last[k] = c[k];
+      for (const k of CAM_KEYS) if (c[k] !== undefined) last[k] = camVal(k, c[k]);
       continue;
     }
     const raw = c.t[1] > c.t[0] ? clamp((t - c.t[0]) / (c.t[1] - c.t[0])) : 1;
-    const e = c.spring ? spring(raw, 0.72, 7.2) : easeInOut(raw);
-    for (const k of CAM_KEYS) if (c[k] !== undefined) { st[k] += (c[k] - last[k]) * e; last[k] = c[k]; }
+    const e = c.spring ? spring(raw, 0.72, 7.2) : smootherstep(raw);
+    for (const k of CAM_KEYS) if (c[k] !== undefined) { const v = camVal(k, c[k]); st[k] += (v - last[k]) * e; last[k] = v; }
     if (c.focus) { focus = c.focus; focusMax = c.push; focusT = c.t[0]; }
   }
-  // k del foco: 0 con push 1, 1 en el push máximo de esa transición
-  const focusK = focus && focusMax > 1 ? clamp((st.push - 1) / (focusMax - 1)) : 0;
-  return { ...st, focus, focusK, focusT, focusMax };
+  const out = { ...st };
+  for (const k of LOG_KEYS) out[k] = Math.exp(st[k]);
+  // k del foco: 0 con push 1, 1 en el push máximo de esa transición (también en escala logarítmica)
+  const focusK = focus && focusMax > 1 ? clamp(Math.log(out.push) / Math.log(focusMax)) : 0;
+  return { ...out, focus, focusK, focusT, focusMax };
 }
 // scroll con inercia (arrastre, suelta, desacelera) y rebote opcional
 export function scrollAt(t, [ta, tb], y0, y1, rubber = 0) {
