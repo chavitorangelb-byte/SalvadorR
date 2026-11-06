@@ -7,3 +7,4 @@ video/build/
 # Audio intermedio del video (se regenera con video/tools/*; las tomas originales sí se versionan)
 video/audio/stems/
 video/audio/vo/*_48k.wav
+video/audio/master.wav

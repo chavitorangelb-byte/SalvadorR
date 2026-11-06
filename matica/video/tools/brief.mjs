@@ -23,15 +23,15 @@ const NAMES = {
   dropCircleFrio: 'La gota rodea "Frío"', tapFrio: 'Tap en "Frío" (cae sobre "precios")', countFrio: 'El selector desliza y el precio cuenta $60 → $65',
   pullLatte: 'Pull-back', dropHopEspeciales: 'La gota rebota a "Los especiales"', tapEspeciales: 'Tap en "Los especiales"', panelEspeciales: 'Cambia el panel',
   cardOut: 'La tarjeta "Cold brew tonic de sabor $85" (con su foto) sale al espacio 3D', cardFloat: 'Flota en profundidad (sombra, parallax)', cardBack: 'Regresa a su lugar y cae al pedido',
-  cartIn: 'Sube la barra del pedido: 1 · $85', dropHopWaffles: 'La gota rebota a "Waffles de yuca"', tapWaffles: 'Tap en "Waffles de yuca" (inicio del compás 5)', panelWaffles: 'Cambia el panel',
-  pushJamon: 'Push-in a "Jamón serrano y matícas $95" con su foto e ícono sin gluten', dropUnderlineJamon: 'La gota subraya el nombre', pullJamon: 'Pull-back', tapJamon: 'Tap en la tarjeta: se abre la ficha',
+  cartIn: 'Sube la barra del pedido: 1 · $85', swipeTabs: 'Swipe en las categorías: aparece "Waffles de yuca"', dropHopWaffles: 'La gota rebota a "Waffles de yuca"', tapWaffles: 'Tap en "Waffles de yuca" (inicio del compás 5)', panelWaffles: 'Cambia el panel',
+  dropHopJamon: 'La gota rebota a la tarjeta del waffle', pushJamon: 'Push-in a "Jamón serrano y matícas $95" con su foto e ícono sin gluten', dropUnderlineJamon: 'La gota subraya el nombre', pullJamon: 'Pull-back', tapJamon: 'Tap en la tarjeta: se abre la ficha',
   sheetUp: 'La ficha sube', dropCircleAdd: 'La gota rodea "Agregar"', lift: 'Lift musical (inicio del compás 6)', pressAdd: 'Estado presionado real de "Agregar"', tapAdd: 'Suelta: se agrega al pedido',
   addLift3D: '"Agregar" se levanta en 3D con pop', sheetDown: 'La ficha baja', countCart: 'El total cuenta $85 → $180, contador 1 → 2', tapCartbar: 'Tap en la barra del pedido',
-  cartSheetUp: 'Sube el pedido: $95 + $85 = $180 y las dos salidas', pushExits: 'Push-in: total y "Pedir para recoger" / "A domicilio por Rappi"', dropGlintPickup: 'Brillo de la gota sobre "Pedir para recoger"',
-  pullExits: 'Pull-back', cartSheetDown: 'El pedido baja', scrollVive: 'Scroll con inercia a "Así se vive Matíca"', iconDog: 'Ícono de línea: perrito (trazo blanco)',
+  dropHomeAdd: 'La gota vuelve al canto del celular', dropHopPickup: 'La gota salta a "Pedir para recoger"', cartSheetUp: 'Sube el pedido: $95 + $85 = $180 y las dos salidas', pushExits: 'Push-in: total y "Pedir para recoger" / "A domicilio por Rappi"', dropGlintPickup: 'Brillo de la gota sobre "Pedir para recoger"',
+  pullExits: 'Pull-back', cartSheetDown: 'El pedido baja', dropHome: 'La gota regresa al canto del celular', scrollVive: 'Scroll con inercia a "Así se vive Matíca"', iconDog: 'Ícono de línea: perrito (trazo blanco)',
   iconLaptop: 'Ícono de línea: laptop', scrollReviews: 'Scroll a las reseñas', swipe13: 'Swipe por las reseñas 1, 2 y 3', fanOut: 'Tres tarjetas de cristal salen en abanico 3D, legibles',
   pushReview2: 'Push-in a "Los waffles son deliciosos y de sabores únicos"', fanBack: 'Regresan', scrollVisit: 'Scroll a "Visítanos" (compás 9)', pinDrop: 'Cae el pin en Av. Las Américas 607-1',
-  pushHours: 'Push-in al horario: "Lunes a viernes 8:00 – 20:00 · Sábado 9:00 – 14:00"', dropCircleHours: 'La gota rodea el horario', holdHours: 'Se sostiene legible',
+  dropHopHours: 'La gota salta a la tarjeta del horario', pushHours: 'Push-in al horario: "Lunes a viernes 8:00 – 20:00 · Sábado 9:00 – 14:00"', dropCircleHours: 'La gota rodea el horario', holdHours: 'Se sostiene legible',
   phoneAway: 'El celular se aleja a un lado', breath: 'Respiro musical', dropFallCenter: 'La gota cae hacia el centro', hit24: 'Golpe grave', logoIn: 'Entra el logo de Matíca (leve giro 3D, sombra suave)',
   dropOnCup: 'La gota cae sobre la taza del logo (el logo solo se mueve y escala)', sparkle: 'Se deshace en un destello mínimo', tagline: '"Así se vería tu página · Elevate Negocios"',
   disclaimer: '"Demo de cortesía de Elevate Negocios · pieza no oficial"', end: 'Fin',
@@ -83,7 +83,7 @@ TL.CAMERA.forEach((c, i) => P(`| ${i === 0 ? fr(c.t[0]) : rng(c.t)} | ${cv(c.x, 
 P('', 'Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px inferiores. Cuando el celular va a la derecha, el texto va a la izquierda y al revés.', '');
 
 P('## Acciones de la página (captura real a 60 fps y 3×, reloj virtual)', '', '| Cuadros | Acción en la página |', '|---|---|');
-const act = (a) => ({ intro: 'Animación de carga de la portada', tap: `Tap con onda en \`${a.sel}\``, scroll: `Scroll con inercia → ${a.to}`, hide: `${a.on ? 'Oculta' : 'Muestra'} \`${a.sel}\` (la pieza vive en 3D)`,
+const act = (a) => ({ intro: 'Animación de carga de la portada', tap: a.quiet ? `Suelta: click real en \`${a.sel}\` (sin onda)` : `Tap con onda en \`${a.sel}\``, scroll: `Scroll con inercia → ${a.to}`, scrollX: `Swipe horizontal en \`${a.sel}\` hasta \`${a.to}\``, hide: `${a.on ? 'Oculta' : 'Muestra'} \`${a.sel}\` (la pieza vive en 3D)`,
   add: `Se agrega al pedido: ${a.spec?.id} (${a.spec?.opt})`, press: `Presionado real \`${a.sel}\``, closeSheet: 'Cierra la hoja', review: `Reseñas: va a la ${a.i + 1}`, dropPin: 'Cae el pin del mapa' }[a.type]);
 TL.PAGE_ACTIONS.forEach((a) => P(`| ${rng(a.t)} | ${act(a)} |`));
 P('');

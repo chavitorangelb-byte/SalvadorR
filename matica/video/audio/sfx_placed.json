@@ -1,0 +1,821 @@
+[
+ {
+  "t": 0,
+  "tipo": "golpe",
+  "nota": "f0",
+  "dur": 0.5,
+  "dB": -1.0
+ },
+ {
+  "t": 0.26,
+  "tipo": "cristal-in",
+  "nota": "barra de búsqueda",
+  "dur": 0.9,
+  "dB": -6.0
+ },
+ {
+  "t": 0.3,
+  "tipo": "gota-plic",
+  "nota": "la gota toca",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 1.041,
+  "tipo": "tecla",
+  "nota": "c",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.125,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.21,
+  "tipo": "tecla",
+  "nota": "f",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.292,
+  "tipo": "tecla",
+  "nota": "é",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.32,
+  "tipo": "tecla-espacio",
+  "nota": " ",
+  "dur": 0.07,
+  "dB": -8.0
+ },
+ {
+  "t": 1.411,
+  "tipo": "tecla",
+  "nota": "d",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.556,
+  "tipo": "tecla",
+  "nota": "e",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.62,
+  "tipo": "tecla-espacio",
+  "nota": " ",
+  "dur": 0.07,
+  "dB": -8.0
+ },
+ {
+  "t": 1.661,
+  "tipo": "tecla",
+  "nota": "e",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.709,
+  "tipo": "tecla",
+  "nota": "s",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.757,
+  "tipo": "tecla",
+  "nota": "p",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.8,
+  "tipo": "tecla",
+  "nota": "e",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.849,
+  "tipo": "tecla",
+  "nota": "c",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.9,
+  "tipo": "tecla",
+  "nota": "i",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.946,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 1.993,
+  "tipo": "tecla",
+  "nota": "l",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.041,
+  "tipo": "tecla",
+  "nota": "i",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.093,
+  "tipo": "tecla",
+  "nota": "d",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.143,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.191,
+  "tipo": "tecla",
+  "nota": "d",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.28,
+  "tipo": "tecla-espacio",
+  "nota": " ",
+  "dur": 0.07,
+  "dB": -8.0
+ },
+ {
+  "t": 2.334,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.398,
+  "tipo": "tecla",
+  "nota": "g",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.456,
+  "tipo": "tecla",
+  "nota": "u",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.518,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.588,
+  "tipo": "tecla",
+  "nota": "s",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.649,
+  "tipo": "tecla",
+  "nota": "c",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.704,
+  "tipo": "tecla",
+  "nota": "a",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.76,
+  "tipo": "tecla",
+  "nota": "l",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.82,
+  "tipo": "tecla",
+  "nota": "i",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.879,
+  "tipo": "tecla",
+  "nota": "e",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 2.935,
+  "tipo": "tecla",
+  "nota": "n",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 3.002,
+  "tipo": "tecla",
+  "nota": "t",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 3.075,
+  "tipo": "tecla",
+  "nota": "e",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 3.145,
+  "tipo": "tecla",
+  "nota": "s",
+  "dur": 0.05,
+  "dB": -8.0
+ },
+ {
+  "t": 3.261,
+  "tipo": "enter",
+  "nota": "",
+  "dur": 0.12,
+  "dB": -4.0
+ },
+ {
+  "t": 3.321,
+  "tipo": "gota-estira",
+  "nota": "",
+  "dur": 0.55,
+  "dB": -5.0
+ },
+ {
+  "t": 3.541,
+  "tipo": "cristal-celular",
+  "nota": "",
+  "dur": 1.0,
+  "dB": -5.0
+ },
+ {
+  "t": 3.711,
+  "tipo": "giro",
+  "nota": "",
+  "dur": 0.5,
+  "dB": -9.0
+ },
+ {
+  "t": 3.841,
+  "tipo": "pantalla-on",
+  "nota": "",
+  "dur": 0.32,
+  "dB": -8.0
+ },
+ {
+  "t": 3.921,
+  "tipo": "trazo-cierra",
+  "nota": "",
+  "dur": 0.6,
+  "dB": -9.0
+ },
+ {
+  "t": 4.161,
+  "tipo": "ui-pop",
+  "nota": "logo",
+  "dur": 0.07,
+  "dB": -8.0
+ },
+ {
+  "t": 4.511,
+  "tipo": "asienta",
+  "nota": "",
+  "dur": 0.3,
+  "dB": -7.0
+ },
+ {
+  "t": 4.757,
+  "tipo": "gota-giro",
+  "nota": "",
+  "dur": 0.42,
+  "dB": -6.0
+ },
+ {
+  "t": 5.217,
+  "tipo": "tap",
+  "nota": "Ver menú",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 5.317,
+  "tipo": "scroll",
+  "nota": "al menú",
+  "dur": 0.5,
+  "dB": -6.0
+ },
+ {
+  "t": 6.417,
+  "tipo": "gota-plic",
+  "nota": "Latte",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 6.61,
+  "tipo": "gota-giro",
+  "nota": "",
+  "dur": 0.42,
+  "dB": -6.0
+ },
+ {
+  "t": 6.97,
+  "tipo": "tap",
+  "nota": "Frío",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 6.99,
+  "tipo": "selector",
+  "nota": "desliza",
+  "dur": 0.16,
+  "dB": -7.0
+ },
+ {
+  "t": 7.02,
+  "tipo": "conteo",
+  "nota": "$61",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 7.056,
+  "tipo": "conteo",
+  "nota": "$62",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 7.101,
+  "tipo": "conteo",
+  "nota": "$63",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 7.164,
+  "tipo": "conteo",
+  "nota": "$64",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 7.41,
+  "tipo": "conteo",
+  "nota": "$65",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 7.8,
+  "tipo": "gota-plic",
+  "nota": "Los especiales",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 7.82,
+  "tipo": "tap",
+  "nota": "Los especiales",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 7.85,
+  "tipo": "pestana",
+  "nota": "",
+  "dur": 0.18,
+  "dB": -8.0
+ },
+ {
+  "t": 8.24,
+  "tipo": "tarjeta-sale",
+  "nota": "",
+  "dur": 0.5,
+  "dB": -5.0
+ },
+ {
+  "t": 8.79,
+  "tipo": "hielos",
+  "nota": "cold brew",
+  "dur": 0.4,
+  "dB": -6.0
+ },
+ {
+  "t": 9.04,
+  "tipo": "hielos",
+  "nota": "cold brew",
+  "dur": 0.4,
+  "dB": -6.0
+ },
+ {
+  "t": 9.59,
+  "tipo": "tarjeta-entra",
+  "nota": "",
+  "dur": 0.22,
+  "dB": -6.0
+ },
+ {
+  "t": 9.665,
+  "tipo": "swipe",
+  "nota": "categorías",
+  "dur": 0.28,
+  "dB": -7.0
+ },
+ {
+  "t": 9.7,
+  "tipo": "pedido-in",
+  "nota": "",
+  "dur": 0.35,
+  "dB": -6.0
+ },
+ {
+  "t": 9.84,
+  "tipo": "contador",
+  "nota": "1",
+  "dur": 0.09,
+  "dB": -6.0
+ },
+ {
+  "t": 10.415,
+  "tipo": "gota-plic",
+  "nota": "Waffles de yuca",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 10.435,
+  "tipo": "tap",
+  "nota": "Waffles de yuca",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 10.465,
+  "tipo": "pestana",
+  "nota": "",
+  "dur": 0.18,
+  "dB": -8.0
+ },
+ {
+  "t": 11.76,
+  "tipo": "gota-plic",
+  "nota": "tarjeta del waffle",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 12.17,
+  "tipo": "gota-trazo",
+  "nota": "subraya",
+  "dur": 0.32,
+  "dB": -6.0
+ },
+ {
+  "t": 12.49,
+  "tipo": "tap",
+  "nota": "ficha",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 12.51,
+  "tipo": "hoja-sube",
+  "nota": "",
+  "dur": 0.45,
+  "dB": -7.0
+ },
+ {
+  "t": 12.663,
+  "tipo": "gota-giro",
+  "nota": "",
+  "dur": 0.42,
+  "dB": -6.0
+ },
+ {
+  "t": 13.043,
+  "tipo": "press",
+  "nota": "",
+  "dur": 0.07,
+  "dB": -5.0
+ },
+ {
+  "t": 13.163,
+  "tipo": "pop",
+  "nota": "Agregar se levanta",
+  "dur": 0.35,
+  "dB": -2.0
+ },
+ {
+  "t": 13.213,
+  "tipo": "hoja-baja",
+  "nota": "",
+  "dur": 0.45,
+  "dB": -8.0
+ },
+ {
+  "t": 13.381,
+  "tipo": "conteo",
+  "nota": "total 1/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.4,
+  "tipo": "conteo",
+  "nota": "total 2/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.413,
+  "tipo": "contador",
+  "nota": "2",
+  "dur": 0.09,
+  "dB": -6.0
+ },
+ {
+  "t": 13.42,
+  "tipo": "conteo",
+  "nota": "total 3/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.441,
+  "tipo": "conteo",
+  "nota": "total 4/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.465,
+  "tipo": "conteo",
+  "nota": "total 5/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.491,
+  "tipo": "conteo",
+  "nota": "total 6/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.52,
+  "tipo": "conteo",
+  "nota": "total 7/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.553,
+  "tipo": "conteo",
+  "nota": "total 8/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.592,
+  "tipo": "conteo",
+  "nota": "total 9/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.642,
+  "tipo": "conteo",
+  "nota": "total 10/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.663,
+  "tipo": "gota-plic",
+  "nota": "canto",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 13.712,
+  "tipo": "conteo",
+  "nota": "total 11/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 13.983,
+  "tipo": "conteo",
+  "nota": "total 12/12",
+  "dur": 0.04,
+  "dB": -9.0
+ },
+ {
+  "t": 14.26,
+  "tipo": "tap",
+  "nota": "Ver pedido",
+  "dur": 0.06,
+  "dB": -4.0
+ },
+ {
+  "t": 14.28,
+  "tipo": "hoja-sube",
+  "nota": "",
+  "dur": 0.45,
+  "dB": -7.0
+ },
+ {
+  "t": 15.42,
+  "tipo": "gota-plic",
+  "nota": "Pedir para recoger",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 15.85,
+  "tipo": "gota-brillo",
+  "nota": "",
+  "dur": 0.6,
+  "dB": -6.0
+ },
+ {
+  "t": 16.42,
+  "tipo": "hoja-baja",
+  "nota": "",
+  "dur": 0.45,
+  "dB": -8.0
+ },
+ {
+  "t": 16.86,
+  "tipo": "gota-plic",
+  "nota": "canto",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 16.956,
+  "tipo": "scroll",
+  "nota": "así se vive",
+  "dur": 0.5,
+  "dB": -6.0
+ },
+ {
+  "t": 17.35,
+  "tipo": "trazo",
+  "nota": "perrito",
+  "dur": 0.6,
+  "dB": -6.0
+ },
+ {
+  "t": 18.42,
+  "tipo": "trazo",
+  "nota": "laptop",
+  "dur": 0.6,
+  "dB": -6.0
+ },
+ {
+  "t": 19.19,
+  "tipo": "scroll",
+  "nota": "reseñas",
+  "dur": 0.5,
+  "dB": -6.0
+ },
+ {
+  "t": 19.59,
+  "tipo": "swipe",
+  "nota": "1 a 3",
+  "dur": 0.28,
+  "dB": -7.0
+ },
+ {
+  "t": 19.8,
+  "tipo": "swipe-tick",
+  "nota": "pasa la 2",
+  "dur": 0.04,
+  "dB": -10.0
+ },
+ {
+  "t": 19.94,
+  "tipo": "abanico-sale",
+  "nota": "",
+  "dur": 0.6,
+  "dB": -5.0
+ },
+ {
+  "t": 20.82,
+  "tipo": "abanico-regresa",
+  "nota": "",
+  "dur": 0.5,
+  "dB": -7.0
+ },
+ {
+  "t": 21,
+  "tipo": "scroll",
+  "nota": "visítanos",
+  "dur": 0.5,
+  "dB": -6.0
+ },
+ {
+  "t": 21.61,
+  "tipo": "gota-plic",
+  "nota": "horario",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 21.68,
+  "tipo": "pin",
+  "nota": "",
+  "dur": 0.35,
+  "dB": -5.0
+ },
+ {
+  "t": 21.93,
+  "tipo": "gota-giro",
+  "nota": "",
+  "dur": 0.42,
+  "dB": -6.0
+ },
+ {
+  "t": 22.8,
+  "tipo": "whoosh",
+  "nota": "se aparta",
+  "dur": 0.7,
+  "dB": -5.0
+ },
+ {
+  "t": 23.85,
+  "tipo": "gota-cae",
+  "nota": "",
+  "dur": 0.25,
+  "dB": -4.0
+ },
+ {
+  "t": 24,
+  "tipo": "golpe-grave",
+  "nota": "",
+  "dur": 0.9,
+  "dB": -3.0
+ },
+ {
+  "t": 24.05,
+  "tipo": "logo-in",
+  "nota": "",
+  "dur": 1.2,
+  "dB": -7.0
+ },
+ {
+  "t": 24.8,
+  "tipo": "gota-plic",
+  "nota": "taza",
+  "dur": 0.16,
+  "dB": -3.0
+ },
+ {
+  "t": 24.84,
+  "tipo": "destello",
+  "nota": "",
+  "dur": 1.0,
+  "dB": -5.0
+ }
+]

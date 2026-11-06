@@ -67,7 +67,7 @@
   ],
   "tapFrio": 6.97,
   "dropCircleFrio": [
-   6.81,
+   6.61,
    6.94
   ],
   "countFrio": [
@@ -108,6 +108,10 @@
    10.105,
    10.415
   ],
+  "swipeTabs": [
+   9.665,
+   10.065
+  ],
   "panelWaffles": [
    10.435,
    10.795
@@ -115,6 +119,10 @@
   "pushJamon": [
    11.8,
    12.15
+  ],
+  "dropHopJamon": [
+   11.4,
+   11.76
   ],
   "dropUnderlineJamon": [
    12.17,
@@ -140,8 +148,8 @@
   ],
   "tapAdd": 13.163,
   "addLift3D": [
-   13.043,
-   13.563
+   13.163,
+   13.683
   ],
   "sheetDown": [
    13.213,
@@ -151,6 +159,10 @@
    13.363,
    13.983
   ],
+  "dropHomeAdd": [
+   13.263,
+   13.663
+  ],
   "tapCartbar": 14.26,
   "cartSheetUp": [
    14.28,
@@ -159,6 +171,10 @@
   "pushExits": [
    15.46,
    15.81
+  ],
+  "dropHopPickup": [
+   15.06,
+   15.42
   ],
   "dropGlintPickup": [
    15.85,
@@ -171,6 +187,10 @@
   "cartSheetDown": [
    16.42,
    16.87
+  ],
+  "dropHome": [
+   16.4,
+   16.86
   ],
   "scrollVive": [
    16.956,
@@ -215,6 +235,10 @@
   "pushHours": [
    21.63,
    22.13
+  ],
+  "dropHopHours": [
+   21.29,
+   21.61
   ],
   "dropCircleHours": [
    21.93,
@@ -366,6 +390,15 @@
    }
   },
   {
+   "t": [
+    9.665,
+    10.065
+   ],
+   "type": "scrollX",
+   "sel": "#tabs",
+   "to": "#tab-waffles"
+  },
+  {
    "t": 10.4348,
    "type": "tap",
    "sel": "#tab-waffles"
@@ -384,7 +417,7 @@
    "sel": "#si-add"
   },
   {
-   "t": 13.043,
+   "t": 13.163,
    "type": "hide",
    "sel": "#si-add",
    "on": true
@@ -396,7 +429,7 @@
    "quiet": true
   },
   {
-   "t": 13.563,
+   "t": 13.683,
    "type": "hide",
    "sel": "#si-add",
    "on": false
@@ -459,7 +492,7 @@
  ],
  "PROBES": [
   {
-   "t": 4.291,
+   "t": 4.691,
    "name": "heroBlock",
    "sel": ".hero-body"
   },
@@ -474,7 +507,7 @@
    "sel": "#item-latte"
   },
   {
-   "t": 6.81,
+   "t": 6.61,
    "name": "latteFrio",
    "sel": "#item-latte [data-temp=\"cold\"]"
   },
@@ -1040,7 +1073,7 @@
   },
   {
    "t": [
-    6.81,
+    6.61,
     6.94
    ],
    "act": "rodea \"Frío\""
@@ -1061,6 +1094,13 @@
   },
   {
    "t": [
+    11.4,
+    11.76
+   ],
+   "act": "rebota a la tarjeta del waffle (brillo) antes del push-in"
+  },
+  {
+   "t": [
     12.17,
     12.47
    ],
@@ -1075,10 +1115,38 @@
   },
   {
    "t": [
+    13.263,
+    13.663
+   ],
+   "act": "deja \"Agregar\" y vuelve al canto del celular"
+  },
+  {
+   "t": [
+    15.06,
+    15.42
+   ],
+   "act": "salta a \"Pedir para recoger\""
+  },
+  {
+   "t": [
     15.85,
     16.21
    ],
-   "act": "brillo sobre \"Pedir para recoger\""
+   "act": "rebota y deja un brillo sobre \"Pedir para recoger\""
+  },
+  {
+   "t": [
+    16.4,
+    16.86
+   ],
+   "act": "regresa al canto del celular"
+  },
+  {
+   "t": [
+    21.29,
+    21.61
+   ],
+   "act": "salta a la tarjeta del horario"
   },
   {
    "t": [
@@ -1149,8 +1217,8 @@
     4.757,
     5.567
    ],
-   "x": 0.63,
-   "h": 0.64,
+   "x": 0.7,
+   "h": 0.6,
    "push": 1,
    "rotY": -5,
    "note": "a la derecha: texto a la izquierda"
@@ -1161,8 +1229,8 @@
     6.93
    ],
    "push": 2.2,
-   "focus": "lattePrice",
-   "note": "\"Latte $60\" al tamaño de un celular real"
+   "focus": "latteCard",
+   "note": "\"Latte $60\" y Frío / Caliente al tamaño de un celular real"
   },
   {
    "t": [
@@ -1176,7 +1244,7 @@
     8.24,
     8.74
    ],
-   "x": 0.66,
+   "x": 0.71,
    "rotY": -9,
    "note": "la tarjeta flota en profundidad"
   },
@@ -1185,7 +1253,7 @@
     9.22,
     10.795
    ],
-   "x": 0.37,
+   "x": 0.3,
    "rotY": 5,
    "note": "cruza a la izquierda: texto a la derecha"
   },
@@ -1194,7 +1262,7 @@
     11.8,
     12.15
    ],
-   "push": 2.25,
+   "push": 2.2,
    "focus": "jamonCard",
    "note": "\"Jamón serrano y matícas $95\" legible"
   },
@@ -1210,7 +1278,7 @@
     12.77,
     13.193
    ],
-   "x": 0.63,
+   "x": 0.7,
    "rotY": -4,
    "note": "\"Agregar\" se levanta"
   },
@@ -1219,7 +1287,7 @@
     15.46,
     15.81
    ],
-   "push": 1.9,
+   "push": 1.95,
    "focus": "exits",
    "note": "total $180 y las dos salidas legibles"
   },
@@ -1232,10 +1300,10 @@
   },
   {
    "t": [
-    16.956,
-    17.736
+    16.52,
+    17.256
    ],
-   "x": 0.37,
+   "x": 0.3,
    "rotY": 5,
    "note": "íconos y texto a la derecha"
   },
@@ -1270,7 +1338,7 @@
     21.63,
     22.13
    ],
-   "push": 1.9,
+   "push": 1.95,
    "focus": "hours",
    "note": "horario legible"
   },
@@ -1569,7 +1637,7 @@
    "note": "Latte"
   },
   {
-   "t": 6.81,
+   "t": 6.61,
    "type": "gota-giro",
    "note": ""
   },
@@ -1644,6 +1712,11 @@
    "note": ""
   },
   {
+   "t": 9.665,
+   "type": "swipe",
+   "note": "categorías"
+  },
+  {
    "t": 9.7,
    "type": "pedido-in",
    "note": ""
@@ -1667,6 +1740,11 @@
    "t": 10.465,
    "type": "pestana",
    "note": ""
+  },
+  {
+   "t": 11.76,
+   "type": "gota-plic",
+   "note": "tarjeta del waffle"
   },
   {
    "t": 12.17,
@@ -1759,6 +1837,11 @@
    "note": "total 10/12"
   },
   {
+   "t": 13.663,
+   "type": "gota-plic",
+   "note": "canto"
+  },
+  {
    "t": 13.712,
    "type": "conteo",
    "note": "total 11/12"
@@ -1779,6 +1862,11 @@
    "note": ""
   },
   {
+   "t": 15.42,
+   "type": "gota-plic",
+   "note": "Pedir para recoger"
+  },
+  {
    "t": 15.85,
    "type": "gota-brillo",
    "note": ""
@@ -1787,6 +1875,11 @@
    "t": 16.42,
    "type": "hoja-baja",
    "note": ""
+  },
+  {
+   "t": 16.86,
+   "type": "gota-plic",
+   "note": "canto"
   },
   {
    "t": 16.956,
@@ -1832,6 +1925,11 @@
    "t": 21,
    "type": "scroll",
    "note": "visítanos"
+  },
+  {
+   "t": 21.61,
+   "type": "gota-plic",
+   "note": "horario"
   },
   {
    "t": 21.68,
@@ -2300,7 +2398,7 @@
   ],
   "tapFrio": 418,
   "dropCircleFrio": [
-   409,
+   397,
    416
   ],
   "countFrio": [
@@ -2341,6 +2439,10 @@
    606,
    625
   ],
+  "swipeTabs": [
+   580,
+   604
+  ],
   "panelWaffles": [
    626,
    648
@@ -2348,6 +2450,10 @@
   "pushJamon": [
    708,
    729
+  ],
+  "dropHopJamon": [
+   684,
+   706
   ],
   "dropUnderlineJamon": [
    730,
@@ -2373,8 +2479,8 @@
   ],
   "tapAdd": 790,
   "addLift3D": [
-   783,
-   814
+   790,
+   821
   ],
   "sheetDown": [
    793,
@@ -2384,6 +2490,10 @@
    802,
    839
   ],
+  "dropHomeAdd": [
+   796,
+   820
+  ],
   "tapCartbar": 856,
   "cartSheetUp": [
    857,
@@ -2392,6 +2502,10 @@
   "pushExits": [
    928,
    949
+  ],
+  "dropHopPickup": [
+   904,
+   925
   ],
   "dropGlintPickup": [
    951,
@@ -2403,6 +2517,10 @@
   ],
   "cartSheetDown": [
    985,
+   1012
+  ],
+  "dropHome": [
+   984,
    1012
   ],
   "scrollVive": [
@@ -2448,6 +2566,10 @@
   "pushHours": [
    1298,
    1328
+  ],
+  "dropHopHours": [
+   1277,
+   1297
   ],
   "dropCircleHours": [
    1316,

@@ -9,21 +9,22 @@ Rama: `claude/matica-cafe`. Todo el proyecto vive en `matica/` (Siniestro intact
 - Fase 4: prueba de estilo (`review/fase4/`): celular de cristal 3D, tarjeta 3D, la gota líquida.
 
 ## Fase 5 (en curso): construir el video completo por escenas con un frame(t) compartido
-Orden de trabajo (cada paso se commitea al terminar):
-1. [ ] `video/capture/capture.mjs`: página completa a 60 fps y 3x siguiendo `timeline.json`
-   (acciones, sondas de rects, texturas de piezas 3D, 4 subcapturas por cuadro en scrolls).
-2. [ ] Compositor completo (`video/compositor/main.mjs`, modo `?seq=full`): gancho con barra de
-   búsqueda de cristal y tecleo, llegada, menú (gota rodea/rebota, push-ins con foco en sondas,
-   tarjeta cold brew 3D), waffles (subrayado), pide (Agregar 3D con pop), así se vive (íconos de
-   línea, abanico de reseñas 3D), visítanos (la gota rodea el horario), cierre, end card (logo
-   oficial con giro 3D leve, la gota cae en la taza, destello, tagline y línea de demo).
-3. [ ] Audio en código: música 92 BPM lo-fi (Rhodes + madera; capas: shaker, bajo, guitarra,
-   pad; lift 13.04, respiro 23.00, golpe 24.00), SFX desde `timeline/sfx_cues.json` (111 cues),
-   mezcla: voz -16 LUFS, música >= 12 dB bajo cada palabra, master -14 LUFS / -1.25 dBTP.
-   Base: `video/tools/{music,sfx,mix}.py` de Siniestro (raíz del repo).
-4. [ ] Fase 6: preview + hoja de contactos de 12 cuadros clave -> mostrar a Salvador.
-5. [ ] Fase 7: finales 9:16 (1080x1920, 60 fps master + H.264 30 fps `-preset veryfast`) y
-   re-layout real 1:1; stems; HTML de la página aparte (`dist/matica-cafe-demo.html`).
+1. [x] `video/capture/capture.mjs`: página completa a 60 fps y 3x (1184 cuadros, 4 subcapturas en scrolls,
+   sondas, rastro de "Agregar", texturas 3D; swipe de categorías para que se vea "Waffles de yuca").
+   Correr: `matica/tools/serve.sh && node matica/video/capture/capture.mjs` (~6 min; OUT=... para otra carpeta).
+2. [x] Compositor completo `video/compositor/full.mjs` (index.html lo usa por omisión; `?seq=style` = prueba de estilo).
+   Cámara por transiciones (`cameraAt` en timeline.mjs), push-ins con foco en sondas, tipografía fuera de la
+   pantalla (celular en x .70/.30 al 60 % del alto mientras hay texto), gota con tramos amarrados a T.*.
+3. [x] Audio en código: `video/tools/music.py` (92 BPM, Rhodes + madera, capas por sección, lift, respiro,
+   golpe y Cmaj9 final), `sfx.py` (117 cues), `mix.py` (voz, música ≥ 12 dB bajo cada palabra medida en su
+   parte sonora, ducking por palabra, master -14 LUFS / pico -1.7 dBTP; reporte en audio/mix_report.json).
+   Requiere scipy (`pip install scipy`).
+4. [ ] Fase 6: preview 720x1280 30 fps (`render.mjs --scale 0.6667 --subs 6 --fps 30`) + audio + hoja de 12 cuadros.
+5. [ ] Fase 7: finales 9:16 (1080x1920 60 fps master + H.264 30 fps `-preset veryfast`) y re-layout real 1:1;
+   stems (voz/música/efectos); HTML de la página aparte.
+
+Notas de mezcla: la voz queda en -13.9 LUFS integrados (el brief pedía ≈ -16): con el master en -14 y la música
+12 dB abajo de cada palabra, la voz es casi todo el loudness. Avisado a Salvador.
 
 ## Cómo correr (resumen)
 - Página: `(cd matica/site && python3 -m http.server 8124 &)`

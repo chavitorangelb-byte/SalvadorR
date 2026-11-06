@@ -70,7 +70,7 @@ export function lock(vo) {
   // push-in y tipografía se relevan: el push entra cuando "TU MENÚ / COMPLETO," ya se leyó
   T.pushLatte = span(Math.max(W('L3', 'completo,').t0 + 0.40, T.dropHopLatte[1] + 0.02), 0.36);   // hasta leer el precio al tamaño real
   T.tapFrio = r3(Math.max(W('L3', 'precios,').t0 - 0.12, T.pushLatte[1] + 0.02));   // el conteo $60 -> $65 cae sobre "precios"
-  T.dropCircleFrio = [r3(Math.max(T.pushLatte[1] - 0.12, T.tapFrio - 0.36)), r3(T.tapFrio - 0.03)];
+  T.dropCircleFrio = [r3(Math.max(T.dropHopLatte[1] + 0.05, T.tapFrio - 0.36)), r3(T.tapFrio - 0.03)];   // la gota va pegada al cristal: rodea mientras acerca
   T.countFrio = span(T.tapFrio + 0.02, 0.42);
   T.pullLatte = span(Math.min(T.countFrio[1] - 0.10, W('L3', 'en').t0 - 0.36), 0.28);
   T.dropHopEspeciales = span(T.pullLatte[1] - 0.05, 0.30);
@@ -82,10 +82,12 @@ export function lock(vo) {
   T.cartIn = span(T.cardBack[1] - 0.02, 0.45);      // aparece la barra del pedido: 1 · $85
   T.tapWaffles = snap(W('L4', 0).t0 - 0.36, BAR / 4, 'round');
   T.dropHopWaffles = [r3(T.tapWaffles - 0.33), r3(T.tapWaffles - 0.02)];
+  T.swipeTabs = span(T.dropHopWaffles[0] - 0.44, 0.40);   // swipe en las categorías: aparece "Waffles de yuca" (estaba fuera de la vista)
 
   // ---------- WAFFLES DE YUCA ----------
   T.panelWaffles = span(T.tapWaffles, 0.36);
   T.pushJamon = span(Math.max(W('L4', 'yuca').t0 + 0.36, T.panelWaffles[1] + 0.30), 0.35);   // "Jamón serrano y matícas $95", foto e ícono sin gluten
+  T.dropHopJamon = [r3(T.pushJamon[0] - 0.40), r3(T.pushJamon[0] - 0.04)];   // la gota se pasa a la tarjeta antes del push-in (guía la mirada)
   T.dropUnderlineJamon = span(T.pushJamon[1] + 0.02, 0.30);
   T.tapJamon = r3(T.dropUnderlineJamon[1] + 0.02);
   T.pullJamon = span(T.tapJamon, 0.38);              // se aleja mientras sube la ficha
@@ -96,15 +98,18 @@ export function lock(vo) {
   T.lift = bar(5);                                  // lift musical (13.04 s)
   T.pressAdd = span(T.lift, 0.12);                  // estado presionado real
   T.tapAdd = r3(T.pressAdd[1]);
-  T.addLift3D = span(T.lift, 0.52);                 // "Agregar" se levanta en 3D con pop
+  T.addLift3D = span(T.pressAdd[1], 0.52);          // se ve el presionado real y al soltar "Agregar" se levanta en 3D con pop
   T.sheetDown = span(T.tapAdd + 0.05, 0.50);
   T.countCart = span(T.tapAdd + 0.20, 0.62);        // $85 -> $180 contando, contador 1 -> 2
+  T.dropHomeAdd = span(T.addLift3D[0] + 0.10, 0.40); // la gota deja "Agregar" y vuelve al canto del celular
   T.tapCartbar = r3(Math.max(T.countCart[1] + 0.20, W('L5', 'antes').t1 + 0.05));
   T.cartSheetUp = span(T.tapCartbar + 0.02, 0.50);  // aparecen las dos salidas
   T.pushExits = span(Math.max(W('L5', 'listo.').t0 + 0.35, T.cartSheetUp[1] + 0.10), 0.35);
+  T.dropHopPickup = [r3(T.pushExits[0] - 0.40), r3(T.pushExits[0] - 0.04)];   // se pasa a "Pedir para recoger" antes del push-in
   T.dropGlintPickup = span(T.pushExits[1] + 0.04, 0.36);
   T.pullExits = span(T.dropGlintPickup[1] - 0.03, 0.28);
   T.cartSheetDown = span(T.pullExits[1] - 0.04, 0.45);
+  T.dropHome = span(T.pullExits[1] - 0.06, 0.46);           // la gota regresa al canto del celular
 
   // ---------- ASÍ SE VIVE ----------
   T.scrollVive = span(Math.max(snap(T.cartSheetDown[1], BEAT, 'up'), r3(W('L6', 0).t0 - 0.46)), 0.78);
@@ -119,6 +124,7 @@ export function lock(vo) {
   T.pushReview2 = [r3(T.fanOut[1] - 0.15), r3(T.fanBack[0] - 0.03)];   // "Los waffles son deliciosos y de sabores únicos" 
   T.pinDrop = span(T.scrollVisit[1] - 0.20, 0.80);
   T.pushHours = span(T.scrollVisit[1] + 0.05, 0.50);
+  T.dropHopHours = [r3(T.pushHours[0] - 0.34), r3(T.pushHours[0] - 0.02)];  // salta a la tarjeta del horario antes del push-in
   T.dropCircleHours = span(T.pushHours[1] - 0.20, 0.55);
   T.holdHours = [r3(T.pushHours[1]), 22.8];
 
@@ -161,6 +167,7 @@ export function lock(vo) {
     { t: T.cardOut[0], type: 'hide', sel: '#item-cold-brew-tonic', on: true },
     { t: T.cardBack[1], type: 'hide', sel: '#item-cold-brew-tonic', on: false },
     { t: T.cardBack[1], type: 'add', spec: { id: 'cold-brew-tonic', opt: 'Piloncillo' } },
+    { t: T.swipeTabs, type: 'scrollX', sel: '#tabs', to: '#tab-waffles' },
     { t: T.tapWaffles, type: 'tap', sel: '#tab-waffles' },
     { t: T.tapJamon, type: 'tap', sel: '#item-jamon-serrano .item-open' },
     { t: T.pressAdd, type: 'press', sel: '#si-add' },
@@ -182,7 +189,7 @@ export function lock(vo) {
 
   // rects que el compositor necesita (se miden en su instante)
   const PROBES = [
-    { t: T.heroPush[0], name: 'heroBlock', sel: '.hero-body' },
+    { t: T.pageIntro[1], name: 'heroBlock', sel: '.hero-body' },   // ya terminada la animación de carga
     { t: T.dropCircleMenu[0], name: 'ctaMenu', sel: '#cta-menu' },
     { t: T.dropHopLatte[0], name: 'latteCard', sel: '#item-latte' },
     { t: T.dropCircleFrio[0], name: 'latteFrio', sel: '#item-latte [data-temp="cold"]' },
@@ -250,9 +257,14 @@ export function lock(vo) {
     { t: T.dropCircleFrio, act: 'rodea "Frío"' },
     { t: T.dropHopEspeciales, act: 'rebota a "Los especiales" (brillo)' },
     { t: T.dropHopWaffles, act: 'rebota a "Waffles de yuca" (brillo)' },
+    { t: T.dropHopJamon, act: 'rebota a la tarjeta del waffle (brillo) antes del push-in' },
     { t: T.dropUnderlineJamon, act: 'subraya "Jamón serrano y matícas"' },
     { t: T.dropCircleAdd, act: 'rodea "Agregar"' },
-    { t: T.dropGlintPickup, act: 'brillo sobre "Pedir para recoger"' },
+    { t: T.dropHomeAdd, act: 'deja "Agregar" y vuelve al canto del celular' },
+    { t: T.dropHopPickup, act: 'salta a "Pedir para recoger"' },
+    { t: T.dropGlintPickup, act: 'rebota y deja un brillo sobre "Pedir para recoger"' },
+    { t: T.dropHome, act: 'regresa al canto del celular' },
+    { t: T.dropHopHours, act: 'salta a la tarjeta del horario' },
     { t: T.dropCircleHours, act: 'rodea el horario' },
     { t: T.dropFallCenter, act: 'cae hacia el centro' },
     { t: T.dropOnCup, act: 'cae sobre la taza del logo' },
@@ -268,21 +280,21 @@ export function lock(vo) {
     { t: [T.phoneIn[0], T.phoneIn[0]], x: 0.50, y: 0.47, h: 0.64, push: 1, view: 1, rotY: 12, rotX: -5, note: 'entra girado 12°' },
     { t: T.phoneSettle, h: 0.66, rotY: 0, rotX: 0, spring: true, note: 'se asienta' },
     { t: T.heroPush, push: 1.2, focus: 'heroBlock', note: 'se leen "Café de especialidad" y los chips' },
-    { t: [T.dropCircleMenu[0], r3(T.scrollMenu[0] + 0.25)], x: 0.63, h: 0.64, push: 1, rotY: -5, note: 'a la derecha: texto a la izquierda' },
-    { t: T.pushLatte, push: 2.2, focus: 'lattePrice', note: '"Latte $60" al tamaño de un celular real' },
+    { t: [T.dropCircleMenu[0], r3(T.scrollMenu[0] + 0.25)], x: 0.70, h: 0.60, push: 1, rotY: -5, note: 'a la derecha: texto a la izquierda' },
+    { t: T.pushLatte, push: 2.2, focus: 'latteCard', note: '"Latte $60" y Frío / Caliente al tamaño de un celular real' },
     { t: T.pullLatte, push: 1 },
-    { t: T.cardOut, x: 0.66, rotY: -9, note: 'la tarjeta flota en profundidad' },
-    { t: [T.cardBack[0], T.panelWaffles[1]], x: 0.37, rotY: 5, note: 'cruza a la izquierda: texto a la derecha' },
-    { t: T.pushJamon, push: 2.25, focus: 'jamonCard', note: '"Jamón serrano y matícas $95" legible' },
+    { t: T.cardOut, x: 0.71, rotY: -9, note: 'la tarjeta flota en profundidad' },
+    { t: [T.cardBack[0], T.panelWaffles[1]], x: 0.30, rotY: 5, note: 'cruza a la izquierda: texto a la derecha' },
+    { t: T.pushJamon, push: 2.2, focus: 'jamonCard', note: '"Jamón serrano y matícas $95" legible' },
     { t: T.pullJamon, push: 1 },
-    { t: [r3(T.sheetUp[1] - 0.20), r3(T.lift + 0.15)], x: 0.63, rotY: -4, note: '"Agregar" se levanta' },
-    { t: T.pushExits, push: 1.9, focus: 'exits', note: 'total $180 y las dos salidas legibles' },
+    { t: [r3(T.sheetUp[1] - 0.20), r3(T.lift + 0.15)], x: 0.70, rotY: -4, note: '"Agregar" se levanta' },
+    { t: T.pushExits, push: 1.95, focus: 'exits', note: 'total $180 y las dos salidas legibles' },
     { t: T.pullExits, push: 1 },
-    { t: T.scrollVive, x: 0.37, rotY: 5, note: 'íconos y texto a la derecha' },
+    { t: [r3(T.cartSheetDown[0] + 0.10), r3(T.scrollVive[0] + 0.30)], x: 0.30, rotY: 5, note: 'íconos y texto a la derecha' },
     { t: [T.scrollReviews[0], T.fanOut[1]], x: 0.50, h: 0.62, rotY: 0, note: 'abanico de reseñas al frente' },
     { t: T.pushReview2, view: 1.55, note: 'se acerca a la reseña 2' },
     { t: [T.fanBack[0], T.scrollVisit[1]], view: 1, h: 0.68 },
-    { t: T.pushHours, push: 1.9, focus: 'hours', note: 'horario legible' },
+    { t: T.pushHours, push: 1.95, focus: 'hours', note: 'horario legible' },
     { t: T.phoneAway, x: 0.18, y: 0.50, h: 0.50, push: 1, rotY: 20, note: 'se aparta a un lado' },
   ];
 
@@ -365,7 +377,9 @@ function buildSfx(T, TYPING) {
   add(T.cardBack[1] - 0.05, 'tarjeta-entra');
   add(T.cartIn[0] + 0.08, 'pedido-in');
   add(T.cartIn[0] + 0.22, 'contador', '1');
+  add(T.swipeTabs[0], 'swipe', 'categorías');
   add(T.dropHopWaffles[1], 'gota-plic', 'Waffles de yuca');
+  add(T.dropHopJamon[1], 'gota-plic', 'tarjeta del waffle');
   add(T.tapWaffles, 'tap', 'Waffles de yuca');
   add(T.tapWaffles + 0.03, 'pestana');
   add(T.dropUnderlineJamon[0], 'gota-trazo', 'subraya');
@@ -379,8 +393,11 @@ function buildSfx(T, TYPING) {
   add(T.countCart[0] + 0.05, 'contador', '2');
   add(T.tapCartbar, 'tap', 'Ver pedido');
   add(T.cartSheetUp[0], 'hoja-sube');
+  add(T.dropHomeAdd[1], 'gota-plic', 'canto');
+  add(T.dropHopPickup[1], 'gota-plic', 'Pedir para recoger');
   add(T.dropGlintPickup[0], 'gota-brillo');
   add(T.cartSheetDown[0], 'hoja-baja');
+  add(T.dropHome[1], 'gota-plic', 'canto');
   add(T.scrollVive[0], 'scroll', 'así se vive');
   add(T.iconDog[0], 'trazo', 'perrito');
   add(T.iconLaptop[0], 'trazo', 'laptop');
@@ -391,6 +408,7 @@ function buildSfx(T, TYPING) {
   add(T.fanBack[0], 'abanico-regresa');
   add(T.scrollVisit[0], 'scroll', 'visítanos');
   add(T.pinDrop[0] + 0.30, 'pin');
+  add(T.dropHopHours[1], 'gota-plic', 'horario');
   add(T.dropCircleHours[0], 'gota-giro');
   add(T.phoneAway[0], 'whoosh', 'se aparta');
   add(T.dropFallCenter[1] - 0.1, 'gota-cae');
@@ -439,7 +457,7 @@ export function cameraAt(CAMERA, t) {
   }
   // k del foco: 0 con push 1, 1 en el push máximo de esa transición
   const focusK = focus && focusMax > 1 ? clamp((st.push - 1) / (focusMax - 1)) : 0;
-  return { ...st, focus, focusK, focusT };
+  return { ...st, focus, focusK, focusT, focusMax };
 }
 // scroll con inercia (arrastre, suelta, desacelera) y rebote opcional
 export function scrollAt(t, [ta, tb], y0, y1, rubber = 0) {

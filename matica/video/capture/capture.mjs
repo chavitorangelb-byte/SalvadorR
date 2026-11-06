@@ -16,7 +16,7 @@ import { scrollAt } from '../timeline/timeline.mjs';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const VIDEO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(VIDEO, 'build', 'capture');
+const OUT = process.env.OUT ? path.resolve(process.env.OUT) : path.join(VIDEO, 'build', 'capture');   // OUT=... para capturar aparte
 const BASE = process.env.BASE || 'http://127.0.0.1:8124/';
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ? Number(process.argv[i + 1]) : d; };
 const DPR = arg('dpr', 3), Q = arg('q', 90), FPS = 60, SUB = 4;
@@ -66,12 +66,13 @@ async function grabTex(name, sel, { trackScroll = false } = {}) {
 }
 const TEX_AT = [
   { t: T.cardOut[0], name: 'coldBrewCard', sel: '#item-cold-brew-tonic' },
-  { t: T.addLift3D[0], name: 'siAdd', sel: '#si-add' },
+  { t: T.pressAdd[0], name: 'siAdd', sel: '#si-add' },          // sin presionar (el 3D despega al soltar)
   { t: T.fanOut[0], name: 'rev1', sel: '#rev-1', trackScroll: true },
   { t: T.fanOut[0], name: 'rev2', sel: '#rev-2', trackScroll: true },
   { t: T.fanOut[0], name: 'rev3', sel: '#rev-3', trackScroll: true },
 ];
-const TRACKS = [{ name: 'siAdd', sel: '#si-add', t: [T.addLift3D[0], T.addLift3D[1] + 0.05] }];
+// la gota rodea "Agregar" mientras la ficha todavía sube: su rect se rastrea cuadro por cuadro
+const TRACKS = [{ name: 'siAdd', sel: '#si-add', t: [T.dropCircleAdd[0] - 0.05, T.addLift3D[1] + 0.05] }];
 
 const f0 = Math.round(TL.SCREEN[0] * FPS), f1 = Math.round(TL.SCREEN[1] * FPS);
 const manifest = { dpr: DPR, fps: FPS, sub: SUB, screen: TL.SCREEN, viewport: [390, 844], header: HDR, f0, f1, frames: {}, rects: {}, tracks: {}, tex: {} };
@@ -79,8 +80,8 @@ const acts = TL.PAGE_ACTIONS.map((a) => ({ ...a, start: Array.isArray(a.t) ? a.t
 const probes = TL.PROBES.map((p) => ({ ...p, done: false }));
 const texs = TEX_AT.map((x) => ({ ...x, done: false }));
 const releases = [];
-let y = 0, seg = null, vt = 0;
-const scrollSegs = acts.filter((a) => a.type === 'scroll');
+let y = 0, seg = null, vt = 0, segX = null;
+const scrollSegs = acts.filter((a) => a.type === 'scroll' || a.type === 'scrollX');
 const inScroll = (t) => scrollSegs.some((a) => t >= a.t[0] - 1 / FPS && t <= a.t[1] + 1 / FPS);
 const t0 = Date.now();
 for (let f = f0; f <= f1; f++) {
@@ -95,6 +96,12 @@ for (let f = f0; f <= f1; f++) {
     if (a.type === 'intro') await E(() => window.matica.intro());
     else if (a.type === 'tap') { if (a.quiet) await E((s) => document.querySelector(s).click(), a.sel); else await E((s) => window.matica.tap(s), a.sel); }
     else if (a.type === 'scroll') { seg = { t: a.t, y0: y, y1: await TARGETS[a.to]() }; manifest.scrollTo = { ...(manifest.scrollTo || {}), [a.to]: seg.y1 }; }
+    else if (a.type === 'scrollX') {   // hasta que la pieza quede completa a la vista con su margen
+      const [x0, x1] = await E(([s, to]) => { const el = document.querySelector(s), r = document.querySelector(to).getBoundingClientRect();
+        const gut = parseFloat(getComputedStyle(el).paddingRight) || 16;
+        return [el.scrollLeft, Math.min(el.scrollWidth - el.clientWidth, el.scrollLeft + Math.max(0, r.right - (el.clientWidth - gut)))]; }, [a.sel, a.to]);
+      segX = { t: a.t, sel: a.sel, x0, x1 }; manifest.scrollX = { ...(manifest.scrollX || {}), [a.to]: [x0, x1] };
+    }
     else if (a.type === 'hide') await E(([s, on]) => window.matica.hide(s, on), [a.sel, a.on]);
     else if (a.type === 'add') await E((sp) => window.matica.addToCart(sp), a.spec);
     else if (a.type === 'press') { await E((s) => window.matica.press(s, true), a.sel); releases.push({ t: a.t[1], sel: a.sel }); }
@@ -112,6 +119,7 @@ for (let f = f0; f <= f1; f++) {
   for (let k = 0; k < subs.length; k++) {
     const yy = yAt(subs[k]);
     await E((v) => scrollTo(0, v), yy);
+    if (segX && subs[k] >= segX.t[0] - 1 / FPS && subs[k] <= segX.t[1] + 2 / FPS) await E(([s, v]) => { document.querySelector(s).scrollLeft = v; }, [segX.sel, scrollAt(subs[k], segX.t, segX.x0, segX.x1)]);
     const file = `f${String(f).padStart(4, '0')}${subs.length > 1 ? '_' + k : ''}.jpg`;
     await page.screenshot({ path: path.join(OUT, 'frames', file), type: 'jpeg', quality: Q });
     fr.files.push(file); fr.scrollY.push(Math.round(yy * 100) / 100);

@@ -1,4 +1,8 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><title>Compositor · Matíca</title>
-<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style></head>
-<body><script type="module" src="./main.mjs"></script></body></html>
+<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}svg{position:absolute;width:0;height:0}</style></head>
+<body><script type="module">
+// ?seq=style -> prueba de estilo (fase 4) · por omisión, el video completo
+const seq = new URLSearchParams(location.search).get('seq');
+import(seq === 'style' ? './main.mjs' : './full.mjs');
+</script></body></html>
