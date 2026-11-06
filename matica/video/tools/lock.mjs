@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { lock, FPS, DUR } from '../timeline/timeline.mjs';
+import { lock, cameraAt, FPS, DUR } from '../timeline/timeline.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');   // matica/video
 const vo = JSON.parse(fs.readFileSync(path.join(ROOT, 'timeline/vo_words.json'), 'utf8'));
@@ -60,6 +60,19 @@ K.forEach((g, i) => {
   need(g.out[0] - lastLand >= 0.30, `${g.id}: la última palabra dura ${(g.out[0] - lastLand).toFixed(2)} s antes de salir`);
   if (i) need(K[i - 1].out[1] <= g.in + 1e-6, `${K[i - 1].id} y ${g.id} se enciman`);
 });
+// 5b) push-in y tipografía se relevan: mientras un grupo se lee, el celular está a tamaño normal
+//     (con el push la pantalla llena el cuadro y el texto quedaría encima de ella)
+K.forEach((g) => {
+  for (let t = g.in; t <= g.out[0]; t += 1 / FPS) {
+    const c = cameraAt(TL.CAMERA, t);
+    if (c.push > 1.10) { errs.push(`${g.id}: push ${c.push.toFixed(2)} en ${t.toFixed(2)} s mientras se lee el texto`); break; }
+  }
+});
+// 5c) en la interfaz el celular ocupa 60–75 % del alto (fuera de los push-ins y de la salida)
+for (let t = T.phoneSettle[1]; t < T.phoneAway[0]; t += 1 / FPS) {
+  const c = cameraAt(TL.CAMERA, t);
+  if (c.h < 0.60 - 1e-3 || c.h > 0.75 + 1e-3) { errs.push(`celular al ${(c.h * 100).toFixed(0)} % del alto en ${t.toFixed(2)} s`); break; }
+}
 // 6) voz: nada en el respiro ni encima del golpe de end card
 vo.clips.forEach((c) => {
   need(!(c.t0 < T.breath + 0.4 && c.t1 > T.breath - 0.2), `la voz ${c.id} pisa el respiro de 23.00`);

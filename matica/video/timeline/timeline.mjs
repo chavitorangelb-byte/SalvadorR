@@ -67,11 +67,12 @@ export function lock(vo) {
   T.dropCircleMenu = [r3(T.tapMenu - 0.46), r3(T.tapMenu - 0.04)];   // la gota rodea "Ver menú"
   T.scrollMenu = span(T.tapMenu + 0.10, 0.78);      // scroll con inercia al menú (pestaña Café)
   T.dropHopLatte = span(T.scrollMenu[1] + 0.02, 0.30);   // rebota a la tarjeta del Latte (deja brillo)
-  T.pushLatte = span(T.scrollMenu[1] + 0.05, 0.50); // push-in hasta leer el precio al tamaño real
-  T.tapFrio = r3(W('L3', 'precios,').t0 - 0.12);    // el conteo $60 -> $65 cae sobre "precios"
-  T.dropCircleFrio = [r3(Math.max(T.dropHopLatte[1], T.tapFrio - 0.38)), r3(T.tapFrio - 0.03)];
+  // push-in y tipografía se relevan: el push entra cuando "TU MENÚ / COMPLETO," ya se leyó
+  T.pushLatte = span(Math.max(W('L3', 'completo,').t0 + 0.40, T.dropHopLatte[1] + 0.02), 0.36);   // hasta leer el precio al tamaño real
+  T.tapFrio = r3(Math.max(W('L3', 'precios,').t0 - 0.12, T.pushLatte[1] + 0.02));   // el conteo $60 -> $65 cae sobre "precios"
+  T.dropCircleFrio = [r3(Math.max(T.pushLatte[1] - 0.12, T.tapFrio - 0.36)), r3(T.tapFrio - 0.03)];
   T.countFrio = span(T.tapFrio + 0.02, 0.42);
-  T.pullLatte = span(T.countFrio[1] + 0.12, 0.42);
+  T.pullLatte = span(Math.min(T.countFrio[1] - 0.10, W('L3', 'en').t0 - 0.36), 0.28);
   T.dropHopEspeciales = span(T.pullLatte[1] - 0.05, 0.30);
   T.tapEspeciales = r3(T.dropHopEspeciales[1] + 0.02);
   T.panelEspeciales = span(T.tapEspeciales, 0.36);
@@ -84,10 +85,10 @@ export function lock(vo) {
 
   // ---------- WAFFLES DE YUCA ----------
   T.panelWaffles = span(T.tapWaffles, 0.36);
-  T.pushJamon = span(W('L4', 0).t0 + 0.12, 0.60);   // "Jamón serrano y matícas $95", foto e ícono sin gluten
-  T.dropUnderlineJamon = span(W('L4', 'yuca').t0 + 0.05, 0.40);
-  T.pullJamon = span(T.dropUnderlineJamon[1] - 0.03, 0.36);
-  T.tapJamon = r3(T.pullJamon[1] + 0.02);
+  T.pushJamon = span(Math.max(W('L4', 'yuca').t0 + 0.36, T.panelWaffles[1] + 0.30), 0.35);   // "Jamón serrano y matícas $95", foto e ícono sin gluten
+  T.dropUnderlineJamon = span(T.pushJamon[1] + 0.02, 0.30);
+  T.tapJamon = r3(T.dropUnderlineJamon[1] + 0.02);
+  T.pullJamon = span(T.tapJamon, 0.38);              // se aleja mientras sube la ficha
   T.sheetUp = span(T.tapJamon + 0.02, 0.46);
   T.dropCircleAdd = [r3(Math.min(T.sheetUp[0] + 0.24, bar(5) - 0.38)), r3(bar(5) - 0.02)];   // ~0.4 s alrededor de "Agregar"
 
@@ -100,10 +101,10 @@ export function lock(vo) {
   T.countCart = span(T.tapAdd + 0.20, 0.62);        // $85 -> $180 contando, contador 1 -> 2
   T.tapCartbar = r3(Math.max(T.countCart[1] + 0.20, W('L5', 'antes').t1 + 0.05));
   T.cartSheetUp = span(T.tapCartbar + 0.02, 0.50);  // aparecen las dos salidas
-  T.pushExits = span(T.cartSheetUp[1] + 0.10, 0.60);
-  T.dropGlintPickup = span(W('L5', 'listo.').t0 - 0.06, 0.45);
-  T.pullExits = span(Math.max(T.dropGlintPickup[1], T.pushExits[1] + 0.35), 0.42);
-  T.cartSheetDown = span(T.pullExits[1] - 0.06, 0.45);
+  T.pushExits = span(Math.max(W('L5', 'listo.').t0 + 0.35, T.cartSheetUp[1] + 0.10), 0.35);
+  T.dropGlintPickup = span(T.pushExits[1] + 0.04, 0.36);
+  T.pullExits = span(T.dropGlintPickup[1] - 0.03, 0.28);
+  T.cartSheetDown = span(T.pullExits[1] - 0.04, 0.45);
 
   // ---------- ASÍ SE VIVE ----------
   T.scrollVive = span(Math.max(snap(T.cartSheetDown[1], BEAT, 'up'), r3(W('L6', 0).t0 - 0.46)), 0.78);
@@ -181,6 +182,7 @@ export function lock(vo) {
 
   // rects que el compositor necesita (se miden en su instante)
   const PROBES = [
+    { t: T.heroPush[0], name: 'heroBlock', sel: '.hero-body' },
     { t: T.dropCircleMenu[0], name: 'ctaMenu', sel: '#cta-menu' },
     { t: T.dropHopLatte[0], name: 'latteCard', sel: '#item-latte' },
     { t: T.dropCircleFrio[0], name: 'latteFrio', sel: '#item-latte [data-temp="cold"]' },
@@ -222,13 +224,13 @@ export function lock(vo) {
   };
   const KINETIC = [
     kin('k-menu-a', 'menu', 'left', [[['TU', 'L3', 'Tu'], ['MENÚ', 'L3', 'menú']], [['COMPLETO,', 'L3', 'completo,']]],
-      () => W('L3', 'en').t0 - 0.36),
+      () => T.pushLatte[0] - 0.05),
     kin('k-menu-b', 'menu', 'left', [[['EN', 'L3', 'en'], ['SU', 'L3', 'su']], [['CELULAR', 'L3', 'celular.']]],
       () => T.cardOut[0] + 0.10),
     kin('k-waffles', 'waffles', 'right', [[['WAFFLES', 'L4', 'Waffles']], [['DE', 'L4', 'de'], ['YUCA', 'L4', 'yuca']]],
-      () => T.sheetUp[0] - 0.06),
+      () => T.pushJamon[0] - 0.05),
     kin('k-pide', 'pide', 'left', [[['PIDE', 'L5', 'pidan'], ['ANTES,', 'L5', 'antes']], [['RECOGE', 'L5', 'lleguen'], ['LISTO', 'L5', 'listo.']]],
-      () => T.cartSheetDown[0]),
+      () => T.pushExits[0] - 0.05),
     kin('k-perro', 'vive', 'right', [[['TRAE', 'L6', 'Pet'], ['A', 'L6', 'Pet', 0.10]], [['TU', 'L6', 'friendly,'], ['PERRO.', 'L6', 'friendly,', 0.10]]],
       () => W('L6', 'working').t0 - 0.30),
     kin('k-laptop', 'vive', 'right', [[['TRAE', 'L6', 'working'], ['TU', 'L6', 'working', 0.14]], [['LAPTOP.', 'L6', 'friendly,#2']]],
@@ -258,28 +260,30 @@ export function lock(vo) {
   ];
 
   // ---------- Cámara / celular (9:16; el celular ocupa 60–75 % de la altura en interfaz) ----------
-  // x: centro del celular en ancho de cuadro (0..1); h: altura del celular / altura de cuadro;
-  // push: zoom sobre la pantalla (1 = sin push; 2.4 ≈ texto al tamaño de un celular real)
+  // Transiciones: en el tramo t el estado va hacia lo indicado (lo no indicado se conserva).
+  // x, y: centro del celular (0..1 del cuadro) · h: alto del celular / alto del cuadro ·
+  // push: zoom a la pantalla con foco en una sonda (≈ 2.2 = texto al tamaño de un celular real) ·
+  // view: acercamiento de cámara al abanico de reseñas · rotY/rotX en grados.
   const CAMERA = [
-    { t: T.screenOn, x: 0.50, h: 0.66, push: 1.0, rotY: 12, note: 'entra girado 12°' },
-    { t: T.phoneSettle[1], x: 0.50, h: 0.68, push: 1.0, rotY: 0, note: 'asentado al centro' },
-    { t: T.heroPush[1], x: 0.50, h: 0.70, push: 1.25, note: 'lee "Café de especialidad" y los chips' },
-    { t: T.scrollMenu[0], x: 0.62, h: 0.66, push: 1.0, rotY: -5, note: 'se corre a la derecha: texto a la izquierda' },
-    { t: T.pushLatte[1], x: 0.62, h: 0.66, push: 2.2, note: 'precio del Latte legible' },
-    { t: T.pullLatte[1], x: 0.62, h: 0.66, push: 1.0 },
-    { t: T.cardFloat[0], x: 0.64, h: 0.64, push: 1.0, rotY: -9, note: 'la tarjeta flota en profundidad' },
-    { t: T.tapWaffles, x: 0.38, h: 0.66, push: 1.0, rotY: 5, note: 'cruza a la izquierda: texto a la derecha' },
-    { t: T.pushJamon[1], x: 0.38, h: 0.66, push: 2.3, note: '"Jamón serrano y matícas $95" legible' },
-    { t: T.pullJamon[1], x: 0.38, h: 0.66, push: 1.0 },
-    { t: T.lift, x: 0.62, h: 0.68, push: 1.1, rotY: -4, note: 'Agregar se levanta' },
-    { t: T.pushExits[1], x: 0.62, h: 0.68, push: 1.9, note: 'total $180 y las dos salidas legibles' },
-    { t: T.pullExits[1], x: 0.62, h: 0.66, push: 1.0 },
-    { t: T.scrollVive[1], x: 0.38, h: 0.66, push: 1.0, rotY: 5, note: 'íconos y texto a la derecha' },
-    { t: T.fanOut[1], x: 0.50, h: 0.62, push: 1.0, rotY: 0, note: 'abanico de reseñas al frente' },
-    { t: T.pushReview2[1], x: 0.50, h: 0.62, push: 1.7, note: 'reseña 2 legible' },
-    { t: T.scrollVisit[1], x: 0.50, h: 0.70, push: 1.0 },
-    { t: T.pushHours[1], x: 0.50, h: 0.70, push: 2.0, note: 'horario legible' },
-    { t: T.phoneAway[1], x: 0.20, h: 0.52, push: 1.0, rotY: 18, note: 'se aparta a un lado' },
+    { t: [T.phoneIn[0], T.phoneIn[0]], x: 0.50, y: 0.47, h: 0.64, push: 1, view: 1, rotY: 12, rotX: -5, note: 'entra girado 12°' },
+    { t: T.phoneSettle, h: 0.66, rotY: 0, rotX: 0, spring: true, note: 'se asienta' },
+    { t: T.heroPush, push: 1.2, focus: 'heroBlock', note: 'se leen "Café de especialidad" y los chips' },
+    { t: [T.dropCircleMenu[0], r3(T.scrollMenu[0] + 0.25)], x: 0.63, h: 0.64, push: 1, rotY: -5, note: 'a la derecha: texto a la izquierda' },
+    { t: T.pushLatte, push: 2.2, focus: 'lattePrice', note: '"Latte $60" al tamaño de un celular real' },
+    { t: T.pullLatte, push: 1 },
+    { t: T.cardOut, x: 0.66, rotY: -9, note: 'la tarjeta flota en profundidad' },
+    { t: [T.cardBack[0], T.panelWaffles[1]], x: 0.37, rotY: 5, note: 'cruza a la izquierda: texto a la derecha' },
+    { t: T.pushJamon, push: 2.25, focus: 'jamonCard', note: '"Jamón serrano y matícas $95" legible' },
+    { t: T.pullJamon, push: 1 },
+    { t: [r3(T.sheetUp[1] - 0.20), r3(T.lift + 0.15)], x: 0.63, rotY: -4, note: '"Agregar" se levanta' },
+    { t: T.pushExits, push: 1.9, focus: 'exits', note: 'total $180 y las dos salidas legibles' },
+    { t: T.pullExits, push: 1 },
+    { t: T.scrollVive, x: 0.37, rotY: 5, note: 'íconos y texto a la derecha' },
+    { t: [T.scrollReviews[0], T.fanOut[1]], x: 0.50, h: 0.62, rotY: 0, note: 'abanico de reseñas al frente' },
+    { t: T.pushReview2, view: 1.55, note: 'se acerca a la reseña 2' },
+    { t: [T.fanBack[0], T.scrollVisit[1]], view: 1, h: 0.68 },
+    { t: T.pushHours, push: 1.9, focus: 'hours', note: 'horario legible' },
+    { t: T.phoneAway, x: 0.18, y: 0.50, h: 0.50, push: 1, rotY: 20, note: 'se aparta a un lado' },
   ];
 
   // ---------- Música (original en código, 92 BPM, lo-fi cálido) ----------
@@ -411,6 +415,31 @@ export function spring(k, zeta = 0.8, omega = 8.2) {
   const v = 1 - Math.exp(-zeta * omega * k) * (Math.cos(wd * k) + (zeta * omega / wd) * Math.sin(wd * k));
   const e = 1 - Math.exp(-zeta * omega) * (Math.cos(wd) + (zeta * omega / wd) * Math.sin(wd));
   return v / e;
+}
+// ---------- Cámara: estado en t a partir de las transiciones de CAMERA ----------
+// Cada transición aporta (destino - destino anterior) * curva(t) en cada clave que trae, así dos
+// transiciones que se enciman se suman sin saltos. El foco del push es pegajoso: el pull-back
+// regresa desde el mismo punto que se acercó.
+export const CAM_KEYS = ['x', 'y', 'h', 'push', 'view', 'rotY', 'rotX'];
+export function cameraAt(CAMERA, t) {
+  const first = CAMERA[0];
+  const st = {}, last = {};
+  for (const k of CAM_KEYS) { st[k] = first[k] ?? 0; last[k] = st[k]; }
+  let focus = null, focusMax = 1, focusT = -1;
+  for (let i = 1; i < CAMERA.length; i++) {
+    const c = CAMERA[i];
+    if (t < c.t[0]) {
+      for (const k of CAM_KEYS) if (c[k] !== undefined) last[k] = c[k];
+      continue;
+    }
+    const raw = c.t[1] > c.t[0] ? clamp((t - c.t[0]) / (c.t[1] - c.t[0])) : 1;
+    const e = c.spring ? spring(raw, 0.72, 7.2) : easeInOut(raw);
+    for (const k of CAM_KEYS) if (c[k] !== undefined) { st[k] += (c[k] - last[k]) * e; last[k] = c[k]; }
+    if (c.focus) { focus = c.focus; focusMax = c.push; focusT = c.t[0]; }
+  }
+  // k del foco: 0 con push 1, 1 en el push máximo de esa transición
+  const focusK = focus && focusMax > 1 ? clamp((st.push - 1) / (focusMax - 1)) : 0;
+  return { ...st, focus, focusK, focusT };
 }
 // scroll con inercia (arrastre, suelta, desacelera) y rebote opcional
 export function scrollAt(t, [ta, tb], y0, y1, rubber = 0) {

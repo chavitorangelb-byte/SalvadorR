@@ -250,7 +250,7 @@
   "note": "Latte"
  },
  {
-  "t": 6.59,
+  "t": 6.81,
   "type": "gota-giro",
   "note": ""
  },
@@ -290,47 +290,47 @@
   "note": "$65"
  },
  {
-  "t": 8.2,
+  "t": 7.8,
   "type": "gota-plic",
   "note": "Los especiales"
  },
  {
-  "t": 8.22,
+  "t": 7.82,
   "type": "tap",
   "note": "Los especiales"
  },
  {
-  "t": 8.25,
+  "t": 7.85,
   "type": "pestana",
   "note": ""
  },
  {
-  "t": 8.64,
+  "t": 8.24,
   "type": "tarjeta-sale",
   "note": ""
  },
  {
-  "t": 9.19,
+  "t": 8.79,
   "type": "hielos",
   "note": "cold brew"
  },
  {
-  "t": 9.44,
+  "t": 9.04,
   "type": "hielos",
   "note": "cold brew"
  },
  {
-  "t": 9.99,
+  "t": 9.59,
   "type": "tarjeta-entra",
   "note": ""
  },
  {
-  "t": 10.1,
+  "t": 9.7,
   "type": "pedido-in",
   "note": ""
  },
  {
-  "t": 10.24,
+  "t": 9.84,
   "type": "contador",
   "note": "1"
  },
@@ -350,22 +350,22 @@
   "note": ""
  },
  {
-  "t": 11.49,
+  "t": 12.17,
   "type": "gota-trazo",
   "note": "subraya"
  },
  {
-  "t": 12.24,
+  "t": 12.49,
   "type": "tap",
   "note": "ficha"
  },
  {
-  "t": 12.26,
+  "t": 12.51,
   "type": "hoja-sube",
   "note": ""
  },
  {
-  "t": 12.5,
+  "t": 12.663,
   "type": "gota-giro",
   "note": ""
  },
@@ -460,12 +460,12 @@
   "note": ""
  },
  {
-  "t": 15.05,
+  "t": 15.85,
   "type": "gota-brillo",
   "note": ""
  },
  {
-  "t": 16.19,
+  "t": 16.42,
   "type": "hoja-baja",
   "note": ""
  },

@@ -894,6 +894,7 @@ function sectionY(sel, extra = 0) { const el = $(sel); return el.getBoundingClie
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
+  if (CONFIG.capture) { e.preventDefault(); return; }   // en el video el scroll lo lleva el arnés
   const id = a.getAttribute('href');
   if (id.length < 2 || !$(id)) return;
   e.preventDefault();
@@ -1023,7 +1024,7 @@ function setTab(key, { animate = true, focus = false } = {}) {
   const t = $(`#tab-${key}`);
   centerTab(t, animate);
   if (focus) t.focus();
-  if (wasStuck) scrollTo(0, $('#panels').getBoundingClientRect().top + scrollY - hdrH() - $('#tabs-wrap').offsetHeight + 4);
+  if (wasStuck && !CONFIG.capture) scrollTo(0, $('#panels').getBoundingClientRect().top + scrollY - hdrH() - $('#tabs-wrap').offsetHeight + 4);
   if (animate && !reduceMotion && prevIdx !== nextIdx && panels.animate) {
     const dir = nextIdx > prevIdx ? 1 : -1;
     const panel = $(`#panel-${key}`);

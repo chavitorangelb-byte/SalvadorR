@@ -76,8 +76,10 @@ TL.DROP.forEach((d) => P(`| ${rng(d.t)} | ${d.act} |`));
 P('');
 
 P('## Cámara y celular (9:16)', '', '`x` = centro del celular en el ancho del cuadro · `altura` = alto del celular / alto del cuadro (60–75 % en interfaz) · `push` = zoom a la pantalla (≈ 2.2 = texto al tamaño de un celular real).', '');
-P('| Cuadro | x | altura | push | giro Y | Nota |', '|---|---|---|---|---|---|');
-TL.CAMERA.forEach((c) => P(`| ${fr(c.t)} | ${c.x.toFixed(2)} | ${Math.round(c.h * 100)} % | ${c.push.toFixed(2)} | ${c.rotY != null ? c.rotY + '°' : '—'} | ${c.note || ''} |`));
+P('Cada fila es una transición: en ese tramo el celular va hacia lo indicado (lo que no cambia se deja en —). El push-in siempre llega cuando el grupo de tipografía ya se leyó y se aleja antes del siguiente.', '');
+P('| Cuadros | x | altura | push | giro Y | Nota |', '|---|---|---|---|---|---|');
+const cv = (v, fmt) => (v === undefined ? '—' : fmt(v));
+TL.CAMERA.forEach((c, i) => P(`| ${i === 0 ? fr(c.t[0]) : rng(c.t)} | ${cv(c.x, (v) => v.toFixed(2))} | ${cv(c.h, (v) => Math.round(v * 100) + ' %')} | ${cv(c.push, (v) => v.toFixed(2) + (c.focus ? ' → ' + c.focus : ''))} | ${cv(c.rotY, (v) => v + '°')} | ${c.note || ''} |`));
 P('', 'Zonas seguras 9:16: nada importante en los 250 px superiores ni en los 340 px inferiores. Cuando el celular va a la derecha, el texto va a la izquierda y al revés.', '');
 
 P('## Acciones de la página (captura real a 60 fps y 3×, reloj virtual)', '', '| Cuadros | Acción en la página |', '|---|---|');
