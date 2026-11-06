@@ -8,6 +8,7 @@
 <!-- Demo de Elevate Negocios: quitar noindex al publicar -->
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#F4F1EA">
+<script>(function(){var q=location.search,c=document.documentElement.classList,cap=/[?&]capture=/.test(q),hold=/[?&]intro=hold/.test(q),rm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;if((!cap&&!rm)||hold)c.add("intro-pre");})();</script>
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:title" content="Matíca Café de Especialidad">
@@ -132,7 +133,7 @@ html.cap-text *,html.cap-notext *{transition:none!important}
 .bag-n.is-on{transform:scale(1)}
 
 /* ===== Portada ===== */
-.hero-photo{position:relative;height:calc(432px + var(--sat));border-radius:0 0 30px 30px;overflow:hidden;background:#cfd6cf}
+.hero-photo{position:relative;height:432px;margin-top:var(--sat);border-radius:0 0 30px 30px;overflow:hidden;background:var(--sage-100)}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 34%}
 .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,34,38,.18),rgba(26,34,38,0) 18%,rgba(26,34,38,0) 72%,rgba(26,34,38,.16));pointer-events:none}
 .hero-body{position:relative;padding:0 var(--gut)}
@@ -439,6 +440,21 @@ html.cap-text *,html.cap-notext *{transition:none!important}
 .toast .i{font-size:18px;color:var(--sage-light)}
 
 html.lock,html.lock body{overflow:hidden}
+
+/* ===== Carga de la portada: suave; en el video la dispara el arnés de captura ===== */
+html.intro-pre .hero-photo img{opacity:0;transform:scale(1.08)}
+html.intro-pre .hero-logo{opacity:0;transform:scale(.6)}
+html.intro-pre .hero h1,html.intro-pre .hero-addr,html.intro-pre .chips li,html.intro-pre .hero-cta .btn{opacity:0;transform:translateY(16px)}
+html.intro-pre .hdr .bag{opacity:0;transform:scale(.8)}
+html.intro-pre #destacados{opacity:0}
+html.intro-run .hero-photo img{transition:opacity .8s var(--ease),transform 1.3s var(--ease)}
+html.intro-run .hero-logo{transition:opacity .3s var(--ease) .18s,transform .75s var(--spring) .18s}
+html.intro-run .hero h1,html.intro-run .hero-addr,html.intro-run .chips li,html.intro-run .hero-cta .btn{transition:opacity .5s var(--ease),transform .7s var(--ease)}
+html.intro-run .hero h1{transition-delay:.28s}html.intro-run .hero-addr{transition-delay:.34s}
+html.intro-run .chips li:nth-child(1){transition-delay:.42s}html.intro-run .chips li:nth-child(2){transition-delay:.48s}
+html.intro-run .hero-cta .btn:nth-child(1){transition-delay:.54s}html.intro-run .hero-cta .btn:nth-child(2){transition-delay:.60s}
+html.intro-run .hdr .bag{transition:opacity .4s var(--ease) .5s,transform .6s var(--spring) .5s}
+html.intro-run #destacados{transition:opacity .6s var(--ease) .66s}
 
 /* ===== Pantallas grandes: misma página, más aire ===== */
 @media (min-width:760px){
@@ -1399,6 +1415,22 @@ function renderHours() {
   st.classList.toggle('is-closed', !open);
 }
 
+/* ---------- Carga de la portada ---------- */
+function intro() {
+  if (!html.classList.contains('intro-pre')) return false;
+  html.classList.add('intro-run');
+  void html.offsetWidth;
+  html.classList.remove('intro-pre');
+  setTimeout(() => html.classList.remove('intro-run'), 1800);
+  return true;
+}
+if (!CONFIG.capture && html.classList.contains('intro-pre')) {
+  const heroImg = $('.hero-photo img');
+  const imgReady = heroImg.complete ? Promise.resolve() : new Promise((r) => { heroImg.onload = heroImg.onerror = r; });
+  Promise.all([document.fonts ? document.fonts.ready : null, imgReady]).then(() => requestAnimationFrame(() => requestAnimationFrame(intro)));
+  setTimeout(intro, 2600);   // por si algo tarda: nunca se queda oculta
+}
+
 /* ---------- Mapa: el pin cae al entrar en pantalla ---------- */
 const map = $('#map');
 if ('IntersectionObserver' in window && !CONFIG.capture) {
@@ -1472,6 +1504,8 @@ window.matica = {
   setTab: (k, o) => setTab(k, o), setTemp: (id, t, o) => setTemp(id, t, o),
   openItem, closeSheet, openCart, addToCart, clearCart, goReview, scrollToY,
   dropPin() { map.classList.remove('is-in'); void map.offsetWidth; map.classList.add('is-in'); },
+  intro,
+  hide(sel, on) { const el = document.querySelector(sel); if (el) el.classList.toggle('cap-hide', !!on); return !!el; },
   buildMessage, get cart() { return JSON.parse(JSON.stringify(state.cart)); },
   get total() { return cartTotal(); }, get count() { return cartCount(); },
   get state() { return { tab: state.tab, temps: { ...state.temps }, sheet: openSheetEl ? openSheetEl.id : null }; },
