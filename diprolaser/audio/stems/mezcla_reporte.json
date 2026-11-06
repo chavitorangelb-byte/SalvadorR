@@ -1,0 +1,15 @@
+{
+ "master_con_musica": {
+  "LUFS": -14.0,
+  "dBTP": -1.13
+ },
+ "master_sin_musica": {
+  "LUFS": -14.0,
+  "dBTP": -1.27
+ },
+ "voz_en_master_LUFS": -13.94,
+ "musica_bajo_voz_dB_min": 13.0,
+ "musica_bajo_voz_dB_mediana": 17.96,
+ "ganancia_master_dB": 2.06,
+ "nota": "La voz es casi toda la energia de la pieza y la musica va >= 12 dB abajo: con el master a -14 LUFS la voz queda cerca de -14. Para dejar la voz en -16 el master quedaria en ~-16."
+}

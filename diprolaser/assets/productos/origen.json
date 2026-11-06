@@ -1,0 +1,288 @@
+{
+ "termo_negro_1": {
+  "sheet": "lamina_indice",
+  "rect": [
+   116,
+   1226,
+   284,
+   1574
+  ],
+  "size": [
+   150,
+   330
+  ]
+ },
+ "termo_negro_2": {
+  "sheet": "lamina_indice",
+  "rect": [
+   513,
+   1226,
+   687,
+   1574
+  ],
+  "size": [
+   156,
+   330
+  ]
+ },
+ "termo_negro_3": {
+  "sheet": "lamina_indice",
+  "rect": [
+   912,
+   1226,
+   1088,
+   1574
+  ],
+  "size": [
+   158,
+   330
+  ]
+ },
+ "vaso_azul_1": {
+  "sheet": "lamina_indice",
+  "rect": [
+   1276,
+   1226,
+   1524,
+   1574
+  ],
+  "size": [
+   230,
+   330
+  ]
+ },
+ "vaso_azul_2": {
+  "sheet": "lamina_indice",
+  "rect": [
+   1680,
+   1226,
+   1920,
+   1574
+  ],
+  "size": [
+   222,
+   331
+  ]
+ },
+ "vaso_verde_1": {
+  "sheet": "lamina_indice",
+  "rect": [
+   96,
+   1626,
+   304,
+   1974
+  ],
+  "size": [
+   191,
+   331
+  ]
+ },
+ "vaso_verde_2": {
+  "sheet": "lamina_vasos_asa_rosa_verde",
+  "rect": [
+   1109,
+   30,
+   1391,
+   470
+  ],
+  "size": [
+   264,
+   423
+  ]
+ },
+ "vaso_asa_crema": {
+  "sheet": "lamina_vasos_asa_rosa_verde",
+  "rect": [
+   121,
+   30,
+   379,
+   470
+  ],
+  "size": [
+   240,
+   422
+  ]
+ },
+ "vaso_asa_blanco": {
+  "sheet": "lamina_vasos_asa_rosa_verde",
+  "rect": [
+   598,
+   30,
+   902,
+   470
+  ],
+  "size": [
+   286,
+   422
+  ]
+ },
+ "vaso_rosa_1": {
+  "sheet": "lamina_vasos_asa_rosa_verde",
+  "rect": [
+   1636,
+   30,
+   1864,
+   471
+  ],
+  "size": [
+   211,
+   423
+  ]
+ },
+ "vaso_rosa_2": {
+  "sheet": "lamina_vasos_asa_rosa_verde",
+  "rect": [
+   2120,
+   30,
+   2380,
+   471
+  ],
+  "size": [
+   242,
+   423
+  ]
+ },
+ "anfora_negra_grabado_diprolaser": {
+  "sheet": "lamina_indice",
+  "rect": [
+   1681,
+   826,
+   1919,
+   1174
+  ],
+  "size": [
+   220,
+   330
+  ]
+ },
+ "estuche_vip_grabado_diprolaser": {
+  "sheet": "lamina_indice",
+  "rect": [
+   426,
+   928,
+   774,
+   1072
+  ],
+  "size": [
+   330,
+   126
+  ]
+ },
+ "estuche_plumas_abierto": {
+  "sheet": "lamina_indice",
+  "rect": [
+   26,
+   897,
+   374,
+   1103
+  ],
+  "size": [
+   330,
+   188
+  ]
+ },
+ "set_regalo_pluma_tarjetero_navaja_llavero": {
+  "sheet": "lamina_indice",
+  "rect": [
+   1626,
+   474,
+   1974,
+   726
+  ],
+  "size": [
+   330,
+   234
+  ]
+ },
+ "llavero_cinta_azul": {
+  "sheet": "lamina_indice",
+  "rect": [
+   826,
+   938,
+   1174,
+   1062
+  ],
+  "size": [
+   330,
+   106
+  ]
+ },
+ "llavero_cinta_roja": {
+  "sheet": "lamina_indice",
+  "rect": [
+   1225,
+   926,
+   1574,
+   1074
+  ],
+  "size": [
+   332,
+   130
+  ]
+ },
+ "llavero_llanta": {
+  "sheet": "lamina_cascos_llanta",
+  "rect": [
+   1165,
+   62,
+   1535,
+   838
+  ],
+  "size": [
+   352,
+   758
+  ]
+ },
+ "llavero_casco_amarillo": {
+  "sheet": "lamina_cascos_llanta",
+  "rect": [
+   61,
+   284,
+   364,
+   592
+  ],
+  "size": [
+   285,
+   291
+  ]
+ },
+ "llavero_casco_blanco": {
+  "sheet": "lamina_cascos_llanta",
+  "rect": [
+   556,
+   301,
+   838,
+   616
+  ],
+  "size": [
+   265,
+   297
+  ]
+ },
+ "llavero_casco_blanco_2": {
+  "sheet": "lamina_indice",
+  "rect": [
+   438,
+   426,
+   762,
+   774
+  ],
+  "size": [
+   306,
+   330
+  ]
+ },
+ "llavero_casco_luz_encendida": {
+  "sheet": "lamina_indice",
+  "rect": [
+   48,
+   426,
+   352,
+   774
+  ],
+  "size": [
+   286,
+   330
+  ]
+ }
+}

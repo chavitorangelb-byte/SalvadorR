@@ -8,3 +8,5 @@ video/build/
 # Audio intermedio (se regenera con video/tools/*.py); los stems finales van en video/out/stems
 video/audio/stems/
 video/audio/master.wav
+diprolaser/build/
+diprolaser/out/*_60fps.mp4

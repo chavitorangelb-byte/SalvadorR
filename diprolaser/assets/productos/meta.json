@@ -1,0 +1,250 @@
+{
+ "termo_negro_1": {
+  "kind": "pintura",
+  "size": [
+   300,
+   660
+  ],
+  "mask_bbox": [
+   8,
+   204,
+   290,
+   660
+  ],
+  "lum_median": 0.0392,
+  "engrave": {
+   "cx": 148.0,
+   "cy": 419.0,
+   "hw": 128.05,
+   "h": 190.68
+  }
+ },
+ "termo_negro_2": {
+  "kind": "pintura",
+  "size": [
+   312,
+   660
+  ],
+  "mask_bbox": [
+   0,
+   204,
+   312,
+   660
+  ],
+  "lum_median": 0.0588,
+  "engrave": {
+   "cx": 154.5,
+   "cy": 419.0,
+   "hw": 125.58749999999999,
+   "h": 190.68
+  }
+ },
+ "termo_negro_3": {
+  "kind": "pintura",
+  "size": [
+   316,
+   660
+  ],
+  "mask_bbox": [
+   0,
+   204,
+   316,
+   660
+  ],
+  "lum_median": 0.0706,
+  "engrave": {
+   "cx": 153.0,
+   "cy": 422.0,
+   "hw": 125.095,
+   "h": 190.68
+  }
+ },
+ "vaso_azul_1": {
+  "kind": "pintura",
+  "size": [
+   460,
+   660
+  ],
+  "mask_bbox": [
+   4,
+   188,
+   438,
+   660
+  ],
+  "lum_median": 0.2,
+  "engrave": {
+   "cx": 224.5,
+   "cy": 409.0,
+   "hw": 204.3875,
+   "h": 197.4
+  }
+ },
+ "vaso_azul_2": {
+  "kind": "pintura",
+  "size": [
+   444,
+   662
+  ],
+  "mask_bbox": [
+   0,
+   172,
+   428,
+   662
+  ],
+  "lum_median": 0.1843,
+  "engrave": {
+   "cx": 214.0,
+   "cy": 410.0,
+   "hw": 203.895,
+   "h": 204.95999999999998
+  }
+ },
+ "vaso_verde_1": {
+  "kind": "pintura",
+  "size": [
+   382,
+   662
+  ],
+  "mask_bbox": [
+   22,
+   88,
+   382,
+   636
+  ],
+  "lum_median": 0.2824,
+  "engrave": {
+   "cx": 200.0,
+   "cy": 364.0,
+   "hw": 142.825,
+   "h": 229.32
+  }
+ },
+ "vaso_verde_2": {
+  "kind": "pintura",
+  "size": [
+   528,
+   846
+  ],
+  "mask_bbox": [
+   34,
+   240,
+   512,
+   846
+  ],
+  "lum_median": 0.2471,
+  "engrave": {
+   "cx": 269.0,
+   "cy": 490.0,
+   "hw": 189.12,
+   "h": 253.67999999999998
+  }
+ },
+ "vaso_rosa_1": {
+  "kind": "pintura",
+  "size": [
+   422,
+   846
+  ],
+  "mask_bbox": [
+   0,
+   94,
+   422,
+   786
+  ],
+  "lum_median": 0.7098,
+  "engrave": {
+   "cx": 211.0,
+   "cy": 423.0,
+   "hw": 177.3,
+   "h": 289.8
+  }
+ },
+ "vaso_rosa_2": {
+  "kind": "pintura",
+  "size": [
+   484,
+   846
+  ],
+  "mask_bbox": [
+   12,
+   224,
+   464,
+   804
+  ],
+  "lum_median": 0.7216,
+  "engrave": {
+   "cx": 239.5,
+   "cy": 473.0,
+   "hw": 187.64249999999998,
+   "h": 242.76
+  }
+ },
+ "vaso_asa_crema": {
+  "kind": "pintura",
+  "size": [
+   480,
+   844
+  ],
+  "mask_bbox": [
+   0,
+   142,
+   300,
+   844
+  ],
+  "lum_median": 0.7843,
+  "engrave": {
+   "cx": 156.0,
+   "cy": 350.0,
+   "hw": 140.855,
+   "h": 294.0
+  }
+ },
+ "vaso_asa_blanco": {
+  "kind": "pintura",
+  "size": [
+   572,
+   844
+  ],
+  "mask_bbox": [
+   10,
+   252,
+   364,
+   844
+  ],
+  "lum_median": 0.8549,
+  "engrave": {
+   "cx": 189.0,
+   "cy": 422.0,
+   "hw": 162.525,
+   "h": 247.79999999999998
+  }
+ },
+ "llavero_cinta_azul": {
+  "kind": "cinta",
+  "size": [
+   660,
+   212
+  ],
+  "mask_bbox": [
+   0,
+   0,
+   342,
+   156
+  ],
+  "lum_median": 0.3373
+ },
+ "llavero_cinta_roja": {
+  "kind": "cinta",
+  "size": [
+   664,
+   260
+  ],
+  "mask_bbox": [
+   410,
+   86,
+   664,
+   260
+  ],
+  "lum_median": 0.4392
+ }
+}

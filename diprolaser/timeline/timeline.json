@@ -1,0 +1,488 @@
+{
+ "fps": 60,
+ "duration": 35.5,
+ "frames": 2130,
+ "voice_end": 32.6,
+ "scenes": [
+  {
+   "id": "S1",
+   "name": "Llegan… y se quedan",
+   "t0": 0.0,
+   "t1": 3.4,
+   "f0": 0,
+   "f1": 204
+  },
+  {
+   "id": "S2",
+   "name": "Una vez, y otra, y otra más",
+   "t0": 3.4,
+   "t1": 7.1,
+   "f0": 204,
+   "f1": 426
+  },
+  {
+   "id": "S3",
+   "name": "Gracias (caja de regalo)",
+   "t0": 7.1,
+   "t1": 10.9,
+   "f0": 426,
+   "f1": 654
+  },
+  {
+   "id": "S4",
+   "name": "Tu logo / tu negocio / su nombre",
+   "t0": 10.9,
+   "t1": 15.2,
+   "f0": 654,
+   "f1": 912
+  },
+  {
+   "id": "S5",
+   "name": "Láser / a todo color",
+   "t0": 15.2,
+   "t1": 18.7,
+   "f0": 912,
+   "f1": 1122
+  },
+  {
+   "id": "S6",
+   "name": "Gracias por estar (momento emocional)",
+   "t0": 18.7,
+   "t1": 22.75,
+   "f0": 1122,
+   "f1": 1365
+  },
+  {
+   "id": "S7",
+   "name": "DIPROLASER",
+   "t0": 22.75,
+   "t1": 26.5,
+   "f0": 1365,
+   "f1": 1590
+  },
+  {
+   "id": "S8",
+   "name": "Consiente a tus clientes + WhatsApp",
+   "t0": 26.5,
+   "t1": 33.0,
+   "f0": 1590,
+   "f1": 1980
+  },
+  {
+   "id": "END",
+   "name": "End card",
+   "t0": 33.0,
+   "t1": 35.5,
+   "f0": 1980,
+   "f1": 2130
+  }
+ ],
+ "cues": [
+  {
+   "t": 0.94,
+   "f": 56,
+   "scene": "S1",
+   "kind": "type",
+   "what": "\"LLEGAN\" entra deslizándose y sigue de largo"
+  },
+  {
+   "t": 2.12,
+   "f": 127,
+   "scene": "S1",
+   "kind": "type",
+   "what": "\"Y SE QUEDAN\" aterriza en dorado"
+  },
+  {
+   "t": 2.38,
+   "f": 143,
+   "scene": "S1",
+   "kind": "type",
+   "what": "\"Y SE QUEDAN\" asentado; quietud total hasta S2"
+  },
+  {
+   "t": 3.4,
+   "f": 204,
+   "scene": "S2",
+   "kind": "motion",
+   "what": "Arranca el carrusel (el termo del pedestal pasa a ser parte del anillo)"
+  },
+  {
+   "t": 3.96,
+   "f": 238,
+   "scene": "S2",
+   "kind": "type",
+   "what": "Tarjeta de cristal \"UNA VEZ\""
+  },
+  {
+   "t": 4.18,
+   "f": 251,
+   "scene": "S2",
+   "kind": "product",
+   "what": "Producto nuevo entra al anillo (sello de lealtad 1)"
+  },
+  {
+   "t": 4.95,
+   "f": 297,
+   "scene": "S2",
+   "kind": "type",
+   "what": "Tarjeta \"Y OTRA\" se apila"
+  },
+  {
+   "t": 5.08,
+   "f": 305,
+   "scene": "S2",
+   "kind": "product",
+   "what": "Producto nuevo entra al anillo (sello 2)"
+  },
+  {
+   "t": 5.83,
+   "f": 350,
+   "scene": "S2",
+   "kind": "type",
+   "what": "Tarjeta \"Y OTRA MÁS\" se apila"
+  },
+  {
+   "t": 6.3,
+   "f": 378,
+   "scene": "S2",
+   "kind": "product",
+   "what": "Producto nuevo entra al anillo (sello 3)"
+  },
+  {
+   "t": 7.1,
+   "f": 426,
+   "scene": "S3",
+   "kind": "liquid",
+   "what": "El líquido rojo sube y forma la caja isométrica"
+  },
+  {
+   "t": 7.54,
+   "f": 452,
+   "scene": "S3",
+   "kind": "liquid",
+   "what": "El líquido se solidifica en caja negra + moño rojo"
+  },
+  {
+   "t": 8.16,
+   "f": 490,
+   "scene": "S3",
+   "kind": "box",
+   "what": "La caja se abre: luz cálida dorada"
+  },
+  {
+   "t": 8.7,
+   "f": 522,
+   "scene": "S3",
+   "kind": "type",
+   "what": "\"GRACIAS\" en dorado, grande, tracking que se cierra"
+  },
+  {
+   "t": 9.3,
+   "f": 558,
+   "scene": "S3",
+   "kind": "box",
+   "what": "Suben la ánfora, el estuche VIP y el set de regalo"
+  },
+  {
+   "t": 10.22,
+   "f": 613,
+   "scene": "S3",
+   "kind": "glass",
+   "what": "Etiqueta de cristal cuelga del moño: \"GRACIAS POR TU PREFERENCIA\""
+  },
+  {
+   "t": 10.9,
+   "f": 654,
+   "scene": "S4",
+   "kind": "motion",
+   "what": "Carrusel completo a velocidad media; frente: logo DIPROLASER grabado"
+  },
+  {
+   "t": 10.9,
+   "f": 654,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "En el anillo ya viene grabado \"REFACCIONARIA JUÁREZ\" en un producto del fondo"
+  },
+  {
+   "t": 11.38,
+   "f": 683,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "Cambio de grabado (barrido de luz 0.12 s + láser escribe 0.30 s): FERRETERÍA EL CLAVO"
+  },
+  {
+   "t": 11.38,
+   "f": 683,
+   "scene": "S4",
+   "kind": "type",
+   "what": "Chip de cristal \"TU LOGO\""
+  },
+  {
+   "t": 11.75,
+   "f": 705,
+   "scene": "S4",
+   "kind": "recolor",
+   "what": "Barrido líquido de color en vasos y cintas → azul"
+  },
+  {
+   "t": 12.12,
+   "f": 727,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "Cambio de grabado (barrido de luz 0.12 s + láser escribe 0.30 s): TALLER HERMANOS RUIZ"
+  },
+  {
+   "t": 12.49,
+   "f": 749,
+   "scene": "S4",
+   "kind": "recolor",
+   "what": "Barrido líquido de color en vasos y cintas → verde olivo"
+  },
+  {
+   "t": 12.78,
+   "f": 767,
+   "scene": "S4",
+   "kind": "type",
+   "what": "Chip → \"TU NEGOCIO\""
+  },
+  {
+   "t": 12.86,
+   "f": 772,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "Cambio de grabado (barrido de luz 0.12 s + láser escribe 0.30 s): CONSTRUCTORA DÁVILA"
+  },
+  {
+   "t": 13.23,
+   "f": 794,
+   "scene": "S4",
+   "kind": "recolor",
+   "what": "Barrido líquido de color en vasos y cintas → rosa"
+  },
+  {
+   "t": 13.6,
+   "f": 816,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "Cambio de grabado (barrido de luz 0.12 s + láser escribe 0.30 s): PANADERÍA LA ESPIGA"
+  },
+  {
+   "t": 13.97,
+   "f": 838,
+   "scene": "S4",
+   "kind": "recolor",
+   "what": "Barrido líquido de color en vasos y cintas → crema"
+  },
+  {
+   "t": 14.14,
+   "f": 848,
+   "scene": "S4",
+   "kind": "type",
+   "what": "Chip → \"SU NOMBRE\""
+  },
+  {
+   "t": 14.34,
+   "f": 860,
+   "scene": "S4",
+   "kind": "engrave",
+   "what": "Cambio de grabado (barrido de luz 0.12 s + láser escribe 0.30 s): Sello \"TU LOGO AQUÍ\""
+  },
+  {
+   "t": 14.71,
+   "f": 883,
+   "scene": "S4",
+   "kind": "recolor",
+   "what": "Barrido líquido de color en vasos y cintas → rojo DIPROLASER"
+  },
+  {
+   "t": 15.2,
+   "f": 912,
+   "scene": "S5",
+   "kind": "glass",
+   "what": "Entra el cristal diagonal: pantalla dividida"
+  },
+  {
+   "t": 15.44,
+   "f": 926,
+   "scene": "S5",
+   "kind": "laser",
+   "what": "Láser enciende sobre el termo negro: haz, chispas, humo; logo en plata línea por línea"
+  },
+  {
+   "t": 15.92,
+   "f": 955,
+   "scene": "S5",
+   "kind": "type",
+   "what": "\"LÁSER\" en rojo"
+  },
+  {
+   "t": 16.5,
+   "f": 990,
+   "scene": "S5",
+   "kind": "print",
+   "what": "Cabezal UV empieza pasadas C → M → Y → K sobre el vaso crema"
+  },
+  {
+   "t": 17.25,
+   "f": 1035,
+   "scene": "S5",
+   "kind": "type",
+   "what": "\"A TODO COLOR\": letras C/M/Y que se juntan en blanco"
+  },
+  {
+   "t": 17.42,
+   "f": 1045,
+   "scene": "S5",
+   "kind": "print",
+   "what": "Logo a color completo; última pasada K"
+  },
+  {
+   "t": 18.7,
+   "f": 1122,
+   "scene": "S6",
+   "kind": "iso",
+   "what": "Composición isométrica de regalo (5–6 productos), luz cálida, cámara más lenta"
+  },
+  {
+   "t": 18.92,
+   "f": 1135,
+   "scene": "S6",
+   "kind": "tag",
+   "what": "Etiqueta gira y muestra: \"Gracias por estar\""
+  },
+  {
+   "t": 19.4,
+   "f": 1164,
+   "scene": "S6",
+   "kind": "tag",
+   "what": "Etiqueta gira y muestra: \"Gracias por tu confianza\""
+  },
+  {
+   "t": 19.88,
+   "f": 1193,
+   "scene": "S6",
+   "kind": "tag",
+   "what": "Etiqueta gira y muestra: \"Feliz año\""
+  },
+  {
+   "t": 20.36,
+   "f": 1222,
+   "scene": "S6",
+   "kind": "tag",
+   "what": "Etiqueta gira y muestra: \"Para ti, Don Luis\""
+  },
+  {
+   "t": 20.81,
+   "f": 1249,
+   "scene": "S6",
+   "kind": "type",
+   "what": "\"GRACIAS\" (dorado)"
+  },
+  {
+   "t": 21.22,
+   "f": 1273,
+   "scene": "S6",
+   "kind": "type",
+   "what": "\"POR\""
+  },
+  {
+   "t": 21.58,
+   "f": 1295,
+   "scene": "S6",
+   "kind": "type",
+   "what": "\"ESTAR\" — se sostiene en silencio ~1 s"
+  },
+  {
+   "t": 22.75,
+   "f": 1365,
+   "scene": "S7",
+   "kind": "liquid",
+   "what": "Todo el líquido rojo converge y forma la X"
+  },
+  {
+   "t": 23.0,
+   "f": 1380,
+   "scene": "S7",
+   "kind": "logo",
+   "what": "Logo oficial aparece sobre la X con barrido de luz plateada (impacto)"
+  },
+  {
+   "t": 24.06,
+   "f": 1444,
+   "scene": "S7",
+   "kind": "type",
+   "what": "\"PROMOCIONALES PERSONALIZADOS\" debajo del logo"
+  },
+  {
+   "t": 26.71,
+   "f": 1603,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"CONSIENTE A TUS CLIENTES\""
+  },
+  {
+   "t": 27.84,
+   "f": 1670,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"ESTE AÑO\" en dorado"
+  },
+  {
+   "t": 28.69,
+   "f": 1721,
+   "scene": "S8",
+   "kind": "glass",
+   "what": "Píldora de cristal con ícono de WhatsApp"
+  },
+  {
+   "t": 29.38,
+   "f": 1763,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"449\" dentro de la píldora"
+  },
+  {
+   "t": 30.16,
+   "f": 1810,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"212\""
+  },
+  {
+   "t": 31.47,
+   "f": 1888,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"8627\" — número completo y centrado"
+  },
+  {
+   "t": 31.97,
+   "f": 1918,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"Y en redes como DIPROLASER\""
+  },
+  {
+   "t": 32.7,
+   "f": 1962,
+   "scene": "S8",
+   "kind": "type",
+   "what": "\"Envíos a todo México\""
+  },
+  {
+   "t": 33.0,
+   "f": 1980,
+   "scene": "END",
+   "kind": "camera",
+   "what": "Se sostiene el cierre; la cámara se aleja un poco"
+  },
+  {
+   "t": 35.1,
+   "f": 2106,
+   "scene": "END",
+   "kind": "fade",
+   "what": "Fundido a negro (0.4 s)"
+  }
+ ]
+}
