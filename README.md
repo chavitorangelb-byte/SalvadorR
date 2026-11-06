@@ -13,6 +13,7 @@ La interfaz del video **es** la página real, capturada cuadro por cuadro.
 | `stems/voz.wav`, `stems/musica.wav`, `stems/sfx.wav`, `stems/master.wav` | Stems a 48 kHz / 24 bits (suman el master antes del limitador) |
 | `pagina_siniestro_tattoo.html` | La página en un solo archivo |
 | `siniestro_pagina_para_cliente.jpg` | Imagen para el cliente: seis pantallas reales de la página en celular (2160×4320) |
+| `mensaje_whatsapp.txt` | El mensaje para el dueño, que va antes del video y la imagen |
 | `video/BRIEF.md` | Brief con tiempos exactos por fotograma (generado desde la línea de tiempo) |
 
 ## Estructura

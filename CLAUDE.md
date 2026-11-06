@@ -16,5 +16,14 @@ Al terminar, mándale a Salvador los archivos con SendUserFile, no solo la ruta:
    - Nada inventado: cada etiqueta describe algo que la página de verdad hace.
    - Revisarla a resolución real antes de mandarla: textos coherentes entre sí
      (la idea escrita coincide con la foto de referencia, por ejemplo) y nada importante cortado.
+3. **El texto de WhatsApp** que Salvador le manda al cliente antes del video y la imagen, listo para copiar
+   en el chat y guardado junto a los entregables (`video/out/mensaje_whatsapp.txt` o el equivalente del proyecto):
+   - Corto: cuatro párrafos breves que se lean bien en el celular.
+   - Mismo trato que las piezas (tú o usted) y sin nombres de personas que no estén confirmados.
+   - Qué es y qué incluye la página (solo lo que de verdad hace), y una invitación sin presión.
+   - Si es pieza spec: decir que es una demo de cortesía, no oficial y no publicada.
+   - Nada inventado: ni precios, ni resultados prometidos, ni datos del negocio sin confirmar.
+   - Decir el orden de envío: texto, luego el video (versión para WhatsApp) y luego la imagen en HD.
 
-Base para la siguiente: `tools/client_board.js` (Siniestro Tattoo) captura la página real y arma la lámina.
+Base para la siguiente: `tools/client_board.js` (Siniestro Tattoo) captura la página real y arma la lámina,
+y `video/out/mensaje_whatsapp.txt` es un ejemplo del mensaje.
