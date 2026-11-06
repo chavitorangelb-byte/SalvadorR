@@ -1,0 +1,448 @@
+{
+ "brand/logo": [
+  {
+   "w": 480,
+   "width": 480,
+   "height": 381
+  },
+  {
+   "w": 960,
+   "width": 960,
+   "height": 762
+  }
+ ],
+ "placa/sin-nombre": [
+  {
+   "w": 600,
+   "width": 600,
+   "height": 600
+  },
+  {
+   "w": 920,
+   "width": 920,
+   "height": 920
+  }
+ ],
+ "placa/real-sinaloa": [
+  {
+   "w": 670,
+   "width": 670,
+   "height": 715
+  }
+ ],
+ "placa/real-juarez": [
+  {
+   "w": 927,
+   "width": 927,
+   "height": 748
+  }
+ ],
+ "promo/anfora-negra-grabado-diprolaser": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 606
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1213
+  }
+ ],
+ "promo/estuche-plumas-abierto": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 233
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 466
+  }
+ ],
+ "promo/estuche-vip-grabado-diprolaser": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 154
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 307
+  }
+ ],
+ "promo/llavero-casco-amarillo": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 410
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 820
+  }
+ ],
+ "promo/llavero-casco-blanco": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 437
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 873
+  }
+ ],
+ "promo/llavero-casco-blanco-2": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 445
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 890
+  }
+ ],
+ "promo/llavero-casco-luz-encendida": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 464
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 928
+  }
+ ],
+ "promo/llavero-cinta-azul": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 127
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 254
+  }
+ ],
+ "promo/llavero-cinta-roja": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 154
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 309
+  }
+ ],
+ "promo/llavero-llanta": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 864
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1728
+  }
+ ],
+ "promo/set-regalo-pluma-tarjetero-navaja-llavero": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 283
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 567
+  }
+ ],
+ "promo/termo-negro-1": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 889
+  },
+  {
+   "w": 800,
+   "width": 592,
+   "height": 1316
+  }
+ ],
+ "promo/termo-negro-2": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 852
+  },
+  {
+   "w": 800,
+   "width": 620,
+   "height": 1320
+  }
+ ],
+ "promo/termo-negro-3": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 820
+  },
+  {
+   "w": 800,
+   "width": 640,
+   "height": 1312
+  }
+ ],
+ "promo/vaso-asa-blanco": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 595
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1190
+  }
+ ],
+ "promo/vaso-asa-crema": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 705
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1410
+  }
+ ],
+ "promo/vaso-azul-1": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 564
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1128
+  }
+ ],
+ "promo/vaso-azul-2": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 594
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1188
+  }
+ ],
+ "promo/vaso-rosa-1": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 800
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1600
+  }
+ ],
+ "promo/vaso-rosa-2": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 705
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1410
+  }
+ ],
+ "promo/vaso-verde-1": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 698
+  },
+  {
+   "w": 800,
+   "width": 768,
+   "height": 1340
+  }
+ ],
+ "promo/vaso-verde-2": [
+  {
+   "w": 400,
+   "width": 400,
+   "height": 641
+  },
+  {
+   "w": 800,
+   "width": 800,
+   "height": 1282
+  }
+ ],
+ "caps/beige-bicolor": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 438
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 821
+  }
+ ],
+ "caps/dipro-caps-diseno-bordado": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 465
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 873
+  }
+ ],
+ "caps/gamuza-camel-bicolor": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 449
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 842
+  }
+ ],
+ "caps/gamuza-roja-bicolor": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 396
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 742
+  }
+ ],
+ "caps/impermeable-perforada-negra": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 364
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 683
+  }
+ ],
+ "caps/microperforada-negra": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 496
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 930
+  }
+ ],
+ "caps/placa-aguila-frente": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 612
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 1147
+  }
+ ],
+ "caps/placa-aguila-frente-visera-izq": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 481
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 902
+  }
+ ],
+ "caps/placa-aguila-lado-bandera": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 445
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 835
+  }
+ ],
+ "caps/placa-aguila-tres-cuartos": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 632
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 1185
+  }
+ ],
+ "caps/tela-negra": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 420
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 787
+  }
+ ],
+ "caps/trucker-malla-negra": [
+  {
+   "w": 640,
+   "width": 640,
+   "height": 411
+  },
+  {
+   "w": 1200,
+   "width": 1200,
+   "height": 770
+  }
+ ]
+}

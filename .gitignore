@@ -13,3 +13,6 @@ diprolaser/kit/promocionales/NO_USAR_sin_permiso_*
 # DIPROLASER: dependencias e intermedios
 diprolaser/web/node_modules/
 diprolaser/web/.cache/
+# DIPROLASER: intermedios pesados del pipeline (se regeneran con tools/)
+diprolaser/web/build/
+diprolaser/web/dist/
