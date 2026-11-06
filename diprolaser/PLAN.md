@@ -1,8 +1,8 @@
 # DIPROLASER · página web · Fase 1 (revisión del kit) y Fase 2 (plan)
 
 Estado: fase 1 y 2 aprobadas con las recomendaciones (5 paneles, retoque de la etiqueta, fallback pre-renderizado,
-"Somos fabricantes, no revendedores", upscale de promocionales). **Fase 3 entregada, esperando aprobación.**
-Revisión de la fase 3: `review/fase3_revision.jpg`.
+"Somos fabricantes, no revendedores", upscale de promocionales). Fase 3 aprobada. **Fase 4 entregada, esperando aprobación.**
+Revisiones: `review/fase3_revision.jpg`, `review/fase4_configurador.jpg`.
 Hoja visual de hallazgos: `review/fase1_revision_kit.jpg` (interna, no es para el cliente).
 
 ---

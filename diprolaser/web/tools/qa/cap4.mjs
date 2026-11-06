@@ -7,7 +7,7 @@ fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 }, deviceScaleFactor: 1 });
 const logs = []; page.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') logs.push(m.text()); }); page.on('pageerror', (e) => logs.push(e.message));
-await page.goto(url, { waitUntil: 'load' });
+await page.goto(url, { waitUntil: 'load' }); await page.addStyleTag({ content: '.summary{display:none!important}.wa-float{display:none!important}' });
 await page.evaluate(() => document.getElementById('configurador').scrollIntoView());
 await page.waitForFunction(() => window.__cfg, null, { timeout: 60000 });
 if (logo) { await page.setInputFiles('[data-logo-input]', logo); await page.waitForTimeout(1500); }
