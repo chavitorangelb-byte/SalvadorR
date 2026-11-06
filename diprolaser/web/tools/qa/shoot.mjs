@@ -2,7 +2,7 @@
 import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)('playwright');
 import fs from 'node:fs';
-const [url = 'http://localhost:4173/', out = 'shots', w = '390', h = '844', scale = '1'] = process.argv.slice(2);
+const [url = 'http://localhost:4173/?qa', out = 'shots', w = '390', h = '844', scale = '1'] = process.argv.slice(2);
 fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const ctx = await browser.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: +scale, hasTouch: +w < 800, isMobile: +w < 800 });

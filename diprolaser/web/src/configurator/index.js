@@ -78,7 +78,7 @@ export async function initConfigurator({ aura } = {}) {
     cfg.model = v;
     if (!cfg.touched) cfg.colors = { ...PRESETS[v] };
     renderSwatches();
-    waterBtn.hidden = v !== 'impermeable';
+    waterBtn.hidden = v !== 'impermeable' || !scene;
     const photo = PHOTOS[v][0][0];
     poster.src = `img/caps/${photo}-640.webp`; poster.srcset = `img/caps/${photo}-640.webp 640w, img/caps/${photo}-1200.webp 1200w`;
     poster.previousElementSibling?.setAttribute('srcset', `img/caps/${photo}-640.avif 640w, img/caps/${photo}-1200.avif 1200w`);
@@ -176,14 +176,32 @@ export async function initConfigurator({ aura } = {}) {
       scene.setTech(cfg.tech); scene.setLogo(state.logo || dipro);
       host.classList.add('is-ready'); loading.remove();
       window.__cfg = scene;
+      // celular muy lento: si no alcanza ~16 cuadros por segundo, cambia al visor de cuadros pre-renderizados
+      if (!new URLSearchParams(location.search).has('qa')) {
+        const probe = () => setTimeout(() => {
+          if (!host.getBoundingClientRect().height || document.hidden) return probe();
+          const ms = scene.perf();
+          if (ms > 62) {
+            const r = scene.renderer; r.domElement.remove(); r.dispose(); r.forceContextLoss?.();
+            scene = null; window.__cfg = null; startFallback();
+          }
+        }, 3200);
+        probe();
+      }
       return;
     } catch (err) { console.warn('3D no disponible', err); scene = null; }
   }
-  const { createFallback } = await import('./fallback.js');
-  fallback = createFallback(host, cfg, { logo: state.logo || dipro });
-  host.classList.add('is-ready'); loading.remove();
-  stage.classList.add('is-fallback');
-  root.querySelector('[data-cfg-hint]').textContent = 'Arrastra para ver otro ángulo';
+  await startFallback();
+
+  async function startFallback() {
+    const { createFallback } = await import('./fallback.js');
+    fallback = createFallback(host, cfg, { logo: state.logo || dipro, colors: COLORS });
+    host.classList.add('is-ready'); loading?.remove();
+    stage.classList.add('is-fallback');
+    waterBtn.hidden = true;
+    root.querySelector('[data-cfg-hint]').textContent = 'Arrastra para girarla';
+    sync();
+  }
 }
 
 async function composeDesign(shot, text) {

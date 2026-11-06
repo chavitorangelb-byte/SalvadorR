@@ -299,7 +299,8 @@ export async function createScene(host, { reduced = false } = {}) {
     const rain = stepDrops(dt, now);
     const anim = shared.uWob.value > .001 || shared.uBand.value > -1 || rain || [...cache.values()].some((m) => m.userData.u.uSweep.value < 3.2);
     if (dirty || anim) {
-      placeCamera(); renderer.render(scene, camera); dirty = false;
+      const r0 = performance.now(); placeCamera(); renderer.render(scene, camera); dirty = false;
+      frameTimes.push(dt * 1000); if (frameTimes.length > 60) frameTimes.shift(); void r0;
       // baja la resolución si el celular no alcanza
       if (dt > .024) { if (++slow > 40 && dpr > 1) { dpr = Math.max(1, dpr - .25); renderer.setPixelRatio(dpr); resize(); slow = 0; } } else slow = Math.max(0, slow - 1);
     }
@@ -309,6 +310,52 @@ export async function createScene(host, { reduced = false } = {}) {
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; kick(); }, { rootMargin: '120px' }).observe(host);
   document.addEventListener('visibilitychange', kick);
   placeCamera(); applyMaterials(); renderer.compile(scene, camera); kick();
+
+  /* ---------- horneado para el visor sin WebGL ---------- */
+  // Pasada de id: 1 corona, 2 visera, 3 abajo de la visera, 4 corona dentro del área del logo (G,B = coordenadas del logo)
+  const idMat = (id, decal = false) => new THREE.ShaderMaterial({
+    uniforms: { uId: { value: id }, uDecal: { value: new THREE.Vector4(DECAL.cx, DECAL.cy, DECAL.w, DECAL.h) } },
+    vertexShader: `varying vec2 vU; void main(){ vU = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`,
+    fragmentShader: `uniform float uId; uniform vec4 uDecal; varying vec2 vU;
+      void main(){ float id = uId; vec2 d = vec2(0.);
+        ${decal ? 'd = (vU - uDecal.xy) / uDecal.zw + .5; if (d.x > 0. && d.x < 1. && d.y > 0. && d.y < 1.) id = 4.; else d = vec2(0.);' : ''}
+        gl_FragColor = vec4(id * 60. / 255., d.x, d.y, 1.); }`,
+    side: THREE.DoubleSide,
+  });
+  function bake(yaw, pitch = .14, size = 480) {
+    const prev = { W, H, dpr, yaw: view.yaw, pitch: view.pitch, dist: view.dist };
+    const hidden = [plate.visible, patch.visible, drops.visible, shadow.visible];
+    plate.visible = patch.visible = false; drops.visible = false; shadow.visible = false;
+    renderer.setPixelRatio(1); renderer.setSize(size, size, false); camera.aspect = 1; camera.updateProjectionMatrix();
+    Object.assign(view, { yaw, pitch, dist: 6.5 }); Object.assign(goal, { yaw, pitch, dist: 6.5 }); placeCamera();
+    // 1) sombreado con la gorra en gris neutro y sin logo
+    const saved = { ...st.colors }; const logoOn = parts.front.material.userData.u.uLogoOn.value;
+    const gray = '#7a7a7a';
+    [parts.front, parts.sideL, parts.sideR, parts.backL, parts.backR, parts.button, parts.visorTop, parts.visorEdge, parts.visorBottom].forEach((m) => { m.material.color.set(gray); const u = m.material.userData.u; u.uOld.value.set(gray); u.uNew.value.set(gray); u.uSweep.value = 99; });
+    parts.front.material.userData.u.uLogoOn.value = 0;
+    renderer.setClearColor(0x000000, 0); renderer.render(scene, camera);
+    const shade = renderer.domElement.toDataURL('image/png');
+    // 2) ids y coordenadas del logo
+    const mats = new Map();
+    const ids = { front: [1, true], sideL: [1], sideR: [1], backL: [1], backR: [1], button: [1], visorTop: [2], visorEdge: [2], visorBottom: [3] };
+    cap.traverse((o) => { if (o.isMesh) { mats.set(o, o.material); const k = Object.entries(parts).find(([, v]) => v === o)?.[0]; const def = ids[k]; o.material = def ? idMat(def[0], !!def[1]) : (o === drops ? o.material : idMat(0)); } });
+    const tm = renderer.toneMapping; renderer.toneMapping = THREE.NoToneMapping;
+    renderer.render(scene, camera);
+    const id = renderer.domElement.toDataURL('image/png');
+    renderer.toneMapping = tm;
+    mats.forEach((m, o) => { o.material = m; });
+    // restaura
+    parts.front.material.userData.u.uLogoOn.value = logoOn;
+    for (const [k, v] of Object.entries(saved)) st.colors[k] = v;
+    applyMaterials();
+    [plate.visible, patch.visible, drops.visible, shadow.visible] = hidden;
+    renderer.setPixelRatio(prev.dpr); renderer.setSize(prev.W, prev.H, false); camera.aspect = prev.W / prev.H; camera.updateProjectionMatrix();
+    Object.assign(view, { yaw: prev.yaw, pitch: prev.pitch, dist: prev.dist }); Object.assign(goal, { yaw: prev.yaw, pitch: prev.pitch, dist: prev.dist });
+    invalidate(); kick();
+    return { shade, id };
+  }
+  // rendimiento: tiempo medio por cuadro de los últimos cuadros dibujados
+  const frameTimes = [];
 
   /* ---------- API ---------- */
   const worldOrigin = (part) => {
@@ -356,6 +403,8 @@ export async function createScene(host, { reduced = false } = {}) {
     },
     water() { rainUntil = performance.now() + 4200; setView('front'); goal.pitch = .38; kick(); },
     stopAuto() { autoRot = false; },
+    bake,
+    perf() { return frameTimes.length ? frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length : 0; },
     _simWater(sec) { // QA: simula la lluvia en pasos de 1/60 s sin depender de los fps
       const t0 = performance.now(); rainUntil = t0 + 4200;
       for (let k = 0; k < sec * 60; k++) stepDrops(1 / 60, t0 + k * 1000 / 60);
