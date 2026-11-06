@@ -102,8 +102,8 @@ export async function createScene(host, { reduced = false } = {}) {
   const metalTex = new THREE.CanvasTexture(metalCanvas); metalTex.colorSpace = THREE.SRGBColorSpace; metalTex.anisotropy = 8;
   const leatherCanvas = document.createElement('canvas'); leatherCanvas.width = 1024; leatherCanvas.height = 720;
   const leatherTex = new THREE.CanvasTexture(leatherCanvas); leatherTex.colorSpace = THREE.SRGBColorSpace; leatherTex.anisotropy = 8;
-  const plateMat = new THREE.MeshPhysicalMaterial({ map: metalTex, metalness: .9, roughness: .34, clearcoat: .5, clearcoatRoughness: .25, envMapIntensity: 1.2 });
-  const rimMat = new THREE.MeshPhysicalMaterial({ color: 0x6d7078, metalness: 1, roughness: .25 });
+  const plateMat = new THREE.MeshPhysicalMaterial({ map: metalTex, metalness: .55, roughness: .46, clearcoat: .35, clearcoatRoughness: .4, envMapIntensity: .55 });
+  const rimMat = new THREE.MeshPhysicalMaterial({ color: 0x3a3b40, metalness: .8, roughness: .35, envMapIntensity: .7 });
   const leatherMat = new THREE.MeshPhysicalMaterial({ map: leatherTex, roughness: .7, sheen: .4, sheenColor: new THREE.Color(0xc89a6a), normalMap: textures().piel, normalScale: new THREE.Vector2(.5, .5) });
   const pw = .62;
   const plate = new THREE.Group();
@@ -116,14 +116,14 @@ export async function createScene(host, { reduced = false } = {}) {
 
   function paintMetal(logo) {
     const x = metalCanvas.getContext('2d'); const S = 1024;
-    const g = x.createRadialGradient(S * .35, S * .3, 40, S / 2, S / 2, S * .7); g.addColorStop(0, '#45464d'); g.addColorStop(1, '#17171b');
+    const g = x.createRadialGradient(S * .35, S * .3, 40, S / 2, S / 2, S * .7); g.addColorStop(0, '#2f3035'); g.addColorStop(1, '#141417');
     x.fillStyle = g; x.fillRect(0, 0, S, S);
     for (let i = 0; i < 2600; i++) { x.strokeStyle = `rgba(255,255,255,${Math.random() * .035})`; const r = Math.random() * S * .5; x.beginPath(); x.arc(S / 2, S / 2, r, Math.random() * 6, Math.random() * 6 + .4); x.stroke(); }
-    x.strokeStyle = 'rgba(200,204,210,.5)'; x.lineWidth = 10; x.beginPath(); x.arc(S / 2, S / 2, S * .46, 0, 7); x.stroke();
+    x.strokeStyle = 'rgba(150,154,160,.55)'; x.lineWidth = 9; x.beginPath(); x.arc(S / 2, S / 2, S * .455, 0, 7); x.stroke();
     if (logo) {
       const t = document.createElement('canvas'); t.width = t.height = S; const tx = t.getContext('2d');
-      tx.drawImage(logo.mask, S * .17, S * .17, S * .66, S * .66);
-      tx.globalCompositeOperation = 'source-in'; const lg = tx.createLinearGradient(0, 0, 0, S); lg.addColorStop(0, '#b9bcc3'); lg.addColorStop(1, '#8a8d94'); tx.fillStyle = lg; tx.fillRect(0, 0, S, S);
+      tx.drawImage(logo.mask, S * .15, S * .15, S * .7, S * .7);
+      tx.globalCompositeOperation = 'source-in'; const lg = tx.createLinearGradient(0, 0, 0, S); lg.addColorStop(0, '#a7aab0'); lg.addColorStop(1, '#7e8187'); tx.fillStyle = lg; tx.fillRect(0, 0, S, S);
       x.drawImage(t, 0, 0);
     }
     metalTex.needsUpdate = true;
@@ -138,8 +138,8 @@ export async function createScene(host, { reduced = false } = {}) {
     rr(2); x.stroke(); x.strokeStyle = '#efdfc2'; x.lineWidth = 5.5; rr(0); x.stroke(); x.setLineDash([]);
     if (logo) {
       const t = document.createElement('canvas'); t.width = W; t.height = H; const tx = t.getContext('2d');
-      const s = Math.min(W * .64, H * .64); tx.drawImage(logo.mask, (W - s) / 2, (H - s) / 2, s, s);
-      tx.globalCompositeOperation = 'source-in'; tx.fillStyle = 'rgba(46,22,8,.92)'; tx.fillRect(0, 0, W, H);
+      const s = Math.min(W * .74, H * .74); tx.drawImage(logo.mask, (W - s) / 2, (H - s) / 2, s, s);
+      tx.globalCompositeOperation = 'source-in'; tx.fillStyle = 'rgba(38,16,4,.97)'; tx.fillRect(0, 0, W, H);
       x.drawImage(t, 0, 0);
     }
     leatherTex.needsUpdate = true;

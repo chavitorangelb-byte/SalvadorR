@@ -163,7 +163,11 @@ export function fabric({ kind = 'tela', color = '#111214', role = 'crown', perfo
             if (uTech == 0) {
               // bordado: hilo satinado con relieve y brillo
               float stripe = sin((duv.x * .55 + duv.y) * 520.) * .5 + .5;
-              vec3 th = lg.rgb * (.72 + .5 * stripe);
+              vec3 thc = lg.rgb;
+              // hilo oscuro sobre tela oscura: el satín del hilo lo hace leerse (tono sobre tono)
+              float dl = abs(dot(thc, vec3(.2126, .7152, .0722)) - dot(diffuseColor.rgb, vec3(.2126, .7152, .0722)));
+              thc = mix(thc, thc + vec3(.035), smoothstep(.06, .0, dl));
+              vec3 th = thc * (.62 + .75 * stripe);
               diffuseColor.rgb = mix(diffuseColor.rgb, th, m);
               emb = m;
               float mE = texture2D(uLogo, duv + uTexel * 6.).a;
@@ -188,11 +192,11 @@ export function fabric({ kind = 'tela', color = '#111214', role = 'crown', perfo
         diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * 1.25 + vec3(.006), thread * (Lb < .05 ? .85 : .45));
         if (!gl_FrontFacing) diffuseColor.rgb = uInner;`)
       .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
-        roughnessFactor = mix(roughnessFactor, .42, clamp(emb, 0., 1.));
+        roughnessFactor = mix(roughnessFactor, .3, clamp(emb, 0., 1.));
         roughnessFactor = mix(roughnessFactor, .7, thread);`)
       .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
         float hB = emb + thread * .35;
-        normal = normalize(normal + vec3(-dFdx(hB), -dFdy(hB), 0.) * 2.2);`)
+        normal = normalize(normal + vec3(-dFdx(hB), -dFdy(hB), 0.) * 4.5);`)
       .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
         totalEmissiveRadiance += vec3(1., .22, .2) * waveS * .9;
         float band = 1. - smoothstep(0., .07, abs(vObj.y - uBand));

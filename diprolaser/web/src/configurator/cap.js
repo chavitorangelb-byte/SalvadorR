@@ -65,6 +65,13 @@ function archStart(th) {
 
 /** Malla de un panel. Atributos: uv = (arco horizontal, distancia por el perfil) en unidades de mundo,
  *  aSt = (distancia a la costura, a lo largo de la costura, distancia al borde inferior, arco). */
+/** Arco real sobre la tela, a altura t, desde el ángulo 0 (centro del frente) hasta th. */
+const _q0 = v3(), _q1 = v3();
+export function arcAt(th, t, steps = 28) {
+  let L = 0; crownRaw(0, t, _q0);
+  for (let k = 1; k <= steps; k++) { crownRaw(th * k / steps, t, _q1); L += _q1.distanceTo(_q0); _q0.copy(_q1); }
+  return Math.sign(th) * L;
+}
 function panelGeometry([th0, th1], nu, nv) {
   const pos = [], nor = [], uv = [], st = [], idx = [];
   const P = v3(), N = v3(), prev = v3();
@@ -78,11 +85,12 @@ function panelGeometry([th0, th1], nu, nv) {
       if (j > 0) along += P.distanceTo(prev);
       prev.copy(P);
       crownNormal(th, t, N);
-      const r = Math.hypot(P.x, P.z - CAP.zA);
-      const sd = Math.min(Math.abs(th - th0), Math.abs(th1 - th)) * r;
+      // distancias reales sobre la tela: a cada costura del panel y desde el centro del frente
+      const ax = arcAt(th, t);
+      const sd = Math.min(Math.abs(ax - arcAt(th0, t)), Math.abs(arcAt(th1, t) - ax));
       pos.push(P.x, P.y, P.z); nor.push(N.x, N.y, N.z);
-      uv.push(th * r, along);
-      st.push(sd, along, along, th * r);
+      uv.push(ax, along);
+      st.push(sd, along, along, ax);
     }
   }
   const row = nv + 1;
@@ -253,10 +261,15 @@ function eyelets(mat, holeMat) {
 /* ---------------- Mallas que siguen la curva del frente (placa, parche) ---------------- */
 // tabla: distancia por el perfil frontal -> t
 const FRONT_TABLE = (() => { const arr = []; const P = v3(), Q = v3(); let L = 0; crownPoint(0, 0, Q); for (let i = 0; i <= 400; i++) { const t = i / 400; crownPoint(0, t, P); L += P.distanceTo(Q); Q.copy(P); arr.push([L, t]); } return arr; })();
+// inversa del arco horizontal: para cada t, tabla de ángulo -> arco
+const ARC_T = 120, ARC_TH = 90, ARC = (() => { const a = []; for (let i = 0; i <= ARC_T; i++) { const t = i / ARC_T; const row = []; for (let j = 0; j <= ARC_TH; j++) row.push(arcAt(j / ARC_TH * S1, t, 12)); a.push(row); } return a; })();
 export function frontParam(ax, ay) {
   let t = 1; for (const [L, tt] of FRONT_TABLE) { if (L >= ay) { t = tt; break; } }
-  const P = crownRaw(0, t, v3()); const r = Math.hypot(P.x, P.z - CAP.zA);
-  return { th: ax / r, t };
+  const row = ARC[Math.min(ARC_T, Math.round(t * ARC_T))]; const a = Math.abs(ax);
+  let j = 1; while (j < ARC_TH && row[j] < a) j++;
+  const f = (a - row[j - 1]) / Math.max(1e-6, row[j] - row[j - 1]);
+  const th = ((j - 1) + Math.min(1, f)) / ARC_TH * S1;
+  return { th: Math.sign(ax) * th, t };
 }
 export function frontPoint(ax, ay, off = 0, outP = v3(), outN = v3()) {
   const { th, t } = frontParam(ax, ay);
@@ -265,6 +278,35 @@ export function frontPoint(ax, ay, off = 0, outP = v3(), outN = v3()) {
 }
 /** Superficie conformada al frente: forma = 'disc' o 'rect' (rectángulo redondeado), con canto. */
 export function conformGeometry(shape, cx, cy, w, h, off, depth, n = 48) {
+  if (shape === 'disc') return conformDisc(cx, cy, w, off + depth);
+  return conformGrid(shape, cx, cy, w, h, off, depth, n);
+}
+/** Disco perfecto (malla polar) que sigue la curva del frente. */
+function conformDisc(cx, cy, d, off, rings = 18, segs = 96) {
+  const pos = [], nor = [], uv = [], idx = [];
+  const P = v3(), N = v3();
+  frontPoint(cx, cy, off, P, N); pos.push(P.x, P.y, P.z); nor.push(N.x, N.y, N.z); uv.push(.5, .5);
+  for (let i = 1; i <= rings; i++) {
+    const r = i / rings * .5;
+    for (let j = 0; j < segs; j++) {
+      const a = j / segs * Math.PI * 2; const u = .5 + Math.cos(a) * r, v = .5 + Math.sin(a) * r;
+      frontPoint(cx + (u - .5) * d, cy + (v - .5) * d, off, P, N);
+      pos.push(P.x, P.y, P.z); nor.push(N.x, N.y, N.z); uv.push(u, v);
+    }
+  }
+  for (let j = 0; j < segs; j++) idx.push(0, 1 + j, 1 + (j + 1) % segs);
+  for (let i = 1; i < rings; i++) for (let j = 0; j < segs; j++) {
+    const a = 1 + (i - 1) * segs + j, b = 1 + (i - 1) * segs + (j + 1) % segs, c = 1 + i * segs + j, e = 1 + i * segs + (j + 1) % segs;
+    idx.push(a, c, b, b, c, e);
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  return g;
+}
+function conformGrid(shape, cx, cy, w, h, off, depth, n = 48) {
   const pos = [], nor = [], uv = [], idx = [];
   const P = v3(), N = v3();
   const inside = (u, v) => {
