@@ -1,0 +1,45 @@
+KIT DIPROLASER · material para la página web (preview)
+=====================================================
+
+DATOS VERIFICADOS DE LA MARCA
+- Nombre: DIPROLASER (siempre así, sin acento, en mayúsculas). Submarca en una gorra: "DIPRO CAPS".
+- Qué hacen: fabricantes directos de gorras personalizadas y vendedores de promocionales personalizados para negocios.
+- Ubicación: Aguascalientes, México. Envíos a todo México.
+- WhatsApp: 449 212 8627  (wa.me/524492128627)
+- Redes: "en redes como DIPROLASER" (no usar @usuario hasta confirmarlo).
+- Técnicas: grabado láser, impresión a color, bordado, placas metálicas, parches; "todas las técnicas de personalización".
+- Todas las gorras llevan la etiqueta DIPROLASER en la visera (hexágono plateado).
+- Paleta: negro profundo, rojo DIPROLASER (#E3262F), toques de dorado (#D8B25C) y plata.
+- Frases ya usadas en sus videos: "Somos fabricantes directos", "Tu diseño, tu marca", "Hecho en Aguascalientes",
+  "Envíos a todo México", "Arma la tuya", "Consiente a tus clientes este año", "Repele el agua" (impermeable).
+- NO hay precios, mínimos ni tiempos de entrega confirmados: no inventarlos.
+
+CARPETAS
+marca/
+  logo_diprolaser_color.jpg ............. logo oficial a color sobre negro (separar por luminancia)
+  logo_diprolaser_un_color_blanco.png .... versión de un color (para simular grabado láser)
+  etiqueta_visera_diprolaser_foto.jpg .... foto real de la etiqueta hexagonal en la visera
+placas/
+  placa_aguila_sin_nombre.png ............ placa "Estados Unidos Mexicanos" con la franja vacía para escribir el nombre
+                                           (fuente del nombre: serif clásica tipo Liberation Serif / Times, mayúsculas)
+  placa_aguila_ejemplo_*.png ............. ejemplos con nombre
+  placa_real_*.jpg ....................... fotos reales de placas (SINALOA, JUÁREZ)
+gorras/recortadas/ (PNG con transparencia, listos)
+  microperforada_negra, gamuza_camel_bicolor, gamuza_roja_bicolor, tela_negra, beige_bicolor,
+  trucker_malla_negra, impermeable_perforada_negra, dipro_caps_diseno_bordado,
+  placa_aguila_* (4 ángulos de estudio, la mejor calidad de recorte)
+gorras/estudio_originales/ ............... fotos de estudio sin recortar (fondo blanco)
+gorras/fotos_originales/ ................. 28 fotos reales de celular en la fábrica (varios modelos y ángulos;
+                                           sirven como referencia de forma, colores y texturas reales)
+promocionales/recortados/ ................ 22 promocionales recortados: termos negros, vasos azules, verdes, rosas,
+                                           vasos con asa (sin logos de marca ajena), ánfora grabada, estuche VIP,
+                                           estuche de plumas, set de regalo, llaveros de cinta, llanta y cascos
+promocionales/originales/ ................ hojas originales de producto
+promocionales/NO_USAR_sin_permiso_* ...... trabajo para otro cliente: no usar sin permiso
+videos/ (720p, sin audio, para fondos o secciones de la página)
+  video01_gorras, video02_proceso, video03_placa_aguila
+referencias_estilo/ ...................... capturas de los videos ya aprobados (estilo visual de la marca)
+
+CUIDADO CON LOS RECORTES
+Revisa cada PNG a tamaño real sobre magenta y sobre negro antes de usarlo. Si hay halo o fondo colado,
+arregla solo el borde; nunca recortes de más.
