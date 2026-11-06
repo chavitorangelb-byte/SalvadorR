@@ -176,6 +176,16 @@ export async function initConfigurator({ aura } = {}) {
       scene.setTech(cfg.tech); scene.setLogo(state.logo || dipro);
       host.classList.add('is-ready'); loading.remove();
       window.__cfg = scene;
+      // la misma gorra gira en el hero mientras el configurador no se ve (un solo contexto 3D)
+      const heroCap = document.querySelector('[data-hero-3d]'); const heroStage = heroCap.parentElement;
+      let heroVis = false, cfgVis = false;
+      const route = () => {
+        if (!scene) return;
+        if (heroVis && !cfgVis && !new URLSearchParams(location.search).has('qa')) { scene.attach(heroCap, 'hero'); requestAnimationFrame(() => heroStage.classList.add('has-3d')); }
+        else { scene.attach(host, 'cfg'); heroStage.classList.remove('has-3d'); }
+      };
+      new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; route(); }, { threshold: .15 }).observe(heroStage);
+      new IntersectionObserver(([e]) => { cfgVis = e.isIntersecting; route(); }, { rootMargin: '-8% 0px' }).observe(root);
       // celular muy lento: si no alcanza ~16 cuadros por segundo, cambia al visor de cuadros pre-renderizados
       if (!new URLSearchParams(location.search).has('qa')) {
         const probe = () => setTimeout(() => {

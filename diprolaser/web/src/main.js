@@ -51,7 +51,8 @@ if (!reducedMotion.matches) {
     x += (tx - x) * .06; y += (ty - y) * .06;
     const f = Math.sin((now - t0) / 1600) * 6;
     if (scrollY < innerHeight * 1.2) {
-      cap.style.transform = `translateX(-50%) translate3d(${x * 10}px, ${f + y * 6 - sy * .12}px, 0) perspective(900px) rotateY(${x * 9 + Math.sin((now - t0) / 3000) * 5}deg) rotateX(${-y * 4}deg)`;
+      const is3d = cap.parentElement.classList.contains('has-3d');
+      cap.style.transform = is3d ? `translateX(-50%) translate3d(${x * 8}px, ${f * .6 - sy * .12}px, 0)` : `translateX(-50%) translate3d(${x * 10}px, ${f + y * 6 - sy * .12}px, 0) perspective(900px) rotateY(${x * 9 + Math.sin((now - t0) / 3000) * 5}deg) rotateX(${-y * 4}deg)`;
     }
     requestAnimationFrame(loop);
   })(t0);
@@ -65,7 +66,6 @@ addEventListener('load', () => idle(loadMotion, { timeout: 1800 }));
 ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((ev) => addEventListener(ev, loadMotion, { once: true, passive: true }));
 
 const lazy = [
-  ['#configurador', () => import('./configurator/index.js').then((m) => m.initConfigurator({ aura }))],
   ['#placa', () => import('./sections/placa.js').then((m) => m.initPlaca())],
   ['#regalos', () => import('./sections/gifts.js').then((m) => m.initGifts({ aura }))],
   ['#tecnicas', () => import('./sections/tecnicas.js').then((m) => m.initTecnicas())],
@@ -81,3 +81,17 @@ const lio = new IntersectionObserver((entries) => {
   }
 }, { rootMargin: '150% 0px 150% 0px' });
 lazy.forEach(([sel]) => { const el = document.querySelector(sel); if (el) lio.observe(el); });
+
+// El configurador (Three.js) llega con el primer gesto o cuando su sección ya está cerca,
+// nunca durante la carga inicial: la primera pantalla se pinta sin 3D.
+let cfgLoading = null;
+const loadCfg = () => (cfgLoading ||= import('./configurator/index.js').then((m) => m.initConfigurator({ aura })).catch((e) => console.error(e)));
+['wheel', 'pointerdown', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, () => setTimeout(loadCfg, 120), { once: true, passive: true }));
+// solo un movimiento real del mouse (Chrome manda pointermove sintéticos cuando cambia el layout)
+let pm0 = null;
+const onMove = (e) => {
+  if (!pm0) { pm0 = [e.clientX, e.clientY]; return; }
+  if (Math.hypot(e.clientX - pm0[0], e.clientY - pm0[1]) > 6) { removeEventListener('pointermove', onMove); setTimeout(loadCfg, 120); }
+};
+addEventListener('pointermove', onMove, { passive: true });
+new IntersectionObserver(([e]) => { if (e.isIntersecting) loadCfg(); }, { rootMargin: '0px' }).observe(document.getElementById('configurador'));

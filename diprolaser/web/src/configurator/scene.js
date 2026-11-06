@@ -285,14 +285,17 @@ export async function createScene(host, { reduced = false } = {}) {
 
   /* ---------- loop ---------- */
   let W = 1, H = 1, visible = true, raf = 0, last = performance.now(), slow = 0;
-  const resize = () => { const r = host.getBoundingClientRect(); W = Math.max(1, r.width); H = Math.max(1, r.height); renderer.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix(); invalidate(); };
-  new ResizeObserver(resize).observe(host); resize();
+  // un solo renderer que se mueve entre el hero y el configurador
+  let curHost = host, mode = 'cfg';
+  const resize = () => { const r = curHost.getBoundingClientRect(); W = Math.max(1, r.width); H = Math.max(1, r.height); renderer.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix(); invalidate(); };
+  const ro = new ResizeObserver(resize); ro.observe(curHost); resize();
   function frame(now) {
     raf = 0;
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     shared.uTime.value += dt;
     const idle = now - lastInput > 2600;
-    if (autoRot && idle && pointers.size === 0) { goal.yaw -= dt * .32; view.yaw = goal.yaw; invalidate(); }
+    if (mode === 'hero' && !reduced) { goal.yaw -= dt * .42; view.yaw = goal.yaw; invalidate(); }
+    else if (autoRot && idle && pointers.size === 0) { goal.yaw -= dt * .32; view.yaw = goal.yaw; invalidate(); }
     else if (pointers.size === 0 && Math.abs(vel) > 1e-4) { goal.yaw += vel; view.yaw = goal.yaw; vel *= .93; invalidate(); }
     const k = 1 - Math.pow(.0015, dt);
     for (const p of ['yaw', 'pitch', 'dist']) { const d = goal[p] - view[p]; if (Math.abs(d) > 1e-4) { view[p] += d * k; invalidate(); } }
@@ -307,7 +310,17 @@ export async function createScene(host, { reduced = false } = {}) {
     if (visible && !document.hidden) raf = requestAnimationFrame(frame);
   }
   const kick = () => { if (!raf && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); } };
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; kick(); }, { rootMargin: '120px' }).observe(host);
+  const vio = new IntersectionObserver(([e]) => { visible = e.isIntersecting; kick(); }, { rootMargin: '120px' }); vio.observe(curHost);
+  const cfgView = { target: target.clone(), fov: camera.fov };
+  function attach(el, m) {
+    if (el === curHost) return;
+    ro.unobserve(curHost); vio.unobserve(curHost);
+    curHost = el; mode = m; el.append(renderer.domElement);
+    renderer.domElement.style.pointerEvents = m === 'hero' ? 'none' : '';
+    if (m === 'hero') { target.set(0, -.12, .3); Object.assign(goal, { pitch: .16, dist: 6.4 }); }
+    else { target.copy(cfgView.target); Object.assign(goal, { pitch: .2, dist: 6.7 }); }
+    ro.observe(el); vio.observe(el); resize(); kick();
+  }
   document.addEventListener('visibilitychange', kick);
   placeCamera(); applyMaterials(); renderer.compile(scene, camera); kick();
 
@@ -404,6 +417,8 @@ export async function createScene(host, { reduced = false } = {}) {
     water() { rainUntil = performance.now() + 4200; setView('front'); goal.pitch = .38; kick(); },
     stopAuto() { autoRot = false; },
     bake,
+    attach,
+    get mode() { return mode; },
     perf() { return frameTimes.length ? frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length : 0; },
     _simWater(sec) { // QA: simula la lluvia en pasos de 1/60 s sin depender de los fps
       const t0 = performance.now(); rainUntil = t0 + 4200;

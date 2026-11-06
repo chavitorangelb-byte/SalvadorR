@@ -231,9 +231,10 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .hero__logo { position: absolute; left: 50%; top: 0; width: min(54vw, 290px); transform: translateX(-50%); z-index: 3; }
 .hero__cap { position: absolute; left: 50%; bottom: 0; width: min(70vw, 440px); transform: translateX(-50%); z-index: 2; }
 .hero__cap img { position: relative; z-index: 1; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .7)) drop-shadow(0 0 60px rgba(227, 38, 47, .25)); }
-.hero__cap canvas { position: absolute; inset: -12%; width: 124%; height: 124%; z-index: 2; opacity: 0; transition: opacity 900ms var(--ease-out); }
-.hero__cap.has-3d canvas { opacity: 1; }
-.hero__cap.has-3d img { opacity: 0; transition: opacity 900ms var(--ease-out); }
+.hero__3d { position: absolute; left: -2%; right: -2%; bottom: -3%; height: 76%; z-index: 2; opacity: 0; pointer-events: none; transition: opacity 900ms var(--ease-out); }
+.hero__3d canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.hero__stage.has-3d .hero__3d { opacity: 1; }
+.hero__stage.has-3d .hero__cap img { opacity: 0; transition: opacity 900ms var(--ease-out); }
 .hero__shadow { position: absolute; left: 10%; right: 10%; bottom: -4%; height: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .85), transparent); filter: blur(6px); }
 .hero__copy { max-width: var(--maxw); width: 100%; margin: 0 auto; display: grid; gap: 16px; justify-items: start; position: relative; z-index: 3; }
 .hero__title { font-size: clamp(3.1rem, 14.6vw, 9.8rem); margin-top: 6px; }
@@ -300,6 +301,12 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .summary__actions { display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; }
 .summary__actions .btn { padding: 0 10px; }
 .summary__hint { text-align: center; font-size: .72rem; color: var(--text-3); margin-top: -4px; }
+@media (max-width: 959px) {
+  .summary { padding: 8px 8px 6px; gap: 6px; border-radius: 20px; }
+  .summary__text { font-size: .8rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .summary__actions .btn { --h: 38px; }
+  .summary__hint { font-size: .68rem; }
+}
 @media (max-width: 419px) {
   .summary__actions .btn { font-size: .8rem; gap: 6px; padding: 0 8px; }
   .summary__actions .btn svg { display: none; }
