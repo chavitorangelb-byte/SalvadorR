@@ -85,8 +85,9 @@ export async function initGifts({ aura } = {}) {
     const c = document.createElement('canvas'); c.width = 900; c.height = 420;
     const x = c.getContext('2d'); x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle';
     lines.forEach((ln, i) => {
-      let size = 170; x.font = `900 ${size}px Archivo`; x.fontStretch = 'condensed';
-      const w = x.measureText(ln).width; if (w > 860) { size *= 860 / w; x.font = `900 ${size}px Archivo`; }
+      const setF = (sz) => { x.font = `900 ${sz}px Archivo`; x.fontStretch = 'condensed'; };
+      let size = 170; setF(size);
+      const w = x.measureText(ln).width; if (w > 840) { size *= 840 / w; setF(size); }
       x.fillText(ln, 450, lines.length === 1 ? 210 : 110 + i * 200);
     });
     x.fillRect(250, lines.length === 1 ? 330 : 395, 400, 6);

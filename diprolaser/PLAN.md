@@ -1,6 +1,8 @@
 # DIPROLASER · página web · Fase 1 (revisión del kit) y Fase 2 (plan)
 
-Estado: **esperando aprobación de Salvador** antes de escribir código.
+Estado: fase 1 y 2 aprobadas con las recomendaciones (5 paneles, retoque de la etiqueta, fallback pre-renderizado,
+"Somos fabricantes, no revendedores", upscale de promocionales). **Fase 3 entregada, esperando aprobación.**
+Revisión de la fase 3: `review/fase3_revision.jpg`.
 Hoja visual de hallazgos: `review/fase1_revision_kit.jpg` (interna, no es para el cliente).
 
 ---

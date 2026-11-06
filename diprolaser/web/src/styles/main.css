@@ -78,6 +78,7 @@ h1, h2, h3, p, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 svg use { pointer-events: none; }
 :focus-visible { outline: 2px solid var(--gold-hot); outline-offset: 3px; border-radius: 8px; }
+[hidden] { display: none !important; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: fixed; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; background: var(--red); color: #fff; border-radius: 12px; font-weight: 600; transition: top var(--t-med); }
 .skip:focus { top: 12px; }
@@ -222,13 +223,13 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 
 /* --- 1 · Hero ------------------------------------------------------------- */
 .hero { min-height: 100svh; display: grid; align-content: start; gap: 8px; padding-top: calc(var(--nav-h) + 26px) !important; padding-bottom: 56px !important; }
-.hero__stage { position: relative; width: 100%; height: min(100vw, 50svh); margin: 0 auto; max-width: 640px; }
+.hero__stage { position: relative; width: 100%; height: min(118vw, 58svh); margin: 0 auto; max-width: 640px; }
 .hero__light { position: absolute; left: 50%; top: 58%; width: 120%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
   background: radial-gradient(closest-side, rgba(255, 59, 68, .55), rgba(227, 38, 47, .22) 45%, transparent 72%);
   filter: blur(8px); animation: breathe-light 4.2s var(--ease-io) infinite; }
 @keyframes breathe-light { 50% { opacity: .62; transform: translate(-50%, -50%) scale(.92); } }
-.hero__logo { position: absolute; left: 50%; top: 0; width: min(56vw, 300px); transform: translateX(-50%); z-index: 1; }
-.hero__cap { position: absolute; left: 50%; bottom: 0; width: min(78vw, 470px); transform: translateX(-50%); z-index: 2; }
+.hero__logo { position: absolute; left: 50%; top: 0; width: min(54vw, 290px); transform: translateX(-50%); z-index: 3; }
+.hero__cap { position: absolute; left: 50%; bottom: 0; width: min(70vw, 440px); transform: translateX(-50%); z-index: 2; }
 .hero__cap img { position: relative; z-index: 1; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .7)) drop-shadow(0 0 60px rgba(227, 38, 47, .25)); }
 .hero__cap canvas { position: absolute; inset: -12%; width: 124%; height: 124%; z-index: 2; opacity: 0; transition: opacity 900ms var(--ease-out); }
 .hero__cap.has-3d canvas { opacity: 1; }
