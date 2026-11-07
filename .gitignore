@@ -16,3 +16,4 @@ diprolaser/web/.cache/
 # DIPROLASER: intermedios pesados del pipeline (se regeneran con tools/)
 diprolaser/web/build/
 diprolaser/web/dist/
+diprolaser/web/public/img/cap3d/**/_tmp*.exr

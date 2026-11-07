@@ -61,7 +61,7 @@ export async function initConfigurator({ aura } = {}) {
     swatches.innerHTML = Object.entries(COLORS).map(([k, [n, hex]]) => `<button type="button" role="radio" class="swatch" data-value="${k}" aria-checked="${cfg.colors[cfg.part] === k}" aria-label="${n}" title="${n}" style="--c:${hex}"></button>`).join('');
     radioGroup(swatches, (v) => {
       cfg.colors[cfg.part] = v; cfg.touched = true;
-      scene?.setColor(cfg.part, COLORS[v][1]);
+      scene?.setColor(cfg.part, COLORS[v][1], cfg.part === 'crown' ? [.5, .32] : cfg.part === 'visor' ? [.62, .66] : [.5, .72]);
       if (cfg.part === 'crown') aura?.setSectionColor(root, v === 'negro' ? '#d61f2c' : COLORS[v][1]);
       sync();
     });
@@ -142,7 +142,7 @@ export async function initConfigurator({ aura } = {}) {
 
   /* ---------- descargar mi diseño ---------- */
   root.querySelector('[data-download]').addEventListener('click', async () => {
-    const shot = scene ? scene.snapshot(1080, 1080) : await fallback?.snapshot();
+    const shot = scene?.snapshot();
     if (!shot) return;
     const out = await composeDesign(shot, summaryText.textContent);
     out.toBlob(async (blob) => {
@@ -164,54 +164,23 @@ export async function initConfigurator({ aura } = {}) {
   sync();
 
   /* ---------- 3D (o visor de fotos si no hay WebGL) ---------- */
-  const forceFallback = new URLSearchParams(location.search).has('fallback');
-  const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
+  /* ---------- visor con renders fotorrealistas (WebGL, o 2D si no hay) ---------- */
   dipro = await defaultLogo().catch(() => null);
-  if (hasGL && !forceFallback) {
-    try {
-      const { createScene } = await import('./scene.js');
-      scene = await createScene(host, { reduced: reducedMotion.matches });
-      const hexes = Object.fromEntries(Object.entries(cfg.colors).map(([k, c]) => [k, COLORS[c][1]]));
-      await scene.setModel(cfg.model, hexes);
-      scene.setTech(cfg.tech); scene.setLogo(state.logo || dipro);
-      host.classList.add('is-ready'); loading.remove();
-      window.__cfg = scene;
-      // la misma gorra gira en el hero mientras el configurador no se ve (un solo contexto 3D)
-      const heroCap = document.querySelector('[data-hero-3d]'); const heroStage = heroCap.parentElement;
-      let heroVis = false, cfgVis = false;
-      const route = () => {
-        if (!scene) return;
-        if (heroVis && !cfgVis && !new URLSearchParams(location.search).has('qa')) { scene.attach(heroCap, 'hero'); requestAnimationFrame(() => heroStage.classList.add('has-3d')); }
-        else { scene.attach(host, 'cfg'); heroStage.classList.remove('has-3d'); }
-      };
-      new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; route(); }, { threshold: .15 }).observe(heroStage);
-      new IntersectionObserver(([e]) => { cfgVis = e.isIntersecting; route(); }, { rootMargin: '-8% 0px' }).observe(root);
-      // celular muy lento: si no alcanza ~16 cuadros por segundo, cambia al visor de cuadros pre-renderizados
-      if (!new URLSearchParams(location.search).has('qa')) {
-        const probe = () => setTimeout(() => {
-          if (!host.getBoundingClientRect().height || document.hidden) return probe();
-          const ms = scene.perf();
-          if (ms > 62) {
-            const r = scene.renderer; r.domElement.remove(); r.dispose(); r.forceContextLoss?.();
-            scene = null; window.__cfg = null; startFallback();
-          }
-        }, 3200);
-        probe();
-      }
-      return;
-    } catch (err) { console.warn('3D no disponible', err); scene = null; }
-  }
-  await startFallback();
-
-  async function startFallback() {
-    const { createFallback } = await import('./fallback.js');
-    fallback = createFallback(host, cfg, { logo: state.logo || dipro, colors: COLORS });
-    host.classList.add('is-ready'); loading?.remove();
-    stage.classList.add('is-fallback');
-    waterBtn.hidden = true;
-    root.querySelector('[data-cfg-hint]').textContent = 'Arrastra para girarla';
-    sync();
-  }
+  const { createViewer } = await import('./viewer.js');
+  const hexes = Object.fromEntries(Object.entries(cfg.colors).map(([k, c]) => [k, COLORS[c][1]]));
+  scene = createViewer(host, { model: cfg.model, colors: hexes, tech: cfg.tech, logo: state.logo || dipro, reduced: reducedMotion.matches });
+  loading.remove(); host.querySelector('[data-cfg-poster]')?.remove();
+  window.__cfg = scene;
+  // la misma gorra gira en el hero mientras el configurador no se ve
+  const heroCap = document.querySelector('[data-hero-3d]'); const heroStage = heroCap.parentElement;
+  let heroVis = false, cfgVis = false;
+  const route = () => {
+    if (heroVis && !cfgVis && !new URLSearchParams(location.search).has('qa')) { scene.attach(heroCap, 'hero'); requestAnimationFrame(() => heroStage.classList.add('has-3d')); }
+    else { scene.attach(host, 'cfg'); heroStage.classList.remove('has-3d'); }
+  };
+  new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; route(); }, { threshold: .15 }).observe(heroStage);
+  new IntersectionObserver(([e]) => { cfgVis = e.isIntersecting; route(); }, { rootMargin: '-8% 0px' }).observe(root);
+  sync();
 }
 
 async function composeDesign(shot, text) {

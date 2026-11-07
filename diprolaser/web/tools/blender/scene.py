@@ -5,18 +5,27 @@ from mathutils import Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.abspath(os.path.join(HERE, '..', '..'))
-HDRI = os.path.join(bpy.utils.system_resource('DATAFILES', path='studiolights/world'), 'studio.exr')
+HDRI = os.path.join(WEB, 'build', 'ph', 'studio.exr')
 
 def srgb(h):
     h = h.lstrip('#'); c = [int(h[i:i + 2], 16) / 255 for i in (0, 2, 4)]
     return tuple(((x / 12.92) if x <= .04045 else ((x + .055) / 1.055) ** 2.4) for x in c) + (1,)
 
+PH = os.path.join(WEB, 'build', 'ph')
+_imgs = {}
+def load_img(name, colorspace):
+    key = (name, colorspace)
+    if key not in _imgs:
+        im = bpy.data.images.load(os.path.join(PH, name)); im.colorspace_settings.name = colorspace; _imgs[key] = im
+    return _imgs[key]
+# textura, luminancia media del albedo, repeticiones por unidad (1 unidad = 10 cm)
+TEX = {'tela': ('denim_fabric_05', .398, 2.6), 'gamuza': ('velour_velvet', .339, 2.2), 'poly': ('bi_stretch', .702, 5.0), 'malla': ('bi_stretch', .702, 5.0)}
 KINDS = {
     #            rugosidad, sheen, sheen_rough, coat, escala bump, fuerza bump
-    'tela':   dict(rough=.86, sheen=.55, sheen_rough=.45, coat=0, weave='twill', bump=.30),
-    'gamuza': dict(rough=.95, sheen=1.0, sheen_rough=.32, coat=0, weave='suede', bump=.22),
-    'poly':   dict(rough=.42, sheen=.25, sheen_rough=.5, coat=.12, weave='fine', bump=.12),
-    'malla':  dict(rough=.6, sheen=.3, sheen_rough=.5, coat=0, weave='fine', bump=.12),
+    'tela':   dict(rough=.9, sheen=.22, sheen_rough=.55, coat=0, nstr=1.6),
+    'gamuza': dict(rough=.97, sheen=.7, sheen_rough=.4, coat=0, nstr=1.4),
+    'poly':   dict(rough=.5, sheen=.2, sheen_rough=.5, coat=.1, nstr=.7),
+    'malla':  dict(rough=.6, sheen=.3, sheen_rough=.5, coat=0, nstr=.7),
 }
 MODELS = {
     'tela': dict(crown='tela', front='tela', visor='tela'),
@@ -72,35 +81,35 @@ def fabric_material(name, kind, color, role, uvnames, perforated=False, mesh=Fal
     bsdf.inputs['Sheen Roughness'].default_value = K['sheen_rough']
     bsdf.inputs['Sheen Tint'].default_value = (1, 1, 1, 1)
     bsdf.inputs['Coat Weight'].default_value = K['coat']
-    # textura de tejido en coordenadas del objeto (1 unidad = 10 cm)
+    # tejido escaneado (Poly Haven, CC0): albedo como variación de tono, normal y rugosidad reales.
+    # Coordenadas a escala de mundo (1 unidad = 10 cm) a partir de los UV de cada pieza.
+    tex_name, tex_mean, tex_scale = TEX[kind]
     tc = node(nt, 'ShaderNodeTexCoord', (-1400, 0))
-    if K['weave'] == 'twill':
-        wv = node(nt, 'ShaderNodeTexWave', (-1100, 200), wave_type='BANDS', bands_direction='DIAGONAL')
-        wv.inputs['Scale'].default_value = 95; wv.inputs['Distortion'].default_value = 1.2; wv.inputs['Detail'].default_value = 1
-        nt.links.new(tc.outputs['Object'], wv.inputs['Vector'])
-        nz = node(nt, 'ShaderNodeTexNoise', (-1100, -50)); nz.inputs['Scale'].default_value = 900; nz.inputs['Detail'].default_value = 2
-        nt.links.new(tc.outputs['Object'], nz.inputs['Vector'])
-        h = math_node(nt, 'ADD', math_node(nt, 'MULTIPLY', wv.outputs['Fac'], .8), math_node(nt, 'MULTIPLY', nz.outputs['Fac'], .5))
-    elif K['weave'] == 'suede':
-        nz = node(nt, 'ShaderNodeTexNoise', (-1100, -50)); nz.inputs['Scale'].default_value = 700; nz.inputs['Detail'].default_value = 6; nz.inputs['Roughness'].default_value = .7
-        nt.links.new(tc.outputs['Object'], nz.inputs['Vector'])
-        nz2 = node(nt, 'ShaderNodeTexNoise', (-1100, 150)); nz2.inputs['Scale'].default_value = 22; nz2.inputs['Detail'].default_value = 3
-        nt.links.new(tc.outputs['Object'], nz2.inputs['Vector'])
-        h = math_node(nt, 'ADD', nz.outputs['Fac'], math_node(nt, 'MULTIPLY', nz2.outputs['Fac'], .35))
-        # variación de tono de la gamuza
-        mix = node(nt, 'ShaderNodeMix', (200, 250)); mix.data_type = 'RGBA'; mix.blend_type = 'MULTIPLY'
-        mix.inputs['Factor'].default_value = .35; mix.inputs[6].default_value = srgb(color)
-        ramp = node(nt, 'ShaderNodeMapRange', (0, 250)); ramp.inputs['To Min'].default_value = .8; ramp.inputs['To Max'].default_value = 1.15
-        nt.links.new(nz2.outputs['Fac'], ramp.inputs['Value'])
-        cmb = node(nt, 'ShaderNodeCombineColor', (100, 350))
-        for i in range(3): nt.links.new(ramp.outputs[0], cmb.inputs[i])
-        nt.links.new(cmb.outputs[0], mix.inputs[7])
-        nt.links.new(mix.outputs[2], bsdf.inputs['Base Color'])
+    u0x, u0y = uvmap(nt, uvnames[0]); u1x, u1y = uvmap(nt, uvnames[1])
+    if role in ('visorTop', 'visorBottom', 'edge'):
+        wu, wv = u1y, math_node(nt, 'MULTIPLY', u0y, .78)
     else:
-        wv = node(nt, 'ShaderNodeTexWave', (-1100, 200), wave_type='BANDS', bands_direction='X')
-        wv.inputs['Scale'].default_value = 260
-        nt.links.new(tc.outputs['Object'], wv.inputs['Vector'])
-        h = math_node(nt, 'MULTIPLY', wv.outputs['Fac'], .5)
+        wu, wv = u0x, u0y
+    co = node(nt, 'ShaderNodeCombineXYZ', (-1200, 0)); nt.links.new(wu, co.inputs[0]); nt.links.new(wv, co.inputs[1])
+    mp = node(nt, 'ShaderNodeMapping', (-1050, 0)); mp.inputs['Scale'].default_value = (tex_scale, tex_scale, 1)
+    nt.links.new(co.outputs[0], mp.inputs['Vector'])
+    def img(suffix, colorspace, loc):
+        t = node(nt, 'ShaderNodeTexImage', loc); t.image = load_img(f'{tex_name}_{suffix}.jpg', colorspace); t.interpolation = 'Cubic'
+        nt.links.new(mp.outputs[0], t.inputs['Vector']); return t
+    dif = img('diff', 'sRGB', (-850, 300)); nor = img('nor', 'Non-Color', (-850, 0)); rgh = img('rough', 'Non-Color', (-850, -300))
+    bw = node(nt, 'ShaderNodeRGBToBW', (-600, 300)); nt.links.new(dif.outputs['Color'], bw.inputs[0])
+    var = math_node(nt, 'POWER', math_node(nt, 'DIVIDE', bw.outputs[0], tex_mean), .9)
+    cm = node(nt, 'ShaderNodeMix', (200, 250)); cm.data_type = 'RGBA'; cm.blend_type = 'MULTIPLY'; cm.inputs['Factor'].default_value = 1
+    cm.inputs[6].default_value = srgb(color)
+    cm.name = 'ALBEDO'
+    vc = node(nt, 'ShaderNodeCombineColor', (0, 350))
+    for i in range(3): nt.links.new(var, vc.inputs[i])
+    nt.links.new(vc.outputs[0], cm.inputs[7]); nt.links.new(cm.outputs[2], bsdf.inputs['Base Color'])
+    rr = node(nt, 'ShaderNodeMapRange', (-500, -300)); rr.inputs['To Min'].default_value = K['rough'] - .12; rr.inputs['To Max'].default_value = min(1, K['rough'] + .08)
+    nt.links.new(rgh.outputs['Color'], rr.inputs['Value']); nt.links.new(rr.outputs[0], bsdf.inputs['Roughness'])
+    nm = node(nt, 'ShaderNodeNormalMap', (-300, -150)); nm.uv_map = uvnames[0]; nm.inputs['Strength'].default_value = K['nstr']
+    nt.links.new(nor.outputs['Color'], nm.inputs['Color'])
+    h = None
     # pespuntes
     thread = None
     if role in ('crown', 'front'):
@@ -111,24 +120,28 @@ def fabric_material(name, kind, color, role, uvnames, perforated=False, mesh=Fal
         t2 = math_node(nt, 'MULTIPLY', r2, dash(nt, ar, .034, .76))
         thread = math_node(nt, 'MAXIMUM', t1, t2)
     elif role in ('visorTop', 'visorBottom'):
-        s_, t_ = uvmap(nt, uvnames[0]); _, al = uvmap(nt, uvnames[1])
+        s_, t_ = uvmap(nt, uvnames[0]); _, al = uvmap(nt, uvnames[1]); vlen, _ = uvmap(nt, uvnames[2])
+        # distancia real al borde exterior: filas paralelas al borde, como en una visera real
+        dedge = math_node(nt, 'MULTIPLY', math_node(nt, 'SUBTRACT', 1.0, t_), vlen)
         acc = None
-        for k in range(8):
-            r = row_mask(nt, t_, .955 - k * .072, .0062)
+        for k in range(6):
+            r = row_mask(nt, dedge, .07 + k * .042, .0032)
             acc = r if acc is None else math_node(nt, 'MAXIMUM', acc, r)
         thread = math_node(nt, 'MULTIPLY', acc, dash(nt, al, .036, .78))
     if thread is not None:
-        h = math_node(nt, 'ADD', math_node(nt, 'MULTIPLY', h, .5), math_node(nt, 'MULTIPLY', thread, 1.6))
+        h = math_node(nt, 'MULTIPLY', thread, 1.0)
         # el hilo es apenas más claro y más brillante que la tela
-        tm = node(nt, 'ShaderNodeMix', (300, 120)); tm.data_type = 'RGBA'; tm.blend_type = 'MIX'
+        tm = node(nt, 'ShaderNodeMix', (300, 120)); tm.data_type = 'RGBA'; tm.blend_type = 'MIX'; tm.name = 'THREAD'
         nt.links.new(thread, tm.inputs['Factor'])
         base_link = bsdf.inputs['Base Color'].links[0].from_socket if bsdf.inputs['Base Color'].is_linked else None
         if base_link: nt.links.new(base_link, tm.inputs[6])
         else: tm.inputs[6].default_value = srgb(color)
         c = srgb(color); tm.inputs[7].default_value = (min(1, c[0] * 1.5 + .012), min(1, c[1] * 1.5 + .012), min(1, c[2] * 1.5 + .012), 1)
         nt.links.new(tm.outputs[2], bsdf.inputs['Base Color'])
-    bump = node(nt, 'ShaderNodeBump', (200, -250)); bump.inputs['Strength'].default_value = K['bump']; bump.inputs['Distance'].default_value = .002
-    nt.links.new(h, bump.inputs['Height']); nt.links.new(bump.outputs[0], bsdf.inputs['Normal'])
+    bump = node(nt, 'ShaderNodeBump', (200, -250)); bump.inputs['Strength'].default_value = .9; bump.inputs['Distance'].default_value = .0025
+    nt.links.new(nm.outputs[0], bump.inputs['Normal'])
+    if h is not None: nt.links.new(h, bump.inputs['Height'])
+    nt.links.new(bump.outputs[0], bsdf.inputs['Normal'])
     shader = bsdf.outputs[0]
     # perforaciones o malla: huecos reales (transparencia)
     if perforated or mesh:
@@ -202,10 +215,13 @@ def build(model='tela', colors=None, samples=96, res=720):
         'eyelet': fabric_material('eyelet', 'tela', colors['crown'], 'eyelet', uvn, aov_part=1),
     }
     pick = {'front': 'front', 'sideL': 'crown', 'sideR': 'crown', 'backL': 'crown', 'backR': 'crown', 'visorTop': 'visorTop', 'visorBottom': 'visorBottom', 'visorEdge': 'edge', 'button': 'button', 'bindBase': 'bind', 'bindArch': 'bind', 'sweat': 'sweat', 'label': 'label'}
+    clay = os.environ.get('CLAY') == '1'
+    if clay:
+        cm = simple_material('clay', '#8a8a8a', rough=.55)
     for o in objs:
         n = o.name.split('.')[0]
-        key = pick.get(n) or ('eyelet' if n.startswith('eyelet') else 'hole' if n.startswith('hole') else 'plastic' if n.startswith('snap') else None)
-        o.data.materials.clear(); o.data.materials.append(mats[key or 'plastic'])
+        key = pick.get(n) or ('bind' if n.startswith('welt') else 'eyelet' if n.startswith('eyelet') else 'hole' if n.startswith('hole') else 'plastic' if n.startswith('snap') else None)
+        o.data.materials.clear(); o.data.materials.append(cm if clay and key not in ('hole',) else mats[key or 'plastic'])
         if key in ('crown', 'front'):
             sol = o.modifiers.new('grosor', 'SOLIDIFY'); sol.thickness = .006; sol.offset = -1; sol.use_even_offset = True
     # piso que solo recibe sombra
@@ -217,14 +233,14 @@ def build(model='tela', colors=None, samples=96, res=720):
         o = bpy.data.objects.new(name, d); sc.collection.objects.link(o); o.location = loc
         dirv = Vector(target) - Vector(loc); o.rotation_euler = dirv.to_track_quat('-Z', 'Y').to_euler()
         return o
-    area('key', (-3.2, -4.2, 3.6), 3.5, 900)
-    area('fill', (4.2, -3.0, 1.2), 4.0, 220)
-    area('rim', (2.6, 3.8, 2.4), 2.0, 520, (1, .42, .42))
-    area('top', (0, 0, 5.5), 4.0, 160)
+    area('key', (-3.2, -4.2, 3.6), 3.5, float(os.environ.get('KEY', 380)))
+    area('fill', (4.2, -3.0, 1.2), 4.0, 70)
+    area('rim', (2.6, 3.8, 2.4), 2.0, 240, (1, 1, 1))
+    area('top', (0, 0, 5.5), 4.0, 50)
     # mundo: estudio tenue para reflejos
     w = bpy.data.worlds.new('w'); sc.world = w; w.use_nodes = True; wt = w.node_tree
     bg = wt.nodes['Background']; env = wt.nodes.new('ShaderNodeTexEnvironment'); env.image = bpy.data.images.load(HDRI)
-    wt.links.new(env.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = .35
+    wt.links.new(env.outputs[0], bg.inputs[0]); bg.inputs[1].default_value = float(os.environ.get('HDRI_STR', .35))
     # cámara
     cam_d = bpy.data.cameras.new('cam'); cam_d.lens = 70
     cam = bpy.data.objects.new('cam', cam_d); sc.collection.objects.link(cam); sc.camera = cam
@@ -234,7 +250,7 @@ def build(model='tela', colors=None, samples=96, res=720):
     sc.cycles.max_bounces = 6; sc.cycles.transparent_max_bounces = 16
     sc.render.film_transparent = True
     sc.render.resolution_x = sc.render.resolution_y = res; sc.render.resolution_percentage = 100
-    sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'None'
+    sc.view_settings.view_transform = 'AgX'; sc.view_settings.look = 'AgX - Base Contrast'
     sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGBA'
     return dict(scene=sc, pivot=pivot, cam=cam, mats=mats)
 

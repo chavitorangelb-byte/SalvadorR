@@ -3,7 +3,7 @@
 // abertura trasera con snapback, visera precurva con grosor y canto, banda interior y etiqueta hexagonal.
 import * as THREE from 'three';
 
-export const CAP = { Rx: .9, Rz: 1.04, H: 1.26, zA: -.22 };
+export const CAP = { Rx: .85, Rz: 1.03, H: .98, zA: -.12, dip: .1 };
 // costuras (radianes desde el frente): frente/lateral, lateral/trasero, centro trasero
 const S1 = 60 * Math.PI / 180, S2 = 126 * Math.PI / 180;
 export const PANELS = {
@@ -27,16 +27,22 @@ export function basePoint(th, out = v3()) {
   // superelipse: frente más plano (A-frame), atrás más redondo
   const e = lerp(1, .62, ((1 + Math.cos(th)) / 2) ** 2);
   const s = Math.sin(th), c = Math.cos(th);
-  return out.set(CAP.Rx * Math.sign(s) * Math.abs(s) ** e, 0, CAP.Rz * Math.sign(c) * Math.abs(c) ** e);
+  // la base del frente baja hacia los costados siguiendo la curva de la visera
+  const dip = CAP.dip * s * s * Math.min(1, Math.max(0, (c + .25) / .5));
+  return out.set(CAP.Rx * Math.sign(s) * Math.abs(s) ** e, -dip, CAP.Rz * Math.sign(c) * Math.abs(c) ** e);
 }
 const _B = v3(), _D = v3(), _P1 = v3(), _P2 = v3(), _A = v3();
 function crownRaw(th, t, out) {
   basePoint(th, _B);
   const w = (1 + Math.cos(th)) / 2; // 1 = frente, 0 = atrás
-  const h1 = lerp(.5, 1.16, w ** 1.1), r2 = lerp(.56, .42, w ** .8);
+  const Rd = Math.hypot(_B.x, _B.z - CAP.zA);
+  // domo amplio: tangente vertical en la base y horizontal arriba (casi un cuarto de elipse, un poco más lleno al frente)
+  // frente rígido (entretela): sube casi recto y voltea con hombro; costados y atrás redondos
+  const wf = w ** 3;
+  const h1 = CAP.H * lerp(.5, .84, wf), r2 = Rd * lerp(.7, .5, wf);
   _D.set(_B.x, 0, _B.z - CAP.zA).normalize();
   _A.set(0, CAP.H, CAP.zA);
-  _P1.copy(_B).addScaledVector(_D, -lerp(.0, .16, w)); _P1.y += h1;
+  _P1.copy(_B).addScaledVector(_D, -lerp(.0, .06, w)); _P1.y += h1;
   _P2.copy(_A).addScaledVector(_D, r2);
   const u = 1 - t;
   return out.set(0, 0, 0)
@@ -59,7 +65,7 @@ export function crownPoint(th, t, out = v3()) {
   const [a0, a1] = panelOf(th); const u = (th - a0) / (a1 - a0);
   const front = a0 === PANELS.front[0];
   const fade = Math.max(0, Math.sin(Math.PI * Math.min(1, t / .14))) ** .5 * (1 - Math.max(0, (t - .8) / .2));
-  const bulge = Math.max(0, Math.sin(Math.PI * Math.min(1, Math.max(0, u)))) ** .7 * (front ? .007 : .014) * (t < .14 ? fade : 1 - Math.max(0, (t - .8) / .2));
+  const bulge = Math.max(0, Math.sin(Math.PI * Math.min(1, Math.max(0, u)))) ** .7 * (front ? .003 : .006) * (t < .14 ? fade : 1 - Math.max(0, (t - .8) / .2));
   const k = bulge - g;
   if (Math.abs(k) > 1e-6) { _o.set(out.x, 0, out.z - CAP.zA).normalize(); out.addScaledVector(_o, k * .85); out.y += k * .5 * t; }
   return out;
@@ -122,17 +128,17 @@ function panelGeometry([th0, th1], nu, nv) {
 }
 
 /* ---------------- Visera ---------------- */
-export const VIS = { thIn: 72 * Math.PI / 180, thOut: 80 * Math.PI / 180, Ox: .96, Oz: 1.9, drop: .3, curve: .34, thick: .03 };
-const VIS_LEN = VIS.Oz - CAP.Rz * .985;
+// Visera precurva: costura interior siguiendo la base del frente, borde exterior en media elipse
+export const VIS = { thIn: 78 * Math.PI / 180, A: .85, B: 1.52, z0: .27, drop: .17, curve: .3, thick: .034 };
+const VIS_LEN = VIS.z0 + VIS.B - CAP.Rz * .99;
 const _I = v3(), _O = v3();
 export function visorPoint(s, t, out = v3()) {
-  basePoint(s * VIS.thIn, _I).multiplyScalar(.985);
-  const a = s * VIS.thOut;
-  _O.set(VIS.Ox * Math.sin(a), 0, VIS.Oz * Math.cos(a));
+  basePoint(s * VIS.thIn, _I).multiplyScalar(.99);
+  const a = s * Math.PI / 2;
+  _O.set(VIS.A * Math.sin(a), 0, VIS.z0 + VIS.B * Math.cos(a));
   out.copy(_I).lerp(_O, t);
-  // la caída depende de cuánto avanza la visera desde la costura (en las puntas casi nada)
-  const fd = t * _I.distanceTo(_O) / VIS_LEN;
-  out.y = -(VIS.drop + VIS.curve * out.x * out.x) * fd;
+  const fd = t * _I.distanceTo(_O) / VIS_LEN; const xn = out.x / VIS.A;
+  out.y = _I.y - (VIS.drop * fd + VIS.curve * xn * xn * Math.sqrt(fd));
   return out;
 }
 function visorNormal(s, t, out = v3()) {
@@ -145,7 +151,7 @@ function visorGeometry(nu = 72, nv = 26, bottom = false) {
   const pos = [], nor = [], uv = [], st = [], idx = [];
   const P = v3(), N = v3(), prev = v3();
   for (let i = 0; i <= nu; i++) {
-    const s = lerp(-1, 1, i / nu);
+    const s = lerp(-.96, .96, i / nu);
     for (let j = 0; j <= nv; j++) {
       const t = j / nv;
       visorPoint(s, t, P); visorNormal(s, t, N);
@@ -153,7 +159,7 @@ function visorGeometry(nu = 72, nv = 26, bottom = false) {
       if (bottom) { P.addScaledVector(N, -th); N.negate(); }
       pos.push(P.x, P.y, P.z); nor.push(N.x, N.y, N.z);
       uv.push(s, t);
-      st.push(0, 0, 0, 0);
+      st.push(0, 0, visorPoint(s, 1, _a).distanceTo(visorPoint(s, 0, _b)), 0);
     }
   }
   // arco a lo largo de s para cada t (pespuntes con separación uniforme)
@@ -182,13 +188,17 @@ function visorGeometry(nu = 72, nv = 26, bottom = false) {
 }
 function visorEdgeGeometry(n = 120, seg = 6) {
   // canto redondeado: borde exterior y las dos puntas
+  // contorno cerrado: punta izquierda (atrás -> frente), borde frontal, punta derecha (frente -> atrás)
   const path = [];
-  for (let i = 0; i <= n; i++) path.push([lerp(-1, 1, i / n), 1]);
+  for (let i = 0; i <= 12; i++) path.push([-.96, i / 12]);
+  for (let i = 1; i <= n; i++) path.push([lerp(-.96, .96, i / n), 1]);
+  for (let i = 11; i >= 0; i--) path.push([.96, i / 12]);
   const pos = [], nor = [], uv = [], idx = [];
   const P = v3(), N = v3(), T = v3(), Q = v3(), out = v3();
   path.forEach(([s, t], i) => {
     visorPoint(s, t, P); visorNormal(s, t, N);
-    visorPoint(Math.min(1, s + .01), t, Q).sub(visorPoint(Math.max(-1, s - .01), t, out));
+    const k = Math.max(0, Math.min(path.length - 1, i)); const [s1, t1] = path[Math.min(path.length - 1, k + 1)], [s0, t0] = path[Math.max(0, k - 1)];
+    visorPoint(s1, t1, Q).sub(visorPoint(s0, t0, out));
     T.copy(Q).normalize();
     out.crossVectors(T, N).normalize(); // hacia afuera de la visera
     const th = VIS.thick * .7;
@@ -223,7 +233,7 @@ function sweatbandGeometry(n = 160) {
     const ts = archStart(th); if (ts > 0) { /* hueco del snapback */ }
     basePoint(th, P).multiplyScalar(.972);
     const nx = -P.x, nz = -(P.z - CAP.zA); const l = Math.hypot(nx, nz);
-    for (const y of [-.004, .09]) { pos.push(P.x, y, P.z); nor.push(nx / l, 0, nz / l); uv.push(i / n, y); }
+    for (const y of [-.004, .09]) { pos.push(P.x, P.y + y, P.z); nor.push(nx / l, 0, nz / l); uv.push(i / n, y); }
   }
   for (let i = 0; i < n; i++) { const a = i * 2; idx.push(a, a + 2, a + 1, a + 2, a + 3, a + 1); }
   const g = new THREE.BufferGeometry();
@@ -416,6 +426,13 @@ export function archBindingPoints() {
   return pts;
 }
 
+/** Vivo (piping) en relieve sobre cada costura, de la base al botón. */
+function seamWeltPoints(th) {
+  const pts = []; const P = v3(), N = v3(); const t0 = Math.abs(Math.abs(th) - Math.PI) < 1e-6 ? ARCH.t + .01 : .012;
+  for (let i = 0; i <= 70; i++) { const t = t0 + (.962 - t0) * i / 70; crownPoint(th, t, P); crownNormal(th, t, N); pts.push(P.clone().addScaledVector(N, .0035)); }
+  return pts;
+}
+
 export function buildCap(mats) {
   const cap = new THREE.Group(); cap.name = 'cap';
   const parts = {};
@@ -431,7 +448,7 @@ export function buildCap(mats) {
   parts.eyelets = eyelets(mats.eyelet, mats.hole); cap.add(parts.eyelets);
   parts.snap = snapbackGroup(mats.plastic); cap.add(parts.snap);
   mk('label', labelGeometry(), mats.label);
-  mk('bindBase', bindingGeometry(baseBindingPoints(), .012), mats.crown);
+  for (const th of [-S1, S1, -S2, S2, Math.PI]) mk(`welt${Math.round(th * 100)}`, bindingGeometry(seamWeltPoints(th), .0095, 10), mats.crown);
   mk('bindArch', bindingGeometry(archBindingPoints(), .013), mats.crown);
   cap.position.y = -.5;
   cap.rotation.x = -.09; // pose de foto de producto: la parte de atrás un poco más baja

@@ -232,7 +232,6 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .hero__cap { position: absolute; left: 50%; bottom: 0; width: min(70vw, 440px); transform: translateX(-50%); z-index: 2; }
 .hero__cap img { position: relative; z-index: 1; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .7)) drop-shadow(0 0 60px rgba(227, 38, 47, .25)); }
 .hero__3d { position: absolute; left: -2%; right: -2%; bottom: -3%; height: 76%; z-index: 2; opacity: 0; pointer-events: none; transition: opacity 900ms var(--ease-out); }
-.hero__3d canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
 .hero__stage.has-3d .hero__3d { opacity: 1; }
 .hero__stage.has-3d .hero__cap img { opacity: 0; transition: opacity 900ms var(--ease-out); }
 .hero__shadow { position: absolute; left: 10%; right: 10%; bottom: -4%; height: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .85), transparent); filter: blur(6px); }
@@ -270,7 +269,8 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .cfg__canvas { position: relative; aspect-ratio: 1 / 1.02; border-radius: 22px; overflow: hidden; touch-action: pan-y; cursor: grab;
   background: radial-gradient(62% 52% at 50% 44%, rgba(227, 38, 47, .22), transparent 72%), radial-gradient(120% 80% at 50% 100%, rgba(0, 0, 0, .7), transparent), #0a0a0d; }
 .cfg__canvas:active { cursor: grabbing; }
-.cfg__canvas canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; outline: none; }
+.cfg__canvas canvas, .hero__3d canvas { position: absolute; inset: 0; margin: auto; height: 100% !important; width: auto !important; max-width: 100%; aspect-ratio: 1; object-fit: contain; outline: none; transform-origin: 50% 55%; transition: transform var(--t-med) var(--ease-out); }
+.cap-water { pointer-events: none; }
 .cfg__poster { position: absolute; inset: 12% 6%; display: grid; place-items: center; transition: opacity var(--t-slow); }
 .cfg__poster img { max-height: 100%; width: auto; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, .7)); }
 .cfg__loading { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; font-size: .86rem; color: var(--text-2); white-space: nowrap; }
