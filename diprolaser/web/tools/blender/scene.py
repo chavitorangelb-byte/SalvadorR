@@ -147,13 +147,16 @@ def fabric_material(name, kind, color, role, uvnames, perforated=False, mesh=Fal
     if perforated or mesh:
         tex = node(nt, 'ShaderNodeTexVoronoi' if perforated else 'ShaderNodeTexWave', (-600, -500))
         if perforated:
-            tex.feature = 'F1'; tex.inputs['Scale'].default_value = 26; tex.inputs['Randomness'].default_value = 0
-            nt.links.new(tc.outputs['Object'], tex.inputs['Vector'])
+            # perforado láser: cuadrícula pareja sobre la tela (2D), ~5 mm entre hoyos
+            tex.voronoi_dimensions = '2D'; tex.feature = 'F1'; tex.inputs['Scale'].default_value = float(os.environ.get('PERF_SCALE', 22)); tex.inputs['Randomness'].default_value = 0
+            nt.links.new(co.outputs[0], tex.inputs['Vector'])
             hole = math_node(nt, 'LESS_THAN', tex.outputs['Distance'], .17)
         else:
-            vor = node(nt, 'ShaderNodeTexVoronoi', (-600, -700)); vor.feature = 'DISTANCE_TO_EDGE'; vor.inputs['Scale'].default_value = 70; vor.inputs['Randomness'].default_value = 0
-            nt.links.new(tc.outputs['Object'], vor.inputs['Vector'])
-            hole = math_node(nt, 'GREATER_THAN', vor.outputs['Distance'], .12)
+            # malla en coordenadas de la tela (2D): en 3D la rejilla cortada por la copa curva hacía anillos
+            vor = node(nt, 'ShaderNodeTexVoronoi', (-600, -700)); vor.voronoi_dimensions = '2D'; vor.feature = 'DISTANCE_TO_EDGE'
+            vor.inputs['Scale'].default_value = float(os.environ.get('MESH_SCALE', 44)); vor.inputs['Randomness'].default_value = 0
+            nt.links.new(co.outputs[0], vor.inputs['Vector'])
+            hole = math_node(nt, 'GREATER_THAN', vor.outputs['Distance'], .2)
         tr = node(nt, 'ShaderNodeBsdfTransparent', (500, -300))
         mx = node(nt, 'ShaderNodeMixShader', (700, 0))
         nt.links.new(hole, mx.inputs[0]); nt.links.new(shader, mx.inputs[1]); nt.links.new(tr.outputs[0], mx.inputs[2])
