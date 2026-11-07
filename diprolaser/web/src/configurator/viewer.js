@@ -2,6 +2,8 @@
 // Cada cuadro trae: luz difusa (l), brillo que no depende del color (s), imagen base (b) e ids/coordenadas del logo (i).
 // El color de cada parte y el logo se calculan en la GPU: color = albedo * luz + brillo, con el mismo tono final del render.
 const N = 24, TOP = 24, UNDER = 25, LMAX = 4, SMAX = 2, GRAY_REF = .5;
+// la luz difusa del estudio queda baja contra las fotos reales: los colores se ven un poco más claros, el brillo no cambia
+const EXPO = 1.25;
 export const VIEWS = { front: 0, side: 6, back: 12, visor: TOP, under: UNDER, threeq: 21 };
 const lin = (hex) => [1, 3, 5].map((i) => { const c = parseInt(hex.slice(i, i + 2), 16) / 255; return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; });
 const loadImg = (src) => new Promise((res, rej) => { const i = new Image(); i.decoding = 'async'; i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = rej; i.src = src; });
@@ -126,7 +128,7 @@ void main(){
       }
     }
   }
-  vec3 col = alb * L + S + add;
+  vec3 col = alb * L * ${EXPO.toFixed(2)} + S + add;
   col += vec3(1., .25, .22) * wave * .5;
   vec3 outc = toSrgb(neutral(col)) * (1. - .3 * halo * (1. - ov.a));
   float a = id.a;
@@ -231,7 +233,7 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
         const li = (Math.floor((1 - d[k + 2] / 255) * 255) * 256 + Math.floor(d[k + 1] / 255 * 255)) * 4; const la = logoData[li + 3] / 255;
         if (la) al = al.map((c, j) => c * (1 - la) + lin('#' + [logoData[li], logoData[li + 1], logoData[li + 2]].map((v) => v.toString(16).padStart(2, '0')).join(''))[j] * la);
       }
-      o[k] = tm(al[0] * L + S) * 255; o[k + 1] = tm(al[1] * L + S) * 255; o[k + 2] = tm(al[2] * L + S) * 255; o[k + 3] = a;
+      o[k] = tm(al[0] * L * EXPO + S) * 255; o[k + 1] = tm(al[1] * L * EXPO + S) * 255; o[k + 2] = tm(al[2] * L * EXPO + S) * 255; o[k + 3] = a;
     }
     ctx2d.putImageData(out, 0, 0);
     if (curOv && OVERLAY[st.tech]) ctx2d.drawImage(curOv.b, 0, 0);
