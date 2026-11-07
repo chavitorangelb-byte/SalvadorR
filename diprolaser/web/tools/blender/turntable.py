@@ -133,6 +133,8 @@ def main():
             if 'THREAD' in nd: nd['THREAD'].inputs[7].default_value = (min(1, v * 1.5 + .012),) * 3 + (1,)
     for idx, (yaw, pitch) in enumerate(views):
         if only is not None and idx not in only: continue
+        # al reanudar un lote cortado: el i.png es lo último que se escribe de cada cuadro
+        if os.environ.get('SKIP_DONE') and not overlay and not os.environ.get('DECAL_ONLY') and os.path.exists(os.path.join(out, f'{idx}-i.png')): continue
         pivot.rotation_euler = (0, 0, math.radians(-yaw))
         place_camera(S['cam'], yaw_deg=0, pitch_deg=pitch, dist=dist, target=(0, 0, ctr.z - .04))
         t0 = time.time()

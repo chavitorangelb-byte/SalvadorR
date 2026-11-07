@@ -7,7 +7,7 @@ const lin = (hex) => [1, 3, 5].map((i) => { const c = parseInt(hex.slice(i, i + 
 const loadImg = (src) => new Promise((res, rej) => { const i = new Image(); i.decoding = 'async'; i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = rej; i.src = src; });
 const TECH = { bordado: 0, placa: 1, parche: 2, laser: 3, color: 4 };
 // cuánto del brillo de la tela (sheen/especular) se usa por parte [corona, visera, abajo]: el algodón negro se veía gris de frente
-const SGAIN = { tela: [.55, .55, .55], gamuza: [.5, .5, .5], micro: [.5, .5, .5], bicolor: [.55, .5, .5] };
+const SGAIN = { tela: [.55, .55, .55], gamuza: [.5, .5, .5], micro: [.5, .5, .5], impermeable: [.42, .42, .42], bicolor: [.55, .5, .5] };
 const sgain = (m) => SGAIN[m] || [1, 1, 1];
 
 /* ---------- caché de cuadros compartida (hero y configurador usan las mismas imágenes) ---------- */
