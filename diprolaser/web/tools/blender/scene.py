@@ -165,7 +165,7 @@ def fabric_material(name, kind, color, role, uvnames, perforated=False, mesh=Fal
     if decal:
         u, v = uvmap(nt, uvnames[0])
         du = math_node(nt, 'ADD', math_node(nt, 'DIVIDE', math_node(nt, 'SUBTRACT', u, 0.0), .64), .5)
-        dv = math_node(nt, 'ADD', math_node(nt, 'DIVIDE', math_node(nt, 'SUBTRACT', v, .6), .64), .5)
+        dv = math_node(nt, 'ADD', math_node(nt, 'DIVIDE', math_node(nt, 'SUBTRACT', v, .68), .64), .5)
         cc = node(nt, 'ShaderNodeCombineXYZ', (700, -500)); nt.links.new(du, cc.inputs[0]); nt.links.new(dv, cc.inputs[1])
         aov2 = node(nt, 'ShaderNodeOutputAOV', (900, -500)); aov2.aov_name = 'decal'
         nt.links.new(cc.outputs[0], aov2.inputs['Color'])

@@ -3,7 +3,7 @@
 // abertura trasera con snapback, visera precurva con grosor y canto, banda interior y etiqueta hexagonal.
 import * as THREE from 'three';
 
-export const CAP = { Rx: .85, Rz: 1.03, H: .98, zA: -.12, dip: .2 };
+export const CAP = { Rx: .85, Rz: 1.03, H: 1.3, zA: .08, dip: .12 };
 // costuras (radianes desde el frente): frente/lateral, lateral/trasero, centro trasero
 const S1 = 60 * Math.PI / 180, S2 = 126 * Math.PI / 180;
 export const PANELS = {
@@ -41,10 +41,10 @@ function crownRaw(th, t, out) {
   // domo amplio: tangente vertical en la base y horizontal arriba (casi un cuarto de elipse, un poco más lleno al frente)
   // frente rígido (entretela): sube casi recto y voltea con hombro; costados y atrás redondos
   const wf = w ** 3;
-  const h1 = CAP.H * lerp(.5, .84, wf), r2 = Rd * lerp(.7, .5, wf);
+  const h1 = CAP.H * lerp(.64, .97, w * w), r2 = Rd * lerp(.8, .6, w * w);
   _D.set(_B.x, 0, _B.z - CAP.zA).normalize();
   _A.set(0, CAP.H, CAP.zA);
-  _P1.copy(_B).addScaledVector(_D, -lerp(.0, .06, w)); _P1.y += h1;
+  _P1.copy(_B).addScaledVector(_D, -lerp(.0, .3, wf)); _P1.y += h1;
   _P2.copy(_A).addScaledVector(_D, r2);
   const u = 1 - t;
   return out.set(0, 0, 0)
@@ -132,7 +132,7 @@ function panelGeometry([th0, th1], nu, nv) {
 /* ---------------- Visera ---------------- */
 // Visera precurva: costura interior siguiendo la base del frente, borde exterior en media elipse
 // slope: caída hacia el frente por unidad de largo; curve: cuánto más cae hacia los costados (visera curva)
-export const VIS = { thIn: 78 * Math.PI / 180, A: .85, B: 1.52, z0: .27, slope: .2, curve: .5, thick: .034 };
+export const VIS = { thIn: 78 * Math.PI / 180, A: .85, B: 1.86, z0: .27, slope: .12, curve: .4, thick: .034 };
 const _I = v3(), _O = v3();
 export function visorPoint(s, t, out = v3()) {
   basePoint(s * VIS.thIn, _I).multiplyScalar(.99);
