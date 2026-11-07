@@ -3,10 +3,10 @@ import * as THREE from 'three';
 import fs from 'node:fs';
 import { conformGeometry, conformRim } from '../../src/configurator/cap.js';
 const parts = {
-  plate: conformGeometry('disc', 0, .68, .62, .62, .006, .012),
-  plateRim: conformRim('disc', 0, .68, .62, .62, .006, .012),
-  patch: conformGeometry('rect', 0, .68, .7, .5, .004, .008),
-  patchRim: conformRim('rect', 0, .68, .7, .5, .004, .008),
+  plate: conformGeometry('disc', 0, .68, .7, .7, .006, .012),
+  plateRim: conformRim('disc', 0, .68, .7, .7, .006, .012),
+  patch: conformGeometry('rect', 0, .68, .78, .56, .004, .008),
+  patchRim: conformRim('rect', 0, .68, .78, .56, .004, .008),
 };
 // misma pose que la gorra (cap.position.y = -.5, rotación x = -.09)
 const m = new THREE.Matrix4().makeTranslation(0, -.5, 0).multiply(new THREE.Matrix4().makeRotationX(-.09));
