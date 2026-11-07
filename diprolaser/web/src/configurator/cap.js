@@ -12,6 +12,13 @@ export const PANELS = {
   backL: [S2, Math.PI], backR: [-Math.PI, -S2],
 };
 const SEAMS = [-Math.PI, -S2, -S1, S1, S2, Math.PI];
+function panelOf(th) {
+  if (th >= -S1 && th <= S1) return [-S1, S1];
+  if (th > S1 && th <= S2) return [S1, S2];
+  if (th < -S1 && th >= -S2) return [-S2, -S1];
+  if (th > S2) return [S2, Math.PI];
+  return [-Math.PI, -S2];
+}
 const ARCH = { w: .40, t: .21 };
 const lerp = (a, b, k) => a + (b - a) * k;
 const v3 = () => new THREE.Vector3();
@@ -43,11 +50,18 @@ function seamDistance(th, r) {
 const _o = v3(), _n = v3(), _a = v3(), _b = v3();
 /** Punto de la copa con la costura hundida. */
 export function crownPoint(th, t, out = v3()) {
+  if (th > Math.PI) th -= Math.PI * 2; else if (th < -Math.PI) th += Math.PI * 2;
   crownRaw(th, t, out);
   const r = Math.hypot(out.x, out.z - CAP.zA);
   const d = seamDistance(th, r);
   const g = Math.exp(-((d / .013) ** 2)) * .009 * (1 - Math.max(0, (t - .86) / .14));
-  if (g > 1e-5) { _o.set(out.x, 0, out.z - CAP.zA).normalize(); out.addScaledVector(_o, -g * .8); out.y -= g * .5 * t; }
+  // la tela se infla un poco entre costuras (el frente con entretela, menos)
+  const [a0, a1] = panelOf(th); const u = (th - a0) / (a1 - a0);
+  const front = a0 === PANELS.front[0];
+  const fade = Math.max(0, Math.sin(Math.PI * Math.min(1, t / .14))) ** .5 * (1 - Math.max(0, (t - .8) / .2));
+  const bulge = Math.max(0, Math.sin(Math.PI * Math.min(1, Math.max(0, u)))) ** .7 * (front ? .007 : .014) * (t < .14 ? fade : 1 - Math.max(0, (t - .8) / .2));
+  const k = bulge - g;
+  if (Math.abs(k) > 1e-6) { _o.set(out.x, 0, out.z - CAP.zA).normalize(); out.addScaledVector(_o, k * .85); out.y += k * .5 * t; }
   return out;
 }
 export function crownNormal(th, t, out = v3()) {
@@ -60,7 +74,7 @@ export function crownNormal(th, t, out = v3()) {
 }
 function archStart(th) {
   const d = Math.PI - Math.abs(th);
-  return d < ARCH.w ? ARCH.t * Math.sqrt(1 - (d / ARCH.w) ** 2) : 0;
+  const a = Math.abs(d); return a < ARCH.w ? ARCH.t * Math.sqrt(Math.max(0, 1 - (a / ARCH.w) ** 2)) : 0;
 }
 
 /** Malla de un panel. Atributos: uv = (arco horizontal, distancia por el perfil) en unidades de mundo,
@@ -384,6 +398,24 @@ function labelGeometry(n = 24) {
 }
 
 /** Construye la gorra. mats: { crown, mesh, front, visorTop, visorBottom, edge, sweat, button, eyelet, hole, plastic, label } */
+/** Ribete: tubo delgado que sigue una curva (borde inferior de la copa y arco del snapback). */
+function bindingGeometry(points, radius = .011, radial = 10) {
+  const curve = new THREE.CatmullRomCurve3(points, false, 'centripetal');
+  return new THREE.TubeGeometry(curve, points.length * 2, radius, radial, false);
+}
+export function baseBindingPoints() {
+  const pts = []; const P = v3();
+  for (let i = 0; i <= 160; i++) { const th = -Math.PI + i / 160 * Math.PI * 2; if (archStart(th) > 0) continue; crownPoint(th, .004, P); pts.push(P.clone().add(v3().set(P.x, 0, P.z - CAP.zA).normalize().multiplyScalar(.004))); }
+  // dos tramos (el hueco del snapback queda abierto): se ordena desde un extremo del arco
+  const k = pts.findIndex((p, i) => i > 0 && p.distanceTo(pts[i - 1]) > .2);
+  return k > 0 ? [...pts.slice(k), ...pts.slice(0, k)] : pts;
+}
+export function archBindingPoints() {
+  const pts = []; const P = v3();
+  for (let i = 0; i <= 60; i++) { const th = Math.PI - ARCH.w + i / 60 * ARCH.w * 2; crownPoint(th, archStart(th) + .004, P); pts.push(P.clone()); }
+  return pts;
+}
+
 export function buildCap(mats) {
   const cap = new THREE.Group(); cap.name = 'cap';
   const parts = {};
@@ -399,6 +431,8 @@ export function buildCap(mats) {
   parts.eyelets = eyelets(mats.eyelet, mats.hole); cap.add(parts.eyelets);
   parts.snap = snapbackGroup(mats.plastic); cap.add(parts.snap);
   mk('label', labelGeometry(), mats.label);
+  mk('bindBase', bindingGeometry(baseBindingPoints(), .012), mats.crown);
+  mk('bindArch', bindingGeometry(archBindingPoints(), .013), mats.crown);
   cap.position.y = -.5;
   cap.rotation.x = -.09; // pose de foto de producto: la parte de atrás un poco más baja
   return { cap, parts };
