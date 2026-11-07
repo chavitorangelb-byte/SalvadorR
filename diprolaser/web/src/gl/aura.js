@@ -106,7 +106,7 @@ export const AURA = {
 // gota → X → gorra → vaso, uno por frontera entre secciones
 const BOUNDARY_SHAPES = [0, 1, 2, 3, 0, 1, 2, 1];
 
-export function initAura() {
+export function initAura({ delay = 0 } = {}) {
   const canvas = document.getElementById('aura');
   const gl = canvas.getContext('webgl', { antialias: false, alpha: false, depth: false, stencil: false, powerPreference: 'low-power', preserveDrawingBuffer: false });
   if (!gl) return null;
@@ -130,10 +130,12 @@ export function initAura() {
     override: null,
   };
   let W = 0, H = 0, scale = 0.5;
+  // en celular la intro (gotas que forman la X) es lo más pesado: se dibuja a menor resolución y luego sube
+  let lowRes = isMobile();
   const resize = () => {
     W = innerWidth; H = innerHeight;
     const dpr = Math.min(devicePixelRatio || 1, 2);
-    scale = (isMobile() ? 0.42 : 0.5) * dpr;
+    scale = isMobile() ? (lowRes ? 0.3 : 0.5) : 0.5 * dpr; // fondo difuso: en celular basta media resolución (sin multiplicar por dpr)
     canvas.width = Math.round(W * scale); canvas.height = Math.round(H * scale);
     gl.viewport(0, 0, canvas.width, canvas.height);
   };
@@ -217,12 +219,16 @@ export function initAura() {
   addEventListener('scroll', () => { updateScroll(); if (reducedMotion.matches) start(); }, { passive: true });
   addEventListener('resize', updateScroll);
   document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) start(); else { cancelAnimationFrame(raf); raf = 0; } });
-  updateScroll(); start();
+  updateScroll();
+  // en celular el fondo arranca cuando la página ya cargó (el CSS de abajo ya da el color mientras tanto)
+  if (delay) { canvas.style.opacity = '0'; addEventListener('load', () => setTimeout(() => { start(); canvas.style.transition = 'opacity 900ms ease'; canvas.style.opacity = '1'; }, delay), { once: true }); }
+  else start();
 
   return {
     state: s,
     setSectionColor(sec, rgbHex) { sec.__auraColor = hex(rgbHex); updateScroll(); },
     refresh: updateScroll,
     kick: start,
+    hiRes() { if (lowRes) { lowRes = false; resize(); } },
   };
 }

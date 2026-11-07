@@ -230,6 +230,8 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 @keyframes breathe-light { 50% { opacity: .62; transform: translate(-50%, -50%) scale(.92); } }
 .hero__logo { position: absolute; left: 50%; top: 0; width: min(54vw, 290px); transform: translateX(-50%); z-index: 3; }
 .hero__cap { position: absolute; left: 50%; bottom: 0; width: min(70vw, 440px); transform: translateX(-50%); z-index: 2; }
+.hero__cap.is-floating { animation: cap-float 6.5s ease-in-out infinite; }
+@keyframes cap-float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
 .hero__cap img { position: relative; z-index: 1; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .7)) drop-shadow(0 0 60px rgba(227, 38, 47, .25)); }
 .hero__3d { position: absolute; left: -2%; right: -2%; bottom: -3%; height: 76%; z-index: 2; opacity: 0; pointer-events: none; transition: opacity 900ms var(--ease-out); }
 .hero__stage.has-3d .hero__3d { opacity: 1; }
@@ -376,7 +378,7 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .proc__list::before, .proc__list::after { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; }
 .proc__list::before { background: rgba(255, 255, 255, .1); }
 .proc__list::after { background: linear-gradient(180deg, var(--red-hot), var(--red)); box-shadow: 0 0 16px var(--red-hot); transform-origin: top; transform: scaleY(var(--p, 0)); }
-.pstep { position: relative; padding: 18px 18px 20px; border-radius: var(--r-md); background: rgba(255, 255, 255, .035); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); transition: background var(--t-slow), box-shadow var(--t-slow), opacity var(--t-slow); opacity: .5; }
+.pstep { position: relative; padding: 18px 18px 20px; border-radius: var(--r-md); background: rgba(255, 255, 255, .035); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); transition: background var(--t-slow), box-shadow var(--t-slow), opacity var(--t-slow); opacity: .78; }
 .pstep::before { content: ''; position: absolute; left: -29px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink-3); box-shadow: 0 0 0 3px var(--ink-0), 0 0 0 4px rgba(255, 255, 255, .16); transition: background var(--t-med), box-shadow var(--t-med); }
 .pstep.is-on { opacity: 1; background: linear-gradient(145deg, rgba(227, 38, 47, .14), rgba(255, 255, 255, .03)); box-shadow: inset 0 0 0 1px rgba(255, 110, 116, .28); }
 .pstep.is-on::before { background: var(--red-hot); box-shadow: 0 0 0 3px var(--ink-0), 0 0 16px 2px var(--red-hot); }
@@ -411,7 +413,7 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
 .social__icons .icon-btn { background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); }
 .foot { padding: 48px var(--gutter) calc(110px + env(safe-area-inset-bottom)); display: grid; justify-items: center; gap: 10px; text-align: center; border-top: 1px solid var(--line); color: var(--text-3); font-size: .86rem; }
 .foot__logo { width: 140px; }
-.foot__by { font-size: .74rem; opacity: .8; }
+.foot__by { font-size: .74rem; }
 
 /* --- WhatsApp flotante ---------------------------------------------------- */
 .wa-float { position: fixed; z-index: 40; right: max(14px, env(safe-area-inset-right)); bottom: calc(14px + env(safe-area-inset-bottom)); width: 58px; height: 58px; border-radius: 50%;

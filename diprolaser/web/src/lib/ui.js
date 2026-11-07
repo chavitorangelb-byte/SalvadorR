@@ -3,7 +3,8 @@ import { reducedMotion, finePointer, state } from './state.js';
 /* ---------- Tipografía cinética: parte los titulares en letras ---------- */
 export function splitChars(el) {
   if (el.dataset.split) return el.querySelectorAll('.ch');
-  el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+  // texto completo para lectores de pantalla (aria-label no vale en <p> sin rol)
+  const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = el.textContent.replace(/\s+/g, ' ').trim();
   el.querySelectorAll('.line').forEach((line) => {
     const text = line.textContent;
     line.textContent = '';
@@ -20,6 +21,7 @@ export function splitChars(el) {
       line.append(w);
     }
   });
+  el.prepend(sr);
   el.dataset.split = '1';
   return el.querySelectorAll('.ch');
 }

@@ -19,10 +19,11 @@ const chars = splitChars(heroTitle);
 chars.forEach((c, i) => c.style.setProperty('--i', i));
 heroTitle.classList.add('is-kinetic');
 
-const aura = initAura();
+const mobileFirst = matchMedia('(max-width: 759px), (pointer: coarse)').matches;
+const aura = new URLSearchParams(location.search).has('noaura') ? null : initAura({ delay: mobileFirst ? 2500 : 0 }); // ?noaura: sin fondo WebGL (pruebas)
 window.__aura = aura;
 const heroLogo = document.querySelector('[data-hero-logo]');
-if (aura && !reducedMotion.matches) {
+if (aura && !reducedMotion.matches && !mobileFirst) {
   heroLogo.classList.add('is-pending');
   const s = aura.state.hero;
   const t0 = performance.now();
@@ -33,27 +34,28 @@ if (aura && !reducedMotion.matches) {
     s.form = ease(Math.min(1, Math.max(0, (t - 0.15) / 1.25))); // se juntan en la X
     if (t > 1.25) heroLogo.classList.replace('is-pending', 'is-on'); // entra el logo oficial
     if (t > 1.35) s.alpha = Math.max(0, 1 - (t - 1.35) / 0.7);     // el líquido se desvanece bajo el logo
-    if (t < 2.2) requestAnimationFrame(intro); else s.alpha = 0;
+    if (t < 2.2) requestAnimationFrame(intro); else { s.alpha = 0; setTimeout(() => aura.hiRes(), 1500); }
   })(t0);
 } else {
   heroLogo.classList.add('is-on');
+  aura?.hiRes();
 }
 
 /* ---- Parallax de la gorra del hero (puntero, giroscopio en Android, scroll) ---- */
 const cap = document.querySelector('[data-hero-cap]');
-if (!reducedMotion.matches) {
+if (!reducedMotion.matches && mobileFirst) {
+  cap.classList.add('is-floating'); // en celular el flotado va por CSS: nada corre en cada cuadro
+} else if (!reducedMotion.matches) {
   let tx = 0, ty = 0, x = 0, y = 0, sy = 0;
   addEventListener('pointermove', (e) => { tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2; }, { passive: true });
-  addEventListener('deviceorientation', (e) => { if (e.gamma != null) { tx = Math.max(-1, Math.min(1, e.gamma / 30)); ty = Math.max(-1, Math.min(1, ((e.beta ?? 45) - 45) / 30)); } }, { passive: true });
   addEventListener('scroll', () => { sy = Math.min(scrollY, innerHeight); }, { passive: true });
   const t0 = performance.now();
   (function loop(now) {
+    // con la gorra 3D la foto ya no se ve: el ciclo se detiene
+    if (cap.parentElement.classList.contains('has-3d')) return;
     x += (tx - x) * .06; y += (ty - y) * .06;
     const f = Math.sin((now - t0) / 1600) * 6;
-    if (scrollY < innerHeight * 1.2) {
-      const is3d = cap.parentElement.classList.contains('has-3d');
-      cap.style.transform = is3d ? `translateX(-50%) translate3d(${x * 8}px, ${f * .6 - sy * .12}px, 0)` : `translateX(-50%) translate3d(${x * 10}px, ${f + y * 6 - sy * .12}px, 0) perspective(900px) rotateY(${x * 9 + Math.sin((now - t0) / 3000) * 5}deg) rotateX(${-y * 4}deg)`;
-    }
+    if (sy < innerHeight) cap.style.transform = `translateX(-50%) translate3d(${x * 10}px, ${f + y * 6 - sy * .12}px, 0) perspective(900px) rotateY(${x * 9 + Math.sin((now - t0) / 3000) * 5}deg) rotateX(${-y * 4}deg)`;
     requestAnimationFrame(loop);
   })(t0);
 }

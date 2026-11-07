@@ -261,7 +261,7 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
   let last = performance.now(), acc = 0;
   function loop(now) {
     raf = requestAnimationFrame(loop);
-    const dt = Math.min(.1, (now - last) / 1000); last = now;
+    const dt = Math.max(0, Math.min(.1, (now - last) / 1000)); last = now;
     if (!dragging && Math.abs(vel) > .01) { goTo(st.pos + vel); vel *= .9; }
     else if (!dragging && (mode === 'hero' || (auto && now - lastInput > 2600)) && st.idx < N && !reduced) {
       acc += dt * (mode === 'hero' ? 3 : 2.5); // cuadros por segundo del giro lento

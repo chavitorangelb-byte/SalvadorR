@@ -23,6 +23,23 @@ export default defineConfig({
   },
   plugins: [
     {
+      // el CSS (8 KB comprimido) va dentro del HTML: la primera pantalla no espera otra petición
+      name: 'diprolaser-inline-css',
+      enforce: 'post',
+      transformIndexHtml: {
+        order: 'post',
+        handler(html, ctx) {
+          if (!ctx.bundle) return html;
+          for (const [file, chunk] of Object.entries(ctx.bundle)) {
+            if (chunk.type !== 'asset' || !file.endsWith('.css') || !html.includes(file)) continue;
+            const css = String(chunk.source).replaceAll('url(../', 'url(./');
+            html = html.replace(new RegExp(`<link rel="stylesheet"[^>]*${file.replace(/[.]/g, '\\.')}"[^>]*>`), `<style>${css}</style>`);
+          }
+          return html;
+        },
+      },
+    },
+    {
       name: 'diprolaser-preview-flag',
       transformIndexHtml(html) {
         return preview

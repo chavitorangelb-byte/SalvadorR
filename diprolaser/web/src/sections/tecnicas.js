@@ -243,7 +243,7 @@ export async function initTecnicas() {
   list.forEach((d) => io.observe(d.c));
   let raf = 0, last = performance.now(), t = 0;
   const loop = (now) => {
-    const dt = Math.min(.05, (now - last) / 1000); last = now; t += dt;
+    const dt = Math.max(0, Math.min(.05, (now - last) / 1000)); last = now; t += dt;
     let any = false;
     for (const d of list) if (d.on && d.step) { d.step(t, dt); any = true; }
     raf = any ? requestAnimationFrame(loop) : 0;

@@ -47,7 +47,8 @@ export async function initPlaca() {
   };
 
   function draw(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    // rAF y performance.now() pueden llegar desfasados: nunca dt negativo (si no, el progreso queda en -1)
+    const dt = Math.max(0, Math.min(0.05, (now - last) / 1000)); last = now;
     ctx.clearRect(0, 0, 920, 920);
     ctx.drawImage(plate, 0, 0, 920, 920);
 

@@ -25,4 +25,7 @@ export function setWa(kind, text) {
 export function initWhatsApp() {
   setWa('general', messages.general());
   setWa('placa', messages.placa(''));
+  // mientras carga su sección, estos botones ya llevan un mensaje útil
+  setWa('cfg', 'Hola DIPROLASER, quiero cotizar gorras con mi logo. ¿Me ayudan?');
+  setWa('gift', 'Hola, quiero cotizar promocionales para regalar a mis clientes con mi logo grabado a láser.');
 }
