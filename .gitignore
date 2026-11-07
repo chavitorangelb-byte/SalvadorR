@@ -17,3 +17,4 @@ diprolaser/web/.cache/
 diprolaser/web/build/
 diprolaser/web/dist/
 diprolaser/web/public/img/cap3d/**/_tmp*.exr
+diprolaser/entrega/*.zip
