@@ -270,7 +270,7 @@ main > section { position: relative; padding: clamp(84px, 13vw, 168px) var(--gut
   background: radial-gradient(62% 52% at 50% 44%, rgba(227, 38, 47, .22), transparent 72%), radial-gradient(120% 80% at 50% 100%, rgba(0, 0, 0, .7), transparent), #0a0a0d; }
 .cfg__canvas:active { cursor: grabbing; }
 .cfg__canvas canvas, .hero__3d canvas { position: absolute; inset: 0; margin: auto; height: 100% !important; width: auto !important; max-width: 100%; aspect-ratio: 1; object-fit: contain; outline: none; transform-origin: 50% 55%; transition: transform var(--t-med) var(--ease-out); }
-.cap-water { pointer-events: none; }
+.cap-water, .cap-ghost { pointer-events: none; }
 .cfg__poster { position: absolute; inset: 12% 6%; display: grid; place-items: center; transition: opacity var(--t-slow); }
 .cfg__poster img { max-height: 100%; width: auto; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, .7)); }
 .cfg__loading { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 10px; align-items: center; font-size: .86rem; color: var(--text-2); white-space: nowrap; }

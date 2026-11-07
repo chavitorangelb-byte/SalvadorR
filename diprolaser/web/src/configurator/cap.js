@@ -3,7 +3,7 @@
 // abertura trasera con snapback, visera precurva con grosor y canto, banda interior y etiqueta hexagonal.
 import * as THREE from 'three';
 
-export const CAP = { Rx: .85, Rz: 1.03, H: .98, zA: -.12, dip: .1 };
+export const CAP = { Rx: .85, Rz: 1.03, H: .98, zA: -.12, dip: .2 };
 // costuras (radianes desde el frente): frente/lateral, lateral/trasero, centro trasero
 const S1 = 60 * Math.PI / 180, S2 = 126 * Math.PI / 180;
 export const PANELS = {
@@ -28,7 +28,9 @@ export function basePoint(th, out = v3()) {
   const e = lerp(1, .62, ((1 + Math.cos(th)) / 2) ** 2);
   const s = Math.sin(th), c = Math.cos(th);
   // la base del frente baja hacia los costados siguiendo la curva de la visera
-  const dip = CAP.dip * s * s * Math.min(1, Math.max(0, (c + .25) / .5));
+  // baja más junto a las puntas de la visera y sube poco a poco hacia atrás
+  const r = Math.min(1, Math.max(0, (c + .55) / .9));
+  const dip = CAP.dip * s * s * r * r * (3 - 2 * r);
   return out.set(CAP.Rx * Math.sign(s) * Math.abs(s) ** e, -dip, CAP.Rz * Math.sign(c) * Math.abs(c) ** e);
 }
 const _B = v3(), _D = v3(), _P1 = v3(), _P2 = v3(), _A = v3();
@@ -129,16 +131,17 @@ function panelGeometry([th0, th1], nu, nv) {
 
 /* ---------------- Visera ---------------- */
 // Visera precurva: costura interior siguiendo la base del frente, borde exterior en media elipse
-export const VIS = { thIn: 78 * Math.PI / 180, A: .85, B: 1.52, z0: .27, drop: .17, curve: .3, thick: .034 };
-const VIS_LEN = VIS.z0 + VIS.B - CAP.Rz * .99;
+// slope: caída hacia el frente por unidad de largo; curve: cuánto más cae hacia los costados (visera curva)
+export const VIS = { thIn: 78 * Math.PI / 180, A: .85, B: 1.52, z0: .27, slope: .2, curve: .5, thick: .034 };
 const _I = v3(), _O = v3();
 export function visorPoint(s, t, out = v3()) {
   basePoint(s * VIS.thIn, _I).multiplyScalar(.99);
   const a = s * Math.PI / 2;
   _O.set(VIS.A * Math.sin(a), 0, VIS.z0 + VIS.B * Math.cos(a));
   out.copy(_I).lerp(_O, t);
-  const fd = t * _I.distanceTo(_O) / VIS_LEN; const xn = out.x / VIS.A;
-  out.y = _I.y - (VIS.drop * fd + VIS.curve * xn * xn * Math.sqrt(fd));
+  // la caída es proporcional a la distancia horizontal desde la costura: las puntas, que son cortas, no cuelgan
+  const dh = t * Math.hypot(_O.x - _I.x, _O.z - _I.z); const xn = out.x / VIS.A;
+  out.y = _I.y - dh * (VIS.slope + VIS.curve * xn * xn);
   return out;
 }
 function visorNormal(s, t, out = v3()) {

@@ -74,10 +74,53 @@ def main():
     zs = [(o.matrix_world @ Vector(c)).z for o in meshes for c in o.bound_box]
     floor = [o for o in sc.objects if o.type == 'MESH' and o.is_shadow_catcher][0]; floor.location.z = min(zs) - .003
     bb = [(o.matrix_world @ Vector(c)) for o in meshes for c in o.bound_box]
-    ctr = sum(bb, Vector()) / len(bb)
+    lo = Vector((min(v.x for v in bb), min(v.y for v in bb), min(v.z for v in bb)))
+    hi = Vector((max(v.x for v in bb), max(v.y for v in bb), max(v.z for v in bb)))
+    ctr = (lo + hi) / 2  # centro de la caja completa (con visera), no promedio de piezas
     pivot = S['pivot']
     for o in pivot.children: o.location.x -= ctr.x; o.location.y -= ctr.y  # gira sobre el centro de la gorra
+    # distancia para que quepa completa en cualquier giro: radio horizontal máximo con margen
+    R = 0.0
+    for o in meshes:
+        for v in o.data.vertices:
+            w = o.matrix_world @ v.co; R = max(R, math.hypot(w.x - ctr.x, w.y - ctr.y))
+    cam = S['cam'].data; half = math.atan(cam.sensor_width / 2 / cam.lens)
+    fit = float(os.environ.get('FIT', .9))  # fracción del cuadro que puede ocupar
+    dist = R * math.sqrt(1 + 1 / (math.tan(half) * fit) ** 2)
+    dist = float(os.environ.get('DIST', dist))
+    print(f'radio {R:.3f} distancia {dist:.2f}', flush=True)
     views = [(i * 360 / N, 14) for i in range(N)] + [(-25, 55), (-25, -16)]
+    overlay = os.environ.get('OVERLAY')
+    if overlay:
+        from scene import simple_material, node, load_img
+        before = set(sc.objects)
+        bpy.ops.import_scene.gltf(filepath=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'build', 'overlays.gltf'))
+        new = [o for o in sc.objects if o not in before and o.type == 'MESH']
+        for o in meshes: o.is_holdout = True  # la gorra tapa la capa pero no sale en la imagen
+        floor.hide_render = True  # la sombra en el piso ya viene en el render de la gorra
+        for o in new:
+            keep = o.name.startswith(overlay)
+            if not keep: bpy.data.objects.remove(o); continue
+            o.parent = pivot; o.location.x -= ctr.x; o.location.y -= ctr.y
+            for pl in o.data.polygons: pl.use_smooth = True
+            rim = 'Rim' in o.name
+            if overlay == 'plate':
+                # metal pavonado satinado con canto pulido, como la placa real
+                m = simple_material('plate' + ('rim' if rim else ''), '#4c4e55' if not rim else '#a2a5ac', rough=.38 if not rim else .24, metal=.9 if not rim else 1, coat=.08, aov_part=5)
+            else:
+                m = simple_material('patch' + ('rim' if rim else ''), '#7a4a26' if not rim else '#4a2a14', rough=.65, aov_part=6)
+                if not rim:
+                    nt = m.node_tree; b = nt.nodes['Principled BSDF']
+                    tx = node(nt, 'ShaderNodeTexImage', (-400, 0)); tx.image = load_img('brown_leather_diff.jpg', 'sRGB')
+                    nm = node(nt, 'ShaderNodeTexImage', (-400, -300)); nm.image = load_img('brown_leather_nor.jpg', 'Non-Color')
+                    nmap = node(nt, 'ShaderNodeNormalMap', (-100, -300))
+                    uvn = node(nt, 'ShaderNodeUVMap', (-700, 0)); mp = node(nt, 'ShaderNodeMapping', (-550, 0)); mp.inputs['Scale'].default_value = (1.4, 1.0, 1)
+                    nt.links.new(uvn.outputs[0], mp.inputs['Vector']); nt.links.new(mp.outputs[0], tx.inputs['Vector']); nt.links.new(mp.outputs[0], nm.inputs['Vector'])
+                    nt.links.new(tx.outputs['Color'], b.inputs['Base Color']); nt.links.new(nm.outputs['Color'], nmap.inputs['Color']); nt.links.new(nmap.outputs[0], b.inputs['Normal'])
+            if not rim:
+                nt = m.node_tree; uvn = node(nt, 'ShaderNodeUVMap', (0, -500)); aov = node(nt, 'ShaderNodeOutputAOV', (600, -400)); aov.aov_name = 'decal'
+                nt.links.new(uvn.outputs[0], aov.inputs['Color'])
+            o.data.materials.clear(); o.data.materials.append(m)
     tmp = os.path.join(out, '_tmp.exr'); tmp2 = os.path.join(out, '_tmpB.exr')
     GRAY = .5
     recol = [m for k, m in S['mats'].items() if k in ('front', 'crown', 'visorTop', 'visorBottom', 'edge', 'button', 'bind', 'eyelet')]
@@ -89,8 +132,17 @@ def main():
     for idx, (yaw, pitch) in enumerate(views):
         if only is not None and idx not in only: continue
         pivot.rotation_euler = (0, 0, math.radians(-yaw))
-        place_camera(S['cam'], yaw_deg=0, pitch_deg=pitch, dist=float(os.environ.get('DIST', 6.0)), target=(0, 0, ctr.z - .08))
+        place_camera(S['cam'], yaw_deg=0, pitch_deg=pitch, dist=dist, target=(0, 0, ctr.z - .04))
         t0 = time.time()
+        if overlay:
+            sc.render.filepath = tmp; bpy.ops.render.render(write_still=True); ch = read_exr(tmp)
+            comb = pick(ch, 'Combined'); dec = pick(ch, 'decal')[..., :3]; a = np.clip(comb[..., 3], 0, 1)
+            base = to_srgb(neutral_tonemap(comb[..., :3] / np.maximum(a, 1e-4)[..., None] * EXPOSURE))
+            Image.fromarray((np.dstack([base, a]) * 255 + .5).astype(np.uint8), 'RGBA').save(os.path.join(out, f'{idx}-b.webp'), quality=86, alpha_quality=92)
+            insd = ((dec[..., 0] > 0) | (dec[..., 1] > 0)) & (a > .02)  # la gorra (holdout) también escribe el AOV
+            g8 = np.where(insd, np.clip(dec[..., 0] * 255, 1, 255), 0).astype(np.uint8); b8 = np.where(insd, np.clip(dec[..., 1] * 255, 1, 255), 0).astype(np.uint8)
+            Image.fromarray(np.dstack([np.zeros_like(g8), g8, b8, (a * 255).astype(np.uint8)]), 'RGBA').save(os.path.join(out, f'{idx}-u.png'), optimize=True)
+            print(f'capa {overlay} {idx} {time.time() - t0:.1f}s', flush=True); continue
         # dos renders sin ruido: tela en gris (A) y en negro (B). Cualquier color = B + (a / GRAY) * (A - B)
         set_albedo(GRAY); sc.render.filepath = tmp; bpy.ops.render.render(write_still=True); ch = read_exr(tmp)
         set_albedo(0.0); sc.render.filepath = tmp2; bpy.ops.render.render(write_still=True); chB = read_exr(tmp2)

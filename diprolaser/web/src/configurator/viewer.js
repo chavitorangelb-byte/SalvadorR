@@ -18,6 +18,18 @@ function frame(model, i) {
   }
   return cache.get(k);
 }
+// capas aparte para placa y parche (render propio con la gorra como máscara): b = imagen, u = coordenadas del grabado
+const OVERLAY = { placa: '_plate', parche: '_patch' };
+function ovFrame(kind, i) {
+  const k = `${kind}/${i}`;
+  if (!cache.has(k)) cache.set(k, Promise.all([loadImg(`img/cap3d/${kind}/${i}-b.webp`), loadImg(`img/cap3d/${kind}/${i}-u.png`)]).then(([b, u]) => ({ b, u })));
+  return cache.get(k);
+}
+function preloadOv(kind, first) {
+  const order = [first]; for (let d = 1; d <= N / 2; d++) order.push((first + d) % N, (first - d + N) % N);
+  order.push(TOP, UNDER);
+  return order.reduce((p, i) => p.then(() => ovFrame(kind, i).catch(() => {})), Promise.resolve());
+}
 export function preloadModel(model, first = VIEWS.threeq) {
   const order = [first]; for (let d = 1; d <= N / 2; d++) order.push((first + d) % N, (first - d + N) % N);
   order.push(TOP, UNDER);
@@ -27,7 +39,7 @@ export function preloadModel(model, first = VIEWS.threeq) {
 const FRAG = `
 precision highp float;
 varying vec2 vUv;
-uniform sampler2D tL, tS, tB, tI, tLogo;
+uniform sampler2D tL, tS, tB, tI, tLogo, tOB, tOU; uniform float uOv;
 uniform vec3 uC1, uC2, uC3, uOld1, uOld2, uOld3;
 uniform float uSweep; uniform vec2 uOrigin; uniform float uLogoOn; uniform int uTech; uniform float uTime; uniform vec2 uLogoTexel;
 vec3 toLin(vec3 c){ return mix(c / 12.92, pow((c + .055) / 1.055, vec3(2.4)), step(.04045, c)); }
@@ -42,7 +54,23 @@ void main(){
   vec4 b = texture2D(tB, vUv);
   vec4 id = texture2D(tI, vUv);
   float part = floor(id.r * 255. / 60. + .5);
-  if (part < .5 || part > 3.5) { gl_FragColor = vec4(b.rgb * b.a, b.a); return; }
+  // sombra suave de la placa o el parche sobre la tela
+  float halo = 0.;
+  if (uOv > .5) {
+    vec2 o = vec2(.0045, .0065);
+    halo = (texture2D(tOB, vUv + vec2(-o.x, -o.y)).a + texture2D(tOB, vUv + vec2(o.x, -o.y)).a + texture2D(tOB, vUv + vec2(0., -o.y * 1.6)).a + texture2D(tOB, vUv).a) * .25;
+  }
+  vec4 ov = uOv > .5 ? texture2D(tOB, vUv) : vec4(0.);
+  vec3 ovc = ov.rgb;
+  if (ov.a > 0.) {
+    vec4 ou = texture2D(tOU, vUv);
+    vec2 lq = (vec2(ou.g, 1. - ou.b) - .5) / .72 + .5;
+    float lm = (uLogoOn > .5 && ou.g > 0. && lq.x > 0. && lq.x < 1. && lq.y > 0. && lq.y < 1.) ? texture2D(tLogo, lq).a : 0.;
+    float lum = dot(ovc, vec3(.2126, .7152, .0722));
+    // placa: el láser deja el metal claro y mate; parche: la piel se quema más oscura
+    ovc = uTech == 1 ? mix(ovc, vec3(.6, .61, .63) * (.72 + .5 * lum), lm * .95) : mix(ovc, ovc * vec3(.34, .3, .28), lm * .9);
+  }
+  if (part < .5 || part > 3.5) { vec3 bc = b.rgb * (1. - .3 * halo * (1. - ov.a)); gl_FragColor = vec4(bc * b.a * (1. - ov.a) + ovc * ov.a, max(b.a, ov.a)); return; }
   float L = pow(texture2D(tL, vUv).r, 2.) * ${LMAX.toFixed(1)};
   float S = pow(texture2D(tS, vUv).r, 2.) * ${SMAX.toFixed(1)};
   // barrido líquido del cambio de color, desde el punto tocado
@@ -55,8 +83,10 @@ void main(){
   // logo en el frente: G,B = coordenadas sobre la tela
   if (uLogoOn > .5 && part < 1.5 && id.g > 0.) {
     vec2 lu = vec2(id.g, 1. - id.b);
-    if (uTech == 1 || uTech == 2) {
-      // placa redonda de metal oscuro o parche de piel, con el logo grabado o quemado
+    if ((uTech == 1 || uTech == 2) && uOv > .5) {
+      // la placa o el parche vienen en su propia capa
+    } else if (uTech == 1 || uTech == 2) {
+      // respaldo si la capa no cargó: placa redonda de metal oscuro o parche de piel, con el logo grabado o quemado
       vec2 q = (id.gb - .5);
       bool inP = uTech == 1 ? length(q) < .485 : (abs(q.x) < .46 && abs(q.y) < .34);
       if (inP) {
@@ -91,9 +121,9 @@ void main(){
   }
   vec3 col = alb * L + S + add;
   col += vec3(1., .25, .22) * wave * .5;
-  vec3 outc = toSrgb(neutral(col));
+  vec3 outc = toSrgb(neutral(col)) * (1. - .3 * halo * (1. - ov.a));
   float a = id.a;
-  gl_FragColor = vec4(outc * a, a);
+  gl_FragColor = vec4(outc * a * (1. - ov.a) + ovc * ov.a, max(a, ov.a));
 }`;
 const VERT = `attribute vec2 p; varying vec2 vUv; void main(){ vUv = vec2(p.x * .5 + .5, .5 - p.y * .5); gl_Position = vec4(p, 0., 1.); }`;
 
@@ -118,19 +148,31 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
     gl.useProgram(prog);
     const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
     const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    ['tL', 'tS', 'tB', 'tI', 'tLogo', 'uC1', 'uC2', 'uC3', 'uOld1', 'uOld2', 'uOld3', 'uSweep', 'uOrigin', 'uLogoOn', 'uTech', 'uTime', 'uLogoTexel'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
-    ['tL', 'tS', 'tB', 'tI', 'tLogo'].forEach((n, i) => {
+    ['tL', 'tS', 'tB', 'tI', 'tLogo', 'tOB', 'tOU', 'uOv', 'uC1', 'uC2', 'uC3', 'uOld1', 'uOld2', 'uOld3', 'uSweep', 'uOrigin', 'uLogoOn', 'uTech', 'uTime', 'uLogoTexel'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+    ['tL', 'tS', 'tB', 'tI', 'tLogo', 'tOB', 'tOU'].forEach((n, i) => {
       const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + i); gl.bindTexture(gl.TEXTURE_2D, t);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, n === 'tI' ? gl.NEAREST : gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, n === 'tI' ? gl.NEAREST : gl.LINEAR);
+      const near = n === 'tI' || n === 'tOU';
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, near ? gl.NEAREST : gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, near ? gl.NEAREST : gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.uniform1i(U[n], i); texs[n] = t;
     });
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
   }
   const ctx2d = gl ? null : canvas.getContext('2d', { willReadFrequently: true });
+  // fundido entre cuadros cuando gira solo (al arrastrar el cambio es directo)
+  const ghost = document.createElement('canvas'); ghost.className = 'cap-ghost'; ghost.setAttribute('aria-hidden', 'true');
+  ghost.style.opacity = '0'; host.append(ghost);
+  const gctx = ghost.getContext('2d');
+  function fadeFrom() {
+    if (!cur) return;
+    if (ghost.width !== canvas.width) { ghost.width = canvas.width; ghost.height = canvas.height; }
+    gctx.clearRect(0, 0, ghost.width, ghost.height); gctx.drawImage(canvas, 0, 0);
+    ghost.style.transition = 'none'; ghost.style.opacity = '1'; void ghost.offsetWidth;
+    ghost.style.transition = 'opacity 320ms ease-out'; ghost.style.opacity = '0';
+  }
 
-  let cur = null, drawPending = false;
+  let cur = null, curOv = null, drawPending = false;
   const upload = (unit, name, img) => { gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, texs[name]); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); };
   function setLogoTex() {
     if (!gl) return;
@@ -138,10 +180,12 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
     if (src) { upload(4, 'tLogo', src); gl.uniform2f(U.uLogoTexel, 1 / src.width, 1 / src.height); }
   }
   async function show(i) {
-    const f = await frame(st.model, i).catch(() => null);
+    const kind = OVERLAY[st.tech];
+    const [f, ov] = await Promise.all([frame(st.model, i).catch(() => null), kind ? ovFrame(kind, i).catch(() => null) : null]);
     if (!f || i !== st.idx) return;
     if (gl && cur !== f) { upload(0, 'tL', f.l); upload(1, 'tS', f.s); upload(2, 'tB', f.b); upload(3, 'tI', f.id); }
-    cur = f;
+    if (gl && ov && curOv !== ov) { upload(5, 'tOB', ov.b); upload(6, 'tOU', ov.u); }
+    cur = f; curOv = ov;
     if (canvas.width !== f.b.width) { canvas.width = f.b.width; canvas.height = f.b.height; }
     draw();
     host.classList.add('is-ready');
@@ -155,6 +199,7 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
       gl.uniform3fv(U.uOld1, O('crown')); gl.uniform3fv(U.uOld2, O('visor')); gl.uniform3fv(U.uOld3, O('under'));
       gl.uniform1f(U.uSweep, st.sweep); gl.uniform2f(U.uOrigin, st.origin[0], st.origin[1]);
       gl.uniform1f(U.uLogoOn, st.logo ? 1 : 0); gl.uniform1i(U.uTech, TECH[st.tech] ?? 0);
+      gl.uniform1f(U.uOv, curOv && OVERLAY[st.tech] ? 1 : 0);
       gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLES, 0, 3);
     } else draw2d();
   }
@@ -181,13 +226,14 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
       o[k] = tm(al[0] * L + S) * 255; o[k + 1] = tm(al[1] * L + S) * 255; o[k + 2] = tm(al[2] * L + S) * 255; o[k + 3] = a;
     }
     ctx2d.putImageData(out, 0, 0);
+    if (curOv && OVERLAY[st.tech]) ctx2d.drawImage(curOv.b, 0, 0);
   }
 
   /* ---------- giro: arrastre con inercia y giro lento solo ---------- */
   let dragging = false, lastX = 0, vel = 0, lastInput = 0, auto = !reduced, raf = 0, mode = 'cfg';
-  const goTo = (p) => {
+  const goTo = (p, fade = false) => {
     st.pos = ((p % N) + N) % N; const i = Math.round(st.pos) % N;
-    if (i !== st.idx) { st.idx = i; show(i); }
+    if (i !== st.idx) { if (fade) fadeFrom(); st.idx = i; show(i); }
   };
   canvas.addEventListener('pointerdown', (e) => { if (mode !== 'cfg') return; dragging = true; lastX = e.clientX; vel = 0; lastInput = performance.now(); canvas.setPointerCapture(e.pointerId); if (st.idx >= N) { st.pos = VIEWS.threeq; } });
   canvas.addEventListener('pointermove', (e) => { if (!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; vel = -dx / 26; goTo(st.pos + vel); lastInput = performance.now(); });
@@ -208,8 +254,8 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
     const dt = Math.min(.1, (now - last) / 1000); last = now;
     if (!dragging && Math.abs(vel) > .01) { goTo(st.pos + vel); vel *= .9; }
     else if (!dragging && (mode === 'hero' || (auto && now - lastInput > 2600)) && st.idx < N && !reduced) {
-      acc += dt * (mode === 'hero' ? 5 : 3.5); // cuadros por segundo del giro lento
-      if (acc >= 1) { acc = 0; goTo(st.pos + 1); }
+      acc += dt * (mode === 'hero' ? 3 : 2.5); // cuadros por segundo del giro lento
+      if (acc >= 1) { acc = 0; goTo(st.pos + 1, true); }
     }
     if (st.sweep < 1.5) { st.sweep += dt * 1.1; drawPending = true; }
     if (drawPending) { drawPending = false; draw(); }
@@ -253,12 +299,15 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
   return {
     setModel(m, colors) { st.model = m; if (colors) { st.old = { ...st.colors }; st.colors = { ...colors }; } cur = null; preloadModel(m, st.idx); show(st.idx); },
     setColor(part, hex, origin) { st.old = { ...st.colors }; st.colors[part] = hex; st.origin = origin || [.5, .45]; st.sweep = reduced ? 9 : 0; drawPending = true; },
-    setTech(t) { st.tech = t; setLogoTex(); drawPending = true; },
+    setTech(t) {
+      st.tech = t; setLogoTex(); drawPending = true;
+      if (OVERLAY[t]) { curOv = null; show(st.idx); preloadOv(OVERLAY[t], st.idx < N ? st.idx : VIEWS.threeq); }
+    },
     setLogo(l) { st.logo = l; setLogoTex(); drawPending = true; },
     setView,
     water() { water.start(); },
     stopAuto() { auto = false; },
-    attach(el, m) { mode = m; if (canvas.parentElement !== el) { vio.unobserve(host); host = el; el.append(canvas); vio.observe(el); } canvas.style.pointerEvents = m === 'hero' ? 'none' : ''; },
+    attach(el, m) { mode = m; if (canvas.parentElement !== el) { vio.unobserve(host); host = el; el.append(canvas, ghost); vio.observe(el); } canvas.style.pointerEvents = m === 'hero' ? 'none' : ''; },
     snapshot() { draw(); const c = document.createElement('canvas'); c.width = c.height = 1080; const x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(canvas, 0, 0, 1080, 1080); return c; },
     perf() { return 0; },
     get state() { return st; },
