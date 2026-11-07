@@ -35,10 +35,13 @@ Cuando estén confirmadas, cambia cada `<span class="icon-btn" role="img" ...>` 
 La gorra se modela en código (`src/configurator/cap.js`), se exporta a glTF y se renderiza en Blender (Cycles)
 con texturas de tela escaneadas y un HDRI de estudio de Poly Haven (CC0). Por cada modelo hay 24 ángulos más
 vista superior e inferior en `public/img/cap3d/<modelo>/`. La página calcula colores y logo sobre esos renders.
+La placa metálica y el parche de piel se renderizan como capas aparte (`_plate`, `_patch`) y el logo se graba encima.
 
 ```bash
-node tools/blender/export_cap.mjs build/cap.gltf      # geometría
-./tools/blender/render_all.sh                         # ~2.5 h en 4 núcleos (requiere pip install bpy OpenEXR)
+node tools/blender/export_cap.mjs build/cap.gltf      # geometría de la gorra
+node tools/blender/export_overlays.mjs                # geometría de placa y parche
+./tools/blender/render_all.sh                         # ~2 h 20 min en 4 núcleos (requiere pip install bpy OpenEXR)
+MODELS="trucker" ./tools/blender/render_all.sh        # solo un modelo; si se corta, se salta lo que ya está completo
 ```
 
 Texturas y HDRI (CC0, Poly Haven): velour_velvet, denim_fabric_05, stretch_poplin, bi_stretch, brown_leather,
