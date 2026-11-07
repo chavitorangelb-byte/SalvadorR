@@ -6,6 +6,9 @@ export const VIEWS = { front: 0, side: 6, back: 12, visor: TOP, under: UNDER, th
 const lin = (hex) => [1, 3, 5].map((i) => { const c = parseInt(hex.slice(i, i + 2), 16) / 255; return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; });
 const loadImg = (src) => new Promise((res, rej) => { const i = new Image(); i.decoding = 'async'; i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = rej; i.src = src; });
 const TECH = { bordado: 0, placa: 1, parche: 2, laser: 3, color: 4 };
+// cuánto del brillo de la tela (sheen/especular) se usa por parte [corona, visera, abajo]: el algodón negro se veía gris de frente
+const SGAIN = { tela: [.55, .55, .55], bicolor: [.55, 1, 1] };
+const sgain = (m) => SGAIN[m] || [1, 1, 1];
 
 /* ---------- caché de cuadros compartida (hero y configurador usan las mismas imágenes) ---------- */
 const cache = new Map();
@@ -41,7 +44,7 @@ precision highp float;
 varying vec2 vUv;
 uniform sampler2D tL, tS, tB, tI, tLogo, tOB, tOU; uniform float uOv;
 uniform vec3 uC1, uC2, uC3, uOld1, uOld2, uOld3;
-uniform float uSweep; uniform vec2 uOrigin; uniform float uLogoOn; uniform int uTech; uniform float uTime; uniform vec2 uLogoTexel;
+uniform vec3 uSGain; uniform float uSweep; uniform vec2 uOrigin; uniform float uLogoOn; uniform int uTech; uniform float uTime; uniform vec2 uLogoTexel;
 vec3 toLin(vec3 c){ return mix(c / 12.92, pow((c + .055) / 1.055, vec3(2.4)), step(.04045, c)); }
 vec3 toSrgb(vec3 c){ c = clamp(c, 0., 1.); return mix(c * 12.92, 1.055 * pow(c, vec3(1. / 2.4)) - .055, step(.0031308, c)); }
 vec3 neutral(vec3 c){
@@ -64,12 +67,15 @@ void main(){
   vec3 ovc = ov.rgb;
   if (ov.a > 0.) {
     vec4 ou = texture2D(tOU, vUv);
-    vec2 lq = (vec2(ou.g, 1. - ou.b) - .5) / .72 + .5;
+    vec2 lq = (ou.gb - .5) / .72 + .5; // V ya viene volteada por el importador de glTF: arriba = 0
     float lm = (uLogoOn > .5 && ou.g > 0. && lq.x > 0. && lq.x < 1. && lq.y > 0. && lq.y < 1.) ? texture2D(tLogo, lq).a : 0.;
     float lum = dot(ovc, vec3(.2126, .7152, .0722));
     // placa: el láser deja el metal claro y mate; parche: la piel se quema más oscura
     ovc = uTech == 1 ? mix(ovc, vec3(.6, .61, .63) * (.72 + .5 * lum), lm * .95) : mix(ovc, ovc * vec3(.34, .3, .28), lm * .9);
   }
+  // la sombra del piso se desvanece antes del borde del cuadro (si no, se ve el rectángulo del render)
+  vec2 ed = min(vUv, 1. - vUv);
+  if (part < .5 && b.a < .95) b.a *= smoothstep(0., .07, min(ed.x, ed.y));
   if (part < .5 || part > 3.5) { vec3 bc = b.rgb * (1. - .3 * halo * (1. - ov.a)); gl_FragColor = vec4(bc * b.a * (1. - ov.a) + ovc * ov.a, max(b.a, ov.a)); return; }
   float L = pow(texture2D(tL, vUv).r, 2.) * ${LMAX.toFixed(1)};
   float S = pow(texture2D(tS, vUv).r, 2.) * ${SMAX.toFixed(1)};
@@ -78,6 +84,7 @@ void main(){
   float k = smoothstep(uSweep - .06, uSweep, distance(vUv, uOrigin) + n);
   vec3 c1 = mix(uC1, uOld1, k), c2 = mix(uC2, uOld2, k), c3 = mix(uC3, uOld3, k);
   vec3 alb = part < 1.5 ? c1 : part < 2.5 ? c2 : c3;
+  S *= part < 1.5 ? uSGain.x : part < 2.5 ? uSGain.y : uSGain.z;
   float wave = (1. - smoothstep(0., .03, abs(distance(vUv, uOrigin) + n - uSweep))) * step(.001, uSweep) * (1. - step(1.4, uSweep));
   vec3 add = vec3(0.);
   // logo en el frente: G,B = coordenadas sobre la tela
@@ -148,7 +155,7 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
     gl.useProgram(prog);
     const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
     const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    ['tL', 'tS', 'tB', 'tI', 'tLogo', 'tOB', 'tOU', 'uOv', 'uC1', 'uC2', 'uC3', 'uOld1', 'uOld2', 'uOld3', 'uSweep', 'uOrigin', 'uLogoOn', 'uTech', 'uTime', 'uLogoTexel'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
+    ['tL', 'tS', 'tB', 'tI', 'tLogo', 'tOB', 'tOU', 'uOv', 'uSGain', 'uC1', 'uC2', 'uC3', 'uOld1', 'uOld2', 'uOld3', 'uSweep', 'uOrigin', 'uLogoOn', 'uTech', 'uTime', 'uLogoTexel'].forEach((n) => { U[n] = gl.getUniformLocation(prog, n); });
     ['tL', 'tS', 'tB', 'tI', 'tLogo', 'tOB', 'tOU'].forEach((n, i) => {
       const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + i); gl.bindTexture(gl.TEXTURE_2D, t);
       const near = n === 'tI' || n === 'tOU';
@@ -200,6 +207,7 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
       gl.uniform1f(U.uSweep, st.sweep); gl.uniform2f(U.uOrigin, st.origin[0], st.origin[1]);
       gl.uniform1f(U.uLogoOn, st.logo ? 1 : 0); gl.uniform1i(U.uTech, TECH[st.tech] ?? 0);
       gl.uniform1f(U.uOv, curOv && OVERLAY[st.tech] ? 1 : 0);
+      gl.uniform3fv(U.uSGain, sgain(st.model));
       gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLES, 0, 3);
     } else draw2d();
   }
@@ -210,14 +218,14 @@ export function createViewer(host, { model = 'tela', colors, tech = 'bordado', l
   function draw2d() {
     const W = canvas.width, H = canvas.height; const out = ctx2d.createImageData(W, H); const o = out.data;
     const l = pixels(cur.l), s = pixels(cur.s), b = pixels(cur.b), d = pixels(cur.id);
-    const C = [null, lin(st.colors.crown), lin(st.colors.visor), lin(st.colors.under)];
+    const C = [null, lin(st.colors.crown), lin(st.colors.visor), lin(st.colors.under)]; const G = sgain(st.model);
     const tm = (x) => { const v = x / (1 + x * .6); return v <= .0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - .055; };
     if (st.logo && logoFor !== st.logo) { const c = document.createElement('canvas'); c.width = c.height = 256; c.getContext('2d').drawImage(st.logo.canvas, 0, 0, 256, 256); logoData = c.getContext('2d').getImageData(0, 0, 256, 256).data; logoFor = st.logo; }
     for (let k = 0; k < o.length; k += 4) {
       const a = d[k + 3]; if (!a) continue;
       const part = Math.round(d[k] / 60);
       if (part < 1 || part > 3) { o[k] = b[k]; o[k + 1] = b[k + 1]; o[k + 2] = b[k + 2]; o[k + 3] = b[k + 3]; continue; }
-      const L = (l[k] / 255) ** 2 * LMAX, S = (s[k] / 255) ** 2 * SMAX;
+      const L = (l[k] / 255) ** 2 * LMAX, S = (s[k] / 255) ** 2 * SMAX * G[part - 1];
       let al = C[part];
       if (part === 1 && st.logo && d[k + 1] > 0 && logoData) {
         const li = (Math.floor((1 - d[k + 2] / 255) * 255) * 256 + Math.floor(d[k + 1] / 255 * 255)) * 4; const la = logoData[li + 3] / 255;

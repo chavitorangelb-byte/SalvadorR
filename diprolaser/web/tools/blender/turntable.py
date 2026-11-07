@@ -121,6 +121,8 @@ def main():
                 nt = m.node_tree; uvn = node(nt, 'ShaderNodeUVMap', (0, -500)); aov = node(nt, 'ShaderNodeOutputAOV', (600, -400)); aov.aov_name = 'decal'
                 nt.links.new(uvn.outputs[0], aov.inputs['Color'])
             o.data.materials.clear(); o.data.materials.append(m)
+    if os.environ.get('DECAL_ONLY'):
+        sc.cycles.samples = 4; sc.cycles.use_denoising = False; floor.hide_render = True
     tmp = os.path.join(out, '_tmp.exr'); tmp2 = os.path.join(out, '_tmpB.exr')
     GRAY = .5
     recol = [m for k, m in S['mats'].items() if k in ('front', 'crown', 'visorTop', 'visorBottom', 'edge', 'button', 'bind', 'eyelet')]
@@ -134,6 +136,16 @@ def main():
         pivot.rotation_euler = (0, 0, math.radians(-yaw))
         place_camera(S['cam'], yaw_deg=0, pitch_deg=pitch, dist=dist, target=(0, 0, ctr.z - .04))
         t0 = time.time()
+        if os.environ.get('DECAL_ONLY'):
+            # solo recalcula las coordenadas del logo (G,B) de un i.png existente: pocas muestras bastan
+            sc.render.filepath = tmp; bpy.ops.render.render(write_still=True); ch = read_exr(tmp)
+            dec = pick(ch, 'decal')[..., :3]; ip = os.path.join(out, f'{idx}-i.png')
+            old = np.array(Image.open(ip).convert('RGBA'))
+            insd = (dec[..., 0] > 0) & (dec[..., 0] < 1) & (dec[..., 1] > 0) & (dec[..., 1] < 1) & (old[..., 0] == 60)
+            old[..., 1] = np.where(insd, np.clip(dec[..., 0] * 255, 1, 255), 0).astype(np.uint8)
+            old[..., 2] = np.where(insd, np.clip(dec[..., 1] * 255, 1, 255), 0).astype(np.uint8)
+            Image.fromarray(old, 'RGBA').save(ip, optimize=True)
+            print(f'logo {idx} {time.time() - t0:.1f}s', flush=True); continue
         if overlay:
             sc.render.filepath = tmp; bpy.ops.render.render(write_still=True); ch = read_exr(tmp)
             comb = pick(ch, 'Combined'); dec = pick(ch, 'decal')[..., :3]; a = np.clip(comb[..., 3], 0, 1)
