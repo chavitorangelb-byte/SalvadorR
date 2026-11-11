@@ -154,15 +154,20 @@ Fondo `#12110E`. Logo de Chato (captura, ≤ 300 px, sin tocar) arriba; debajo
 Formas neutras, sin texto: precios, teléfono/WhatsApp, calificación y reseñas, talleres y eventos.
 "Espresso / CB tonic" y "Americano / Aerocano" van como los escribe su propio menú, para que quepan a 40 px.
 
-## Locución (ElevenLabs, la graba Salvador; español de México, 2 tomas)
+## Locución (ElevenLabs, voz Hope, 1 toma de Salvador; bloqueada a la toma real)
 
-| # | Línea | Entra | Kinetic / aterrizaje |
+Ninguna línea se aceleró. Para que no se encimaran, la 3 se adelantó 0.2 s, la 4 se adelantó 0.3 s y la 5 se
+atrasó 0.3 s: "realidad" cae sobre la end card, justo después del corte de 16.0 s.
+
+| # | Línea | Entra | Palabras clave (aterrizaje) |
 |---|---|---|---|
-| 1 | Un buen cafecito se sirve en capas. | 0.40 s (f0024) | "CAPAS" pulsa en la palabra (≈ f0134) |
-| 2 | Y tu negocio, con una página que también lo sea. | 4.10 s (f0246) | "LOS CHATOS" aterriza en "página" |
-| 3 | Tus bebidas, tu horario y tu ubicación, ahora en el celular. | 7.90 s (f0474) | menú en "bebidas", panel en "horario", pin en "ubicación" |
-| 4 | Así se vería la página de Chato Cafecito. | 12.40 s (f0744) | botón "Cómo llegar" en "página" |
-| 5 | Si te gusta, la hacemos realidad. | 14.50 s (f0870) | el nombre termina de escribirse en "realidad" |
+| 1 | Un buen cafecito se sirve en capas. | 0.40 s (f0024) | cafecito f0058 · capas f0138 ("CAPAS" pulsa aquí) |
+| 2 | Y tu negocio, con una página que también lo sea. | 4.10 s (f0246) | negocio f0257 · página f0323 ("LOS CHATOS" asienta aquí) |
+| 3 | Tus bebidas, tu horario y tu ubicación, ahora en el celular. | 7.70 s (f0462) | bebidas f0468 (menú) · horario f0522 (panel) · ubicación f0569 · celular f0666 |
+| 4 | Así se vería la página de Chato Cafecito. | 12.10 s (f0726) | página f0781 (botón "Cómo llegar") · Chato f0815 · Cafecito f0836 |
+| 5 | Si te gusta, la hacemos realidad. | 14.80 s (f0888) | gusta f0902 · hacemos f0954 · realidad f0973 (end card) |
+
+Todas las palabras con su cuadro: `timeline/vo_words.json`. Stem de voz: `audio/stems/voz.wav` (−16 LUFS).
 
 ## Música (original, en código, 120 BPM)
 
