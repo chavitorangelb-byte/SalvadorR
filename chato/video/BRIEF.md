@@ -5,7 +5,7 @@ Demo de cortesía privada de Elevate Negocios · pieza no oficial · no se publi
 60 fps · 1080 cuadros · 18.0 s (16 s de pieza + 2 s de end card) · 120 BPM (compás = 2.0 s = 120 cuadros).
 Formatos: 9:16 (1080×1920, principal) y 1:1 (1080×1080, re-layout real). Master a 60 fps y H.264 a 30 fps.
 
-Estado: **pendiente de aprobación**. Los tiempos de voz son los del guion; se bloquean a la toma real en la fase 3.
+Estado: **aprobado por Salvador**. La voz la graba Salvador en ElevenLabs (`video/guion_locucion.txt`); los tiempos se bloquean a su toma en la fase 3.
 
 ## Idea
 
@@ -16,7 +16,7 @@ sección de la página. Un solo plano continuo, un solo campo líquido (SDF) y u
 
 | Asset | Estado | Cómo se usa |
 |---|---|---|
-| Fotos del negocio | No hay. Google Maps negó la galería a este servidor y casi todas son de clientes. | No se usa ninguna foto. Vaso, tapa, capas, letrero redondo y puerta se construyen en código con volumen. |
+| Fotos del negocio | Una: la fachada (portada de Maps, subida por el propio negocio, 3024×4032). Maps no muestra más sin cuenta. | La fachada va en el encabezado de la página y da la paleta real. Vaso, tapa y capas se construyen en código con volumen. |
 | Logo | Solo captura del perfil de Instagram (círculo de ~600 px). | Solo en la end card, a tamaño moderado (≤ 300 px). En el resto, "CHATO CAFECITO" en texto neutro. El gato no se redibuja. |
 | Datos | Capturas del menú, la historia del horario y la ficha de Maps. | Solo lo listado en "Textos en pantalla". |
 
@@ -28,7 +28,8 @@ sección de la página. Un solo plano continuo, un solo campo líquido (SDF) y u
 | Carbón del logo | `#21211D` | Muestreado de la captura del logo |
 | Crema | `#F1EBDD` | Brief (aprox.) |
 | Verde salvia (tablero) | `#6F7A69` | Brief (aprox.); la captura da un tono más gris, `#707066` |
-| Verde puerta | `#2F6B57` | Brief (aprox.) |
+| Verde puerta | `#37463F` | Muestreado de la foto de fachada (tomada al atardecer; de día se ve más claro) |
+| Madera del mostrador | `#44261B` | Muestreado de la foto de fachada |
 | Ocre cerámica | `#B0883A` | Brief (aprox.) |
 | Líquidos | matcha `#7C9A4B`, espresso `#3A2418`, leche `#EFE6D2` | Propuesta; se ajusta al ver el render |
 
@@ -153,7 +154,7 @@ Fondo `#12110E`. Logo de Chato (captura, ≤ 300 px, sin tocar) arriba; debajo
 Formas neutras, sin texto: precios, teléfono/WhatsApp, calificación y reseñas, talleres y eventos.
 "Espresso / CB tonic" y "Americano / Aerocano" van como los escribe su propio menú, para que quepan a 40 px.
 
-## Locución (ElevenLabs vía vidIQ, español de México, 2 tomas)
+## Locución (ElevenLabs, la graba Salvador; español de México, 2 tomas)
 
 | # | Línea | Entra | Kinetic / aterrizaje |
 |---|---|---|---|
