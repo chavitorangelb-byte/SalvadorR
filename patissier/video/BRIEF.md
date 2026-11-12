@@ -3,8 +3,9 @@
 Vertical 9:16, 1080×1920, 60 fps, 120 BPM (compás = 2.0 s = 120 cuadros). 16 s de pieza + 2 s de end card = 1080 cuadros.
 Fuente de verdad de los tiempos: `video/timeline/timeline.mjs` (la usan la captura de la página y el compositor).
 
-**Estado: fase de preview.** Tiempos de locución PLANEADOS (no hay toma todavía, falta la clave de ElevenLabs).
-Cuando exista la toma, se miden las palabras y todo lo marcado con (voz) se mueve a la voz.
+**Estado: línea de tiempo bloqueada a la voz real** (toma "Hope", ElevenLabs eleven v4, generada a mano por Salvador).
+Cada línea se cortó de la toma y se colocó en su tiempo sin acelerarla ni estirarla (`video/tools/vo_place.py`).
+Tiempos de palabra medidos en la toma con la envolvente, las sibilantes y los cierres de oclusivas (sin reconocimiento de voz).
 
 ## Idea
 El lazo café de la caja, el detalle que sus clientes elogian en Google. Una sola cinta de satén hace todo:
@@ -31,42 +32,41 @@ Una cámara, un campo líquido, cero cortes.
 
 Tipografía: Merienda (títulos; armoniza con el rotulado del logo) y DM Sans (interfaz). Las dos SIL OFL, en `site/fonts/`.
 
-## Beat sheet (segundos · cuadro)
-| Tiempo | Cuadros | Qué pasa |
-|---|---|---|
-| 0.00–0.50 | 0–30 | HOOK. Pantalla oscura; en el cuadro 0 la cinta entra disparada de izquierda a derecha con latigazo y motion blur. |
-| 0.13–0.43 | 8–26 | La caja blanca cae al centro (contacto en el cuadro 26), rebota y asienta; la sombra de contacto se cierra. |
-| 0.34–1.50 | 20–90 | La cinta vuelve por arriba, rodea la caja y se anuda: punta, banda, lazo izquierdo, lazo derecho, punta. |
-| 0.86 | 52 | "20" aterriza (voz: "veinte"). |
-| 1.16 | 70 | "AÑOS" aterriza letra por letra, 30 ms entre glifos (voz: "años"). |
-| 1.42 | 85 | El moño aprieta (resorte) y aparece el nudo. |
-| 2.00–3.00 | 120–180 | La cinta se suelta; la primera escena cae fuera de cuadro y el trazo viaja a su lugar como marco del teléfono (giro que asienta con resorte). |
-| 2.44–2.96 | 146–178 | El cristal crece dentro del marco (SDF moño → rectángulo redondeado). |
-| 2.55–3.95 | 153–237 | HERO de la página: logo, "Pastelería Artesanal Patissier", título "Repostería artesanal" por glifo, bio real y foto del pastel de dinosaurio. |
-| 3.86–4.50 | 232–270 | Scroll corto para dejar la tarjeta de reseña en zona segura. |
-| 4.00–5.30 | 240–318 | La línea dibuja la tarjeta de cristal; "4.8", cinco estrellas en cascada y "en Google" (voz: "cuatro punto ocho"). |
-| 4.55–5.90 | 273–354 | La reseña real aparece letra por letra dentro del cristal. |
-| 6.00–6.95 | 360–417 | Scroll a la GALERÍA (rosa con fresas, dos pisos con flores, red velvet) con parallax; la cámara orbita ligeramente. |
-| 7.86–8.72 | 472–523 | Scroll al pedido. Sabores visibles; foto de red velvet. |
-| 8.42–9.30 | 505–558 | SELECTOR DE TAMAÑOS: Mini 3 · Chico 8 · Mediano 14 · Grande 18 personas, en cascada (voz: "Elige el tamaño"). |
-| 9.42–10.05 | 565–603 | Toque en Mediano; anillo de luz. |
-| 10.62–11.05 | 637–663 | Círculo de contacto sobre "Pedir por WhatsApp"; el botón se hunde (voz: "y pide por WhatsApp"). |
-| 11.05–11.85 | 663–711 | El botón suelta una onda que sale del teléfono al campo líquido. |
-| 12.00–13.40 | 720–804 | Respiro y lift: la cámara se aleja, teléfono completo con la web viva (regresa a la portada). |
-| 14.00–15.20 | 840–912 | La interfaz se pliega hacia el moño (SDF inverso). "PATISSIER" y "Repostería fina" (voz). |
-| 16.00–18.00 | 960–1080 | END CARD: logo oficial moderado en medallón blanco y "Demo de cortesía de Elevate Negocios · pieza no oficial". Golpe grave en 16.00; 0.5 s de silencio al final. |
+## Beat sheet (segundos · cuadro a 60 fps)
+| Tiempo | Cuadros | Qué pasa | Voz |
+|---|---|---|---|
+| 0.00–0.50 | 0–30 | HOOK. Golpe grave en el cuadro 0; la cinta entra disparada de izquierda a derecha con latigazo y motion blur. | |
+| 0.13–0.43 | 8–26 | La caja blanca cae al centro (contacto en el cuadro 26), rebota y asienta; la sombra de contacto se cierra. | |
+| 0.34–1.50 | 20–90 | La cinta vuelve por arriba, rodea la caja y se anuda: punta, banda, lazo izquierdo, lazo derecho, punta. | 0.50 "Más de veinte años de repostería artesanal." |
+| 1.12 | 67 | "20" aterriza (cae desde cámara, resorte). | "veinte" |
+| 1.44 | 86 | "AÑOS" aterriza letra por letra (30 ms entre glifos). | "años" |
+| 1.50 | 90 | El moño aprieta (resorte) y aparece el nudo. | |
+| 2.00–3.00 | 120–180 | La cinta se suelta; la primera escena cae fuera de cuadro y el trazo se vuelve el marco del teléfono (giro con resorte). | |
+| 2.44–2.96 | 146–178 | El cristal crece dentro del marco (SDF moño → rectángulo redondeado). | |
+| 2.45–3.85 | 147–231 | HERO: logo, "Pastelería Artesanal Patissier", "Repostería artesanal" por glifo, bio real, foto del dinosaurio. | "repostería artesanal" |
+| 3.70–4.30 | 222–258 | Scroll corto a la tarjeta de reseña. | |
+| 3.80–5.70 | 228–342 | La línea dibuja la tarjeta de cristal; "4.8" (4.56–4.71), cinco estrellas (4.98–5.40), "en Google" (5.55). | 3.98 "Cuatro punto ocho estrellas en Google." |
+| 4.62–6.05 | 277–363 | La reseña real aparece letra por letra. | |
+| 6.15–7.05 | 369–423 | Scroll a la GALERÍA con parallax; la cámara orbita (6.00–8.20). Tarjetas en cascada 6.41–6.96. | 6.24 "Imagínalos en tu propia página." |
+| 7.80–8.60 | 468–516 | Scroll al pedido: foto, sabores de línea y de especialidad. | |
+| 8.45–9.25 | 507–555 | Fichas de tamaño en cascada: Mini 3 · Chico 8 · Mediano 14 · Grande 18 personas. | 8.43 "Elige el tamaño…" |
+| 9.42 / 9.48–10.05 | 565 / 569–603 | Toque en Mediano; anillo de luz. | |
+| 10.92–11.02 | 655–661 | El dedo presiona "Pedir por WhatsApp" (sin número). | 10.18 "…y pide por WhatsApp." ("WhatsApp" en 10.89) |
+| 11.02–11.82 | 661–709 | El botón suelta una onda que sale del teléfono al campo líquido. | |
+| 11.80–12.70 | 708–762 | Respiro y lift: la cámara se aleja, teléfono completo flotando; la página regresa a la portada. | |
+| 12.70–13.95 | 762–837 | La interfaz se pliega (SDF rectángulo → moño), la cinta deja el marco y vuelve a anudarse sobre la caja, que sube. | |
+| 13.34 / 14.60 | 800 / 876 | "PATISSIER" sube letra por letra; "Repostería fina" se escribe de izquierda a derecha. | 13.32 "Patissier. Repostería fina." |
+| 15.62–16.00 | 937–960 | La caja sale por abajo, el texto flota hacia arriba y el medallón del logo crece. | |
+| 16.00–18.00 | 960–1080 | END CARD: el medallón aterriza con golpe grave; "Demo de cortesía de Elevate Negocios · pieza no oficial". Silencio desde 17.50. | |
 
-Hecho y verificado en cuadros: 0.00–5.00 s. Diseñado pero aún sin construir en el compositor: cámara de 6 s en adelante, onda del botón, plegado final y end card.
+En 1:1 la misma pieza se re-acomoda: el teléfono va a la derecha y cada línea de la voz se lee en la columna izquierda
+("4.8 / en Google", "Tu propia / página", "Elige el / tamaño", "Pide por / WhatsApp"); al final todo se centra.
 
-## Locución (planeada; español de México, cálida, sin prisa)
-| Inicio | Línea |
-|---|---|
-| 0.50 | Más de veinte años de repostería artesanal. |
-| 4.00 | Cuatro punto ocho estrellas en Google. |
-| 6.20 | Imagínalos en tu propia página. |
-| 8.40 | Elige el tamaño… |
-| 10.20 | …y pide por WhatsApp. |
-| 13.60 | Patissier. Repostería fina. |
+## Audio
+- Voz: -16 LUFS. Música en código (Re mayor, 120 BPM, capa nueva cada 4 s, lift en 12 s, respiro 15.45–16.0, golpe en 16.0),
+  con ducking por la voz: al menos 12 dB por debajo en cada ventana con voz (`video/audio/mix_report.json`).
+- 104 efectos sintetizados, uno por movimiento visible (`video/timeline/sfx_cues.json`).
+- Master -14 LUFS integrado, pico real -1.5 dBTP (límite pedido: -1.25).
 
 ## Datos en pantalla (todos de la lista verificada)
 - "Pastelería Artesanal Patissier", "Repostería artesanal", la frase de su bio, "4.8 en Google", la reseña real sin nombre.
@@ -76,7 +76,6 @@ Hecho y verificado en cuadros: 0.00–5.00 s. Diseñado pero aún sin construir 
 - Botón "Pedir por WhatsApp" **sin número**. En la página viva abre WhatsApp con el pedido escrito y el cliente elige el chat; el número se pone en `CONFIG.wa` cuando el dueño lo confirme.
 - No aparecen: horario, dirección, precios, DiDi, personajes con licencia, fotos con personas.
 
-## Pendientes antes del render completo
-1. Clave de ElevenLabs para la voz (2 tomas) y bloquear la línea de tiempo a la toma elegida.
-2. Volver a revisar "4.8" en Google Maps el día del render.
-3. Aprobación del preview (hook + teléfono).
+## Pendientes
+- Volver a revisar "4.8" en Google Maps antes de mandarlo (desde esta sesión no se pudo abrir Maps).
+- Si el dueño confirma: número de WhatsApp (`CONFIG.wa`), precios (`?precios=1`) y los nombres con Oreo y Baileys.

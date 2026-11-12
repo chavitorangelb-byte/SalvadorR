@@ -1,0 +1,11 @@
+{
+ "voz_LUFS": -16.0,
+ "musica_LUFS": -38.41,
+ "sfx_LUFS": -24.0,
+ "master_LUFS": -14.0,
+ "master_true_peak_dBTP": -1.5,
+ "voz_menos_musica_min_dB_en_ventanas_con_voz": 12.46,
+ "voz_menos_sfx_mediana_dB_en_ventanas_con_voz": 14.03,
+ "ganancia_musica_dB": -12.5,
+ "ducking_musica_dB": 9.0
+}

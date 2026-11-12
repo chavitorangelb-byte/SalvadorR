@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
   fs.createReadStream(p).pipe(res);
 }).listen(PORT, '127.0.0.1');
 
-const W = FORMAT === '11' ? 1080 : 1080, H = FORMAT === '11' ? 1080 : 1920;
+const W = 1080, H = FORMAT === '11' ? 1080 : 1920;
 const RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);
 
 (async () => {

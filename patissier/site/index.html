@@ -288,13 +288,13 @@ footer .medal{width:74px;height:74px;margin:0 auto 14px}
     set(E.shot, { clipPath: p < 1 ? `inset(${(1 - p) * 50}% round ${28 + (1 - p) * 120}px)` : '', transform: `translateY(${(1 - p) * 40}px)` });
     // tarjeta de reseña: la línea la dibuja, el cristal se abre desde su esquina
     const c = S.card;
-    E.line.style.strokeDasharray = '100 100'; E.line.style.strokeDashoffset = String(100 * (1 - eo(sub(c, 0, .5))));
-    E.line.style.opacity = String(1 - .72 * sub(c, .55, .9));
-    p = eo(sub(c, .12, .62));
-    set(E.review, { clipPath: p < 1 ? `circle(${p * 150}% at 22px 22px)` : '', transform: `translateY(${(1 - eo(sub(c, 0, .6))) * 22}px)` });
-    G.num.forEach((g, i) => { const q = sub(c, .3 + i * .05, .62 + i * .05); set(g, { transform: `translateY(${(1 - eb(q)) * 34}px) scale(${.5 + .5 * eb(q)})`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
-    E.stars.forEach((s, i) => { const q = sub(c, .42 + i * .055, .68 + i * .055); set(s, { transform: `scale(${eb(q)}) rotate(${(1 - eo(q)) * -70}deg)` }); });
-    G.src.forEach((g, i) => { const q = sub(c, .6 + i * .02, .82 + i * .02); set(g, { transform: `translateY(${(1 - eo(q)) * 14}px)`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
+    E.line.style.strokeDasharray = '100 100'; E.line.style.strokeDashoffset = String(100 * (1 - eo(sub(c, 0, .32))));
+    E.line.style.opacity = String(1 - .72 * sub(c, .4, .7));
+    p = eo(sub(c, .05, .40));
+    set(E.review, { clipPath: p < 1 ? `circle(${p * 150}% at 22px 22px)` : '', transform: `translateY(${(1 - eo(sub(c, 0, .4))) * 22}px)` });
+    G.num.forEach((g, i) => { const q = sub(c, .14 + i * .04, .40 + i * .04); set(g, { transform: `translateY(${(1 - eb(q)) * 34}px) scale(${.5 + .5 * eb(q)})`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
+    E.stars.forEach((s, i) => { const q = sub(c, .40 + i * .055, .62 + i * .055); set(s, { transform: `scale(${eb(q)}) rotate(${(1 - eo(q)) * -70}deg)` }); });
+    G.src.forEach((g, i) => { const q = sub(c, .74 + i * .014, .90 + i * .014); set(g, { transform: `translateY(${(1 - eo(q)) * 14}px)`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
     const n = Math.round(S.typed * G.quote.length);
     G.quote.forEach((g, i) => { g.style.visibility = i < n ? 'visible' : 'hidden'; });
     set(E.by, { clipPath: `inset(0 ${(1 - eo(sub(S.typed, .96, 1))) * 100}% 0 0)` });

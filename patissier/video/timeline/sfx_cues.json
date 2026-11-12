@@ -1,0 +1,418 @@
+[
+{
+"t": 0,
+"name": "latigazo de la cinta"
+},
+{
+"t": 0.1,
+"name": "aleteo de la cinta"
+},
+{
+"t": 0.13,
+"name": "caja cae"
+},
+{
+"t": 0.2,
+"name": "aleteo de la cinta"
+},
+{
+"t": 0.31,
+"name": "aleteo de la cinta"
+},
+{
+"t": 0.43,
+"name": "caja aterriza"
+},
+{
+"t": 0.54,
+"name": "rebote"
+},
+{
+"t": 0.62,
+"name": "la cinta rodea la caja"
+},
+{
+"t": 0.64,
+"name": "asienta"
+},
+{
+"t": 0.763,
+"name": "la cinta rodea la caja"
+},
+{
+"t": 0.907,
+"name": "la cinta rodea la caja"
+},
+{
+"t": 1.05,
+"name": "la cinta rodea la caja"
+},
+{
+"t": 1.12,
+"name": "\"2\" aterriza"
+},
+{
+"t": 1.154,
+"name": "\"0\" aterriza"
+},
+{
+"t": 1.2,
+"name": "lazo izquierdo"
+},
+{
+"t": 1.34,
+"name": "lazo derecho"
+},
+{
+"t": 1.44,
+"name": "letra de \"AÑOS\""
+},
+{
+"t": 1.47,
+"name": "letra de \"AÑOS\""
+},
+{
+"t": 1.5,
+"name": "el moño aprieta"
+},
+{
+"t": 1.5,
+"name": "letra de \"AÑOS\""
+},
+{
+"t": 1.53,
+"name": "letra de \"AÑOS\""
+},
+{
+"t": 2,
+"name": "el moño se suelta"
+},
+{
+"t": 2.06,
+"name": "la escena cae"
+},
+{
+"t": 2.3,
+"name": "la cinta dibuja el marco"
+},
+{
+"t": 2.44,
+"name": "crece el cristal"
+},
+{
+"t": 2.55,
+"name": "logo aparece"
+},
+{
+"t": 2.62,
+"name": "la cinta cierra el marco"
+},
+{
+"t": 2.926,
+"name": "aparece la foto"
+},
+{
+"t": 2.96,
+"name": "el cristal asienta"
+},
+{
+"t": 3.094,
+"name": "título \"Repostería\""
+},
+{
+"t": 3.15,
+"name": "frase de la bio"
+},
+{
+"t": 3.43,
+"name": "título \"artesanal\""
+},
+{
+"t": 3.7,
+"name": "scroll a la reseña"
+},
+{
+"t": 3.8,
+"name": "la línea dibuja la tarjeta"
+},
+{
+"t": 3.895,
+"name": "se abre el cristal"
+},
+{
+"t": 4.56,
+"name": "\"4\" de la calificación"
+},
+{
+"t": 4.62,
+"name": "palabra de la reseña"
+},
+{
+"t": 4.636,
+"name": "\".\" de la calificación"
+},
+{
+"t": 4.712,
+"name": "\"8\" de la calificación"
+},
+{
+"t": 4.754,
+"name": "palabra de la reseña"
+},
+{
+"t": 4.901,
+"name": "palabra de la reseña"
+},
+{
+"t": 4.978,
+"name": "estrella 1"
+},
+{
+"t": 4.999,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.036,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.083,
+"name": "estrella 2"
+},
+{
+"t": 5.084,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.187,
+"name": "estrella 3"
+},
+{
+"t": 5.256,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.292,
+"name": "estrella 4"
+},
+{
+"t": 5.366,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.396,
+"name": "estrella 5"
+},
+{
+"t": 5.402,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.51,
+"name": "\"en Google\""
+},
+{
+"t": 5.537,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.573,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.683,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.757,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.867,
+"name": "palabra de la reseña"
+},
+{
+"t": 5.928,
+"name": "palabra de la reseña"
+},
+{
+"t": 6.15,
+"name": "scroll a la galería"
+},
+{
+"t": 6.3,
+"name": "título de la galería"
+},
+{
+"t": 6.4,
+"name": "órbita de cámara"
+},
+{
+"t": 6.412,
+"name": "tarjeta 1 de la galería"
+},
+{
+"t": 6.594,
+"name": "tarjeta 2 de la galería"
+},
+{
+"t": 6.776,
+"name": "tarjeta 3 de la galería"
+},
+{
+"t": 6.958,
+"name": "tarjeta 4 de la galería"
+},
+{
+"t": 7.8,
+"name": "scroll al pedido"
+},
+{
+"t": 8.03,
+"name": "foto del pedido"
+},
+{
+"t": 8.55,
+"name": "ficha de sabor 1"
+},
+{
+"t": 8.61,
+"name": "ficha de sabor 2"
+},
+{
+"t": 8.67,
+"name": "ficha de sabor 3"
+},
+{
+"t": 8.73,
+"name": "ficha de sabor 4"
+},
+{
+"t": 8.79,
+"name": "ficha de sabor 5"
+},
+{
+"t": 8.85,
+"name": "ficha de sabor 6"
+},
+{
+"t": 8.85,
+"name": "ficha Mini"
+},
+{
+"t": 8.91,
+"name": "ficha de sabor 7"
+},
+{
+"t": 8.97,
+"name": "ficha de sabor 8"
+},
+{
+"t": 8.986,
+"name": "ficha Chico"
+},
+{
+"t": 9.122,
+"name": "ficha Mediano"
+},
+{
+"t": 9.14,
+"name": "dedo se acerca"
+},
+{
+"t": 9.258,
+"name": "ficha Grande"
+},
+{
+"t": 9.42,
+"name": "toque en Mediano"
+},
+{
+"t": 9.48,
+"name": "anillo de luz"
+},
+{
+"t": 10.62,
+"name": "dedo se acerca al botón"
+},
+{
+"t": 10.92,
+"name": "toque en el botón"
+},
+{
+"t": 11.02,
+"name": "el botón suelta"
+},
+{
+"t": 11.02,
+"name": "la onda sale del botón"
+},
+{
+"t": 11.07,
+"name": "brillo de la onda"
+},
+{
+"t": 11.8,
+"name": "la cámara se aleja"
+},
+{
+"t": 11.85,
+"name": "regresa a la portada"
+},
+{
+"t": 12.7,
+"name": "la interfaz se pliega"
+},
+{
+"t": 12.82,
+"name": "la caja sube"
+},
+{
+"t": 12.9,
+"name": "la cinta vuelve"
+},
+{
+"t": 13.15,
+"name": "el cristal desaparece"
+},
+{
+"t": 13.25,
+"name": "la cinta se anuda"
+},
+{
+"t": 13.46,
+"name": "letras de \"PATISSIER\""
+},
+{
+"t": 13.55,
+"name": "la caja asienta"
+},
+{
+"t": 13.56,
+"name": "letras de \"PATISSIER\""
+},
+{
+"t": 13.66,
+"name": "letras de \"PATISSIER\""
+},
+{
+"t": 13.9,
+"name": "el moño cierra"
+},
+{
+"t": 14.52,
+"name": "\"Repostería fina\" se escribe"
+},
+{
+"t": 15.62,
+"name": "la caja sale"
+},
+{
+"t": 16,
+"name": "golpe grave del corte"
+},
+{
+"t": 16.3,
+"name": "aviso de demo"
+}
+]

@@ -10,7 +10,12 @@ import { Ribbon, NP, resample, bowOnBox, phoneFrame } from './ribbon.mjs';
 const { T, clamp, lerp, prog, smooth, easeOut, easeIn, easeInOut, spring } = TL;
 const qs = new URLSearchParams(location.search);
 const SCALE = Number(qs.get('scale') || 1), SUBS = Number(qs.get('subs') || 8);
-const W = 1080, H = 1920, RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);
+const FORMAT = qs.get('format') || '916';
+// re-layout por formato: en 1:1 el teléfono va a la derecha y la voz se lee en la columna izquierda
+const LY = FORMAT === '11'
+  ? { W: 1080, H: 1080, ppuBox: 100, ppuPhone: 112, ppuPull: 100, phoneX: 1.95, ts: 0.62, b20: 372, patY: 300, finaY: 378, med: [540, 470, 330], discY: 800, discS: 30, caps: true }
+  : { W: 1080, H: 1920, ppuBox: 150, ppuPhone: 205, ppuPull: 150, phoneX: 0, ts: 1, b20: 640, patY: 606, finaY: 724, med: [540, 880, 440], discY: 1300, discS: 34, caps: false };
+const W = LY.W, H = LY.H, RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);
 const CAP = '../../build/capture/';
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
 const deg = Math.PI / 180;
@@ -21,7 +26,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDra
 renderer.setPixelRatio(1); renderer.setSize(RW, RH, false); renderer.autoClear = false; renderer.toneMapping = THREE.NoToneMapping;
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const man = await fetch(CAP + 'manifest.json').then((r) => r.json());
-for (const [fam, file, weight] of [['Merienda', 'merienda-latin-800-normal.woff2', '800'], ['Merienda', 'merienda-latin-700-normal.woff2', '700'], ['DM Sans', 'dm-sans-latin-600-normal.woff2', '600']])
+for (const [fam, file, weight] of [['Merienda', 'merienda-latin-800-normal.woff2', '800'], ['Merienda', 'merienda-latin-700-normal.woff2', '700'], ['DM Sans', 'dm-sans-latin-600-normal.woff2', '600'], ['DM Sans', 'dm-sans-latin-500-normal.woff2', '500']])
   document.fonts.add(await new FontFace(fam, `url(../../site/fonts/${file})`, { weight }).load());
 
 const rtOpts = { type: THREE.HalfFloatType, colorSpace: THREE.LinearSRGBColorSpace };
@@ -177,38 +182,88 @@ const phoneShadow = new THREE.Mesh(new THREE.PlaneGeometry(SW + 6, SH + 6), new 
       gl_FragColor = vec4(0.0, 0.0, 0.0, uA * (0.62 * (1.0 - smoothstep(-0.7, 1.5, s)) + 0.25 * (1.0 - smoothstep(-0.1, 0.3, s)))); }` }));
 phoneShadow.position.set(0.42, -0.62, -1.3); phoneShadow.renderOrder = -4; phone.add(phoneShadow);
 
-// ---------- capa 2D: tipografía cinética por glifo (px de diseño, y hacia abajo) ----------
+// ---------- capa 2D: tipografía cinética por glifo, medallón del logo y aviso (px de diseño) ----------
 const over = new THREE.Scene(), orthoPx = new THREE.OrthographicCamera(0, W, 0, -H, -10, 10);
-const TY0 = 0, TYH = H;                                                    // franja de texto (dentro de la zona segura)
-const tcan = document.createElement('canvas'); tcan.width = RW; tcan.height = Math.round(TYH * SCALE);
-const tctx = tcan.getContext('2d'), ttex = new THREE.CanvasTexture(tcan); ttex.colorSpace = THREE.SRGBColorSpace; ttex.minFilter = THREE.LinearFilter; ttex.generateMipmaps = false;
-const tmesh = new THREE.Mesh(new THREE.PlaneGeometry(W, TYH), new THREE.MeshBasicMaterial({ map: ttex, transparent: true, depthTest: false, depthWrite: false, premultipliedAlpha: true, toneMapped: false }));
-ttex.premultiplyAlpha = true; tmesh.position.set(W / 2, -(TY0 + TYH / 2), 0); tmesh.frustumCulled = false; over.add(tmesh);
-const CREAM = '#F4ECE2', ROSE = '#FFB5B0';
-function glyphs(text, font, size, x, baseline) { tctx.font = `${font} ${size}px Merienda`; const out = []; let cx = x; const chars = [...text];
-  chars.forEach((ch, i) => { const w = tctx.measureText(ch).width, adv = tctx.measureText(chars.slice(0, i + 1).join('')).width - tctx.measureText(chars.slice(0, i).join('')).width;
-    out.push({ ch, x: cx + adv / 2, y: baseline, w, size, font }); cx += adv; }); out.width = cx - x; return out; }
-const wOf = (text, font, size) => { tctx.font = `${font} ${size}px Merienda`; return tctx.measureText(text).width; };
-const w20 = wOf('20', 800, 330), wAn = wOf('AÑOS', 800, 150), gap = 34, x0 = (W - (w20 + gap + wAn)) / 2;
-const G20 = glyphs('20', 800, 330, x0, 640), GAN = glyphs('AÑOS', 800, 150, x0 + w20 + gap, 640);
+const tcan = document.createElement('canvas'); tcan.width = RW; tcan.height = RH;
+const tctx = tcan.getContext('2d'), ttex = new THREE.CanvasTexture(tcan); ttex.colorSpace = THREE.SRGBColorSpace; ttex.minFilter = THREE.LinearFilter; ttex.generateMipmaps = false; ttex.premultiplyAlpha = true;
+const tmesh = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshBasicMaterial({ map: ttex, transparent: true, depthTest: false, depthWrite: false, premultipliedAlpha: true, toneMapped: false }));
+tmesh.position.set(W / 2, -H / 2, 0); tmesh.frustumCulled = false; over.add(tmesh);
+const logoImg = new Image(); logoImg.src = '../../site/img/logo.png'; await logoImg.decode();
+const CREAM = '#F4ECE2', ROSE = '#FFB5B0', GREEN = '#9AB83C';
+const FONT = (w, s, fam = 'Merienda') => `${w} ${s}px "${fam}"`;
+function glyphs(text, weight, size, x, baseline, fam = 'Merienda') {
+  tctx.font = FONT(weight, size, fam); const out = [], chars = [...text]; let prev = 0;
+  chars.forEach((ch, i) => { const wNext = tctx.measureText(chars.slice(0, i + 1).join('')).width, adv = wNext - prev;
+    out.push({ ch, x: x + prev + adv / 2, y: baseline, size, weight, fam, space: ch === ' ' }); prev = wNext; });
+  out.width = prev; return out;
+}
+const wOf = (text, weight, size, fam) => { tctx.font = FONT(weight, size, fam); return tctx.measureText(text).width; };
+const centered = (text, weight, size, base, cx = W / 2, fam) => glyphs(text, weight, size, cx - wOf(text, weight, size, fam) / 2, base, fam);
+// "20 AÑOS"
+const s20 = 330 * LY.ts, sAn = 150 * LY.ts, w20 = wOf('20', 800, s20), wAn = wOf('AÑOS', 800, sAn), gap = 34 * LY.ts, x0 = (W - (w20 + gap + wAn)) / 2;
+const G20 = glyphs('20', 800, s20, x0, LY.b20), GAN = glyphs('AÑOS', 800, sAn, x0 + w20 + gap, LY.b20);
+// cierre: "PATISSIER" / "Repostería fina"
+const GPAT = centered('PATISSIER', 800, 150 * LY.ts, LY.patY), GFIN = centered('Repostería fina', 700, 66 * LY.ts, LY.finaY);
+// 1:1: la voz se lee en la columna izquierda (dos renglones, máximo tres palabras por renglón)
+const CX = 70, CS = 78;
+const CAPS = LY.caps ? [
+  { t: [T.card[0] + 0.1, T.galScroll[0] + 0.05], rows: [['4.8', ROSE, TL.VO.lines[1].words.ocho - 0.25], ['en Google', CREAM, TL.VO.lines[1].words.google - 0.1]] },
+  { t: [TL.VO.lines[2].t, T.orderScroll[0] + 0.1], rows: [['Tu propia', CREAM, TL.VO.lines[2].t + 0.3], ['página', ROSE, TL.VO.lines[2].words.pagina - 0.12]] },
+  { t: [TL.VO.lines[3].t, T.ring[1]], rows: [['Elige el', CREAM, TL.VO.lines[3].t - 0.05], ['tamaño', ROSE, TL.VO.lines[3].words.tamano - 0.1]] },
+  { t: [TL.VO.lines[4].t, T.pull[0] + 0.2], rows: [['Pide por', CREAM, TL.VO.lines[4].t - 0.05], ['WhatsApp', GREEN, TL.VO.lines[4].words.whatsapp - 0.1]] },
+].map((c) => ({ ...c, rows: c.rows.map(([text, color, t0], i) => ({ g: glyphs(text, 800, CS, CX, 470 + i * 96), color, t0 })) })) : [];
 let textOn = false;
-function drawText(t, shiftPx) {
-  const live = t > T.t20 - 0.22 && t < T.untie[1];
+function put(g, dx, dy, sc, rot, a, color) { if (a <= 0.002 || g.space) return; tctx.save(); tctx.globalAlpha = Math.min(1, a); tctx.translate(g.x + dx, g.y + dy); tctx.rotate(rot);
+  tctx.scale(sc, sc); tctx.font = FONT(g.weight, g.size, g.fam); tctx.fillStyle = color; tctx.fillText(g.ch, 0, 0); tctx.restore(); }
+function drawOverlay(t, st) {
+  const live = (t > T.t20 - 0.22 && t < T.untie[1]) || t > T.tPat - 0.2 || CAPS.some((c) => t > c.t[0] - 0.1 && t < c.t[1] + 0.4);
   if (!live) { if (textOn) { tmesh.visible = false; textOn = false; } return; }
   textOn = true; tmesh.visible = true;
-  tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.clearRect(0, 0, tcan.width, tcan.height); tctx.setTransform(SCALE, 0, 0, SCALE, 0, -TY0 * SCALE);
+  tctx.setTransform(1, 0, 0, 1, 0, 0); tctx.clearRect(0, 0, tcan.width, tcan.height); tctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
   tctx.textAlign = 'center'; tctx.textBaseline = 'alphabetic';
-  const put = (g, dx, dy, sc, rot, a, color) => { if (a <= 0.002) return; tctx.save(); tctx.globalAlpha = Math.min(1, a); tctx.translate(g.x + dx, g.y + dy + shiftPx); tctx.rotate(rot);
-    tctx.scale(sc, sc); tctx.font = `${g.font} ${g.size}px Merienda`; tctx.fillStyle = color; tctx.fillText(g.ch, 0, 0); tctx.restore(); };
-  // "20": cada cifra cae desde la cámara y asienta con resorte (aterriza en "veinte")
-  G20.forEach((g, i) => { const x = (t - (T.t20 - 0.15) - i * 0.034) / 0.15; if (x <= 0) return;
-    const land = easeIn(clamp(x), 2), s = spring(Math.max(0, x - 1) * 0.15 + 1e-6, 3.2, 0.36);
-    const sc = x < 1 ? lerp(2.7, 0.9, land) : 0.9 + 0.1 * s;
-    put(g, 0, x < 1 ? lerp(-150, 0, land) - (g.size * 0.33) * (sc - 1) : 0, sc, x < 1 ? lerp(i ? 0.22 : -0.22, 0, land) : 0, clamp(x * 5), CREAM); });
-  // "AÑOS": sube letra por letra desde abajo con giro (aterriza en "años")
-  GAN.forEach((g, i) => { const x = (t - (T.tAnos - 0.2) - i * 0.03) / 0.2; if (x <= 0) return;
-    const k = x < 1 ? easeOut(x, 3) : 1, s = x >= 1 ? spring((x - 1) * 0.2 + 1e-6, 3.4, 0.4) : 0;
-    put(g, 0, lerp(120, -14, k) + 14 * s, 1, lerp(i % 2 ? 0.5 : -0.5, 0, k), clamp(x * 4), ROSE); });
+  if (t < T.untie[1]) {
+    const sh = st.drop * ppuAt(t);
+    // "20": cada cifra cae desde la cámara y asienta con resorte (aterriza en "veinte")
+    G20.forEach((g, i) => { const x = (t - (T.t20 - 0.15) - i * 0.034) / 0.15; if (x <= 0) return;
+      const land = easeIn(clamp(x), 2), s = spring(Math.max(0, x - 1) * 0.15 + 1e-6, 3.2, 0.36), sc = x < 1 ? lerp(2.7, 0.9, land) : 0.9 + 0.1 * s;
+      put(g, 0, sh + (x < 1 ? lerp(-150 * LY.ts, 0, land) - (g.size * 0.33) * (sc - 1) : 0), sc, x < 1 ? lerp(i ? 0.22 : -0.22, 0, land) : 0, clamp(x * 5), CREAM); });
+    // "AÑOS": sube letra por letra desde abajo con giro (aterriza en "años")
+    GAN.forEach((g, i) => { const x = (t - (T.tAnos - 0.2) - i * 0.03) / 0.2; if (x <= 0) return;
+      const k = x < 1 ? easeOut(x, 3) : 1, s = x >= 1 ? spring((x - 1) * 0.2 + 1e-6, 3.4, 0.4) : 0;
+      put(g, 0, sh + (lerp(120, -14, k) + 14 * s) * LY.ts, 1, lerp(i % 2 ? 0.5 : -0.5, 0, k), clamp(x * 4), ROSE); });
+  }
+  // 1:1: cada renglón sube glifo por glifo y sale cayendo
+  for (const c of CAPS) { if (t < c.t[0] - 0.1 || t > c.t[1] + 0.4) continue;
+    c.rows.forEach((r) => r.g.forEach((g, i) => { const x = (t - r.t0 - i * 0.026) / 0.24, y = (t - c.t[1] - i * 0.012) / 0.26; if (x <= 0) return;
+      const k = easeOut(clamp(x), 3), s = x >= 1 ? spring((x - 1) * 0.24 + 1e-6, 3.0, 0.42) : 0, out = easeIn(clamp(y), 2);
+      put(g, 0, lerp(70, -8, k) + 8 * s + 90 * out, 1, lerp(-0.35, 0, k) + 0.25 * out, clamp(x * 4) * (1 - out), r.color); })); }
+  if (t > T.tPat - 0.2) {
+    const ex = (i, n) => easeIn(clamp((t - T.exit[0] - i * 0.014) / 0.30), 2.2);
+    // "PATISSIER": cada letra sube desde la caja y asienta (aterriza en "Patissier")
+    GPAT.forEach((g, i) => { const x = (t - (T.tPat - 0.14) - i * 0.028) / 0.26; if (x <= 0) return;
+      const k = easeOut(clamp(x), 3), s = x >= 1 ? spring((x - 1) * 0.26 + 1e-6, 2.8, 0.38) : 0, e = ex(i);
+      put(g, 0, lerp(110, -10, k) * LY.ts + 10 * LY.ts * s - 220 * LY.ts * e, lerp(0.55, 1, k), lerp(i % 2 ? 0.4 : -0.4, 0, k), clamp(x * 3.5) * (1 - e), CREAM); });
+    // "Repostería fina": se escribe de izquierda a derecha (aterriza en "Repostería")
+    GFIN.forEach((g, i) => { const x = (t - (T.tFina - 0.08) - i * 0.022) / 0.22; if (x <= 0) return;
+      const k = easeOut(clamp(x), 3), e = ex(i + 4);
+      put(g, lerp(-16, 0, k) * LY.ts, -180 * LY.ts * e, 1, 0, clamp(x * 2.5) * (1 - e), ROSE); });
+  }
+  // end card: el medallón del logo (imagen oficial, solo escalada y enmascarada en círculo) aterriza en 16.00
+  if (t > T.exit[0] + 0.06) {
+    const [mx, my, md] = LY.med, m = prog(t, [T.exit[0] + 0.06, T.endCard]), dt = t - T.endCard;
+    const sc = t < T.endCard ? easeIn(m, 2.2) : 1 + 0.06 * Math.exp(-dt * 7) * Math.sin(dt * 24), r = (md / 2) * sc;
+    if (r > 0.5) {
+      tctx.save(); tctx.globalAlpha = clamp(m * 3);
+      tctx.shadowColor = 'rgba(0,0,0,0.55)'; tctx.shadowBlur = 60 * SCALE; tctx.shadowOffsetY = 18 * SCALE;
+      tctx.beginPath(); tctx.arc(mx, my, r, 0, Math.PI * 2); tctx.fillStyle = '#FFFFFF'; tctx.fill(); tctx.restore();
+      tctx.save(); tctx.globalAlpha = clamp(m * 3); tctx.beginPath(); tctx.arc(mx, my, r * 0.985, 0, Math.PI * 2); tctx.clip();
+      tctx.imageSmoothingQuality = 'high'; tctx.drawImage(logoImg, mx - r * 1.02, my - r * 1.02, r * 2.04, r * 2.04); tctx.restore();
+    }
+    const d = prog(t, [T.endCard + 0.30, T.endCard + 0.85]);
+    if (d > 0) { tctx.save(); tctx.font = FONT(500, LY.discS, 'DM Sans'); const txt = 'Demo de cortesía de Elevate Negocios · pieza no oficial', tw = tctx.measureText(txt).width;
+      tctx.beginPath(); tctx.rect(W / 2 - tw / 2 - 4, LY.discY - 60, (tw + 8) * easeInOut(d, 2), 120); tctx.clip();
+      tctx.globalAlpha = 0.80 * smooth(d * 1.4); tctx.fillStyle = CREAM; tctx.fillText(txt, W / 2, LY.discY); tctx.restore(); }
+  }
   ttex.needsUpdate = true;
 }
 
@@ -223,20 +278,31 @@ async function pageTex(file) {
 }
 
 // ---------- estado en el tiempo ----------
-const ppuAt = (t) => lerp(150, 205, easeInOut(prog(t, [T.untie[0], T.untie[1] + 0.1]), 2.4));
-// al soltarse el moño la cámara sube con la cinta: toda la primera escena cae fuera de cuadro
-const sceneDrop = (t) => 17 * easeIn(prog(t, [T.untie[0] + 0.04, T.untie[0] + 0.66]), 2.3);
+function ppuAt(t) {
+  const inn = easeInOut(prog(t, [T.untie[0], T.untie[1] + 0.1]), 2.4), out = easeInOut(prog(t, T.pull), 2.2);
+  return lerp(lerp(LY.ppuBox, LY.ppuPhone, inn), LY.ppuPull, out);
+}
+// al soltarse el moño la cámara sube con la cinta (la caja cae fuera de cuadro); en el plegado la caja regresa; en el cierre sale por abajo
+const RISE = [T.fold[0] + 0.12, T.fold[0] + 0.85];
+const sceneDrop = (t) => 17 * (easeIn(prog(t, [T.untie[0] + 0.04, T.untie[0] + 0.66]), 2.3) * (1 - easeOut(prog(t, RISE), 2.6)) + easeIn(prog(t, T.exit), 2.4));
 function boxState(t) {
   const fall = prog(t, [T.boxIn[0], T.boxIn[0] + 0.30]), y = 13 * (1 - easeIn(fall, 2.1));
-  const tl = t - (T.boxIn[0] + 0.30);                                           // desde el contacto
-  const squash = tl > 0 ? 0.11 * Math.exp(-tl * 9) * Math.cos(tl * 30) : 0, hop = tl > 0 ? 0.20 * Math.exp(-tl * 6.5) * Math.abs(Math.sin(tl * 15)) : 0;
-  return { y: y + hop, squash, spin: (1 - easeOut(prog(t, [T.boxIn[0], T.boxIn[0] + 0.5]), 3)) * -0.9, landT: T.boxIn[0] + 0.30 };
+  const tl = t - (T.boxIn[0] + 0.30), tl2 = t - RISE[1];                        // desde cada contacto
+  const squash = (tl > 0 ? 0.11 * Math.exp(-tl * 9) * Math.cos(tl * 30) : 0) + (tl2 > 0 ? 0.05 * Math.exp(-tl2 * 9) * Math.cos(tl2 * 30) : 0);
+  const hop = tl > 0 ? 0.20 * Math.exp(-tl * 6.5) * Math.abs(Math.sin(tl * 15)) : 0;
+  return { y: y + hop, squash, spin: (1 - easeOut(prog(t, [T.boxIn[0], T.boxIn[0] + 0.5]), 3)) * -0.9 };
 }
 function phoneState(t) {
   const x = (t - (T.untie[0] + 0.22)) / 1.0, s = spring(x, 1.15, 0.5);
-  return { yaw: (1 - s) * 0.62 + 0.035 * Math.sin(t * 0.8), pitch: (1 - s) * -0.34 + 0.025 * Math.sin(t * 0.63 + 1), roll: (1 - s) * 0.10, z: (1 - s) * -1.2 };
+  const ob = Math.sin(Math.PI * smooth(prog(t, T.orbit)));                      // órbita ligera en la galería
+  const dt = t - T.tap, tapK = dt > -0.05 ? Math.exp(-Math.max(0, dt) * 7) * Math.sin(Math.min(Math.PI, (dt + 0.05) * 16)) : 0;
+  const pl = easeInOut(prog(t, T.pull), 2.2), fd = easeInOut(prog(t, [T.fold[0], T.fold[0] + 0.7]), 2.2);
+  return { yaw: (1 - s) * 0.62 + 0.035 * Math.sin(t * 0.8) + 0.085 * ob - 0.10 * pl + 0.55 * fd,
+    pitch: (1 - s) * -0.34 + 0.025 * Math.sin(t * 0.63 + 1) - 0.035 * ob + 0.06 * pl - 0.25 * fd,
+    roll: (1 - s) * 0.10 + 0.025 * pl - 0.1 * fd, z: (1 - s) * -1.2 - 0.10 * tapK - 1.5 * fd,
+    x: LY.phoneX * (1 - pl), y: 0.07 * Math.sin((t - T.pull[0]) * 1.6) * pl };
 }
-const tmpM = new THREE.Matrix4(), tmpV = V(0, 0, 0), tmpN = new THREE.Matrix3();
+const tmpV = V(0, 0, 0), tmpN = new THREE.Matrix3();
 function xform(src, mat, P, B) {                                               // muestreo local -> mundo
   tmpN.setFromMatrix4(mat);
   for (let i = 0; i < NP; i++) { const o = i * 3; tmpV.set(src.P[o], src.P[o + 1], src.P[o + 2]).applyMatrix4(mat); P[o] = tmpV.x; P[o + 1] = tmpV.y; P[o + 2] = tmpV.z;
@@ -260,6 +326,7 @@ function buildLead(tipP, tipDir) {
   lead.len = lead.L[LEAD_N - 1];
 }
 const HEAD0 = STRAIGHT - 7.5 - 4.2;                                           // la punta arranca justo fuera del borde izquierdo
+const CINCH2 = T.fold[1] - 0.05;
 function ribbonState(t) {
   const bs = boxState(t), drop = sceneDrop(t);
   // caja
@@ -268,17 +335,18 @@ function ribbonState(t) {
   groundShadow.position.y = -BOX.bh / 2 - 0.02 - bs.y * 0.82; groundShadow.material.uniforms.uLift.value = bs.y;
   boxRig.visible = drop < 16.5 && t > T.boxIn[0] - 0.02;
   boxRig.updateMatrixWorld(true);
-  // moño (aprieta con resorte al terminar de anudarse)
-  const cz = t - T.cinch, loop = cz < 0 ? 0.90 : 0.90 + 0.10 * spring(cz, 3.0, 0.32), lift = cz < 0 ? 0.80 : 0.80 + 0.20 * spring(cz, 2.6, 0.34);
+  // moño (aprieta con resorte al anudarse; otra vez al cerrar sobre la caja)
+  const cz = t < T.fold[0] ? t - T.cinch : t - CINCH2;
+  const loop = cz < 0 ? 0.90 : 0.90 + 0.10 * spring(cz, 3.0, 0.32), lift = cz < 0 ? 0.80 : 0.80 + 0.20 * spring(cz, 2.6, 0.34);
   const bl = bowLocal(Math.round(loop * 250) / 250, Math.round(lift * 250) / 250);
   xform(bl, boxBody.matrixWorld, bowW.P, bowW.B);
-  { const kin = cz < -0.25 ? 0 : spring(cz + 0.25, 3.2, 0.4), kout = 1 - easeIn(prog(t, [T.untie[0], T.untie[0] + 0.12]), 2), k = kin * kout;   // el nudo aprieta y se suelta
+  { const kin = cz < -0.25 ? 0 : spring(cz + 0.25, 3.2, 0.4), kout = t < T.fold[0] ? 1 - easeIn(prog(t, [T.untie[0], T.untie[0] + 0.12]), 2) : 1, k = kin * kout;   // el nudo aprieta y se suelta
     knot.scale.set(0.27 * k + 1e-4, 0.15 * k + 1e-4, 0.20 * k + 1e-4); }
   // teléfono
-  const ps = phoneState(t); phone.position.set(0, 0, ps.z); phone.rotation.set(ps.pitch, ps.yaw, ps.roll, 'YXZ'); phone.updateMatrixWorld(true);
+  const ps = phoneState(t); phone.position.set(ps.x, ps.y, ps.z); phone.rotation.set(ps.pitch, ps.yaw, ps.roll, 'YXZ'); phone.updateMatrixWorld(true);
   xform(frameLocal, phone.matrixWorld, frmW.P, frmW.B);
   const P = cur.P, B = cur.B;
-  let wFn = 0.25, thFn = 0.021;
+  let wFn = 0.25, thFn = 0.021, taper = 1;
   if (t < T.untie[0]) {
     // la cinta es una serpiente de longitud LR que recorre: entrada + moño
     const tipDir = tmpV.set(bowW.P[9] - bowW.P[0], bowW.P[10] - bowW.P[1], bowW.P[11] - bowW.P[2]).normalize().clone();
@@ -303,18 +371,24 @@ function ribbonState(t) {
       }
     }
   } else {
-    // el moño se suelta: cada punto viaja a su lugar en el marco del teléfono (de las puntas hacia el centro)
-    const any = t < T.untie[1] + 0.8;
-    for (let i = 0; i < NP; i++) { const u = i / (NP - 1), o = i * 3;
+    // el moño se suelta: cada punto viaja a su lugar en el marco (de las puntas hacia el centro);
+    // en el plegado regresa del marco al moño (del centro hacia las puntas)
+    const moving = t < T.untie[1] + 0.8 || (t > T.fold[0] && t < T.fold[1] + 0.6);
+    for (let i = 0; i < NP; i++) { const u = i / (NP - 1), o = i * 3, ctr = 1 - Math.abs(2 * u - 1);
       let q = 1, arc = 0;
-      if (any) { const st = (1 - Math.abs(2 * u - 1)) * 0.30, x = (t - T.untie[0] - st) / 0.62; q = x <= 0 ? 0 : x < 1 ? easeInOut(x, 2.4) : 1; q += x > 0.55 ? 0.035 * Math.exp(-(x - 0.55) * 5.5) * Math.sin((x - 0.55) * 13) : 0; arc = Math.sin(Math.PI * clamp(q)); }
+      if (moving) {
+        const x = (t - T.untie[0] - ctr * 0.30) / 0.62; let qa = x <= 0 ? 0 : x < 1 ? easeInOut(x, 2.4) : 1; qa += x > 0.55 ? 0.035 * Math.exp(-(x - 0.55) * 5.5) * Math.sin((x - 0.55) * 13) : 0;
+        const y = (t - T.fold[0] - 0.18 - (1 - ctr) * 0.28) / 0.66, qb = y <= 0 ? 0 : y < 1 ? easeInOut(y, 2.4) : 1;
+        q = qa * (1 - qb); arc = Math.sin(Math.PI * clamp(q));
+      } else if (t > T.fold[1]) q = 0;
       for (let c = 0; c < 3; c++) { P[o + c] = lerp(bowW.P[o + c], frmW.P[o + c], q); B[o + c] = lerp(bowW.B[o + c], frmW.B[o + c], smooth(q)); }
       P[o + 2] += arc * 2.6; P[o] += arc * 1.1 * Math.sin(u * 9.0 + 1.0); }
-    const k = easeInOut(prog(t, [T.untie[0] + 0.2, T.untie[1]]), 2);
-    wFn = lerp(0.25, 0.19, k); thFn = lerp(0.021, 0.042, k);
+    const k = easeInOut(prog(t, [T.untie[0] + 0.2, T.untie[1]]), 2) * (1 - easeInOut(prog(t, [T.fold[0] + 0.2, T.fold[0] + 0.95]), 2));
+    wFn = lerp(0.25, 0.19, k); thFn = lerp(0.021, 0.042, k); taper = 1 - k;
   }
-  const wEnd = (u) => wFn * (0.55 + 0.45 * smooth(clamp(Math.min(u, 1 - u) * 60)));   // puntas ligeramente afinadas
-  ribbon.update(P, B, t < T.untie[1] ? wEnd : wFn, thFn, LR);
+  const wEnd = (u) => wFn * (1 - taper * 0.45 * (1 - smooth(clamp(Math.min(u, 1 - u) * 60))));   // puntas ligeramente afinadas
+  ribbon.update(P, B, wEnd, thFn, LR);
+  ribbon.mesh.visible = !(t > T.exit[0] && drop > 16.5);
   return { bs, ps, drop };
 }
 
@@ -324,17 +398,25 @@ function frameState(t) {
   camera.position.set(0, 0, FPX / ppu); camera.lookAt(0, 0, 0); camera.updateMatrixWorld();
   const st = ribbonState(t);
   key.target.position.copy(boxRig.position); key.position.copy(boxRig.position).add(V(-5.2, 7.2, 6.0)); key.castShadow = boxRig.visible;
-  // cristal: crece desde la silueta del moño hasta el rectángulo redondeado (interpola campos de distancia)
-  const g = prog(t, T.glass), u = screenMat.uniforms;
-  u.uGrow.value = easeOut(clamp(g * 2.4), 2); u.uMorph.value = easeInOut(clamp((g - 0.12) / 0.88), 2.2); u.uBow.value.set(0, 0);
-  u.uTilt.value.set(st.ps.yaw, st.ps.pitch); u.uPx.value = 1 / ppu; u.uTex.value = pageFrame ? pageFrame.tex : null;
+  // cristal: crece desde la silueta del moño hasta el rectángulo redondeado (interpola campos de distancia) y en el plegado regresa
+  const g = prog(t, T.glass), f1 = prog(t, [T.fold[0], T.fold[0] + 0.55]), f2 = prog(t, [T.fold[0] + 0.30, T.fold[0] + 0.78]), u = screenMat.uniforms;
+  u.uGrow.value = easeOut(clamp(g * 2.4), 2) * (1 - easeIn(f2, 2)); u.uMorph.value = easeInOut(clamp((g - 0.12) / 0.88), 2.2) * (1 - easeInOut(f1, 2.2));
+  u.uBow.value.set(0, 0); u.uTilt.value.set(st.ps.yaw, st.ps.pitch); u.uPx.value = 1 / ppu; u.uTex.value = pageFrame ? pageFrame.tex : null;
   u.uBlur.value = pageFrame ? Math.min(0.06, Math.abs(pageFrame.v) / 60 / 844 * 0.5) : 0;
-  screenMesh.visible = g > 0.001; phoneShadow.visible = g > 0.001; phoneShadow.material.uniforms.uA.value = smooth(g);
-  drawText(t, st.drop * 150);
+  screenMesh.visible = u.uGrow.value > 0.001; phoneShadow.visible = screenMesh.visible; phoneShadow.material.uniforms.uA.value = smooth(g) * (1 - smooth(f2));
+  drawOverlay(t, st);
   return st;
 }
+// punto de la página (pt CSS, con el scroll de ese instante) -> px del cuadro
+function pageToPx(t, x, y) {
+  const ps = phoneState(t), o = new THREE.Object3D(); o.position.set(ps.x, ps.y, ps.z); o.rotation.set(ps.pitch, ps.yaw, ps.roll, 'YXZ'); o.updateMatrixWorld(true);
+  const p = V((x - 195) * 0.01, (422 - y) * 0.01, 0.13).applyMatrix4(o.matrixWorld), cz = FPX / ppuAt(t);
+  return [W / 2 + FPX * p.x / (cz - p.z), H / 2 - FPX * p.y / (cz - p.z)];
+}
 // ondas del campo líquido: cada golpe visible deja una (centro en px de diseño, tiempo, amplitud)
-const RIPPLES = [[540, 1000, T.whip[0] + 0.03, 0.050], [540, 1130, T.boxIn[0] + 0.30, 0.075], [540, 1060, T.cinch, 0.030], [540, 960, T.untie[1] - 0.08, 0.050]];
+const cta = man.rects.cta, ctaPx = pageToPx(T.tapUp, cta.x + cta.w / 2, cta.docY + cta.h / 2 - man.dest.order);
+const boxPx = [W / 2, H / 2 + 1.15 * LY.ppuBox * 0.9];
+const RIPPLES = [[W / 2, boxPx[1] - 130, T.whip[0] + 0.03, 0.050], [...boxPx, T.boxIn[0] + 0.30, 0.075], [...ctaPx, T.wave[0], 0.085], [...boxPx, RISE[1], 0.055], [LY.med[0], LY.med[1], T.endCard, 0.080], [W / 2, H / 2, T.untie[1] - 0.08, 0.040]];
 function fieldState(t) {
   const u = field.mat.uniforms; u.uT.value = t; u.uShift.value.set(0.02 * Math.sin(t * 0.21), sceneDrop(t) * 0.035);
   RIPPLES.forEach((r, i) => u.uRip.value[i].set((r[0] - W / 2) / (H / 2), (H / 2 - r[1]) / (H / 2), r[2], r[3]));
