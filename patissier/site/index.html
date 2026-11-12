@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#120D0A">
+<title>Patissier · Repostería artesanal</title>
+<meta name="description" content="Demo de cortesía de Elevate Negocios para Pastelería Artesanal Patissier. Pieza no oficial.">
+<style>
+@font-face{font-family:"Merienda";font-weight:500;font-display:block;src:url(fonts/merienda-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Merienda";font-weight:700;font-display:block;src:url(fonts/merienda-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Merienda";font-weight:800;font-display:block;src:url(fonts/merienda-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:400;font-display:block;src:url(fonts/dm-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:500;font-display:block;src:url(fonts/dm-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:600;font-display:block;src:url(fonts/dm-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"DM Sans";font-weight:700;font-display:block;src:url(fonts/dm-sans-latin-700-normal.woff2) format("woff2")}
+:root{
+  --bg0:#0B0907; --bg1:#1B1410; --cream:#F4ECE2; --green:#9AB83C; --cafe:#5D4D43; --rose:#FFB5B0;
+  --ink:rgba(244,236,226,.74); --hair:rgba(255,255,255,.22);
+  --disp:"Merienda",cursive; --ui:"DM Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg0);scroll-behavior:smooth}
+body{font-family:var(--ui);color:var(--cream);background:var(--bg0);overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.page{position:relative;max-width:480px;margin:0 auto;overflow:hidden;
+  background:
+    radial-gradient(120% 60% at 0% 0%, #2A1E17 0%, rgba(42,30,23,0) 60%),
+    linear-gradient(180deg,var(--bg1) 0%,var(--bg0) 38%,#120D0A 100%)}
+/* luces de color detrás del cristal: le dan algo real que desenfocar */
+.orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform}
+.orb.g{background:radial-gradient(circle,rgba(154,184,60,.55),rgba(154,184,60,0) 68%)}
+.orb.r{background:radial-gradient(circle,rgba(255,181,176,.50),rgba(255,181,176,0) 68%)}
+.orb.c{background:radial-gradient(circle,rgba(190,140,100,.50),rgba(190,140,100,0) 68%)}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{padding:0 16px}
+.over{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+h1,h2{font-family:var(--disp);font-weight:700;letter-spacing:-.01em}
+.g{display:inline-block;will-change:transform}
+.w{display:inline-block;white-space:nowrap}
+
+/* cristal esmerilado real */
+.glass{position:relative;border-radius:22px;background:linear-gradient(140deg,rgba(255,255,255,.17),rgba(244,236,226,.07) 55%,rgba(244,236,226,.10));
+  -webkit-backdrop-filter:blur(32px) saturate(140%);backdrop-filter:blur(32px) saturate(140%);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.18)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid var(--hair);pointer-events:none}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.02;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- portada ---------- */
+.hero{position:relative;padding:84px 16px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.medal{width:62px;height:62px;border-radius:50%;background:#fff;overflow:hidden;flex:none;box-shadow:0 8px 22px -8px rgba(0,0,0,.7)}
+.medal img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
+.brand .over{line-height:1.5}
+.hero h1{font-size:47px;line-height:1.04;margin-top:22px;color:var(--cream)}
+.hero h1 em{font-style:normal;color:var(--rose)}
+.bio{margin-top:14px;font-size:15.5px;line-height:1.45;color:var(--ink);max-width:330px}
+.shot{position:relative;margin-top:24px;height:360px;border-radius:28px;overflow:hidden;background:#241a14}
+.shot img{position:absolute;left:0;top:-8%;width:100%;height:116%;object-fit:cover;will-change:transform}
+.shot::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10);pointer-events:none}
+.review{position:relative;margin:-120px 12px 0;padding:18px 18px 18px;z-index:2}
+.line{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);overflow:visible;pointer-events:none;z-index:3}
+.rate{display:flex;align-items:center;gap:12px}
+.num{font-family:var(--disp);font-weight:800;font-size:46px;line-height:1;color:#fff}
+.rate-r{display:flex;flex-direction:column;gap:5px}
+.stars{display:flex;gap:3px}
+.stars svg{width:21px;height:21px;fill:#F3C54B;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.src{font-size:14.5px;font-weight:600;color:#fff}
+.quote{margin-top:13px;font-size:15.5px;line-height:1.42;color:#fff;font-weight:500;min-height:88px}
+.quote i{font-style:normal}
+.by{margin-top:8px;font-size:12px;color:rgba(255,255,255,.72)}
+
+/* ---------- galería ---------- */
+section{position:relative;padding-top:78px}
+section h2{font-size:33px;line-height:1.1;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.card{position:relative;border-radius:22px;overflow:hidden;background:#241a14}
+.card img{position:absolute;left:0;top:-9%;width:100%;height:118%;object-fit:cover;will-change:transform}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10);pointer-events:none}
+.card.a{height:214px}.card.b{grid-row:span 2;height:auto}.card.c{height:176px}
+.card.wide{grid-column:span 2;height:150px}
+.tag{position:absolute;left:10px;bottom:10px;padding:7px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:#fff;z-index:2}
+.tag.glass{border-radius:999px}
+.tag.glass::before,.tag.glass::after{border-radius:999px}
+.tile{display:flex;align-items:flex-end;padding:14px;font-family:var(--disp);font-weight:700;font-size:19px;line-height:1.15;color:#2B201A;background:linear-gradient(135deg,var(--rose),#F6CBBF)}
+
+/* ---------- pedido ---------- */
+.banner{position:relative;height:150px;border-radius:22px;overflow:hidden;margin-top:20px;background:#7f9b78}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 50%}
+.lbl{display:flex;align-items:baseline;justify-content:space-between;margin-top:20px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--cream)}
+.lbl small{font-size:12px;font-weight:500;letter-spacing:0;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{position:relative;padding:9px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--cream);background:rgba(244,236,226,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.chip[aria-pressed="true"]{background:var(--cream);color:#221812;font-weight:600;box-shadow:none}
+.sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.size{position:relative;padding:12px 4px 11px;text-align:center;border-radius:18px;will-change:transform}
+.size.glass,.size.glass::before,.size.glass::after{border-radius:18px}
+.size b{display:block;font-size:13.5px;font-weight:600;color:#fff}
+.size .n{display:block;font-family:var(--disp);font-weight:800;font-size:31px;line-height:1.12;color:#fff;margin-top:2px}
+.size .p{display:block;font-size:11.5px;color:rgba(255,255,255,.78)}
+.size .price{display:none;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--green)}
+.precios .size .price{display:block}
+.size[hidden]{display:none}
+.ring{position:absolute;inset:-3px;border-radius:21px;pointer-events:none;opacity:0;
+  box-shadow:0 0 0 2.5px var(--green), 0 0 22px 2px rgba(154,184,60,.55), inset 0 0 14px rgba(154,184,60,.28)}
+.size[aria-pressed="true"]{background:linear-gradient(140deg,rgba(154,184,60,.34),rgba(154,184,60,.12))}
+.sum{margin-top:16px;font-size:14px;color:var(--ink);text-align:center;min-height:20px}
+.sum b{color:var(--cream);font-weight:600}
+.cta{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:60px;margin-top:12px;border-radius:999px;
+  font-size:17.5px;font-weight:700;color:#18210A;background:linear-gradient(180deg,#B2D04E,var(--green) 55%,#86A332);
+  box-shadow:0 14px 30px -12px rgba(154,184,60,.75), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 0 rgba(0,0,0,.14);will-change:transform}
+.cta svg{width:22px;height:22px;fill:#18210A}
+.wave{position:absolute;left:50%;top:50%;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;pointer-events:none;opacity:0;
+  box-shadow:0 0 0 2px rgba(154,184,60,.9), 0 0 26px 6px rgba(154,184,60,.45)}
+.note{margin-top:10px;font-size:12px;color:rgba(244,236,226,.55);text-align:center}
+.touch{position:absolute;left:0;top:0;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;pointer-events:none;opacity:0;z-index:20;
+  background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,.22) 60%,rgba(255,255,255,.05));box-shadow:0 0 0 1.5px rgba(255,255,255,.7), 0 6px 18px rgba(0,0,0,.35)}
+
+/* ---------- también ---------- */
+.also{display:grid;gap:10px;margin-top:20px}
+.row{display:flex;gap:14px;align-items:center;padding:15px 16px}
+.row .ic{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(154,184,60,.2)}
+.row .ic svg{width:21px;height:21px;fill:none;stroke:var(--green);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.row b{display:block;font-size:15.5px;font-weight:600;color:#fff}
+.row span{display:block;font-size:13.5px;color:rgba(255,255,255,.76);margin-top:2px}
+.links{display:flex;gap:10px;margin-top:22px}
+.links a{flex:1;display:flex;align-items:center;justify-content:center;height:50px;border-radius:999px;font-size:14.5px;font-weight:600;color:var(--cream);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+footer{padding:44px 16px 40px;text-align:center;font-size:12px;line-height:1.6;color:rgba(244,236,226,.5)}
+footer .medal{width:74px;height:74px;margin:0 auto 14px}
+.cap body,.cap{scrollbar-width:none}.cap ::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <i class="orb c" style="width:340px;height:340px;left:-150px;top:600px" data-par=".10"></i>
+  <i class="orb r" style="width:300px;height:300px;right:-120px;top:700px" data-par=".16"></i>
+  <i class="orb c" style="width:360px;height:360px;left:-90px;top:1420px" data-par=".10"></i>
+  <i class="orb g" style="width:380px;height:380px;right:-170px;top:1960px" data-par=".14"></i>
+  <i class="orb r" style="width:340px;height:340px;left:-150px;top:2150px" data-par=".10"></i>
+  <i class="orb c" style="width:320px;height:320px;right:-110px;top:2620px" data-par=".12"></i>
+
+  <header class="hero wrap" id="inicio">
+    <div class="brand" id="brand">
+      <div class="medal"><img src="img/logo.png" alt="Logo de Patissier, repostería fina" width="800" height="800"></div>
+      <div class="over">Pastelería Artesanal<br>Patissier</div>
+    </div>
+    <h1 id="title" aria-label="Repostería artesanal">Repostería <em>artesanal</em></h1>
+    <p class="bio" id="bio">Con más de 20 años de experiencia, mantenemos el fino arte de la repostería artesanal.</p>
+    <div class="shot" id="shot"><img src="img/dinosaurio.webp" alt="Pastel decorado con un dinosaurio" width="1200" height="1200" data-par=".12"></div>
+    <div class="review glass" id="review">
+      <svg class="line" id="review-line" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE9DC"/><stop offset=".5" stop-color="#C9A58D"/><stop offset="1" stop-color="#FFB5B0"/></linearGradient></defs>
+        <rect x="1" y="1" rx="22" ry="22" fill="none" stroke="url(#lg)" stroke-width="2.2" stroke-linecap="round" pathLength="100"/></svg>
+      <div class="rate">
+        <div class="num" id="num" aria-label="4.8">4.8</div>
+        <div class="rate-r">
+          <div class="stars" id="stars" role="img" aria-label="Cinco estrellas"></div>
+          <div class="src" id="src">en Google</div>
+        </div>
+      </div>
+      <p class="quote" id="quote" aria-label="excelente pastelería, calidad de sus ingredientes, variedad de productos, su personal super amables, todo delicioso">“excelente pastelería, calidad de sus ingredientes, variedad de productos, su personal super amables, todo delicioso”</p>
+      <div class="by" id="by">Reseña de un cliente en Google</div>
+    </div>
+  </header>
+
+  <section class="wrap" id="galeria">
+    <div class="over">Galería</div>
+    <h2 id="gal-h">Nuestros pasteles</h2>
+    <div class="grid" id="grid">
+      <figure class="card a"><img src="img/rosa-fresas.webp" alt="Pastel rosa con fresas" data-par=".10"><figcaption class="tag glass">Rosa con fresas</figcaption></figure>
+      <figure class="card b"><img src="img/dos-pisos.webp" alt="Pastel de dos pisos con flores" data-par=".14"><figcaption class="tag glass">Dos pisos con flores</figcaption></figure>
+      <figure class="card c"><img src="img/red-velvet-pastel.webp" alt="Pastel Red Velvet" data-par=".08"><figcaption class="tag glass">Red Velvet</figcaption></figure>
+      <div class="card wide tile">Pasteles, minicakes<br>y postres</div>
+    </div>
+  </section>
+
+  <section class="wrap" id="pedido">
+    <div class="over">Tu pedido</div>
+    <h2 id="ped-h">Elige sabor y tamaño</h2>
+    <div class="banner" id="banner"><img src="img/red-velvet.webp" alt="Pastel Red Velvet de Patissier"></div>
+    <div class="lbl">De línea <small>de un día para otro</small></div>
+    <div class="chips" data-group="linea">
+      <button class="chip" aria-pressed="false">Moka</button>
+      <button class="chip" aria-pressed="false">Chocoqueso</button>
+      <button class="chip" aria-pressed="false">3 Leches con durazno</button>
+      <button class="chip" aria-pressed="false">3 Leches con galleta</button>
+    </div>
+    <div class="lbl">De especialidad <small>con 2 días de anticipación</small></div>
+    <div class="chips" data-group="especialidad">
+      <button class="chip" aria-pressed="true">Red Velvet</button>
+      <button class="chip" aria-pressed="false">Zanahoria</button>
+      <button class="chip" aria-pressed="false">Licor irlandés</button>
+      <button class="chip" aria-pressed="false" data-only="Mediano,Grande">Cheesecake</button>
+    </div>
+    <div class="lbl" id="size-lbl">Tamaño <small>personas</small></div>
+    <div class="sizes" id="sizes">
+      <button class="size glass" data-size="Mini" data-n="3" aria-pressed="false"><b>Mini</b><span class="n">3</span><span class="p">personas</span><span class="price" data-p="$180" data-pc=""></span><i class="ring"></i></button>
+      <button class="size glass" data-size="Chico" data-n="8" aria-pressed="false"><b>Chico</b><span class="n">8</span><span class="p">personas</span><span class="price" data-p="$315" data-pc=""></span><i class="ring"></i></button>
+      <button class="size glass" data-size="Mediano" data-n="14" aria-pressed="false"><b>Mediano</b><span class="n">14</span><span class="p">personas</span><span class="price" data-p="$445" data-pc="$520"></span><i class="ring"></i></button>
+      <button class="size glass" data-size="Grande" data-n="18" aria-pressed="false"><b>Grande</b><span class="n">18</span><span class="p">personas</span><span class="price" data-p="$510" data-pc="$590"></span><i class="ring"></i></button>
+    </div>
+    <p class="sum" id="sum" aria-live="polite"></p>
+    <button class="cta" id="cta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 3 6.6 3 11.2c0 2.2.9 4.200 2.500 5.700L4.600 21l4.300-1.700c1 .3 2 .4 3.100.4 5.100 0 9-3.600 9-8.500S17.100 3 12 3z"/></svg><span>Pedir por WhatsApp</span><i class="wave" id="wave"></i></button>
+    <p class="note">Se abre WhatsApp con tu pedido ya escrito.</p>
+  </section>
+
+  <section class="wrap" id="tambien">
+    <div class="over">También</div>
+    <h2>Para acompañar</h2>
+    <div class="also">
+      <div class="row glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 13h14l-1.500 7h-11zM7 13c0-3 2-6 5-6s5 3 5 6M12 7V4"/></svg></div><div><b>Minicakes</b><span>Individuales</span></div></div>
+      <div class="row glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 17c0-5 3.500-9 8-9s8 4 8 9zM3 20h18M12 8V5"/></svg></div><div><b>Postres</b><span>Gelatina con frutas y flan napolitano</span></div></div>
+      <div class="row glass"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7zM7 19a2 2 0 100-4 2 2 0 000 4zM17.500 19a2 2 0 100-4 2 2 0 000 4z"/></svg></div><div><b>Servicio a domicilio</b><span>En pasteles completos</span></div></div>
+    </div>
+    <div class="links">
+      <a href="https://www.instagram.com/patissierp/" rel="noopener">Instagram @patissierp</a>
+      <a href="tel:+523323011599">Llamar</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="medal"><img src="img/logo.png" alt="" width="800" height="800"></div>
+    Pastelería Artesanal Patissier · Repostería fina<br>
+    Demo de cortesía de Elevate Negocios · pieza no oficial
+  </footer>
+  <i class="touch" id="touch"></i>
+</div>
+
+<script>
+(() => {
+  // ---------- configuración (pendiente del dueño) ----------
+  const qs = new URLSearchParams(location.search);
+  const CONFIG = {
+    wa: qs.get('wa') || '',                 // WhatsApp del negocio: sin confirmar. Vacío = el cliente elige el chat.
+    showPrices: qs.get('precios') === '1',  // Precios del menú publicado: solo si el dueño confirma que siguen vigentes.
+  };
+  const CAP = qs.get('capture') === '1';
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const eo = (x) => 1 - Math.pow(1 - clamp(x), 3);                       // easeOutCubic
+  const eb = (x) => { x = clamp(x); const c = 1.70158 * 1.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }; // con rebote
+  const sub = (p, a, b) => clamp((p - a) / (b - a));
+  if (CAP) document.documentElement.classList.add('cap');
+  if (CONFIG.showPrices) $('#page').classList.add('precios');
+
+  // estrellas y glifos
+  $('#stars').innerHTML = Array.from({ length: 5 }, () => '<svg viewBox="0 0 24 24"><path d="M12 2.6l2.850 5.900 6.450.850-4.750 4.450 1.250 6.400L12 17.050 6.200 20.200l1.250-6.400L2.700 9.350l6.450-.850z"/></svg>').join('');
+  function split(el, cls) {
+    const out = [];
+    const walk = (node, parent) => {
+      for (const n of [...node.childNodes]) {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          for (const word of n.textContent.split(/(\s+)/)) {
+            if (!word) continue;
+            if (/^\s+$/.test(word)) { frag.appendChild(document.createTextNode(' ')); continue; }
+            const w = document.createElement('span'); w.className = 'w'; w.setAttribute('aria-hidden', 'true');
+            for (const ch of [...word]) { const g = document.createElement(cls === 'i' ? 'i' : 'span'); if (cls !== 'i') g.className = 'g'; g.textContent = ch; w.appendChild(g); out.push(g); }
+            frag.appendChild(w);
+          }
+          node.replaceChild(frag, n);
+        } else walk(n);
+      }
+    };
+    walk(el); return out;
+  }
+  const G = { title: split($('#title'), 'g'), num: split($('#num'), 'g'), src: split($('#src'), 'g'), quote: split($('#quote'), 'i') };
+  const E = { brand: $('#brand'), bio: $('#bio'), shot: $('#shot'), review: $('#review'), line: $('#review-line rect'), by: $('#by'),
+    stars: $$('#stars svg'), cards: $$('#grid .card'), galH: $('#gal-h'), sizes: $$('#sizes .size'), cta: $('#cta'), wave: $('#wave'), touch: $('#touch'),
+    banner: $('#banner'), galO: $('#galeria .over'), pedO: $('#pedido .over'), pedH: $('#ped-h'), chips: $$('#pedido .chip'), pars: $$('[data-par]') };
+  const fit = () => { const r = E.review.getBoundingClientRect(); const rc = E.line; rc.setAttribute('width', r.width); rc.setAttribute('height', r.height); };
+  fit(); addEventListener('resize', fit);
+
+  // ---------- estado -> pantalla (una sola función, la usan la página y la captura del video) ----------
+  const S = { intro: 0, card: 0, typed: 0, gal: 0, order: 0, sizes: 0, ring: 0, press: 0, wave: 0, touch: null };
+  const set = (el, st) => { for (const k in st) el.style[k] = st[k]; };
+  function render() {
+    const sy = scrollY, vh = innerHeight;
+    // portada
+    let p = eb(sub(S.intro, 0, .35));
+    set(E.brand, { transform: `translateY(${(1 - eo(sub(S.intro, 0, .3))) * 26}px) scale(${.6 + .4 * p})`, transformOrigin: '31px 31px', clipPath: `circle(${eo(sub(S.intro, 0, .34)) * 150}% at 31px 31px)` });
+    G.title.forEach((g, i) => { const q = sub(S.intro, .14 + i * .022, .46 + i * .022); set(g, { transform: `translateY(${(1 - eb(q)) * 46}px) rotate(${(1 - eo(q)) * (i % 2 ? 9 : -9)}deg)`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : q < 1 ? `inset(-20% -20% ${(1 - eo(q * 1.6)) * 100}% -20%)` : '' }); });
+    p = eo(sub(S.intro, .5, .82));
+    set(E.bio, { clipPath: p < 1 ? `inset(0 ${(1 - p) * 100}% 0 0)` : '', transform: `translateX(${(1 - p) * -14}px)` });
+    p = eo(sub(S.intro, .34, .95));
+    set(E.shot, { clipPath: p < 1 ? `inset(${(1 - p) * 50}% round ${28 + (1 - p) * 120}px)` : '', transform: `translateY(${(1 - p) * 40}px)` });
+    // tarjeta de reseña: la línea la dibuja, el cristal se abre desde su esquina
+    const c = S.card;
+    E.line.style.strokeDasharray = '100 100'; E.line.style.strokeDashoffset = String(100 * (1 - eo(sub(c, 0, .5))));
+    E.line.style.opacity = String(1 - .72 * sub(c, .55, .9));
+    p = eo(sub(c, .12, .62));
+    set(E.review, { clipPath: p < 1 ? `circle(${p * 150}% at 22px 22px)` : '', transform: `translateY(${(1 - eo(sub(c, 0, .6))) * 22}px)` });
+    G.num.forEach((g, i) => { const q = sub(c, .3 + i * .05, .62 + i * .05); set(g, { transform: `translateY(${(1 - eb(q)) * 34}px) scale(${.5 + .5 * eb(q)})`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
+    E.stars.forEach((s, i) => { const q = sub(c, .42 + i * .055, .68 + i * .055); set(s, { transform: `scale(${eb(q)}) rotate(${(1 - eo(q)) * -70}deg)` }); });
+    G.src.forEach((g, i) => { const q = sub(c, .6 + i * .02, .82 + i * .02); set(g, { transform: `translateY(${(1 - eo(q)) * 14}px)`, clipPath: q <= 0 ? 'inset(0 0 100% 0)' : '' }); });
+    const n = Math.round(S.typed * G.quote.length);
+    G.quote.forEach((g, i) => { g.style.visibility = i < n ? 'visible' : 'hidden'; });
+    set(E.by, { clipPath: `inset(0 ${(1 - eo(sub(S.typed, .96, 1))) * 100}% 0 0)` });
+    // galería
+    set(E.galO, { clipPath: `inset(0 ${(1 - eo(sub(S.gal, 0, .3))) * 100}% 0 0)` });
+    set(E.galH, { clipPath: `inset(0 ${(1 - eo(sub(S.gal, 0, .4))) * 100}% 0 0)` });
+    E.cards.forEach((el, i) => { const q = eo(sub(S.gal, .08 + i * .13, .6 + i * .13)); set(el, { clipPath: q < 1 ? `inset(${(1 - q) * 100}% 0 0 0 round 22px)` : '', transform: `translateY(${(1 - q) * 54}px)` }); });
+    // pedido
+    set(E.pedO, { clipPath: `inset(0 ${(1 - eo(sub(S.order, 0, .3))) * 100}% 0 0)` });
+    set(E.pedH, { clipPath: `inset(0 ${(1 - eo(sub(S.order, 0, .4))) * 100}% 0 0)` });
+    p = eo(sub(S.order, .08, .55));
+    set(E.banner, { clipPath: p < 1 ? `inset(0 ${(1 - p) * 100}% 0 0 round 22px)` : '' });
+    E.chips.forEach((el, i) => { const q = eb(sub(S.order, .2 + i * .06, .6 + i * .06)); set(el, { transform: `scale(${q})` }); });
+    E.sizes.forEach((el, i) => { const q = sub(S.sizes, i * .17, .5 + i * .17); const sel = el.getAttribute('aria-pressed') === 'true';
+      set(el, { transform: `translateY(${(1 - eb(q)) * 46}px) scale(${(.3 + .7 * eb(q)) * (sel ? 1 + .06 * Math.sin(Math.PI * clamp(S.ring)) + .03 * eo(S.ring) : 1)})`, clipPath: q <= 0 ? 'inset(50%)' : '' });
+      const ring = el.querySelector('.ring'); set(ring, { opacity: sel ? String(eo(sub(S.ring, 0, .35))) : '0', transform: `scale(${sel ? 1.28 - .28 * eb(sub(S.ring, 0, .7)) : 1})` }); });
+    // botón: se hunde al toque y suelta una onda
+    set(E.cta, { transform: `scale(${1 - .055 * S.press})`, filter: S.press > 0 ? `brightness(${1 - .1 * S.press})` : '' });
+    set(E.wave, { opacity: S.wave > 0 && S.wave < 1 ? String(1 - eo(S.wave)) : '0', transform: `scale(${1 + eo(S.wave) * 9})` });
+    if (S.touch) set(E.touch, { opacity: String(S.touch.a), transform: `translate(${S.touch.x}px,${S.touch.y + sy}px) scale(${S.touch.s})` }); else E.touch.style.opacity = '0';
+    // parallax 2.5D
+    for (const el of E.pars) { const k = Number(el.dataset.par); const host = el.classList.contains('orb') ? el : el.parentElement; const r = host.getBoundingClientRect();
+      const d = (r.top + r.height / 2 - vh / 2); el.style.transform = `translate3d(0,${(-d * k).toFixed(2)}px,0)`; }
+  }
+
+  // ---------- pedido ----------
+  const order = { flavor: 'Red Velvet', size: null };
+  function sum() {
+    const s = E.sizes.find((b) => b.dataset.size === order.size);
+    $('#sum').innerHTML = s ? `<b>${order.flavor}</b> · ${order.size} · ${s.dataset.n} personas` : `<b>${order.flavor}</b> · elige un tamaño`;
+  }
+  function pickFlavor(btn) {
+    E.chips.forEach((c) => c.setAttribute('aria-pressed', String(c === btn)));
+    order.flavor = btn.textContent; const only = btn.dataset.only ? btn.dataset.only.split(',') : null;
+    E.sizes.forEach((b) => { b.hidden = !!only && !only.includes(b.dataset.size); const pr = b.querySelector('.price'); pr.textContent = only ? pr.dataset.pc : pr.dataset.p; });
+    $('#sizes').style.gridTemplateColumns = only ? 'repeat(2,1fr)' : '';
+    if (only && !only.includes(order.size)) pickSize(null);
+    sum();
+  }
+  function pickSize(name) {
+    order.size = name; E.sizes.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.size === name)));
+    sum();
+    if (!CAP) { S.ring = 0; tween('ring', 1, 520); }
+  }
+  function message() {
+    const s = E.sizes.find((b) => b.dataset.size === order.size);
+    return `Hola, vi su página y quiero pedir un pastel de ${order.flavor}` + (s ? `, tamaño ${order.size} (${s.dataset.n} personas).` : '.') + ' ¿Me ayudan con la fecha de entrega?';
+  }
+  E.chips.forEach((c) => c.addEventListener('click', () => pickFlavor(c)));
+  E.sizes.forEach((b) => b.addEventListener('click', () => pickSize(b.dataset.size)));
+  E.sizes.forEach((b) => { const pr = b.querySelector('.price'); pr.textContent = pr.dataset.p; });
+  E.cta.addEventListener('pointerdown', () => { if (!CAP) tween('press', 1, 90); });
+  addEventListener('pointerup', () => { if (!CAP && S.press) tween('press', 0, 160); });
+  E.cta.addEventListener('click', () => {
+    if (CAP) return;
+    S.wave = 0; tween('wave', 1, 620);
+    const url = (CONFIG.wa ? `https://wa.me/${CONFIG.wa}?text=` : 'https://api.whatsapp.com/send?text=') + encodeURIComponent(message());
+    setTimeout(() => { location.href = url; }, 260);
+  });
+  sum();
+
+  // ---------- animación en la página viva ----------
+  const tweens = {};
+  let raf = 0;
+  function tween(key, to, ms, delay = 0) { tweens[key] = { from: S[key], to, t0: performance.now() + delay, ms }; if (!raf) raf = requestAnimationFrame(tick); }
+  function tick(now) {
+    raf = 0; let live = false;
+    for (const k in tweens) { const tw = tweens[k]; const x = clamp((now - tw.t0) / tw.ms); S[k] = tw.from + (tw.to - tw.from) * x; if (x < 1) live = true; else delete tweens[k]; }
+    render(); if (live) raf = requestAnimationFrame(tick);
+  }
+  if (!CAP) {
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (reduce) { Object.assign(S, { intro: 1, card: 1, typed: 1, gal: 1, order: 1, sizes: 1 }); render(); }
+    else {
+      render();
+      document.fonts.ready.then(() => { fit(); tween('intro', 1, 1500, 80); tween('card', 1, 1500, 1100); tween('typed', 1, 2300, 2000); });
+      const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) {
+        if (e.target.id === 'gal-h') tween('gal', 1, 1300);
+        if (e.target.id === 'ped-h') tween('order', 1, 1300);
+        if (e.target.id === 'sizes') tween('sizes', 1, 1100);
+        io.unobserve(e.target); } }, { threshold: .18 });
+      ['gal-h', 'ped-h', 'sizes'].forEach((id) => io.observe($('#' + id)));
+    }
+    addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+  }
+
+  // ---------- API para la captura del video ----------
+  window.pat = {
+    cap(state) { if (state.size !== undefined && state.size !== order.size) pickSize(state.size); Object.assign(S, state); fit(); render(); },
+    rect(sel) { const r = $(sel).getBoundingClientRect(); return { x: r.left, y: r.top, w: r.width, h: r.height, docY: r.top + scrollY }; },
+    message, order,
+  };
+  document.fonts.ready.then(() => { fit(); render(); document.documentElement.dataset.ready = '1'; });
+})();
+</script>
+</body>
+</html>
