@@ -534,4 +534,11 @@ window.renderFrame = (fr) => {
   const gp = octx.createPattern(grain[fr % 3], 'repeat'); octx.save(); octx.translate(-Math.floor(rnd(fr, 3) * 400), -Math.floor(rnd(fr, 5) * 400)); octx.fillStyle = gp; octx.fillRect(0, 0, W * SC + 512, H * SC + 512); octx.restore();
   octx.globalCompositeOperation = 'source-over'; octx.globalAlpha = 1;
 };
+// Imagen para el cliente: una sección de la página, completa y quieta (sin grano ni viñeta)
+window.renderStill = (k) => {
+  const st = state(640); st.S = k * L.P; st.front = 1e5; st.f = F.wipe[0] - 1; st.amp = new Float32Array([8, 8, 8, 8, 8]);
+  background(ctx, st); liquid(cv, st, SC, 3.0); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(glc, 0, 0);
+  snapshot(st); page(ctx, st);
+  octx.globalAlpha = 1; octx.globalCompositeOperation = 'source-over'; octx.setTransform(1, 0, 0, 1, 0, 0); octx.drawImage(cv, 0, 0);
+};
 window.ready = true;
