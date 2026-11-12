@@ -157,8 +157,9 @@ function state(f) {
   const z = 1 / Math.cos(phi);
   const M = { a: z * Math.cos(th), b: z * Math.sin(th) * Math.sin(phi), d: z * Math.cos(phi), px: 540, py: L.phone.cy, th, phi, z, isoK };
   const phv = ph * (1 - k2);
+  const body = ph * (1 - eio(seg(f, F.wipe[0] + 8, F.cup[0] + 8)));      // el cuerpo del teléfono se retira antes de que vuelva el vaso
   return { f, k, k1, k2, hero, cup, rect, s, Ox, Oy, S, I: new Float32Array(I), surf, front, surfAmp, frontAmp: 20,
-    amp: new Float32Array(amp), soft: new Float32Array(soft), cols: COLS, M, wall: lerp(12, 4, phv), glass: 1, ph, phv };
+    amp: new Float32Array(amp), soft: new Float32Array(soft), cols: COLS, M, wall: lerp(12, 4, phv), glass: 1, ph, phv, body };
 }
 const stageTf = (c, M, ox = 0, oy = 0) => c.setTransform(SC * M.a, SC * M.b, 0, SC * M.d, SC * (M.px - M.a * M.px + ox), SC * (M.py - M.b * M.px - M.d * M.py + oy));
 const contentTf = (c, st) => { const M = st.M;
@@ -432,13 +433,13 @@ function page(c, st) {
 // ---------- teléfono (cuerpo con grosor) ----------
 function depthVec(M, t) { return [M.z * t * Math.sin(M.th), -M.z * t * Math.cos(M.th) * Math.sin(M.phi)]; }
 function phoneBody(c, st) {
-  const bz = 15 * st.phv; if (bz < 0.3) return;
-  const r = st.rect, M = st.M, thk = 40 * M.isoK * st.phv;
+  const bz = 15 * st.body; if (bz < 0.3) return;
+  const r = st.rect, M = st.M, thk = 40 * M.isoK * st.body;
   // sombra de contacto que crece con el giro
   c.setTransform(SC, 0, 0, SC, 0, 0);
   const bx = M.px + M.a * (r.cx - M.px), by = M.py + M.b * (r.cx - M.px) + M.d * (r.cy + r.hh - M.py);
-  ellGrad(c, bx, by + 14, 620 * st.phv, 190 * st.phv, 'rgba(241,235,221,0.10)', 'rgba(241,235,221,0)');
-  ellGrad(c, bx + 60 * M.isoK, by + 16, r.hw * (1.3 + 0.9 * M.isoK), 30 + 46 * M.isoK, `rgba(0,0,0,${0.8 * st.phv})`, 'rgba(0,0,0,0)');
+  ellGrad(c, bx, by + 14, 620 * st.body + 1, 190 * st.body + 1, 'rgba(241,235,221,0.10)', 'rgba(241,235,221,0)');
+  ellGrad(c, bx + 60 * M.isoK, by + 16, r.hw * (1.3 + 0.9 * M.isoK), 30 + 46 * M.isoK, `rgba(0,0,0,${0.8 * st.body})`, 'rgba(0,0,0,0)');
   const N = Math.max(1, Math.round(thk));
   for (let i = N; i >= 0; i--) {
     const [dx, dy] = depthVec(M, thk * i / N); stageTf(c, M, dx, dy);
@@ -448,10 +449,10 @@ function phoneBody(c, st) {
   }
 }
 function phoneUI(c, st) {
-  if (st.phv < 0.02) return;
+  if (st.body < 0.02) return;
   const f = st.f, r = st.rect, M = st.M, ps = L.phone.w / 480;
   stageTf(c, M);
-  const ik = eo(seg(st.phv, 0.5, 1));                    // isla
+  const ik = eo(seg(st.body, 0.5, 1));                    // isla
   c.fillStyle = '#050505'; c.beginPath(); c.roundRect(r.cx - 58 * ps * ik, r.cy - r.hh + 14 * ps, 116 * ps * ik, 30 * ps * ik, 15 * ps); c.fill();
   if (f < F.bar || f > F.wipe[0] + 20) return;
   const back = 1 - eio(seg(f, F.isoBack[0], F.isoBack[0] + 18));
