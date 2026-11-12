@@ -1,0 +1,20 @@
+{
+ "fps": 60,
+ "frames": 1080,
+ "bpm": 120,
+ "F": {
+  "land": 2, "lid": 5, "ring": 2,
+  "matcha": [12, 70], "ice": [40, 52],
+  "typeIn": 15, "typePulse": 138, "typeOut": [150, 176],
+  "espresso": [120, 170],
+  "morph": [165, 225], "headerIn": 205, "photoIn": 214,
+  "scroll1": [240, 264], "chatosTitle": 250, "panels": [268, 286, 304], "minis": [300, 318, 336],
+  "scroll2": [360, 382], "menuTitle": 372, "cols": [384, 392], "rows": 398, "turn": [400, 460], "turnBack": [460, 480],
+  "scroll3": [480, 502], "horTitle": 492, "horPanel": 504, "horRows": [512, 522, 532], "martes": 550,
+  "scroll4": [600, 622], "ubiTitle": 612, "map": 620, "pin": [640, 670], "addr": [650, 662],
+  "lift": [660, 720], "phone": [690, 722], "scrollTop": [700, 752], "iso": [716, 766],
+  "bar": 740, "btnLift": [765, 790], "btnPulse": 781, "chipLift": [798, 815], "chipPulse": 815,
+  "isoBack": [840, 896], "wipe": [842, 876], "cup": [862, 916], "lid2": 908, "name": [888, 948],
+  "cut": 960, "end": 1080
+ }
+}

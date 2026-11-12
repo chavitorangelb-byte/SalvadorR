@@ -1,0 +1,487 @@
+[
+{
+"f": 2,
+"t": 0.033,
+"cue": "vaso cae"
+},
+{
+"f": 4,
+"t": 0.067,
+"cue": "anillo de contacto"
+},
+{
+"f": 4,
+"t": 0.067,
+"cue": "hielo"
+},
+{
+"f": 5,
+"t": 0.083,
+"cue": "tapa asienta"
+},
+{
+"f": 9,
+"t": 0.15,
+"cue": "hielo"
+},
+{
+"f": 12,
+"t": 0.2,
+"cue": "entra el matcha"
+},
+{
+"f": 15,
+"t": 0.25,
+"cue": "EN"
+},
+{
+"f": 20,
+"t": 0.333,
+"cue": "CAPAS"
+},
+{
+"f": 40,
+"t": 0.667,
+"cue": "se asienta"
+},
+{
+"f": 55,
+"t": 0.917,
+"cue": "se asienta"
+},
+{
+"f": 70,
+"t": 1.167,
+"cue": "se asienta"
+},
+{
+"f": 120,
+"t": 2.0,
+"cue": "entra el espresso"
+},
+{
+"f": 132,
+"t": 2.2,
+"cue": "hielos chocan"
+},
+{
+"f": 138,
+"t": 2.3,
+"cue": "pulso CAPAS"
+},
+{
+"f": 150,
+"t": 2.5,
+"cue": "difusión"
+},
+{
+"f": 150,
+"t": 2.5,
+"cue": "sale el texto"
+},
+{
+"f": 165,
+"t": 2.75,
+"cue": "el vaso se alarga"
+},
+{
+"f": 170,
+"t": 2.833,
+"cue": "se asienta"
+},
+{
+"f": 190,
+"t": 3.167,
+"cue": "cristal crece"
+},
+{
+"f": 205,
+"t": 3.417,
+"cue": "título"
+},
+{
+"f": 214,
+"t": 3.567,
+"cue": "foto"
+},
+{
+"f": 221,
+"t": 3.683,
+"cue": "subtítulo"
+},
+{
+"f": 236,
+"t": 3.933,
+"cue": "la capa se derrama"
+},
+{
+"f": 240,
+"t": 4.0,
+"cue": "scroll"
+},
+{
+"f": 250,
+"t": 4.167,
+"cue": "LOS CHATOS"
+},
+{
+"f": 280,
+"t": 4.667,
+"cue": "panel de cristal"
+},
+{
+"f": 294,
+"t": 4.9,
+"cue": "brillo"
+},
+{
+"f": 298,
+"t": 4.967,
+"cue": "panel de cristal"
+},
+{
+"f": 300,
+"t": 5.0,
+"cue": "se llena el mini vaso"
+},
+{
+"f": 312,
+"t": 5.2,
+"cue": "brillo"
+},
+{
+"f": 316,
+"t": 5.267,
+"cue": "panel de cristal"
+},
+{
+"f": 318,
+"t": 5.3,
+"cue": "se llena el mini vaso"
+},
+{
+"f": 330,
+"t": 5.5,
+"cue": "brillo"
+},
+{
+"f": 336,
+"t": 5.6,
+"cue": "se llena el mini vaso"
+},
+{
+"f": 356,
+"t": 5.933,
+"cue": "la capa se derrama"
+},
+{
+"f": 360,
+"t": 6.0,
+"cue": "tick de scroll"
+},
+{
+"f": 367,
+"t": 6.117,
+"cue": "tick de scroll"
+},
+{
+"f": 372,
+"t": 6.2,
+"cue": "MENÚ"
+},
+{
+"f": 374,
+"t": 6.233,
+"cue": "tick de scroll"
+},
+{
+"f": 382,
+"t": 6.367,
+"cue": "llega el vaso"
+},
+{
+"f": 396,
+"t": 6.6,
+"cue": "columna"
+},
+{
+"f": 398,
+"t": 6.633,
+"cue": "renglones"
+},
+{
+"f": 400,
+"t": 6.667,
+"cue": "gira el vaso"
+},
+{
+"f": 404,
+"t": 6.733,
+"cue": "columna"
+},
+{
+"f": 405,
+"t": 6.75,
+"cue": "renglones"
+},
+{
+"f": 412,
+"t": 6.867,
+"cue": "renglones"
+},
+{
+"f": 414,
+"t": 6.9,
+"cue": "se levanta la tapa"
+},
+{
+"f": 419,
+"t": 6.983,
+"cue": "renglones"
+},
+{
+"f": 430,
+"t": 7.167,
+"cue": "hielos"
+},
+{
+"f": 440,
+"t": 7.333,
+"cue": "hielos"
+},
+{
+"f": 460,
+"t": 7.667,
+"cue": "regresa el vaso"
+},
+{
+"f": 476,
+"t": 7.933,
+"cue": "la capa se derrama"
+},
+{
+"f": 478,
+"t": 7.967,
+"cue": "tapa"
+},
+{
+"f": 480,
+"t": 8.0,
+"cue": "tick de scroll"
+},
+{
+"f": 487,
+"t": 8.117,
+"cue": "tick de scroll"
+},
+{
+"f": 492,
+"t": 8.2,
+"cue": "HORARIO"
+},
+{
+"f": 494,
+"t": 8.233,
+"cue": "tick de scroll"
+},
+{
+"f": 512,
+"t": 8.533,
+"cue": "día"
+},
+{
+"f": 516,
+"t": 8.6,
+"cue": "panel"
+},
+{
+"f": 522,
+"t": 8.7,
+"cue": "día"
+},
+{
+"f": 532,
+"t": 8.867,
+"cue": "día"
+},
+{
+"f": 550,
+"t": 9.167,
+"cue": "Martes descansamos"
+},
+{
+"f": 580,
+"t": 9.667,
+"cue": "se recuestan"
+},
+{
+"f": 585,
+"t": 9.75,
+"cue": "se asienta"
+},
+{
+"f": 596,
+"t": 9.933,
+"cue": "la capa se derrama"
+},
+{
+"f": 600,
+"t": 10.0,
+"cue": "tick de scroll"
+},
+{
+"f": 607,
+"t": 10.117,
+"cue": "tick de scroll"
+},
+{
+"f": 612,
+"t": 10.2,
+"cue": "UBICACIÓN"
+},
+{
+"f": 614,
+"t": 10.233,
+"cue": "tick de scroll"
+},
+{
+"f": 632,
+"t": 10.533,
+"cue": "mapa"
+},
+{
+"f": 638,
+"t": 10.633,
+"cue": "manzanas suben"
+},
+{
+"f": 640,
+"t": 10.667,
+"cue": "cae el pin"
+},
+{
+"f": 650,
+"t": 10.833,
+"cue": "dirección"
+},
+{
+"f": 652,
+"t": 10.867,
+"cue": "pin toca"
+},
+{
+"f": 660,
+"t": 11.0,
+"cue": "rebote"
+},
+{
+"f": 662,
+"t": 11.033,
+"cue": "colonia"
+},
+{
+"f": 690,
+"t": 11.5,
+"cue": "la cámara se aleja"
+},
+{
+"f": 720,
+"t": 12.0,
+"cue": "revelación"
+},
+{
+"f": 720,
+"t": 12.0,
+"cue": "giro a isométrico"
+},
+{
+"f": 740,
+"t": 12.333,
+"cue": "barra"
+},
+{
+"f": 762,
+"t": 12.7,
+"cue": "el teléfono asienta"
+},
+{
+"f": 765,
+"t": 12.75,
+"cue": "sube el botón"
+},
+{
+"f": 781,
+"t": 13.017,
+"cue": "pulsación"
+},
+{
+"f": 783,
+"t": 13.05,
+"cue": "onda"
+},
+{
+"f": 798,
+"t": 13.3,
+"cue": "sube el chip"
+},
+{
+"f": 815,
+"t": 13.583,
+"cue": "pulsación"
+},
+{
+"f": 817,
+"t": 13.617,
+"cue": "onda"
+},
+{
+"f": 840,
+"t": 14.0,
+"cue": "giro final de cámara"
+},
+{
+"f": 842,
+"t": 14.033,
+"cue": "la página se vacía"
+},
+{
+"f": 862,
+"t": 14.367,
+"cue": "vuelve el vaso"
+},
+{
+"f": 888,
+"t": 14.8,
+"cue": "se escribe el nombre"
+},
+{
+"f": 900,
+"t": 15.0,
+"cue": "se asienta"
+},
+{
+"f": 908,
+"t": 15.133,
+"cue": "tapa"
+},
+{
+"f": 916,
+"t": 15.267,
+"cue": "se asienta"
+},
+{
+"f": 960,
+"t": 16.0,
+"cue": "golpe grave"
+},
+{
+"f": 962,
+"t": 16.033,
+"cue": "end card"
+},
+{
+"f": 974,
+"t": 16.233,
+"cue": "brillo final"
+}
+]
