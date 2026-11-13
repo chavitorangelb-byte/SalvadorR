@@ -1,0 +1,914 @@
+[
+ {
+  "t": -0.05,
+  "sfx": "trazo_cruza",
+  "dur": 0.5,
+  "db": -2
+ },
+ {
+  "t": 0.0,
+  "sfx": "trazo_betun",
+  "dur": 0.45,
+  "db": -6
+ },
+ {
+  "t": 0.47,
+  "sfx": "estallido",
+  "dur": 0.3,
+  "db": 0
+ },
+ {
+  "t": 0.52,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.52,
+  "sfx": "remolino_trazo",
+  "dur": 1.4,
+  "db": -5
+ },
+ {
+  "t": 0.56,
+  "sfx": "glifo_aterriza",
+  "dur": 0.1,
+  "db": -8
+ },
+ {
+  "t": 0.565,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.61,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.655,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.67,
+  "sfx": "glifo_aterriza",
+  "dur": 0.1,
+  "db": -8
+ },
+ {
+  "t": 0.7,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.745,
+  "sfx": "gota",
+  "dur": 0.09,
+  "db": -10
+ },
+ {
+  "t": 0.95,
+  "sfx": "remolino_vuelta",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 1.29,
+  "sfx": "glifo_aterriza",
+  "dur": 0.1,
+  "db": -8
+ },
+ {
+  "t": 1.35,
+  "sfx": "remolino_vuelta",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 1.61,
+  "sfx": "glifo_aterriza",
+  "dur": 0.1,
+  "db": -8
+ },
+ {
+  "t": 1.72,
+  "sfx": "remolino_vuelta",
+  "dur": 0.12,
+  "db": -12
+ },
+ {
+  "t": 1.95,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 2.0,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 2.0,
+  "sfx": "morph_aro",
+  "dur": 0.42,
+  "db": -6
+ },
+ {
+  "t": 2.05,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 2.1,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 2.25,
+  "sfx": "logo_aparece",
+  "dur": 0.8,
+  "db": -10
+ },
+ {
+  "t": 3.0,
+  "sfx": "morph_telefono",
+  "dur": 0.46,
+  "db": -6
+ },
+ {
+  "t": 3.0,
+  "sfx": "logo_vuela",
+  "dur": 0.45,
+  "db": -10
+ },
+ {
+  "t": 3.0,
+  "sfx": "fondo_foto",
+  "dur": 0.5,
+  "db": -14
+ },
+ {
+  "t": 3.02,
+  "sfx": "scroll",
+  "dur": 0.34,
+  "db": -14
+ },
+ {
+  "t": 3.11,
+  "sfx": "ficha_cae",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 3.41,
+  "sfx": "toque",
+  "dur": 0.07,
+  "db": -8
+ },
+ {
+  "t": 3.41,
+  "sfx": "ficha_estampa",
+  "dur": 0.5,
+  "db": -2
+ },
+ {
+  "t": 3.7,
+  "sfx": "scroll",
+  "dur": 0.44,
+  "db": -14
+ },
+ {
+  "t": 3.91,
+  "sfx": "ficha_cae",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 4.21,
+  "sfx": "toque",
+  "dur": 0.07,
+  "db": -8
+ },
+ {
+  "t": 4.21,
+  "sfx": "ficha_estampa",
+  "dur": 0.5,
+  "db": -2
+ },
+ {
+  "t": 4.45,
+  "sfx": "scroll",
+  "dur": 0.55,
+  "db": -14
+ },
+ {
+  "t": 4.77,
+  "sfx": "ficha_cae",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 5.07,
+  "sfx": "toque",
+  "dur": 0.07,
+  "db": -8
+ },
+ {
+  "t": 5.07,
+  "sfx": "ficha_estampa",
+  "dur": 0.5,
+  "db": -2
+ },
+ {
+  "t": 5.2,
+  "sfx": "ficha_cae",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 5.42,
+  "sfx": "toque",
+  "dur": 0.07,
+  "db": -8
+ },
+ {
+  "t": 5.5,
+  "sfx": "ficha_estampa",
+  "dur": 0.5,
+  "db": -2
+ },
+ {
+  "t": 5.5,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.521,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.542,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.563,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.585,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.606,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.627,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.648,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.669,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.69,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.712,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.733,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.754,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.775,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.796,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.817,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.838,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.85,
+  "sfx": "ficha_sale",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 5.86,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.881,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.902,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.91,
+  "sfx": "ficha_sale",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 5.923,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.944,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.95,
+  "sfx": "telefono_atras",
+  "dur": 0.6,
+  "db": -10
+ },
+ {
+  "t": 5.95,
+  "sfx": "morph_cinta",
+  "dur": 0.5,
+  "db": -8
+ },
+ {
+  "t": 5.965,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 5.97,
+  "sfx": "ficha_sale",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 5.987,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 6.008,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 6.029,
+  "sfx": "tecla",
+  "dur": 0.06,
+  "db": -16
+ },
+ {
+  "t": 6.03,
+  "sfx": "ficha_sale",
+  "dur": 0.3,
+  "db": -12
+ },
+ {
+  "t": 6.15,
+  "sfx": "panel_parallax",
+  "dur": 0.55,
+  "db": -10
+ },
+ {
+  "t": 6.22,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 6.55,
+  "sfx": "panel_parallax",
+  "dur": 0.55,
+  "db": -10
+ },
+ {
+  "t": 6.7,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 6.9,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 6.95,
+  "sfx": "panel_parallax",
+  "dur": 0.55,
+  "db": -10
+ },
+ {
+  "t": 7.7,
+  "sfx": "morph_orbita",
+  "dur": 0.5,
+  "db": -8
+ },
+ {
+  "t": 7.72,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 7.75,
+  "sfx": "foto_entra_orbita",
+  "dur": 0.5,
+  "db": -12
+ },
+ {
+  "t": 7.76,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 7.8,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 7.83,
+  "sfx": "foto_entra_orbita",
+  "dur": 0.5,
+  "db": -12
+ },
+ {
+  "t": 7.85,
+  "sfx": "scroll_rapido",
+  "dur": 0.5,
+  "db": -12
+ },
+ {
+  "t": 7.91,
+  "sfx": "foto_entra_orbita",
+  "dur": 0.5,
+  "db": -12
+ },
+ {
+  "t": 7.99,
+  "sfx": "foto_entra_orbita",
+  "dur": 0.5,
+  "db": -12
+ },
+ {
+  "t": 8.15,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 8.6,
+  "sfx": "orbita_pasa",
+  "dur": 0.45,
+  "db": -15
+ },
+ {
+  "t": 9.2,
+  "sfx": "orbita_pasa",
+  "dur": 0.45,
+  "db": -15
+ },
+ {
+  "t": 9.34,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 9.75,
+  "sfx": "orbita_pasa",
+  "dur": 0.45,
+  "db": -15
+ },
+ {
+  "t": 9.93,
+  "sfx": "galeria_vuela",
+  "dur": 0.5,
+  "db": -10
+ },
+ {
+  "t": 9.98,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 10.3,
+  "sfx": "foto_a_galeria",
+  "dur": 0.08,
+  "db": -8
+ },
+ {
+  "t": 10.34,
+  "sfx": "foto_a_galeria",
+  "dur": 0.08,
+  "db": -8
+ },
+ {
+  "t": 10.38,
+  "sfx": "foto_a_galeria",
+  "dur": 0.08,
+  "db": -8
+ },
+ {
+  "t": 10.42,
+  "sfx": "foto_a_galeria",
+  "dur": 0.08,
+  "db": -8
+ },
+ {
+  "t": 10.45,
+  "sfx": "telefono_se_aleja",
+  "dur": 0.7,
+  "db": -12
+ },
+ {
+  "t": 10.8,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 11.25,
+  "sfx": "morph_contorno",
+  "dur": 0.4,
+  "db": -10
+ },
+ {
+  "t": 11.31,
+  "sfx": "tarjeta_entra",
+  "dur": 0.45,
+  "db": -12
+ },
+ {
+  "t": 11.57,
+  "sfx": "punto",
+  "dur": 0.07,
+  "db": -14
+ },
+ {
+  "t": 11.63,
+  "sfx": "tarjeta_estampa",
+  "dur": 0.5,
+  "db": -4
+ },
+ {
+  "t": 11.68,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 11.97,
+  "sfx": "tarjeta_entra",
+  "dur": 0.45,
+  "db": -12
+ },
+ {
+  "t": 12.05,
+  "sfx": "morph_contorno",
+  "dur": 0.4,
+  "db": -10
+ },
+ {
+  "t": 12.13,
+  "sfx": "tarjeta_entra",
+  "dur": 0.45,
+  "db": -12
+ },
+ {
+  "t": 12.29,
+  "sfx": "tarjeta_estampa",
+  "dur": 0.5,
+  "db": -4
+ },
+ {
+  "t": 12.34,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 12.45,
+  "sfx": "tarjeta_estampa",
+  "dur": 0.5,
+  "db": -4
+ },
+ {
+  "t": 12.47,
+  "sfx": "tarjeta_entra",
+  "dur": 0.45,
+  "db": -12
+ },
+ {
+  "t": 12.79,
+  "sfx": "tarjeta_estampa",
+  "dur": 0.5,
+  "db": -4
+ },
+ {
+  "t": 12.95,
+  "sfx": "morph_contorno",
+  "dur": 0.4,
+  "db": -10
+ },
+ {
+  "t": 12.99,
+  "sfx": "punto",
+  "dur": 0.07,
+  "db": -14
+ },
+ {
+  "t": 13.1,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 13.62,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 13.68,
+  "sfx": "glifo_sale",
+  "dur": 0.22,
+  "db": -14
+ },
+ {
+  "t": 13.8,
+  "sfx": "tarjeta_sale",
+  "dur": 0.35,
+  "db": -12
+ },
+ {
+  "t": 13.85,
+  "sfx": "tarjeta_sale",
+  "dur": 0.35,
+  "db": -12
+ },
+ {
+  "t": 13.85,
+  "sfx": "telefono_regresa",
+  "dur": 0.55,
+  "db": -10
+ },
+ {
+  "t": 13.85,
+  "sfx": "scroll",
+  "dur": 0.5,
+  "db": -14
+ },
+ {
+  "t": 13.9,
+  "sfx": "tarjeta_sale",
+  "dur": 0.35,
+  "db": -12
+ },
+ {
+  "t": 13.95,
+  "sfx": "tarjeta_sale",
+  "dur": 0.35,
+  "db": -12
+ },
+ {
+  "t": 14.05,
+  "sfx": "boton_sube",
+  "dur": 0.4,
+  "db": -8
+ },
+ {
+  "t": 14.2,
+  "sfx": "icono_pop",
+  "dur": 0.12,
+  "db": -10
+ },
+ {
+  "t": 14.25,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 14.3,
+  "sfx": "letrero_cristal",
+  "dur": 0.6,
+  "db": -8
+ },
+ {
+  "t": 14.43,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 14.5,
+  "sfx": "pulso_subrayado",
+  "dur": 0.2,
+  "db": -9
+ },
+ {
+  "t": 14.61,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -9
+ },
+ {
+  "t": 15.0,
+  "sfx": "pulso_subrayado",
+  "dur": 0.2,
+  "db": -9
+ },
+ {
+  "t": 15.0,
+  "sfx": "clic_boton",
+  "dur": 0.07,
+  "db": -4
+ },
+ {
+  "t": 15.5,
+  "sfx": "pulso_subrayado",
+  "dur": 0.2,
+  "db": -9
+ },
+ {
+  "t": 15.85,
+  "sfx": "boton_regresa",
+  "dur": 0.4,
+  "db": -10
+ },
+ {
+  "t": 16.0,
+  "sfx": "pull_back",
+  "dur": 0.8,
+  "db": -9
+ },
+ {
+  "t": 16.46,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 16.5,
+  "sfx": "morph_logo",
+  "dur": 0.55,
+  "db": -7
+ },
+ {
+  "t": 16.6,
+  "sfx": "logo_brillo",
+  "dur": 1.0,
+  "db": -11
+ },
+ {
+  "t": 16.8,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 17.76,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 18.82,
+  "sfx": "salida_cierre",
+  "dur": 0.35,
+  "db": -10
+ },
+ {
+  "t": 19.02,
+  "sfx": "trazo_final",
+  "dur": 0.5,
+  "db": -7
+ },
+ {
+  "t": 19.11,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 19.41,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 20.17,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 20.36,
+  "sfx": "precio_destello",
+  "dur": 0.7,
+  "db": -10
+ },
+ {
+  "t": 20.5,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 20.64,
+  "sfx": "precio2_pop",
+  "dur": 0.1,
+  "db": -12
+ },
+ {
+  "t": 20.75,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 20.83,
+  "sfx": "glifo_aterriza",
+  "dur": 0.05,
+  "db": -11
+ }
+]
