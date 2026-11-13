@@ -53,13 +53,13 @@ async function capture(browser, base) {
   await page.waitForFunction(() => document.documentElement.dataset.ready === '1' && document.fonts.status === 'loaded');
   await page.evaluate(async () => { await Promise.all([...document.images].map((i) => i.decode().catch(() => {}))); });
   const shot = async (name, y, state = {}) => {
-    await page.evaluate(([yy, st]) => { scrollTo(0, yy); window.pat.cap({ intro: 1, card: 1, typed: 1, gal: 1, order: 1, sizes: 1, ring: 0, press: 0, wave: 0, touch: null, ...st }); }, [y, state]);
+    await page.evaluate(([yy, st]) => { scrollTo({ top: yy, behavior: 'instant' }); window.pat.cap({ intro: 1, card: 1, typed: 1, gal: 1, order: 1, sizes: 1, ring: 0, press: 0, wave: 0, touch: null, ...st }); }, [y, state]);
     await page.waitForTimeout(250);
     await page.screenshot({ path: path.join(SHOTS, name + '.png') }); console.log('pantalla', name, y);
   };
   const top = async (sel, off) => Math.round(await page.evaluate((s) => document.querySelector(s).getBoundingClientRect().top + scrollY, sel) - off);
   await shot('01_portada', 0);
-  await shot('02_galeria', await top('#galeria', 40));
+  await shot('02_galeria', await top('#galeria', 64));
   await shot('03_pedido', await top('#pedido', 40), { size: 'Mediano', ring: 1 });
   await shot('04_tambien', await top('#tambien', 40));
   await ctx.close();

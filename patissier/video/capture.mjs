@@ -36,11 +36,14 @@ fs.mkdirSync(path.join(OUT, 'frames'), { recursive: true });
   const scrollAt = (t) => { let y = 0; for (const s of TL.SCROLLS) { if (t >= s.t[0]) y = TL.lerp(y, dest[s.to], TL.scrollEase(TL.prog(t, s.t))); } return y; };
 
   const man = { dpr: DPR, fps: TL.FPS, viewport: [390, 844], dest, rects, frames: {} };
+  // el primer cuadro tras abrir la página puede salir antes de que pinte: un cuadro de calentamiento que se descarta
+  await page.evaluate(([yy, st]) => { window.scrollTo({ top: yy, behavior: 'instant' }); window.pat.cap(st); }, [scrollAt(T0), TL.pageState(T0)]);
+  await page.screenshot({ type: 'jpeg', quality: 50 });
   const f0 = Math.round(T0 * TL.FPS), f1 = Math.round(T1 * TL.FPS), t00 = Date.now();
   for (let f = f0; f <= f1; f++) {
     const t = f / TL.FPS, y = scrollAt(t), st = TL.pageState(t);
     if (st.touch) { const c = center(st.touch.key === 'size' ? rects.mediano : rects.cta, y); st.touch = { ...st.touch, x: c.x + (st.touch.key === 'cta' ? 46 : 0), y: c.y + 4 }; }
-    await page.evaluate(([yy, s]) => { window.scrollTo(0, yy); window.pat.cap(s); }, [y, st]);
+    await page.evaluate(([yy, s]) => { window.scrollTo({ top: yy, behavior: 'instant' }); window.pat.cap(s); }, [y, st]);
     const file = `frames/f${String(f).padStart(4, '0')}.jpg`;
     await page.screenshot({ path: path.join(OUT, file), type: 'jpeg', quality: 93 });
     man.frames[f] = { file, y: Math.round(y * 100) / 100, v: Math.round((scrollAt(t + 1 / 120) - scrollAt(t - 1 / 120)) * 60 * 100) / 100 };
