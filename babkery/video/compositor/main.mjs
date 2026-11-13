@@ -10,7 +10,12 @@ import { C, cream, makeTimes, glyphRow, drawPage, drawClosing, frameRect, avatar
 
 const Q = new URLSearchParams(location.search);
 const SCALE = Number(Q.get('scale') || 1), SUBS = Number(Q.get('subs') || 8), FPS = Number(Q.get('fps') || 60);
-const RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);
+const RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);            // capas de diseño (1080×1920)
+const FMT = Q.get('format') || '916';
+const OW = RW, OH = Math.round((FMT === '11' ? 1080 : 1920) * SCALE);      // cuadro de salida
+// 1:1: el mismo cuadro de diseño se reacomoda completo en el cuadrado (sin recorte)
+const LAY = FMT === '11' ? { s: 0.62, ox: 540 - 540 * 0.62, oy: 540 - 960 * 0.62 } : { s: 1, ox: 0, oy: 0 };
+globalThis.FMT11 = FMT === '11';
 const SHUTTER = 0.5 / FPS;                                    // obturador de 180°
 
 
@@ -42,7 +47,7 @@ const IM = {
 };
 
 // ---------------------------------------------------------------- WebGL
-const cv = document.createElement('canvas'); cv.width = RW; cv.height = RH; document.body.appendChild(cv);
+const cv = document.createElement('canvas'); cv.width = OW; cv.height = OH; document.body.appendChild(cv);
 const gl = cv.getContext('webgl2', { preserveDrawingBuffer: true, antialias: false, premultipliedAlpha: false });
 const floatRT = !!gl.getExtension('EXT_color_buffer_float');
 gl.getExtension('OES_texture_float_linear');
@@ -51,7 +56,7 @@ in vec2 a; void main(){ gl_Position = vec4(a,0.,1.); }`;
 const FS_SCENE = `#version 300 es
 precision highp float;
 uniform sampler2D uSdf, uFree, uPage, uLogo;
-uniform float uScale, uRH, uLight, uDough, uDoughOn, uStripe, uGlass, uFlash, uStreak, uSweepX, uSweepA, uSweepW;
+uniform float uScale, uRH, uS, uOx, uOy, uLight, uDough, uDoughOn, uStripe, uGlass, uFlash, uStreak, uSweepX, uSweepA, uSweepW;
 uniform float uRefY, uRefA, uOver, uBraidK, uBraidX0, uBraidPh, uReveal, uBevel, uWeight, uPageA, uClip, uGSheen;
 uniform vec3 uAv;
 out vec4 o;
@@ -61,7 +66,7 @@ const vec2 DIM = vec2(1080.,1920.);
 vec4 S(vec2 p){ return texture(uSdf, p/DIM); }
 float prof(float d){ float x=clamp(-d/uBevel,0.,1.); return sqrt(1.-(1.-x)*(1.-x)); }
 void main(){
-  vec2 p = vec2(gl_FragCoord.x, uRH - gl_FragCoord.y)/uScale;
+  vec2 p = (vec2(gl_FragCoord.x, uRH - gl_FragCoord.y)/uScale - vec2(uOx, uOy))/uS;
   vec4 s = S(p);
   // lienzo de chocolate con luz cálida baja
   vec2 q = (p-vec2(540.,1000.))/vec2(820.,1250.);
@@ -85,7 +90,7 @@ void main(){
   float dTop = mix(s.g, s.r, topR), h = mix(hG, hR, topR);
   float under = mix(hR, hG, topR);
   float Hh = h*uBevel*0.9;
-  vec2 g = vec2(dFdx(Hh), -dFdy(Hh))*uScale;
+  vec2 g = vec2(dFdx(Hh), -dFdy(Hh))*uScale*uS;
   vec3 N = normalize(vec3(-g, 1.));
   vec3 Lg = normalize(vec3(-0.55,-0.65,0.75));
   float dif = max(dot(N,Lg),0.);
@@ -164,7 +169,7 @@ function tex(filter = gl.LINEAR) {
 const tSdf = tex(), tFree = tex(), tPage = tex(), tLogo = tex(), tAcc = tex(gl.NEAREST);
 gl.bindTexture(gl.TEXTURE_2D, tLogo); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, IM.logo);
 gl.bindTexture(gl.TEXTURE_2D, tAcc);
-gl.texImage2D(gl.TEXTURE_2D, 0, floatRT ? gl.RGBA16F : gl.RGBA8, RW, RH, 0, gl.RGBA, floatRT ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
+gl.texImage2D(gl.TEXTURE_2D, 0, floatRT ? gl.RGBA16F : gl.RGBA8, OW, OH, 0, gl.RGBA, floatRT ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
 const fbo = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tAcc, 0);
 const U = (p) => new Proxy({}, { get: (_, k) => gl.getUniformLocation(p, k) });
@@ -365,20 +370,20 @@ function subframe(t, weight) {
   gl.useProgram(PS);
   [tSdf, tFree, tPage, tLogo].forEach((tx, i) => { gl.activeTexture(gl.TEXTURE0 + i); gl.bindTexture(gl.TEXTURE_2D, tx); });
   gl.uniform1i(us.uSdf, 0); gl.uniform1i(us.uFree, 1); gl.uniform1i(us.uPage, 2); gl.uniform1i(us.uLogo, 3);
-  gl.uniform1f(us.uScale, SCALE); gl.uniform1f(us.uRH, RH); gl.uniform1f(us.uWeight, weight);
+  gl.uniform1f(us.uScale, SCALE); gl.uniform1f(us.uRH, OH); gl.uniform1f(us.uS, LAY.s); gl.uniform1f(us.uOx, LAY.ox); gl.uniform1f(us.uOy, LAY.oy); gl.uniform1f(us.uWeight, weight);
   setU(uniforms(t));
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 window.renderFrame = (f) => {
   const t = f / FPS;
-  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, RW, RH);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fbo); gl.viewport(0, 0, OW, OH);
   gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
   gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
   for (let k = 0; k < SUBS; k++) subframe(t + ((k + 0.5) / SUBS - 0.5) * SHUTTER, 1 / SUBS);
   gl.disable(gl.BLEND);
-  gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, RW, RH);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, OW, OH);
   gl.useProgram(PO); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tAcc);
-  gl.uniform1i(uo.uAcc, 0); gl.uniform1f(uo.uFrame, f); gl.uniform2f(uo.uRes, RW, RH);
+  gl.uniform1i(uo.uAcc, 0); gl.uniform1f(uo.uFrame, f); gl.uniform2f(uo.uRes, OW, OH);
   gl.drawArrays(gl.TRIANGLES, 0, 3);
   gl.finish();
   return true;

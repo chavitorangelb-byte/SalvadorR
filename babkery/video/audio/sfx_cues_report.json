@@ -1,0 +1,596 @@
+[
+ {
+  "t": 0.0,
+  "f": 0,
+  "fam": "impacto",
+  "what": "Hit cálido: irrumpe la línea"
+ },
+ {
+  "t": 0.0,
+  "f": 0,
+  "fam": "whoosh",
+  "what": "Whoosh corto de la línea cruzando"
+ },
+ {
+  "t": 0.02,
+  "f": 1,
+  "fam": "shimmer",
+  "what": "Flash cálido"
+ },
+ {
+  "t": 0.5,
+  "f": 30,
+  "fam": "tick madera",
+  "what": "Aterriza \"C\" de CAPA"
+ },
+ {
+  "t": 0.528,
+  "f": 32,
+  "fam": "tick madera",
+  "what": "Aterriza \"A\" de CAPA"
+ },
+ {
+  "t": 0.556,
+  "f": 33,
+  "fam": "tick madera",
+  "what": "Aterriza \"P\" de CAPA"
+ },
+ {
+  "t": 0.584,
+  "f": 35,
+  "fam": "tick madera",
+  "what": "Aterriza \"A\" de CAPA"
+ },
+ {
+  "t": 0.9,
+  "f": 54,
+  "fam": "papel",
+  "what": "Pliegue 1: papel que se dobla"
+ },
+ {
+  "t": 1.0,
+  "f": 60,
+  "fam": "masa",
+  "what": "Pliegue 1: golpe suave de masa sobre mesa"
+ },
+ {
+  "t": 1.01,
+  "f": 61,
+  "fam": "tick madera",
+  "what": "Aterriza \"P\" de POR CAPA"
+ },
+ {
+  "t": 1.038,
+  "f": 62,
+  "fam": "tick madera",
+  "what": "Aterriza \"O\" de POR CAPA"
+ },
+ {
+  "t": 1.06,
+  "f": 64,
+  "fam": "shimmer",
+  "what": "Reflejo especular recorre las capas tras el pliegue 1"
+ },
+ {
+  "t": 1.066,
+  "f": 64,
+  "fam": "tick madera",
+  "what": "Aterriza \"R\" de POR CAPA"
+ },
+ {
+  "t": 1.094,
+  "f": 66,
+  "fam": "tick madera",
+  "what": "Aterriza \"C\" de POR CAPA"
+ },
+ {
+  "t": 1.122,
+  "f": 67,
+  "fam": "tick madera",
+  "what": "Aterriza \"A\" de POR CAPA"
+ },
+ {
+  "t": 1.15,
+  "f": 69,
+  "fam": "tick madera",
+  "what": "Aterriza \"P\" de POR CAPA"
+ },
+ {
+  "t": 1.178,
+  "f": 71,
+  "fam": "tick madera",
+  "what": "Aterriza \"A\" de POR CAPA"
+ },
+ {
+  "t": 1.4,
+  "f": 84,
+  "fam": "papel",
+  "what": "Pliegue 2: papel que se dobla"
+ },
+ {
+  "t": 1.5,
+  "f": 90,
+  "fam": "masa",
+  "what": "Pliegue 2: golpe suave de masa sobre mesa"
+ },
+ {
+  "t": 1.56,
+  "f": 94,
+  "fam": "shimmer",
+  "what": "Reflejo especular recorre las capas tras el pliegue 2"
+ },
+ {
+  "t": 1.9,
+  "f": 114,
+  "fam": "papel",
+  "what": "Pliegue 3: papel que se dobla"
+ },
+ {
+  "t": 2.0,
+  "f": 120,
+  "fam": "masa",
+  "what": "Pliegue 3: golpe suave de masa sobre mesa"
+ },
+ {
+  "t": 2.0,
+  "f": 120,
+  "fam": "masa",
+  "what": "Roce de masa: el bloque se retuerce en trenza"
+ },
+ {
+  "t": 2.06,
+  "f": 124,
+  "fam": "shimmer",
+  "what": "Reflejo especular recorre las capas tras el pliegue 3"
+ },
+ {
+  "t": 2.2,
+  "f": 132,
+  "fam": "swell",
+  "what": "Swell de la trenza"
+ },
+ {
+  "t": 2.8,
+  "f": 168,
+  "fam": "cristal",
+  "what": "Glass tap: se forma el círculo de cristal"
+ },
+ {
+  "t": 2.95,
+  "f": 177,
+  "fam": "campanita",
+  "what": "Shimmer de campanita: se cierra la \"S\""
+ },
+ {
+  "t": 3.0,
+  "f": 180,
+  "fam": "cristal",
+  "what": "Glass tap: arranca el marco de la página"
+ },
+ {
+  "t": 3.0,
+  "f": 180,
+  "fam": "whoosh",
+  "what": "Tarjeta 1 \"CROISSANTS\" se levanta"
+ },
+ {
+  "t": 3.1,
+  "f": 186,
+  "fam": "aire",
+  "what": "Aire suave: entra el hero en paralaje"
+ },
+ {
+  "t": 3.24,
+  "f": 194,
+  "fam": "contacto",
+  "what": "Tarjeta 1 hace contacto suave"
+ },
+ {
+  "t": 3.4,
+  "f": 204,
+  "fam": "cristal",
+  "what": "Glass tap suave: el marco se asienta"
+ },
+ {
+  "t": 3.93,
+  "f": 236,
+  "fam": "whoosh",
+  "what": "Tarjeta 2 \"BABKAS\" se levanta"
+ },
+ {
+  "t": 4.17,
+  "f": 250,
+  "fam": "contacto",
+  "what": "Tarjeta 2 hace contacto suave"
+ },
+ {
+  "t": 4.8,
+  "f": 288,
+  "fam": "whoosh",
+  "what": "Tarjeta 3 \"MASA MADRE\" se levanta"
+ },
+ {
+  "t": 5.04,
+  "f": 302,
+  "fam": "contacto",
+  "what": "Tarjeta 3 hace contacto suave"
+ },
+ {
+  "t": 5.65,
+  "f": 339,
+  "fam": "ping",
+  "what": "Chip \"36 horas de fermentación\""
+ },
+ {
+  "t": 5.78,
+  "f": 347,
+  "fam": "aire",
+  "what": "La página se desplaza a la calificación"
+ },
+ {
+  "t": 6.0,
+  "f": 360,
+  "fam": "shimmer",
+  "what": "La harina brillante empieza a converger"
+ },
+ {
+  "t": 6.044,
+  "f": 363,
+  "fam": "tick",
+  "what": "Contador → 1"
+ },
+ {
+  "t": 6.05,
+  "f": 363,
+  "fam": "ping cristal",
+  "what": "Estrella 1"
+ },
+ {
+  "t": 6.087,
+  "f": 365,
+  "fam": "tick",
+  "what": "Contador → 2"
+ },
+ {
+  "t": 6.131,
+  "f": 368,
+  "fam": "tick",
+  "what": "Contador → 3"
+ },
+ {
+  "t": 6.17,
+  "f": 370,
+  "fam": "ping cristal",
+  "what": "Estrella 2"
+ },
+ {
+  "t": 6.175,
+  "f": 370,
+  "fam": "tick",
+  "what": "Contador → 4"
+ },
+ {
+  "t": 6.218,
+  "f": 373,
+  "fam": "tick",
+  "what": "Contador → 4.1"
+ },
+ {
+  "t": 6.262,
+  "f": 376,
+  "fam": "tick",
+  "what": "Contador → 4.2"
+ },
+ {
+  "t": 6.29,
+  "f": 377,
+  "fam": "ping cristal",
+  "what": "Estrella 3"
+ },
+ {
+  "t": 6.305,
+  "f": 378,
+  "fam": "tick",
+  "what": "Contador → 4.3"
+ },
+ {
+  "t": 6.349,
+  "f": 381,
+  "fam": "tick",
+  "what": "Contador → 4.4"
+ },
+ {
+  "t": 6.393,
+  "f": 384,
+  "fam": "tick",
+  "what": "Contador → 4.5"
+ },
+ {
+  "t": 6.41,
+  "f": 385,
+  "fam": "ping cristal",
+  "what": "Estrella 4"
+ },
+ {
+  "t": 6.436,
+  "f": 386,
+  "fam": "tick",
+  "what": "Contador → 4.6"
+ },
+ {
+  "t": 6.48,
+  "f": 389,
+  "fam": "tick",
+  "what": "Contador → 4.7"
+ },
+ {
+  "t": 6.53,
+  "f": 392,
+  "fam": "ping cristal",
+  "what": "Estrella 5 al 70 % (más suave)"
+ },
+ {
+  "t": 7.14,
+  "f": 428,
+  "fam": "ping",
+  "what": "Chip \"más de 140 reseñas en Google\""
+ },
+ {
+  "t": 7.9,
+  "f": 474,
+  "fam": "aire",
+  "what": "La calificación sube"
+ },
+ {
+  "t": 8.0,
+  "f": 480,
+  "fam": "whoosh",
+  "what": "Desliza la reseña 1"
+ },
+ {
+  "t": 8.26,
+  "f": 496,
+  "fam": "contacto",
+  "what": "La reseña 1 se asienta"
+ },
+ {
+  "t": 8.55,
+  "f": 513,
+  "fam": "whoosh",
+  "what": "Desliza la reseña 2"
+ },
+ {
+  "t": 8.81,
+  "f": 529,
+  "fam": "contacto",
+  "what": "La reseña 2 se asienta"
+ },
+ {
+  "t": 8.9,
+  "f": 534,
+  "fam": "zip",
+  "what": "Subrayado de \"todo está fresco\""
+ },
+ {
+  "t": 9.1,
+  "f": 546,
+  "fam": "whoosh",
+  "what": "Desliza la reseña 3"
+ },
+ {
+  "t": 9.36,
+  "f": 562,
+  "fam": "contacto",
+  "what": "La reseña 3 se asienta"
+ },
+ {
+  "t": 9.4,
+  "f": 564,
+  "fam": "aire",
+  "what": "Paralaje de las reseñas"
+ },
+ {
+  "t": 9.45,
+  "f": 567,
+  "fam": "aire",
+  "what": "La cámara se aleja y deja espacio a \"TU PÁGINA\""
+ },
+ {
+  "t": 9.61,
+  "f": 577,
+  "fam": "tick cristal",
+  "what": "Aterriza \"TU\""
+ },
+ {
+  "t": 9.62,
+  "f": 577,
+  "fam": "whoosh",
+  "what": "La página se desplaza a la galería"
+ },
+ {
+  "t": 10.0,
+  "f": 600,
+  "fam": "tick cristal",
+  "what": "Aterriza \"PÁGINA\""
+ },
+ {
+  "t": 10.0,
+  "f": 600,
+  "fam": "glass whoosh",
+  "what": "Panel 1 de la galería (rosca)"
+ },
+ {
+  "t": 10.25,
+  "f": 615,
+  "fam": "glass whoosh",
+  "what": "Panel 2 de la galería (rol)"
+ },
+ {
+  "t": 10.5,
+  "f": 630,
+  "fam": "glass whoosh",
+  "what": "Panel 3 de la galería (barra)"
+ },
+ {
+  "t": 10.75,
+  "f": 645,
+  "fam": "glass whoosh",
+  "what": "Panel 4 de la galería (chocolatine)"
+ },
+ {
+  "t": 11.1,
+  "f": 666,
+  "fam": "shimmer",
+  "what": "Reflejo viaja sobre los cristales (1)"
+ },
+ {
+  "t": 11.5,
+  "f": 690,
+  "fam": "shimmer",
+  "what": "Reflejo (2)"
+ },
+ {
+  "t": 11.85,
+  "f": 711,
+  "fam": "contacto",
+  "what": "La galería se asienta"
+ },
+ {
+  "t": 11.92,
+  "f": 715,
+  "fam": "whoosh",
+  "what": "La página se desplaza al pedido"
+ },
+ {
+  "t": 12.0,
+  "f": 720,
+  "fam": "whoosh",
+  "what": "Sube el botón de WhatsApp"
+ },
+ {
+  "t": 12.02,
+  "f": 721,
+  "fam": "tick madera",
+  "what": "Aterriza \"Haz tu pedido\""
+ },
+ {
+  "t": 12.18,
+  "f": 731,
+  "fam": "contacto",
+  "what": "Foto de producto 1 del pedido se asienta"
+ },
+ {
+  "t": 12.2,
+  "f": 732,
+  "fam": "zip",
+  "what": "La línea se vuelve el subrayado del botón"
+ },
+ {
+  "t": 12.25,
+  "f": 735,
+  "fam": "contacto",
+  "what": "Foto de producto 2 del pedido se asienta"
+ },
+ {
+  "t": 12.32,
+  "f": 739,
+  "fam": "contacto",
+  "what": "Foto de producto 3 del pedido se asienta"
+ },
+ {
+  "t": 12.52,
+  "f": 751,
+  "fam": "click",
+  "what": "Tap en \"PIDE POR WHATSAPP\""
+ },
+ {
+  "t": 13.0,
+  "f": 780,
+  "fam": "pulso",
+  "what": "Anillo pulsa 1 (con el kick)"
+ },
+ {
+  "t": 13.5,
+  "f": 810,
+  "fam": "pulso",
+  "what": "Anillo pulsa 2 (con el kick)"
+ },
+ {
+  "t": 14.0,
+  "f": 840,
+  "fam": "reverse swell",
+  "what": "Pull-back de la cámara"
+ },
+ {
+  "t": 14.7,
+  "f": 882,
+  "fam": "power down",
+  "what": "Se apagan las luces"
+ },
+ {
+  "t": 14.95,
+  "f": 897,
+  "fam": "shimmer",
+  "what": "Queda un punto de luz"
+ },
+ {
+  "t": 15.0,
+  "f": 900,
+  "fam": "papel",
+  "what": "Último pliegue de la línea"
+ },
+ {
+  "t": 15.12,
+  "f": 907,
+  "fam": "impacto",
+  "what": "Hit: el punto se vuelve el logo"
+ },
+ {
+  "t": 15.135,
+  "f": 908,
+  "fam": "tick madera",
+  "what": "Entra \"Babkery · Guadalajara\""
+ },
+ {
+  "t": 16.0,
+  "f": 960,
+  "fam": "golpe grave",
+  "what": "Golpe grave: end card"
+ },
+ {
+  "t": 16.05,
+  "f": 963,
+  "fam": "tick madera",
+  "what": "Aterriza la línea 1 del end card"
+ },
+ {
+  "t": 16.3,
+  "f": 978,
+  "fam": "atmósfera",
+  "what": "Atmósfera mínima hasta el final (cuarto cálido)"
+ },
+ {
+  "t": 16.4,
+  "f": 984,
+  "fam": "tick madera",
+  "what": "Aterriza la línea 2 del end card"
+ },
+ {
+  "t": 16.7,
+  "f": 1002,
+  "fam": "tick madera",
+  "what": "Aterriza la línea 3 del end card"
+ },
+ {
+  "t": 16.9,
+  "f": 1014,
+  "fam": "tick madera",
+  "what": "Aterriza la línea 4 del end card"
+ },
+ {
+  "t": 17.18,
+  "f": 1031,
+  "fam": "zip",
+  "what": "Subrayado caramelo bajo \"$1,000\""
+ }
+]

@@ -452,6 +452,13 @@
    "what": "Chip \"36 horas de fermentación\" pegado a la tarjeta de croissants"
   },
   {
+   "t0": 5.78,
+   "t1": 6.08,
+   "f0": 347,
+   "f1": 365,
+   "what": "La página se desplaza a la calificación (\"CALIFICACIÓN EN GOOGLE\")"
+  },
+  {
    "t0": 6.0,
    "t1": 6.4,
    "f0": 360,
@@ -515,6 +522,20 @@
    "what": "Reseña 3: \"Me atendieron muy bien\""
   },
   {
+   "t0": 9.45,
+   "t1": 9.95,
+   "f0": 567,
+   "f1": 597,
+   "what": "La cámara se aleja (0.80) y deja espacio arriba para el kinetic"
+  },
+  {
+   "t0": 9.62,
+   "t1": 10.02,
+   "f0": 577,
+   "f1": 601,
+   "what": "La página se desplaza a la galería"
+  },
+  {
    "t0": 9.61,
    "t1": 9.709999999999999,
    "f0": 577,
@@ -569,6 +590,13 @@
    "f0": 690,
    "f1": 714,
    "what": "Reflejo (2) y la galería se asienta"
+  },
+  {
+   "t0": 11.92,
+   "t1": 12.16,
+   "f0": 715,
+   "f1": 730,
+   "what": "La página se desplaza al pedido: \"Haz tu pedido\", \"Croissants, babkas y masa madre\" y tres fotos (04, 03, 07)"
   },
   {
    "t0": 12.0,
@@ -991,6 +1019,13 @@
    "gain_db": -14
   },
   {
+   "t": 5.78,
+   "f": 347,
+   "fam": "aire",
+   "what": "La página se desplaza a la calificación",
+   "gain_db": -20
+  },
+  {
    "t": 6.0,
    "f": 360,
    "fam": "shimmer",
@@ -1180,10 +1215,24 @@
    "gain_db": -22
   },
   {
+   "t": 9.45,
+   "f": 567,
+   "fam": "aire",
+   "what": "La cámara se aleja y deja espacio a \"TU PÁGINA\"",
+   "gain_db": -20
+  },
+  {
    "t": 9.61,
    "f": 577,
    "fam": "tick cristal",
    "what": "Aterriza \"TU\"",
+   "gain_db": -18
+  },
+  {
+   "t": 9.62,
+   "f": 577,
+   "fam": "whoosh",
+   "what": "La página se desplaza a la galería",
    "gain_db": -18
   },
   {
@@ -1243,6 +1292,13 @@
    "gain_db": -22
   },
   {
+   "t": 11.92,
+   "f": 715,
+   "fam": "whoosh",
+   "what": "La página se desplaza al pedido",
+   "gain_db": -18
+  },
+  {
    "t": 12.0,
    "f": 720,
    "fam": "whoosh",
@@ -1250,11 +1306,39 @@
    "gain_db": -14
   },
   {
+   "t": 12.02,
+   "f": 721,
+   "fam": "tick madera",
+   "what": "Aterriza \"Haz tu pedido\"",
+   "gain_db": -20
+  },
+  {
+   "t": 12.18,
+   "f": 731,
+   "fam": "contacto",
+   "what": "Foto de producto 1 del pedido se asienta",
+   "gain_db": -22
+  },
+  {
    "t": 12.2,
    "f": 732,
    "fam": "zip",
    "what": "La línea se vuelve el subrayado del botón",
    "gain_db": -14
+  },
+  {
+   "t": 12.25,
+   "f": 735,
+   "fam": "contacto",
+   "what": "Foto de producto 2 del pedido se asienta",
+   "gain_db": -22
+  },
+  {
+   "t": 12.32,
+   "f": 739,
+   "fam": "contacto",
+   "what": "Foto de producto 3 del pedido se asienta",
+   "gain_db": -22
   },
   {
    "t": 12.52,

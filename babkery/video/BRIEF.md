@@ -54,6 +54,7 @@ Cada frase se movió en bloque a su lugar; ninguna se aceleró ni se estiró.
 | Tarjeta 2 "BABKAS" (foto 03) (sobre "babkas") | 3.93 s (f0236) – 4.23 s (f0254) |
 | Tarjeta 3 "MASA MADRE" (foto 10) (sobre "masa") | 4.80 s (f0288) – 5.10 s (f0306) |
 | Chip "36 horas de fermentación" pegado a la tarjeta de croissants | 5.65 s (f0339) – 5.80 s (f0348) |
+| La página se desplaza a la calificación ("CALIFICACIÓN EN GOOGLE") | 5.78 s (f0347) – 6.08 s (f0365) |
 | La harina brillante converge en 5 estrellas | 6.00 s (f0360) – 6.40 s (f0384) |
 | Estrellas 1–4 llenas y la 5.ª al 70 %, una cada 0.12 s | 6.05 s (f0363) – 6.53 s (f0392) |
 | Contador 0 → "4.7" (aterriza sobre "siete") | 6.00 s (f0360) – 6.48 s (f0389) |
@@ -63,6 +64,8 @@ Cada frase se movió en bloque a su lugar; ninguna se aceleró ni se estiró.
 | Reseña 2: "Como están horneando ahí mismo, todo está fresco." | 8.55 s (f0513) – 8.85 s (f0531) |
 | La línea caramelo subraya "todo está fresco" | 8.90 s (f0534) – 9.20 s (f0552) |
 | Reseña 3: "Me atendieron muy bien" | 9.10 s (f0546) – 9.40 s (f0564) |
+| La cámara se aleja (0.80) y deja espacio arriba para el kinetic | 9.45 s (f0567) – 9.95 s (f0597) |
+| La página se desplaza a la galería | 9.62 s (f0577) – 10.02 s (f0601) |
 | Kinetic "TU" (sobre "tu") | 9.61 s (f0577) – 9.71 s (f0583) |
 | Kinetic "PÁGINA" (sobre "página") | 10.00 s (f0600) – 10.10 s (f0606) |
 | Panel de cristal 05 (rosca) | 10.00 s (f0600) – 10.30 s (f0618) |
@@ -71,6 +74,7 @@ Cada frase se movió en bloque a su lugar; ninguna se aceleró ni se estiró.
 | Panel 08 (chocolatine) | 10.75 s (f0645) – 11.05 s (f0663) |
 | Reflejo viaja sobre los cristales (1) | 11.10 s (f0666) – 11.50 s (f0690) |
 | Reflejo (2) y la galería se asienta | 11.50 s (f0690) – 11.90 s (f0714) |
+| La página se desplaza al pedido: "Haz tu pedido", "Croissants, babkas y masa madre" y tres fotos (04, 03, 07) | 11.92 s (f0715) – 12.16 s (f0730) |
 | Sube el botón "PIDE POR WHATSAPP" | 12.00 s (f0720) – 12.25 s (f0735) |
 | La línea caramelo se vuelve su subrayado (de "Pide" a "WhatsApp") | 12.20 s (f0732) – 12.52 s (f0751) |
 | Tap en el botón (sobre "WhatsApp") | 12.52 s (f0751) – 12.60 s (f0756) |
@@ -104,7 +108,7 @@ Cada frase se movió en bloque a su lugar; ninguna se aceleró ni se estiró.
 
 Música ≥ 12 dB por debajo de cada palabra (ducking por la voz). Master −14 LUFS / −1.25 dBTP; voz ≈ −16 LUFS.
 
-## SFX (91 cues, uno por movimiento visible)
+## SFX (99 cues, uno por movimiento visible)
 
 | # | Tiempo | Cuadro | Familia | Causa visible |
 |---|---|---|---|---|
@@ -145,67 +149,77 @@ Música ≥ 12 dB por debajo de cada palabra (ducking por la voz). Master −14 
 | 35 | 4.800 s | f0288 | whoosh | Tarjeta 3 "MASA MADRE" se levanta |
 | 36 | 5.040 s | f0302 | contacto | Tarjeta 3 hace contacto suave |
 | 37 | 5.650 s | f0339 | ping | Chip "36 horas de fermentación" |
-| 38 | 6.000 s | f0360 | shimmer | La harina brillante empieza a converger |
-| 39 | 6.044 s | f0363 | tick | Contador → 1 |
-| 40 | 6.050 s | f0363 | ping cristal | Estrella 1 |
-| 41 | 6.087 s | f0365 | tick | Contador → 2 |
-| 42 | 6.131 s | f0368 | tick | Contador → 3 |
-| 43 | 6.170 s | f0370 | ping cristal | Estrella 2 |
-| 44 | 6.175 s | f0370 | tick | Contador → 4 |
-| 45 | 6.218 s | f0373 | tick | Contador → 4.1 |
-| 46 | 6.262 s | f0376 | tick | Contador → 4.2 |
-| 47 | 6.290 s | f0377 | ping cristal | Estrella 3 |
-| 48 | 6.305 s | f0378 | tick | Contador → 4.3 |
-| 49 | 6.349 s | f0381 | tick | Contador → 4.4 |
-| 50 | 6.393 s | f0384 | tick | Contador → 4.5 |
-| 51 | 6.410 s | f0385 | ping cristal | Estrella 4 |
-| 52 | 6.436 s | f0386 | tick | Contador → 4.6 |
-| 53 | 6.480 s | f0389 | tick | Contador → 4.7 |
-| 54 | 6.530 s | f0392 | ping cristal | Estrella 5 al 70 % (más suave) |
-| 55 | 7.140 s | f0428 | ping | Chip "más de 140 reseñas en Google" |
-| 56 | 7.900 s | f0474 | aire | La calificación sube |
-| 57 | 8.000 s | f0480 | whoosh | Desliza la reseña 1 |
-| 58 | 8.260 s | f0496 | contacto | La reseña 1 se asienta |
-| 59 | 8.550 s | f0513 | whoosh | Desliza la reseña 2 |
-| 60 | 8.810 s | f0529 | contacto | La reseña 2 se asienta |
-| 61 | 8.900 s | f0534 | zip | Subrayado de "todo está fresco" |
-| 62 | 9.100 s | f0546 | whoosh | Desliza la reseña 3 |
-| 63 | 9.360 s | f0562 | contacto | La reseña 3 se asienta |
-| 64 | 9.400 s | f0564 | aire | Paralaje de las reseñas |
-| 65 | 9.610 s | f0577 | tick cristal | Aterriza "TU" |
-| 66 | 10.000 s | f0600 | tick cristal | Aterriza "PÁGINA" |
-| 67 | 10.000 s | f0600 | glass whoosh | Panel 1 de la galería (rosca) |
-| 68 | 10.250 s | f0615 | glass whoosh | Panel 2 de la galería (rol) |
-| 69 | 10.500 s | f0630 | glass whoosh | Panel 3 de la galería (barra) |
-| 70 | 10.750 s | f0645 | glass whoosh | Panel 4 de la galería (chocolatine) |
-| 71 | 11.100 s | f0666 | shimmer | Reflejo viaja sobre los cristales (1) |
-| 72 | 11.500 s | f0690 | shimmer | Reflejo (2) |
-| 73 | 11.850 s | f0711 | contacto | La galería se asienta |
-| 74 | 12.000 s | f0720 | whoosh | Sube el botón de WhatsApp |
-| 75 | 12.200 s | f0732 | zip | La línea se vuelve el subrayado del botón |
-| 76 | 12.520 s | f0751 | click | Tap en "PIDE POR WHATSAPP" |
-| 77 | 13.000 s | f0780 | pulso | Anillo pulsa 1 (con el kick) |
-| 78 | 13.500 s | f0810 | pulso | Anillo pulsa 2 (con el kick) |
-| 79 | 14.000 s | f0840 | reverse swell | Pull-back de la cámara |
-| 80 | 14.700 s | f0882 | power down | Se apagan las luces |
-| 81 | 14.950 s | f0897 | shimmer | Queda un punto de luz |
-| 82 | 15.000 s | f0900 | papel | Último pliegue de la línea |
-| 83 | 15.120 s | f0907 | impacto | Hit: el punto se vuelve el logo |
-| 84 | 15.135 s | f0908 | tick madera | Entra "Babkery · Guadalajara" |
-| 85 | 16.000 s | f0960 | golpe grave | Golpe grave: end card |
-| 86 | 16.050 s | f0963 | tick madera | Aterriza la línea 1 del end card |
-| 87 | 16.300 s | f0978 | atmósfera | Atmósfera mínima hasta el final (cuarto cálido) |
-| 88 | 16.400 s | f0984 | tick madera | Aterriza la línea 2 del end card |
-| 89 | 16.700 s | f1002 | tick madera | Aterriza la línea 3 del end card |
-| 90 | 16.900 s | f1014 | tick madera | Aterriza la línea 4 del end card |
-| 91 | 17.180 s | f1031 | zip | Subrayado caramelo bajo "$1,000" |
+| 38 | 5.780 s | f0347 | aire | La página se desplaza a la calificación |
+| 39 | 6.000 s | f0360 | shimmer | La harina brillante empieza a converger |
+| 40 | 6.044 s | f0363 | tick | Contador → 1 |
+| 41 | 6.050 s | f0363 | ping cristal | Estrella 1 |
+| 42 | 6.087 s | f0365 | tick | Contador → 2 |
+| 43 | 6.131 s | f0368 | tick | Contador → 3 |
+| 44 | 6.170 s | f0370 | ping cristal | Estrella 2 |
+| 45 | 6.175 s | f0370 | tick | Contador → 4 |
+| 46 | 6.218 s | f0373 | tick | Contador → 4.1 |
+| 47 | 6.262 s | f0376 | tick | Contador → 4.2 |
+| 48 | 6.290 s | f0377 | ping cristal | Estrella 3 |
+| 49 | 6.305 s | f0378 | tick | Contador → 4.3 |
+| 50 | 6.349 s | f0381 | tick | Contador → 4.4 |
+| 51 | 6.393 s | f0384 | tick | Contador → 4.5 |
+| 52 | 6.410 s | f0385 | ping cristal | Estrella 4 |
+| 53 | 6.436 s | f0386 | tick | Contador → 4.6 |
+| 54 | 6.480 s | f0389 | tick | Contador → 4.7 |
+| 55 | 6.530 s | f0392 | ping cristal | Estrella 5 al 70 % (más suave) |
+| 56 | 7.140 s | f0428 | ping | Chip "más de 140 reseñas en Google" |
+| 57 | 7.900 s | f0474 | aire | La calificación sube |
+| 58 | 8.000 s | f0480 | whoosh | Desliza la reseña 1 |
+| 59 | 8.260 s | f0496 | contacto | La reseña 1 se asienta |
+| 60 | 8.550 s | f0513 | whoosh | Desliza la reseña 2 |
+| 61 | 8.810 s | f0529 | contacto | La reseña 2 se asienta |
+| 62 | 8.900 s | f0534 | zip | Subrayado de "todo está fresco" |
+| 63 | 9.100 s | f0546 | whoosh | Desliza la reseña 3 |
+| 64 | 9.360 s | f0562 | contacto | La reseña 3 se asienta |
+| 65 | 9.400 s | f0564 | aire | Paralaje de las reseñas |
+| 66 | 9.450 s | f0567 | aire | La cámara se aleja y deja espacio a "TU PÁGINA" |
+| 67 | 9.610 s | f0577 | tick cristal | Aterriza "TU" |
+| 68 | 9.620 s | f0577 | whoosh | La página se desplaza a la galería |
+| 69 | 10.000 s | f0600 | tick cristal | Aterriza "PÁGINA" |
+| 70 | 10.000 s | f0600 | glass whoosh | Panel 1 de la galería (rosca) |
+| 71 | 10.250 s | f0615 | glass whoosh | Panel 2 de la galería (rol) |
+| 72 | 10.500 s | f0630 | glass whoosh | Panel 3 de la galería (barra) |
+| 73 | 10.750 s | f0645 | glass whoosh | Panel 4 de la galería (chocolatine) |
+| 74 | 11.100 s | f0666 | shimmer | Reflejo viaja sobre los cristales (1) |
+| 75 | 11.500 s | f0690 | shimmer | Reflejo (2) |
+| 76 | 11.850 s | f0711 | contacto | La galería se asienta |
+| 77 | 11.920 s | f0715 | whoosh | La página se desplaza al pedido |
+| 78 | 12.000 s | f0720 | whoosh | Sube el botón de WhatsApp |
+| 79 | 12.020 s | f0721 | tick madera | Aterriza "Haz tu pedido" |
+| 80 | 12.180 s | f0731 | contacto | Foto de producto 1 del pedido se asienta |
+| 81 | 12.200 s | f0732 | zip | La línea se vuelve el subrayado del botón |
+| 82 | 12.250 s | f0735 | contacto | Foto de producto 2 del pedido se asienta |
+| 83 | 12.320 s | f0739 | contacto | Foto de producto 3 del pedido se asienta |
+| 84 | 12.520 s | f0751 | click | Tap en "PIDE POR WHATSAPP" |
+| 85 | 13.000 s | f0780 | pulso | Anillo pulsa 1 (con el kick) |
+| 86 | 13.500 s | f0810 | pulso | Anillo pulsa 2 (con el kick) |
+| 87 | 14.000 s | f0840 | reverse swell | Pull-back de la cámara |
+| 88 | 14.700 s | f0882 | power down | Se apagan las luces |
+| 89 | 14.950 s | f0897 | shimmer | Queda un punto de luz |
+| 90 | 15.000 s | f0900 | papel | Último pliegue de la línea |
+| 91 | 15.120 s | f0907 | impacto | Hit: el punto se vuelve el logo |
+| 92 | 15.135 s | f0908 | tick madera | Entra "Babkery · Guadalajara" |
+| 93 | 16.000 s | f0960 | golpe grave | Golpe grave: end card |
+| 94 | 16.050 s | f0963 | tick madera | Aterriza la línea 1 del end card |
+| 95 | 16.300 s | f0978 | atmósfera | Atmósfera mínima hasta el final (cuarto cálido) |
+| 96 | 16.400 s | f0984 | tick madera | Aterriza la línea 2 del end card |
+| 97 | 16.700 s | f1002 | tick madera | Aterriza la línea 3 del end card |
+| 98 | 16.900 s | f1014 | tick madera | Aterriza la línea 4 del end card |
+| 99 | 17.180 s | f1031 | zip | Subrayado caramelo bajo "$1,000" |
 
 ## Textos en pantalla (todos verificados)
 
 - Kinetic: "CAPA", "POR CAPA", "TU", "PÁGINA".
-- Página: "Babkery", "panadería y café", tarjetas "CROISSANTS", "BABKAS", "MASA MADRE",
+- Página: "Babkery", "panadería y café · Guadalajara", tarjetas "CROISSANTS", "BABKAS", "MASA MADRE",
   chip "36 horas de fermentación" (afirmación del catálogo: confirmar con el dueño), "4.7",
-  "más de 140 reseñas en Google", botón "PIDE POR WHATSAPP".
+  "CALIFICACIÓN EN GOOGLE", "más de 140 reseñas en Google", etiquetas "RESEÑA DE GOOGLE",
+  galería "Rosca de babka", "Rol de canela y nuez", "Barra rústica", "Chocolatine",
+  "Haz tu pedido", "Croissants, babkas y masa madre", botón "PIDE POR WHATSAPP".
 - Reseñas (textuales, sin autor): "De los mejores panes que he probado en GDL." ·
   "Como están horneando ahí mismo, todo está fresco." · "Me atendieron muy bien".
 - Cierre: "Babkery · Guadalajara". End card: las cuatro líneas del brief.

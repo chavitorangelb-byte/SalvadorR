@@ -373,8 +373,9 @@ export function drawClosing(ctx, t, TM) {
     const L1 = ['Precios accesibles', 'desde $1,000 pesos', 'por tu página'];
     L1.forEach((ln, j) => glyphRow(ctx, t, ln, '600 70px Fraunces', 70, 540, 700 + j * 86, 16.05 + j * 0.10, 99, 0, C.cream, { stagger: 0.008 }));
     glyphRow(ctx, t, 'Paquete de 3 videos promocionales: $1,500', '500 36px Inter', 36, 540, 1040, 16.40, 99, 0, C.cream, { stagger: 0.006 });
-    glyphRow(ctx, t, 'ELEVATE NEGOCIOS · AGUASCALIENTES', '600 27px Inter', 27, 540, 1160, 16.70, 99, 3, C.cream, { stagger: 0.006 });
-    glyphRow(ctx, t, 'Demo de cortesía de Elevate Negocios · pieza no oficial', '400 23px Inter', 23, 540, 1222, 16.90, 99, 0, cream(0.74), { stagger: 0.004 });
+    const big = globalThis.FMT11 ? 1.3 : 1;      // en 1:1 los textos chicos del cierre crecen para seguir legibles
+    glyphRow(ctx, t, 'ELEVATE NEGOCIOS · AGUASCALIENTES', `600 ${27 * big}px Inter`, 27 * big, 540, 1160 + (big - 1) * 30, 16.70, 99, 3, C.cream, { stagger: 0.006 });
+    glyphRow(ctx, t, 'Demo de cortesía de Elevate Negocios · pieza no oficial', `400 ${23 * big}px Inter`, 23 * big, 540, 1222 + (big - 1) * 80, 16.90, 99, 0, cream(0.74), { stagger: 0.004 });
     // subrayado caramelo bajo "$1,000" cuando la voz dice "mil"
     const u = easeIO(clamp((t - TM.mil) / 0.30));
     if (u > 0) {

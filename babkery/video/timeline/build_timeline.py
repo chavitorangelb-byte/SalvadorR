@@ -87,6 +87,7 @@ EVENTS = [
     (c2, c2 + 0.30, 'Tarjeta 2 "BABKAS" (foto 03) (sobre "babkas")'),
     (c3, c3 + 0.30, 'Tarjeta 3 "MASA MADRE" (foto 10) (sobre "masa")'),
     (5.65, 5.80, 'Chip "36 horas de fermentación" pegado a la tarjeta de croissants'),
+    (5.78, 6.08, 'La página se desplaza a la calificación ("CALIFICACIÓN EN GOOGLE")'),
     (6.00, 6.40, 'La harina brillante converge en 5 estrellas'),
     (6.05, 6.53, 'Estrellas 1–4 llenas y la 5.ª al 70 %, una cada 0.12 s'),
     (6.00, siete, 'Contador 0 → "4.7" (aterriza sobre "siete")'),
@@ -96,6 +97,8 @@ EVENTS = [
     (8.55, 8.85, 'Reseña 2: "Como están horneando ahí mismo, todo está fresco."'),
     (8.90, 9.20, 'La línea caramelo subraya "todo está fresco"'),
     (9.10, 9.40, 'Reseña 3: "Me atendieron muy bien"'),
+    (9.45, 9.95, 'La cámara se aleja (0.80) y deja espacio arriba para el kinetic'),
+    (9.62, 10.02, 'La página se desplaza a la galería'),
     (tu, tu + 0.10, 'Kinetic "TU" (sobre "tu")'),
     (pagina, pagina + 0.10, 'Kinetic "PÁGINA" (sobre "página")'),
     (10.00, 10.30, 'Panel de cristal 05 (rosca)'),
@@ -104,6 +107,7 @@ EVENTS = [
     (10.75, 11.05, 'Panel 08 (chocolatine)'),
     (11.10, 11.50, 'Reflejo viaja sobre los cristales (1)'),
     (11.50, 11.90, 'Reflejo (2) y la galería se asienta'),
+    (11.92, 12.16, 'La página se desplaza al pedido: "Haz tu pedido", "Croissants, babkas y masa madre" y tres fotos (04, 03, 07)'),
     (12.00, 12.25, 'Sube el botón "PIDE POR WHATSAPP"'),
     (pide, wa, 'La línea caramelo se vuelve su subrayado (de "Pide" a "WhatsApp")'),
     (wa, wa + 0.08, 'Tap en el botón (sobre "WhatsApp")'),
@@ -169,6 +173,13 @@ for i, (t, n) in enumerate(((10.00, 'rosca'), (10.25, 'rol'), (10.50, 'barra'), 
 cue(11.10, 'shimmer', 'Reflejo viaja sobre los cristales (1)', -22)
 cue(11.50, 'shimmer', 'Reflejo (2)', -22)
 cue(11.85, 'contacto', 'La galería se asienta', -22)
+cue(5.78, 'aire', 'La página se desplaza a la calificación', -20)
+cue(9.45, 'aire', 'La cámara se aleja y deja espacio a "TU PÁGINA"', -20)
+cue(9.62, 'whoosh', 'La página se desplaza a la galería', -18)
+cue(11.92, 'whoosh', 'La página se desplaza al pedido', -18)
+for i in range(3):
+    cue(12.18 + i * 0.07, 'contacto', f'Foto de producto {i + 1} del pedido se asienta', -22)
+cue(12.02, 'tick madera', 'Aterriza "Haz tu pedido"', -20)
 cue(12.00, 'whoosh', 'Sube el botón de WhatsApp', -14)
 cue(pide, 'zip', 'La línea se vuelve el subrayado del botón', -14)
 cue(wa, 'click', 'Tap en "PIDE POR WHATSAPP"', -10)
@@ -246,9 +257,11 @@ def brief():
     L += [f"| {i} | {c['t']:.3f} s | f{c['f']:04d} | {c['fam']} | {c['what']} |" for i, c in enumerate(S, 1)]
     L += ['', '## Textos en pantalla (todos verificados)', '',
           '- Kinetic: "CAPA", "POR CAPA", "TU", "PÁGINA".',
-          '- Página: "Babkery", "panadería y café", tarjetas "CROISSANTS", "BABKAS", "MASA MADRE",',
+          '- Página: "Babkery", "panadería y café · Guadalajara", tarjetas "CROISSANTS", "BABKAS", "MASA MADRE",',
           '  chip "36 horas de fermentación" (afirmación del catálogo: confirmar con el dueño), "4.7",',
-          '  "más de 140 reseñas en Google", botón "PIDE POR WHATSAPP".',
+          '  "CALIFICACIÓN EN GOOGLE", "más de 140 reseñas en Google", etiquetas "RESEÑA DE GOOGLE",',
+          '  galería "Rosca de babka", "Rol de canela y nuez", "Barra rústica", "Chocolatine",',
+          '  "Haz tu pedido", "Croissants, babkas y masa madre", botón "PIDE POR WHATSAPP".',
           '- Reseñas (textuales, sin autor): "De los mejores panes que he probado en GDL." ·',
           '  "Como están horneando ahí mismo, todo está fresco." · "Me atendieron muy bien".',
           '- Cierre: "Babkery · Guadalajara". End card: las cuatro líneas del brief.',
