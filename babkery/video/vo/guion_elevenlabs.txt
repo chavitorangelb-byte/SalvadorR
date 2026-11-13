@@ -1,0 +1,37 @@
+BABKERY · GUION DE LOCUCIÓN PARA ELEVENLABS
+Español de México · voz cálida y natural, sin prisa · 2 tomas
+
+== TEXTO PARA PEGAR (una sola generación) ==
+
+Capa por capa. <break time="2.0s" />
+Croissants, babkas y masa madre. <break time="1.0s" />
+Cuatro punto siete en Google. <break time="1.0s" />
+Imagina todo esto en tu propia página. <break time="1.5s" />
+Pide por WhatsApp. <break time="1.0s" />
+Babkery. Guadalajara. <break time="1.0s" />
+Tu página, desde mil pesos.
+
+== DÓNDE ENTRA CADA LÍNEA EN EL VIDEO (la coloco yo después) ==
+
+0.50 s   Capa por capa.
+3.00 s   Croissants, babkas y masa madre.
+6.00 s   Cuatro punto siete en Google.
+8.20 s   Imagina todo esto en tu propia página.
+12.20 s  Pide por WhatsApp.
+14.20 s  Babkery. Guadalajara.
+16.30 s  Tu página, desde mil pesos.
+
+== AJUSTES SUGERIDOS ==
+
+Modelo: Eleven Multilingual v2 (acepta las pausas <break>).
+Stability 50 · Similarity 75 · Style 10–20 · Speed 0.95 · Speaker boost activado.
+Si usas Eleven v3, quita las etiquetas <break> y deja un salto de línea entre frases.
+Descarga en WAV o MP3 de 44.1 kHz o más. Mándame las 2 tomas completas.
+
+== SI ALGUNA PALABRA SALE MAL PRONUNCIADA ==
+
+Escríbela así solo en esa línea y regenera:
+- Croissants → Cruasáns
+- babkas     → bábkas
+- Babkery    → Bábkeri
+- WhatsApp   → guatsap
