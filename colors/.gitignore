@@ -1,0 +1,4 @@
+tools/node_modules/
+video/build/
+video/audio/stems/
+video/audio/master.wav

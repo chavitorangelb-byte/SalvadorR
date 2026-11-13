@@ -1,0 +1,689 @@
+{
+ "FPS": 60,
+ "DUR": 18,
+ "BPM": 120,
+ "T": {
+  "slash": [
+   0,
+   0.3
+  ],
+  "cut": 0.5,
+  "grow": [
+   0.5,
+   1.25
+  ],
+  "bloom": [
+   1.05,
+   1.75
+  ],
+  "toSun": [
+   2,
+   2.45
+  ],
+  "irisSun": [
+   2.02,
+   2.42
+  ],
+  "toCircle": [
+   2.5,
+   2.95
+  ],
+  "irisLogo": [
+   2.5,
+   2.9
+  ],
+  "toPhone": [
+   3,
+   3.5
+  ],
+  "irisPhone": [
+   3.12,
+   3.62
+  ],
+  "rimOff": [
+   3.5,
+   3.9
+  ],
+  "cardsOff": [
+   5.75,
+   6.25
+  ],
+  "panelsIn": [
+   6,
+   6.5
+  ],
+  "panelsOut": [
+   7.7,
+   8.2
+  ],
+  "scrollCat": [
+   7.9,
+   8.6
+  ],
+  "chipsIn": [
+   8.5,
+   8.95
+  ],
+  "tapChip": 9.5,
+  "ribbon": [
+   8.9,
+   10.1
+  ],
+  "chipsOut": [
+   10,
+   10.3
+  ],
+  "eventsIn": [
+   10.2,
+   10.7
+  ],
+  "eventsOut": [
+   11.9,
+   12.35
+  ],
+  "waLift": [
+   12.3,
+   12.75
+  ],
+  "waPulse": [
+   12.5,
+   13,
+   13.5
+  ],
+  "underline": [
+   12.45,
+   12.95
+  ],
+  "waOut": [
+   13.85,
+   14.2
+  ],
+  "pull": [
+   14,
+   14.62
+  ],
+  "toLogo": [
+   14.5,
+   14.9
+  ],
+  "irisBack": [
+   14.3,
+   14.62
+  ],
+  "breath": 14,
+  "endHit": 16,
+  "endIn": [
+   16,
+   16.5
+  ]
+ },
+ "SCENES": [
+  {
+   "id": "golpe",
+   "t0": 0,
+   "t1": 0.5,
+   "name": "Golpe: el tallo cruza"
+  },
+  {
+   "id": "flor",
+   "t0": 0.5,
+   "t1": 2,
+   "name": "El tallo florece"
+  },
+  {
+   "id": "morph",
+   "t0": 2,
+   "t1": 3,
+   "name": "Flor → girasoles → círculo de la marca"
+  },
+  {
+   "id": "telefono",
+   "t0": 3,
+   "t1": 6,
+   "name": "Teléfono de cristal y tres tarjetas"
+  },
+  {
+   "id": "calidad",
+   "t0": 6,
+   "t1": 8,
+   "name": "Parallax: flores y follajes"
+  },
+  {
+   "id": "pagina",
+   "t0": 8,
+   "t1": 10.2,
+   "name": "Catálogo en su propia página"
+  },
+  {
+   "id": "eventos",
+   "t0": 10.2,
+   "t1": 12.2,
+   "name": "Centros de mesa para eventos"
+  },
+  {
+   "id": "whatsapp",
+   "t0": 12.2,
+   "t1": 14,
+   "name": "Pide por WhatsApp"
+  },
+  {
+   "id": "cierre",
+   "t0": 14,
+   "t1": 16,
+   "name": "Colors Boutique · Querétaro"
+  },
+  {
+   "id": "endcard",
+   "t0": 16,
+   "t1": 18,
+   "name": "End card"
+  }
+ ],
+ "words": [
+  {
+   "group": "k-algo",
+   "text": "Algo",
+   "t": 0.5,
+   "out": 1.165
+  },
+  {
+   "group": "k-algo",
+   "text": "único",
+   "t": 0.845,
+   "out": 1.165
+  },
+  {
+   "group": "k-dia",
+   "text": "PARA",
+   "t": 1.325,
+   "out": 2.05
+  },
+  {
+   "group": "k-dia",
+   "text": "ESE",
+   "t": 1.67,
+   "out": 2.05
+  },
+  {
+   "group": "k-dia",
+   "text": "DÍA",
+   "t": 2.015,
+   "out": 2.05
+  },
+  {
+   "group": "k-dia",
+   "text": "especial",
+   "t": 2.225,
+   "out": 2.05
+  },
+  {
+   "group": "k-flores",
+   "text": "FLORES",
+   "t": 6,
+   "out": 6.835
+  },
+  {
+   "group": "k-flores",
+   "text": "Y",
+   "t": 6.345,
+   "out": 6.835
+  },
+  {
+   "group": "k-flores",
+   "text": "FOLLAJES",
+   "t": 6.555,
+   "out": 6.835
+  },
+  {
+   "group": "k-calidad",
+   "text": "DE",
+   "t": 7.035,
+   "out": 7.72
+  },
+  {
+   "group": "k-calidad",
+   "text": "ALTA",
+   "t": 7.245,
+   "out": 7.72
+  },
+  {
+   "group": "k-calidad",
+   "text": "calidad",
+   "t": 7.59,
+   "out": 7.72
+  },
+  {
+   "group": "k-pagina",
+   "text": "TU",
+   "t": 9.715,
+   "out": 10
+  },
+  {
+   "group": "k-pagina",
+   "text": "PROPIA",
+   "t": 9.925,
+   "out": 10
+  },
+  {
+   "group": "k-pagina",
+   "text": "página",
+   "t": 10.27,
+   "out": 10
+  },
+  {
+   "group": "k-centros",
+   "text": "CENTROS",
+   "t": 10.61,
+   "out": 11.33
+  },
+  {
+   "group": "k-centros",
+   "text": "DE",
+   "t": 10.955,
+   "out": 11.33
+  },
+  {
+   "group": "k-centros",
+   "text": "MESA",
+   "t": 11.165,
+   "out": 11.33
+  },
+  {
+   "group": "k-eventos",
+   "text": "PARA",
+   "t": 11.51,
+   "out": 12
+  },
+  {
+   "group": "k-eventos",
+   "text": "TUS",
+   "t": 11.855,
+   "out": 12
+  },
+  {
+   "group": "k-eventos",
+   "text": "eventos",
+   "t": 12.065,
+   "out": 12
+  },
+  {
+   "group": "k-marca",
+   "text": "Colors",
+   "t": 14.4,
+   "out": 15.72
+  },
+  {
+   "group": "k-marca",
+   "text": "Boutique",
+   "t": 14.745,
+   "out": 15.72
+  },
+  {
+   "group": "k-marca",
+   "text": "QUERÉTARO",
+   "t": 15.385,
+   "out": 15.72
+  }
+ ],
+ "groups": [
+  {
+   "id": "k-algo",
+   "out": [
+    1.165,
+    1.365
+   ]
+  },
+  {
+   "id": "k-dia",
+   "out": [
+    2.05,
+    2.3
+   ]
+  },
+  {
+   "id": "k-flores",
+   "out": [
+    6.835,
+    7.035
+   ]
+  },
+  {
+   "id": "k-calidad",
+   "out": [
+    7.72,
+    7.95
+   ]
+  },
+  {
+   "id": "k-pagina",
+   "out": [
+    10,
+    10.22
+   ]
+  },
+  {
+   "id": "k-centros",
+   "out": [
+    11.33,
+    11.53
+   ]
+  },
+  {
+   "id": "k-eventos",
+   "out": [
+    12,
+    12.22
+   ]
+  },
+  {
+   "id": "k-marca",
+   "out": [
+    15.72,
+    15.98
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "id": "bouquets",
+   "land": 3.85
+  },
+  {
+   "id": "orquideas",
+   "land": 4.355
+  },
+  {
+   "id": "cajas",
+   "land": 5.045
+  }
+ ],
+ "vo": [
+  {
+   "id": "L1",
+   "text": "Algo único para ese día especial.",
+   "t0": 0.5,
+   "t1": 2.705,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Algo",
+     "t0": 0.5,
+     "t1": 0.845
+    },
+    {
+     "w": "único",
+     "t0": 0.845,
+     "t1": 1.325
+    },
+    {
+     "w": "para",
+     "t0": 1.325,
+     "t1": 1.67
+    },
+    {
+     "w": "ese",
+     "t0": 1.67,
+     "t1": 2.015
+    },
+    {
+     "w": "día",
+     "t0": 2.015,
+     "t1": 2.225
+    },
+    {
+     "w": "especial.",
+     "t0": 2.225,
+     "t1": 2.705
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "text": "Bouquets, orquídeas y cajas de flores.",
+   "t0": 3.85,
+   "t1": 5.945,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Bouquets,",
+     "t0": 3.85,
+     "t1": 4.195
+    },
+    {
+     "w": "orquídeas",
+     "t0": 4.355,
+     "t1": 4.835
+    },
+    {
+     "w": "y",
+     "t0": 4.835,
+     "t1": 5.045
+    },
+    {
+     "w": "cajas",
+     "t0": 5.045,
+     "t1": 5.39
+    },
+    {
+     "w": "de",
+     "t0": 5.39,
+     "t1": 5.6
+    },
+    {
+     "w": "flores.",
+     "t0": 5.6,
+     "t1": 5.945
+    }
+   ]
+  },
+  {
+   "id": "L3",
+   "text": "Flores y follajes de alta calidad.",
+   "t0": 6,
+   "t1": 8.07,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Flores",
+     "t0": 6,
+     "t1": 6.345
+    },
+    {
+     "w": "y",
+     "t0": 6.345,
+     "t1": 6.555
+    },
+    {
+     "w": "follajes",
+     "t0": 6.555,
+     "t1": 7.035
+    },
+    {
+     "w": "de",
+     "t0": 7.035,
+     "t1": 7.245
+    },
+    {
+     "w": "alta",
+     "t0": 7.245,
+     "t1": 7.59
+    },
+    {
+     "w": "calidad.",
+     "t0": 7.59,
+     "t1": 8.07
+    }
+   ]
+  },
+  {
+   "id": "L4",
+   "text": "Imagina todo esto en tu propia página.",
+   "t0": 8.2,
+   "t1": 10.75,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Imagina",
+     "t0": 8.2,
+     "t1": 8.815
+    },
+    {
+     "w": "todo",
+     "t0": 8.815,
+     "t1": 9.16
+    },
+    {
+     "w": "esto",
+     "t0": 9.16,
+     "t1": 9.505
+    },
+    {
+     "w": "en",
+     "t0": 9.505,
+     "t1": 9.715
+    },
+    {
+     "w": "tu",
+     "t0": 9.715,
+     "t1": 9.925
+    },
+    {
+     "w": "propia",
+     "t0": 9.925,
+     "t1": 10.27
+    },
+    {
+     "w": "página.",
+     "t0": 10.27,
+     "t1": 10.75
+    }
+   ]
+  },
+  {
+   "id": "L5",
+   "text": "Y centros de mesa para tus eventos.",
+   "t0": 10.4,
+   "t1": 12.545,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Y",
+     "t0": 10.4,
+     "t1": 10.61
+    },
+    {
+     "w": "centros",
+     "t0": 10.61,
+     "t1": 10.955
+    },
+    {
+     "w": "de",
+     "t0": 10.955,
+     "t1": 11.165
+    },
+    {
+     "w": "mesa",
+     "t0": 11.165,
+     "t1": 11.51
+    },
+    {
+     "w": "para",
+     "t0": 11.51,
+     "t1": 11.855
+    },
+    {
+     "w": "tus",
+     "t0": 11.855,
+     "t1": 12.065
+    },
+    {
+     "w": "eventos.",
+     "t0": 12.065,
+     "t1": 12.545
+    }
+   ]
+  },
+  {
+   "id": "L6",
+   "text": "Pide por WhatsApp.",
+   "t0": 12.4,
+   "t1": 13.3,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Pide",
+     "t0": 12.4,
+     "t1": 12.745
+    },
+    {
+     "w": "por",
+     "t0": 12.745,
+     "t1": 12.955
+    },
+    {
+     "w": "WhatsApp.",
+     "t0": 12.955,
+     "t1": 13.3
+    }
+   ]
+  },
+  {
+   "id": "L7",
+   "text": "Colors Boutique. Querétaro.",
+   "t0": 14.4,
+   "t1": 16,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Colors",
+     "t0": 14.4,
+     "t1": 14.745
+    },
+    {
+     "w": "Boutique.",
+     "t0": 14.745,
+     "t1": 15.225
+    },
+    {
+     "w": "Querétaro.",
+     "t0": 15.385,
+     "t1": 16
+    }
+   ]
+  },
+  {
+   "id": "L8",
+   "text": "Tu página, desde mil pesos.",
+   "t0": 16.3,
+   "t1": 18.05,
+   "provisional": true,
+   "words": [
+    {
+     "w": "Tu",
+     "t0": 16.3,
+     "t1": 16.51
+    },
+    {
+     "w": "página,",
+     "t0": 16.51,
+     "t1": 16.99
+    },
+    {
+     "w": "desde",
+     "t0": 17.15,
+     "t1": 17.495
+    },
+    {
+     "w": "mil",
+     "t0": 17.495,
+     "t1": 17.705
+    },
+    {
+     "w": "pesos.",
+     "t0": 17.705,
+     "t1": 18.05
+    }
+   ]
+  }
+ ]
+}

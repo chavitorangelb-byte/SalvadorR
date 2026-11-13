@@ -1,0 +1,764 @@
+[
+ {
+  "t": 0.0,
+  "sfx": "golpe_grave",
+  "dur": 1.0,
+  "db": -2
+ },
+ {
+  "t": 0,
+  "sfx": "tallo_cruza",
+  "dur": 0.34,
+  "db": 0
+ },
+ {
+  "t": 0.48,
+  "sfx": "palabra_Algo",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 0.485,
+  "sfx": "corte_del_tallo",
+  "dur": 0.09,
+  "db": -1
+ },
+ {
+  "t": 0.5,
+  "sfx": "tallo_crece",
+  "dur": 0.85,
+  "db": -5
+ },
+ {
+  "t": 0.825,
+  "sfx": "palabra_único",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 0.92,
+  "sfx": "hoja_1",
+  "dur": 0.32,
+  "db": -6
+ },
+ {
+  "t": 1.05,
+  "sfx": "flor_abre",
+  "dur": 0.5,
+  "db": -5
+ },
+ {
+  "t": 1.08,
+  "sfx": "hoja_2",
+  "dur": 0.32,
+  "db": -6
+ },
+ {
+  "t": 1.13,
+  "sfx": "petalo_1",
+  "dur": 0.32,
+  "db": -8
+ },
+ {
+  "t": 1.165,
+  "sfx": "texto_sale_k-algo",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 1.215,
+  "sfx": "petalo_2",
+  "dur": 0.32,
+  "db": -8
+ },
+ {
+  "t": 1.3,
+  "sfx": "petalo_3",
+  "dur": 0.32,
+  "db": -8
+ },
+ {
+  "t": 1.305,
+  "sfx": "palabra_PARA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 1.385,
+  "sfx": "petalo_4",
+  "dur": 0.32,
+  "db": -8
+ },
+ {
+  "t": 1.47,
+  "sfx": "petalo_5",
+  "dur": 0.32,
+  "db": -8
+ },
+ {
+  "t": 1.65,
+  "sfx": "palabra_ESE",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 1.7,
+  "sfx": "flor_asienta",
+  "dur": 1.2,
+  "db": -9
+ },
+ {
+  "t": 1.995,
+  "sfx": "palabra_DÍA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 2,
+  "sfx": "morph_flor_a_girasoles",
+  "dur": 0.55,
+  "db": -4
+ },
+ {
+  "t": 2.02,
+  "sfx": "iris_girasoles",
+  "dur": 0.45,
+  "db": -6
+ },
+ {
+  "t": 2.05,
+  "sfx": "texto_sale_k-dia",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 2.205,
+  "sfx": "palabra_especial",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 2.45,
+  "sfx": "panel_asienta",
+  "dur": 0.7,
+  "db": -12
+ },
+ {
+  "t": 2.5,
+  "sfx": "morph_a_circulo",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 2.5,
+  "sfx": "iris_logo",
+  "dur": 0.45,
+  "db": -7
+ },
+ {
+  "t": 2.5,
+  "sfx": "riser_al_telefono",
+  "dur": 0.55,
+  "db": -9
+ },
+ {
+  "t": 3,
+  "sfx": "morph_a_telefono",
+  "dur": 0.65,
+  "db": -3
+ },
+ {
+  "t": 3,
+  "sfx": "tallo_se_recoge",
+  "dur": 0.5,
+  "db": -10
+ },
+ {
+  "t": 3.12,
+  "sfx": "iris_telefono",
+  "dur": 0.6,
+  "db": -5
+ },
+ {
+  "t": 3.32,
+  "sfx": "pagina_enciende",
+  "dur": 0.9,
+  "db": -11
+ },
+ {
+  "t": 3.47,
+  "sfx": "tarjeta_cae_bouquets",
+  "dur": 0.36,
+  "db": -6
+ },
+ {
+  "t": 3.5,
+  "sfx": "canto_de_cristal_se_va",
+  "dur": 0.4,
+  "db": -12
+ },
+ {
+  "t": 3.62,
+  "sfx": "camara_a_isometrico",
+  "dur": 0.6,
+  "db": -7
+ },
+ {
+  "t": 3.84,
+  "sfx": "tarjeta_estampa_bouquets",
+  "dur": 0.26,
+  "db": 1
+ },
+ {
+  "t": 3.88,
+  "sfx": "sombra_contacto_bouquets",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 3.975,
+  "sfx": "tarjeta_cae_orquideas",
+  "dur": 0.36,
+  "db": -6
+ },
+ {
+  "t": 4.345,
+  "sfx": "tarjeta_estampa_orquideas",
+  "dur": 0.26,
+  "db": 1
+ },
+ {
+  "t": 4.385,
+  "sfx": "sombra_contacto_orquideas",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 4.665,
+  "sfx": "tarjeta_cae_cajas",
+  "dur": 0.36,
+  "db": -6
+ },
+ {
+  "t": 5.035,
+  "sfx": "tarjeta_estampa_cajas",
+  "dur": 0.26,
+  "db": 1
+ },
+ {
+  "t": 5.075,
+  "sfx": "sombra_contacto_cajas",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 5.75,
+  "sfx": "tarjeta_sale_bouquets",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 5.75,
+  "sfx": "camara_parallax",
+  "dur": 0.8,
+  "db": -6
+ },
+ {
+  "t": 5.75,
+  "sfx": "panel_cristal_entra_1",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 5.8,
+  "sfx": "tarjeta_sale_orquideas",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 5.85,
+  "sfx": "tarjeta_sale_cajas",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 5.91,
+  "sfx": "panel_cristal_entra_2",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 5.98,
+  "sfx": "palabra_FLORES",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 6.07,
+  "sfx": "panel_cristal_entra_3",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 6.325,
+  "sfx": "palabra_Y",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 6.535,
+  "sfx": "palabra_FOLLAJES",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 6.55,
+  "sfx": "panel_cristal_asienta_1",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 6.71,
+  "sfx": "panel_cristal_asienta_2",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 6.835,
+  "sfx": "texto_sale_k-flores",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 6.87,
+  "sfx": "panel_cristal_asienta_3",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 7.015,
+  "sfx": "palabra_DE",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 7.225,
+  "sfx": "palabra_ALTA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 7.57,
+  "sfx": "palabra_calidad",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 7.7,
+  "sfx": "panel_cristal_sale_1",
+  "dur": 0.5,
+  "db": -8
+ },
+ {
+  "t": 7.7,
+  "sfx": "camara_regresa_al_telefono",
+  "dur": 0.8,
+  "db": -7
+ },
+ {
+  "t": 7.72,
+  "sfx": "texto_sale_k-calidad",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 7.75,
+  "sfx": "panel_cristal_sale_2",
+  "dur": 0.5,
+  "db": -8
+ },
+ {
+  "t": 7.8,
+  "sfx": "panel_cristal_sale_3",
+  "dur": 0.5,
+  "db": -8
+ },
+ {
+  "t": 7.9,
+  "sfx": "scroll_al_catalogo",
+  "dur": 0.7,
+  "db": -6
+ },
+ {
+  "t": 8.5,
+  "sfx": "chip_aparece_1",
+  "dur": 0.16,
+  "db": -5
+ },
+ {
+  "t": 8.61,
+  "sfx": "chip_aparece_2",
+  "dur": 0.16,
+  "db": -5
+ },
+ {
+  "t": 8.72,
+  "sfx": "chip_aparece_3",
+  "dur": 0.16,
+  "db": -5
+ },
+ {
+  "t": 8.9,
+  "sfx": "cinta_de_petalos",
+  "dur": 1.2,
+  "db": -8
+ },
+ {
+  "t": 9.4,
+  "sfx": "cinta_sale",
+  "dur": 0.6,
+  "db": -13
+ },
+ {
+  "t": 9.49,
+  "sfx": "toque_chip",
+  "dur": 0.08,
+  "db": -2
+ },
+ {
+  "t": 9.54,
+  "sfx": "filtro_cambia",
+  "dur": 0.16,
+  "db": -8
+ },
+ {
+  "t": 9.695,
+  "sfx": "palabra_TU",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 9.905,
+  "sfx": "palabra_PROPIA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 10.0,
+  "sfx": "chip_sale_1",
+  "dur": 0.05,
+  "db": -12
+ },
+ {
+  "t": 10,
+  "sfx": "texto_sale_k-pagina",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 10.04,
+  "sfx": "chip_sale_2",
+  "dur": 0.05,
+  "db": -12
+ },
+ {
+  "t": 10.08,
+  "sfx": "chip_sale_3",
+  "dur": 0.05,
+  "db": -12
+ },
+ {
+  "t": 10.15,
+  "sfx": "camara_a_eventos",
+  "dur": 0.6,
+  "db": -7
+ },
+ {
+  "t": 10.2,
+  "sfx": "scroll_a_eventos",
+  "dur": 0.7,
+  "db": -7
+ },
+ {
+  "t": 10.2,
+  "sfx": "evento_sale_de_la_pagina_1",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 10.25,
+  "sfx": "palabra_página",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 10.3,
+  "sfx": "evento_sale_de_la_pagina_2",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 10.4,
+  "sfx": "evento_sale_de_la_pagina_3",
+  "dur": 0.55,
+  "db": -5
+ },
+ {
+  "t": 10.59,
+  "sfx": "palabra_CENTROS",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 10.8,
+  "sfx": "evento_asienta_1",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 10.8,
+  "sfx": "orbita_eventos",
+  "dur": 1.2,
+  "db": -13
+ },
+ {
+  "t": 10.9,
+  "sfx": "evento_asienta_2",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 10.935,
+  "sfx": "palabra_DE",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 11.0,
+  "sfx": "evento_asienta_3",
+  "dur": 0.5,
+  "db": -13
+ },
+ {
+  "t": 11.145,
+  "sfx": "palabra_MESA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 11.33,
+  "sfx": "texto_sale_k-centros",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 11.49,
+  "sfx": "palabra_PARA",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 11.835,
+  "sfx": "palabra_TUS",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 11.9,
+  "sfx": "evento_regresa_1",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 11.94,
+  "sfx": "evento_regresa_2",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 11.98,
+  "sfx": "evento_regresa_3",
+  "dur": 0.4,
+  "db": -9
+ },
+ {
+  "t": 12,
+  "sfx": "texto_sale_k-eventos",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 12.045,
+  "sfx": "palabra_eventos",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 12.1,
+  "sfx": "camara_al_boton",
+  "dur": 0.65,
+  "db": -7
+ },
+ {
+  "t": 12.3,
+  "sfx": "boton_sale_de_la_barra",
+  "dur": 0.16,
+  "db": -1
+ },
+ {
+  "t": 12.42,
+  "sfx": "boton_cristal",
+  "dur": 0.8,
+  "db": -9
+ },
+ {
+  "t": 12.45,
+  "sfx": "tallo_subraya",
+  "dur": 0.5,
+  "db": -6
+ },
+ {
+  "t": 12.5,
+  "sfx": "pulso_subrayado_1",
+  "dur": 0.3,
+  "db": -6
+ },
+ {
+  "t": 13,
+  "sfx": "pulso_subrayado_2",
+  "dur": 0.3,
+  "db": -3
+ },
+ {
+  "t": 13.0,
+  "sfx": "clic_boton",
+  "dur": 0.08,
+  "db": -9
+ },
+ {
+  "t": 13.5,
+  "sfx": "pulso_subrayado_3",
+  "dur": 0.3,
+  "db": -3
+ },
+ {
+  "t": 13.85,
+  "sfx": "boton_regresa",
+  "dur": 0.35,
+  "db": -9
+ },
+ {
+  "t": 14,
+  "sfx": "pull_back",
+  "dur": 0.7,
+  "db": -5
+ },
+ {
+  "t": 14,
+  "sfx": "scroll_al_inicio",
+  "dur": 0.6,
+  "db": -10
+ },
+ {
+  "t": 14.3,
+  "sfx": "iris_cierre",
+  "dur": 0.4,
+  "db": -6
+ },
+ {
+  "t": 14.38,
+  "sfx": "palabra_Colors",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 14.57,
+  "sfx": "telefono_se_cierra_al_circulo",
+  "dur": 0.5,
+  "db": -4
+ },
+ {
+  "t": 14.725,
+  "sfx": "palabra_Boutique",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 14.95,
+  "sfx": "circulo_asienta",
+  "dur": 1.4,
+  "db": -8
+ },
+ {
+  "t": 15.3,
+  "sfx": "riser_al_end_card",
+  "dur": 0.7,
+  "db": -10
+ },
+ {
+  "t": 15.365,
+  "sfx": "palabra_QUERÉTARO",
+  "dur": 0.05,
+  "db": -11
+ },
+ {
+  "t": 15.72,
+  "sfx": "texto_sale_k-marca",
+  "dur": 0.25,
+  "db": -16
+ },
+ {
+  "t": 16,
+  "sfx": "golpe_grave_final",
+  "dur": 1.4,
+  "db": 0
+ },
+ {
+  "t": 16,
+  "sfx": "logo_sube",
+  "dur": 0.5,
+  "db": -10
+ },
+ {
+  "t": 16.12,
+  "sfx": "precio_abre",
+  "dur": 0.32,
+  "db": -7
+ },
+ {
+  "t": 16.16,
+  "sfx": "end_card_linea_1",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 16.34,
+  "sfx": "end_card_linea_2",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 16.34,
+  "sfx": "placa_de_cristal",
+  "dur": 0.16,
+  "db": -8
+ },
+ {
+  "t": 16.5,
+  "sfx": "end_card_linea_3",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 16.66,
+  "sfx": "end_card_linea_4",
+  "dur": 0.05,
+  "db": -10
+ },
+ {
+  "t": 16.74,
+  "sfx": "end_card_linea_5",
+  "dur": 0.05,
+  "db": -10
+ }
+]

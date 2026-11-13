@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F2FA">
+<title>Colors Boutique · Florería en Querétaro</title>
+<meta name="description" content="Flores, bouquets, arreglos y centros de mesa en Querétaro. Demo de cortesía, pieza no oficial.">
+<style>
+@font-face{font-family:Playfair;src:url(fonts/playfair-display-latin-500-normal.woff2);font-weight:500;font-display:block}
+@font-face{font-family:Playfair;src:url(fonts/playfair-display-latin-600-normal.woff2);font-weight:600;font-display:block}
+@font-face{font-family:Playfair;src:url(fonts/playfair-display-latin-400-italic.woff2);font-weight:400;font-style:italic;font-display:block}
+@font-face{font-family:Playfair;src:url(fonts/playfair-display-latin-500-italic.woff2);font-weight:500;font-style:italic;font-display:block}
+@font-face{font-family:Jost;src:url(fonts/jost-latin-400-normal.woff2);font-weight:400;font-display:block}
+@font-face{font-family:Jost;src:url(fonts/jost-latin-500-normal.woff2);font-weight:500;font-display:block}
+@font-face{font-family:Jost;src:url(fonts/jost-latin-600-normal.woff2);font-weight:600;font-display:block}
+:root{
+  --paper:#F7F2FA;--card:#fff;--plum:#1E1226;--plum2:#3A2548;--mute:#6E5A7E;--lav:#B592D6;--lav-soft:#EADDF5;
+  --rose:#E8A0BF;--stem:#5E9148;--sun:#F2B705;--wa:#1FAF54;--line:#E3D5EE;
+  --serif:Playfair,Georgia,serif;--sans:Jost,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--plum);font:400 16px/1.5 var(--sans);padding-bottom:92px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:560px;margin-inline:auto;padding-inline:20px}
+
+/* encabezado */
+.top{position:sticky;top:0;z-index:20;background:rgba(247,242,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.capture .top{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none;padding-top:54px}
+.top .wrap{display:flex;align-items:center;gap:12px;height:64px}
+.logo{width:42px;height:42px;border-radius:50%;overflow:hidden;flex:none;box-shadow:0 0 0 1.5px var(--lav)}
+.logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.07)}
+.brand{line-height:1.1}
+.brand b{display:block;font:500 italic 22px/1 var(--serif);letter-spacing:.005em}
+.brand span{font:500 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.top .menu{margin-left:auto;font:500 14px/1 var(--sans);padding:10px 14px;border-radius:99px;border:1px solid var(--line);background:#fff}
+
+/* portada */
+.hero{padding-block:28px 8px}
+.eyebrow{font:600 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--stem)}
+h1{font:500 42px/1.06 var(--serif);letter-spacing:-.01em;margin-top:14px}
+h1 em{font-style:italic;font-weight:400;color:#8A5FB5;position:relative;white-space:nowrap}
+h1 em svg{position:absolute;left:-2px;bottom:-3px;width:calc(100% + 4px);height:9px;overflow:visible}
+.lead{margin-top:20px;font-size:17px;color:var(--plum2);max-width:34ch}
+.hero-photo{margin-top:24px;border-radius:26px;overflow:hidden;aspect-ratio:4/4.3;position:relative;box-shadow:0 22px 44px -22px rgba(58,37,72,.55)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:99px;background:var(--wa);color:#fff;font:600 17px/1 var(--sans);box-shadow:0 12px 24px -12px rgba(31,175,84,.9)}
+.btn-wa svg{width:24px;height:24px;flex:none}
+.hero .btn-wa{margin-top:22px}
+.btn-ghost{display:flex;align-items:center;justify-content:center;height:52px;border-radius:99px;border:1.5px solid var(--plum);font:600 16px/1 var(--sans);margin-top:12px}
+
+/* secciones */
+section{padding:44px 0 6px}
+h2{font:500 31px/1.1 var(--serif);letter-spacing:-.005em}
+h2 em{font-style:italic;font-weight:400;color:#8A5FB5}
+.sec-sub{margin-top:10px;color:var(--mute);font-size:16px}
+
+/* catalogo */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:18px 20px 6px;margin-inline:-20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:40px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:#fff;font:500 15px/1 var(--sans);color:var(--plum2);transition:background .18s,color .18s,border-color .18s}
+.chip[aria-pressed=true]{background:var(--plum);color:#fff;border-color:var(--plum)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.item{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:opacity .22s,transform .22s}
+.item[hidden]{display:none}
+.item .ph{aspect-ratio:1/1.12;overflow:hidden;background:var(--lav-soft)}
+.item .ph img{width:100%;height:100%;object-fit:cover}
+.item .tx{padding:11px 12px 12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.item .kind{font:600 10.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--stem)}
+.item h3{font:500 17px/1.2 var(--serif)}
+.item .ask{margin-top:auto;height:36px;border-radius:99px;background:var(--lav-soft);font:600 13.5px/1 var(--sans);color:var(--plum);display:flex;align-items:center;justify-content:center;gap:6px}
+.item .ask svg{width:15px;height:15px}
+.note{margin-top:16px;padding:12px 14px;border-radius:14px;border:1px dashed var(--lav);color:var(--mute);font-size:14px;background:rgba(181,146,214,.08)}
+
+/* eventos */
+.events{background:var(--plum);color:#fff;margin-top:44px;padding:40px 0 44px}
+.events .eyebrow{color:var(--rose)}
+.events h2 em{color:var(--lav)}
+.events .sec-sub{color:#D9C9E6}
+.ev-main{margin-top:22px;border-radius:22px;overflow:hidden;aspect-ratio:1/1.02}
+.ev-main img{width:100%;height:100%;object-fit:cover}
+.ev-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.ev-row div{border-radius:18px;overflow:hidden;aspect-ratio:1/1}
+.ev-row img{width:100%;height:100%;object-fit:cover}
+.events .btn-ghost{border-color:#fff;color:#fff;margin-top:22px}
+
+/* pedido */
+.order{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px 18px 22px;margin-top:20px}
+.step{margin-top:20px}.step:first-child{margin-top:0}
+.step>label,.step>span{display:block;font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:flex;align-items:center;height:40px;padding:0 15px;border-radius:99px;border:1px solid var(--line);font:500 15px/1 var(--sans);background:var(--paper)}
+.opt input:checked+span{background:var(--plum);color:#fff;border-color:var(--plum)}
+.field{width:100%;height:50px;border-radius:14px;border:1px solid var(--line);background:var(--paper);padding:0 14px;font:400 16px/1 var(--sans);color:var(--plum)}
+textarea.field{height:88px;padding:12px 14px;line-height:1.4;resize:none}
+.field:focus{outline:2px solid var(--lav);outline-offset:1px}
+.order .btn-wa{margin-top:22px;width:100%}
+.hint{margin-top:10px;font-size:13.5px;color:var(--mute);text-align:center}
+
+/* nosotros */
+.about p{margin-top:14px;font-size:17px;color:var(--plum2)}
+.facts{display:grid;gap:10px;margin-top:20px}
+.fact{display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.fact i{width:38px;height:38px;border-radius:50%;background:var(--lav-soft);display:grid;place-items:center;flex:none}
+.fact i svg{width:19px;height:19px}
+.fact b{display:block;font:600 15px/1.2 var(--sans)}
+.fact span{font-size:14px;color:var(--mute)}
+.fact.todo{border-style:dashed;border-color:var(--lav)}
+
+footer{margin-top:44px;padding:26px 0 10px;border-top:1px solid var(--line);text-align:center;color:var(--mute);font-size:13.5px}
+footer b{display:block;font:500 italic 24px/1 var(--serif);color:var(--plum);margin-bottom:8px}
+
+/* barra fija de WhatsApp */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(247,242,250,0),var(--paper) 34%)}
+.capture .bar{padding-bottom:30px}
+.bar .btn-wa{max-width:528px;margin-inline:auto}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="logo"><img src="img/logo.jpg" alt="Colors Boutique"></div>
+  <div class="brand"><b>Colors Boutique</b><span>Florería · Querétaro</span></div>
+  <a class="menu" href="#catalogo">Catálogo</a>
+</div></header>
+
+<main>
+<div class="wrap hero" id="inicio">
+  <p class="eyebrow">Flores &amp; follajes</p>
+  <h1 id="hero-title">Algo <em>único<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 50 1, 120 11, 198 4" fill="none" stroke="#5E9148" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></em> para ese día especial.</h1>
+  <p class="lead">Nos inspiramos en tu momento para crearlo. Flores y follajes de alta calidad, en la ciudad de Querétaro.</p>
+  <div class="hero-photo" id="hero-photo"><img src="img/bouquet-rosa.jpg" alt="Bouquet con papel rosa"></div>
+  <a class="btn-wa" data-wa="Hola, quiero pedir un arreglo." href="#" id="hero-wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Pide por WhatsApp</a>
+  <a class="btn-ghost" href="#catalogo">Ver el catálogo</a>
+</div>
+
+<section class="wrap" id="catalogo">
+  <h2>El <em>catálogo</em></h2>
+  <p class="sec-sub">Elige el que te guste y pídelo en un toque.</p>
+  <div class="chips" id="chips" role="group" aria-label="Filtrar catálogo">
+    <button class="chip" data-filter="todo" aria-pressed="true">Todo</button>
+    <button class="chip" data-filter="bouquets" aria-pressed="false">Bouquets</button>
+    <button class="chip" data-filter="arreglos" aria-pressed="false">Arreglos</button>
+    <button class="chip" data-filter="orquideas" aria-pressed="false">Orquídeas</button>
+    <button class="chip" data-filter="cajas" aria-pressed="false">Cajas de flores</button>
+  </div>
+  <div class="grid" id="grid">
+    <article class="item" data-kind="bouquets"><div class="ph"><img src="img/bouquet-rosa.jpg" alt="Bouquet en papel rosa" loading="lazy"></div><div class="tx"><span class="kind">Bouquet</span><h3>Bouquet en papel rosa</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="orquideas"><div class="ph"><img src="img/orquideas.jpg" alt="Orquídeas en maceta blanca" loading="lazy"></div><div class="tx"><span class="kind">Orquídeas</span><h3>Orquídeas en maceta blanca</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="cajas"><div class="ph"><img src="img/caja-redonda.jpg" alt="Caja redonda de flores" loading="lazy"></div><div class="tx"><span class="kind">Caja de flores</span><h3>Caja redonda de flores</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="cajas"><div class="ph"><img src="img/girasoles.jpg" alt="Girasoles en caja" loading="lazy"></div><div class="tx"><span class="kind">Caja de flores</span><h3>Girasoles en caja</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="arreglos"><div class="ph"><img src="img/jarron-verde.jpg" alt="Arreglo en jarrón verde" loading="lazy"></div><div class="tx"><span class="kind">Arreglo</span><h3>Arreglo en jarrón verde</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="bouquets"><div class="ph"><img src="img/ramo-negro.jpg" alt="Ramo en papel negro con listón rojo" loading="lazy"></div><div class="tx"><span class="kind">Bouquet</span><h3>Ramo en papel negro</h3><button class="ask">Pedir este</button></div></article>
+    <article class="item" data-kind="arreglos"><div class="ph"><img src="img/tulipanes.jpg" alt="Florero con tulipanes" loading="lazy"></div><div class="tx"><span class="kind">Arreglo</span><h3>Florero con tulipanes</h3><button class="ask">Pedir este</button></div></article>
+  </div>
+  <p class="note">Tus precios aquí: cada arreglo puede mostrar su precio en cuanto nos lo compartas.</p>
+</section>
+
+<div class="events" id="eventos"><div class="wrap">
+  <p class="eyebrow">Eventos</p>
+  <h2 style="margin-top:12px">Centros de mesa para <em>tus eventos</em></h2>
+  <p class="sec-sub">Cuéntanos la fecha y el estilo, y lo platicamos por WhatsApp.</p>
+  <div class="ev-main"><img src="img/mesa-larga.jpg" alt="Mesa larga con centros de mesa" loading="lazy"></div>
+  <div class="ev-row"><div><img src="img/centro-mesa.jpg" alt="Centro de mesa" loading="lazy"></div><div><img src="img/centro-limones.jpg" alt="Centro de mesa con limones" loading="lazy"></div></div>
+  <a class="btn-ghost" data-wa="Hola, quiero cotizar centros de mesa para un evento." href="#" id="ev-wa">Cotiza tu evento</a>
+</div></div>
+
+<section class="wrap" id="pedido">
+  <h2>Arma tu <em>pedido</em></h2>
+  <p class="sec-sub">Tres datos y te llega el mensaje listo a WhatsApp.</p>
+  <form class="order" id="order" novalidate>
+    <div class="step" data-field="ocasion"><span>01 · Ocasión</span><div class="opts">
+      <label class="opt"><input type="radio" name="ocasion" value="Cumpleaños"><span>Cumpleaños</span></label>
+      <label class="opt"><input type="radio" name="ocasion" value="Aniversario"><span>Aniversario</span></label>
+      <label class="opt"><input type="radio" name="ocasion" value="Evento"><span>Evento</span></label>
+      <label class="opt"><input type="radio" name="ocasion" value="Solo porque sí"><span>Solo porque sí</span></label>
+    </div></div>
+    <div class="step" data-field="tipo"><span>02 · ¿Qué te gustaría?</span><div class="opts">
+      <label class="opt"><input type="radio" name="tipo" value="Bouquet"><span>Bouquet</span></label>
+      <label class="opt"><input type="radio" name="tipo" value="Arreglo"><span>Arreglo</span></label>
+      <label class="opt"><input type="radio" name="tipo" value="Orquídeas"><span>Orquídeas</span></label>
+      <label class="opt"><input type="radio" name="tipo" value="Caja de flores"><span>Caja de flores</span></label>
+      <label class="opt"><input type="radio" name="tipo" value="Centros de mesa"><span>Centros de mesa</span></label>
+    </div></div>
+    <div class="step" data-field="fecha"><label for="o-fecha">03 · ¿Para cuándo?</label><input class="field" id="o-fecha" name="fecha" type="text" placeholder="Ej. sábado 21 por la tarde" autocomplete="off"></div>
+    <div class="step" data-field="nota"><label for="o-nota">04 · Mensaje para la tarjeta (opcional)</label><textarea class="field" id="o-nota" name="nota" placeholder="Lo que quieras que diga"></textarea></div>
+    <button class="btn-wa" type="submit" id="o-submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Enviar por WhatsApp</button>
+    <p class="hint">Se abre WhatsApp con tu pedido ya escrito.</p>
+  </form>
+</section>
+
+<section class="wrap about" id="nosotros">
+  <h2>Hecho con <em>esmero</em></h2>
+  <p>Somos un equipo en la ciudad de Querétaro. Trabajamos con materiales de alta calidad: nuestras flores y follajes vienen de invernaderos de México.</p>
+  <div class="facts">
+    <div class="fact todo"><i><svg viewBox="0 0 24 24" fill="none" stroke="#3A2548" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i><div><b>Tu horario aquí</b><span>Se llena con tu información.</span></div></div>
+    <div class="fact todo"><i><svg viewBox="0 0 24 24" fill="none" stroke="#3A2548" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.5-5.6 6.5-11A6.5 6.5 0 0 0 5.500 10c0 5.400 6.500 11 6.500 11z"/><circle cx="12" cy="10" r="2.3"/></svg></i><div><b>Tu dirección aquí</b><span>Con botón de cómo llegar.</span></div></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><b>Colors Boutique</b>Demo de cortesía de Elevate Negocios · pieza no oficial</div></footer>
+
+<div class="bar" id="bar"><a class="btn-wa" data-wa="Hola, quiero pedir un arreglo." href="#" id="bar-wa"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Pide por WhatsApp</a></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.380c1.450.790 3.080 1.210 4.740 1.210 5.460 0 9.910-4.450 9.910-9.910 0-2.650-1.030-5.140-2.900-7.010A9.820 9.820 0 0 0 12.040 2zm0 1.670c2.200 0 4.260.860 5.820 2.420a8.230 8.230 0 0 1 2.410 5.830c0 4.540-3.700 8.230-8.240 8.230-1.480 0-2.930-.390-4.190-1.150l-.300-.170-3.120.820.830-3.040-.200-.320a8.190 8.190 0 0 1-1.260-4.380c.010-4.540 3.700-8.240 8.250-8.240zM8.530 7.330c-.160 0-.430.060-.660.310-.220.250-.870.860-.870 2.070 0 1.220.890 2.390 1 2.560.140.170 1.760 2.670 4.250 3.730.590.270 1.050.420 1.410.530.590.190 1.130.160 1.560.100.480-.070 1.460-.600 1.670-1.180.210-.580.210-1.070.150-1.180-.070-.100-.230-.160-.480-.270-.250-.140-1.470-.740-1.690-.820-.230-.080-.370-.120-.560.120-.160.250-.640.810-.780.970-.150.170-.290.190-.530.070-.260-.130-1.060-.390-2-1.230-.740-.660-1.230-1.470-1.380-1.720-.120-.240-.010-.390.110-.500.110-.110.270-.290.370-.440.130-.140.170-.250.250-.410.080-.170.040-.310-.020-.430-.060-.110-.560-1.350-.770-1.840-.200-.480-.400-.420-.560-.430-.140 0-.300-.010-.470-.010z"/></symbol></svg>
+
+<script>
+// Sin numero confirmado: el enlace abre WhatsApp con el mensaje listo para elegir el chat.
+// Con ?wa=52XXXXXXXXXX el mensaje va directo a ese numero.
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var CAPTURE = qs.has('capture');
+  var WA = (qs.get('wa') || '').replace(/\D/g, '');
+  if (CAPTURE) document.documentElement.classList.add('capture');
+  function waUrl(text) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
+  function go(text) { window.__lastWa = waUrl(text); if (!CAPTURE) window.open(window.__lastWa, '_blank', 'noopener'); }
+
+  document.querySelectorAll('a[data-wa]').forEach(function (a) {
+    a.href = waUrl(a.dataset.wa);
+    a.target = '_blank'; a.rel = 'noopener';
+    a.addEventListener('click', function (e) { if (CAPTURE) { e.preventDefault(); window.__lastWa = a.href; } });
+  });
+
+  // catalogo: filtros
+  var chips = [].slice.call(document.querySelectorAll('.chip'));
+  var items = [].slice.call(document.querySelectorAll('.item'));
+  function setFilter(f) {
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.filter === f)); });
+    items.forEach(function (it) { it.hidden = !(f === 'todo' || it.dataset.kind === f); });
+  }
+  chips.forEach(function (c) { c.addEventListener('click', function () { setFilter(c.dataset.filter); }); });
+  window.__setFilter = setFilter;
+  if (qs.get('filter')) setFilter(qs.get('filter'));
+
+  // "Pedir este": mensaje con el nombre del arreglo
+  items.forEach(function (it) {
+    it.querySelector('.ask').addEventListener('click', function () {
+      go('Hola, me interesa este arreglo: ' + it.querySelector('h3').textContent + '.');
+    });
+  });
+
+  // pedido: arma el mensaje
+  var form = document.getElementById('order');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form), lines = ['Hola, quiero hacer un pedido.'];
+    if (d.get('ocasion')) lines.push('Ocasión: ' + d.get('ocasion'));
+    if (d.get('tipo')) lines.push('Me gustaría: ' + d.get('tipo'));
+    if ((d.get('fecha') || '').trim()) lines.push('Para: ' + d.get('fecha').trim());
+    if ((d.get('nota') || '').trim()) lines.push('Tarjeta: ' + d.get('nota').trim());
+    go(lines.join('\n'));
+  });
+  document.documentElement.dataset.ready = '1';
+})();
+</script>
+</body>
+</html>

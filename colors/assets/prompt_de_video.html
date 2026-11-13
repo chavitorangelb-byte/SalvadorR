@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colors Boutique · Prompt de video</title>
+<style>
+  :root{--bg:#1e1226;--card:#2b1a36;--line:#472a5c;--ink:#f7f2fa;--mute:#c7a6e0;--green:#b592d6;--pink:#b592d6;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,Segoe UI,Arial,sans-serif;padding:16px;max-width:900px;margin-inline:auto}
+  h1{font-size:20px;margin:6px 0 4px}
+  p.sub{color:var(--mute);margin:0 0 14px}
+  .bar{position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2;display:flex;gap:10px;align-items:center}
+  button{background:var(--green);color:#2a170f;border:0;border-radius:10px;padding:12px 18px;font-weight:700;font-size:15px;cursor:pointer}
+  button:active{transform:scale(.98)}
+  #st{color:var(--pink);font-size:14px}
+  pre{white-space:pre-wrap;word-wrap:break-word;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;font:13.5px/1.55 ui-monospace,Menlo,Consolas,monospace;color:var(--ink)}
+  h2{font-size:15px;margin:22px 0 8px;color:var(--green)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .grid figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .grid img{width:100%;height:150px;object-fit:cover;display:block}
+  .grid figcaption{font-size:12px;color:var(--mute);padding:6px 8px}
+</style>
+</head>
+<body>
+<h1>Colors Boutique · Prompt de video</h1>
+<p class="sub">Querétaro · 16 s + 2 s end card · 9:16 y 1:1</p>
+<div class="bar"><button id="cp">Copiar prompt</button><span id="st"></span></div>
+
+<pre id="prompt">OBJETIVO
+Produce en código un video promocional spec de 16 s + 2 s de end card para Colors Boutique (Florería Colors Querétaro): flores, bouquets, arreglos y centros de mesa para eventos y bodas en la ciudad de Querétaro. Meta: que el dueño piense &quot;quiero una publicidad así&quot; y vea cómo se vería su propia página web con catálogo y botón de WhatsApp. Trabaja como &quot;el mejor diseñador gráfico del mundo con un equipo enorme y presupuesto ilimitado&quot;. Formato principal 9:16 (1080x1920) y un re-layout real en 1:1 (no recorte). Master a 60 fps y versión H.264 a 30 fps para WhatsApp e Instagram. Nada de video generado por IA: todo en código.
+
+PRIORIDADES
+1. Gancho de un golpe fuerte en el primer beat (0.00-0.50 s).
+2. Una sola idea, un solo trazo que hace todo.
+3. Las fotos reales de sus arreglos como protagonistas, una cosa importante por cuadro.
+4. Kinetic type y motion graphics como protagonistas.
+5. Cero datos inventados. Ante la duda, fuera de la pantalla.
+
+IDEA
+&quot;El tallo&quot;. Un solo tallo verde se dibuja como línea continua: crece, florece en el primer arreglo de su portafolio, y de esa misma línea nacen los siguientes (girasoles, orquídeas, bouquet, centro de mesa). Luego la línea se vuelve el marco de cristal de un teléfono con su &quot;página&quot; y finalmente el subrayado del botón de WhatsApp. Frase eje, de su propia bio: &quot;crear algo único para ese día especial&quot;. La línea es la idea; las flores son lo que ellos ya saben hacer.
+
+LOOK
+Glassmorphism real, motion graphics y kinetic type (los dos más importantes), liquid morph, isométrico minimalista con mucho espacio negativo. Elegante y floral, oscuro. SIN AZUL en fondos ni acentos.
+Paleta (de su fondo de fotos y sus flores): ciruela profunda #1E1226 (fondo), lavanda de su fondo de estudio #B592D6, rosa #E8A0BF, verde tallo #7FB069, amarillo girasol #F2B705, blanco #F7F2FA. Contornos violetas suaves, sin azul puro.
+Tipografía: script elegante itálico para un acento (afín a su marca de agua &quot;Colors boutique&quot;) y serif/sans limpia para titulares y apoyo. Sin tipografías deformadas.
+
+TÉCNICAS OBLIGATORIAS
+- Renderizador 2.5D en código (canvas/WebGL o numpy/OpenCV). Motor sugerido: Node + Playwright + ffmpeg.
+- Función determinista frame(t) y supermuestreo temporal de 8 subcuadros para el motion blur.
+- Un solo plano continuo, cero cortes duros. Un solo campo líquido y una sola cámara compartidos por todas las escenas. Los morphs interpolan campos de distancia (SDF), nunca fundidos de opacidad.
+- Glass que desenfoca de verdad lo que tiene detrás: blur 28 a 40 px, saturación 140 %, borde de 1 px, ruido 2 %.
+- Isométrico real a 30° con luz fija arriba-izquierda y sombras de contacto que crecen.
+- Kinetic type por glifo con stagger de 20 a 35 ms, máximo 3 o 4 palabras en pantalla, cada palabra con coreografía propia y aterrizando en su palabra de la locución.
+- Objetos reales (biseles, grosor, refracción), nunca siluetas planas ni barras de relleno.
+- Las fotos entran como paneles de cristal con grosor y reflejo; no escalar por encima de su resolución (son capturas de pantalla de Instagram: en un teléfono caben bien, a pantalla completa pueden verse suaves).
+
+DATOS VERIFICADOS
+- Negocio: Colors Boutique, &quot;Florería Colors Querétaro&quot;. Bio de Instagram: &quot;En COLORS BOUTIQUE flores &amp; globos nos inspiramos en tu momento para crear algo único para ese día especial. Flores y follajes de alta calidad&quot;.
+- Instagram: floreriacolors (368 publicaciones, 975 seguidores al 13-nov-2026, según captura). Última publicación visible: 20 de septiembre (sin año: el actual).
+- Cuenta de WhatsApp Business activa desde abril de 2022. Descripción: &quot;Somos un equipo en ciudad de Querétaro que trabajamos con esmero y dedicación desde hace más de quince años utilizando materiales de alta calidad; nuestras flores y follajes provienen de los mejores invernaderos de México. Siempre es un gran gusto poder servirte&quot;.
+- Línea de productos mostrada en su feed: girasoles, orquídeas, bouquets, ramos con papel, cajas redondas con flores, centros de mesa y arreglos para eventos, catálogo de San Valentín y de Día de las Madres.
+- Su sitio colorsfloreria.com, listado en su WhatsApp, hoy muestra &quot;Something&#x27;s wrong here… If you&#x27;re the site owner, contact your hosting provider&quot;: no está activo.
+- Reseñas y calificación de Google: no se usan en el video.
+
+NO USAR SIN CONFIRMAR CON EL DUEÑO
+- Precios: no hay publicados en lo visto; no mostrar ninguno.
+- Teléfono: hay dos números distintos (WhatsApp Business y Maps). No mostrar ninguno ni el usuario de Instagram.
+- Dirección: WhatsApp dice Calle 1a. del Laurel 7 y Maps dice Av. Luis Pasteur Sur 7. No mostrar.
+- Horario: WhatsApp 8:00-18:00 y Maps 8:00-19:00 (sábado hasta 15:00). No mostrar.
+- &quot;Más de quince años&quot;: está en su propia descripción, pero confirmar antes de usarlo en pantalla.
+- Fotos de eventos con mesas de terceros (haciendas, bodas): si se ve nombre de venue o personas, desenfocar; no usar fotos con personas.
+- Catálogos con globos o &quot;Valentine&#x27;s Day&quot; ya vencidos: no usar como visual.
+- Marca de agua &quot;Colors boutique&quot; de las fotos: es suya, se deja.
+- Fotos tomadas de capturas: confirmar con el negocio y pedir los originales antes de publicar.
+
+ASSETS
+Carpeta ./assets (usar solo estos, sin recolorear, sin rellenar con IA):
+00_logo_colors_boutique_perfil.jpg (foto de perfil circular con arreglo; es su marca: solo mover, escalar, desenfocar o enmascarar en círculo; tiene esquinas blancas/grises fuera del círculo)
+01_girasoles_arreglo.jpg
+02_arreglo_jarron_verde.jpg
+03_orquideas_maceta_blanca.jpg
+04_bouquet_rosa_papel_rosa.jpg
+05_ramo_papel_negro_liston_rojo.jpg
+06_caja_redonda_flores_rosas.jpg
+07_centro_de_mesa_hacienda.jpg
+08_mesa_larga_centros_de_mesa.jpg
+09_centro_de_mesa_limones.jpg
+10_florero_con_tulipanes.jpg
+Si un asset trae texto o personas no previstos, recortar o enmascarar.
+
+BEAT SHEET
+60 fps, 120 BPM (1 beat = 0.5 s, compás = 2.0 s), 16.00 s + 2.00 s de end card.
+0.00-0.50 Golpe: el tallo verde cruza la pantalla y se corta en el primer beat. Sub grave.
+0.50-2.00 El tallo crece y se abre en flor sobre fondo ciruela. Kinetic &quot;ALGO ÚNICO&quot; / &quot;PARA TU DÍA&quot;, cada palabra con su coreografía.
+2.00-3.00 La flor hace morph SDF al arreglo de girasoles (asset 01) y de ahí al círculo de su foto de perfil (asset 00).
+3.00-6.00 El círculo se vuelve el marco de cristal de un teléfono; entran tres tarjetas isométricas de cristal que se estampan en el kick: BOUQUETS (04), ORQUÍDEAS (03), CAJAS DE FLORES (06).
+6.00-8.00 Parallax en profundidad de 02, 05 y 10 como paneles de cristal; kinetic &quot;FLORES Y FOLLAJES&quot; / &quot;DE ALTA CALIDAD&quot; (frase de su bio).
+8.00-10.00 Muro de eventos: 07, 08 y 09 orbitando suave en isométrico; kinetic &quot;CENTROS DE MESA&quot; / &quot;PARA EVENTOS&quot;.
+10.00-12.00 Catálogo: chips de cristal (BOUQUETS · ARREGLOS · CENTROS DE MESA) sobre el teléfono, la cinta de pétalos pasa entre los chips.
+12.00-14.00 Botón de cristal &quot;PIDE POR WHATSAPP&quot; con icono de WhatsApp; el tallo se vuelve el subrayado y pulsa con el kick.
+14.00-16.00 Pull-back de cámara, el teléfono se cierra al círculo; &quot;Colors Boutique · Querétaro&quot;. Respiro musical.
+16.00-18.00 End card sobre fondo ciruela: &quot;Precios accesibles desde $1,000 pesos por tu página&quot; / &quot;Paquete de 3 videos promocionales: $1,500&quot; / &quot;Elevate Negocios · Aguascalientes&quot; / &quot;Demo de cortesía de Elevate Negocios · pieza no oficial&quot;. Golpe grave en el corte final.
+
+LOCUCIÓN
+ElevenLabs, español de México, voz femenina cálida y natural, nunca acelerada. Guion en una sola llamada, 2 tomas. Tiempos de inicio:
+0.50 &quot;Algo único para ese día especial.&quot;
+3.00 &quot;Bouquets, orquídeas y cajas de flores.&quot;
+6.00 &quot;Flores y follajes de alta calidad.&quot;
+8.20 &quot;Imagina todo esto en tu propia página.&quot;
+10.40 &quot;Y centros de mesa para tus eventos.&quot;
+12.40 &quot;Pide por WhatsApp.&quot;
+14.40 &quot;Colors Boutique. Querétaro.&quot;
+16.30 &quot;Tu página, desde mil pesos.&quot;
+Después de generar la voz, bloquear la línea de tiempo a las duraciones reales.
+
+MÚSICA
+Original, hecha en código, 120 BPM entero, compás de 2.0 s. Floral y elegante (arpa o celesta, cuerdas suaves, pizzicato), una capa nueva por sección, lift en la revelación del teléfono (3.00 s), respiro antes del end card (14.00-16.00) y golpe grave en el corte final (16.00 s). Al menos 12 dB por debajo de la voz en cada palabra.
+
+SONIDO
+Al menos 70 cues de [tu biblioteca de SFX], uno por cada movimiento visible: crecimiento del tallo, apertura de pétalos, estampado de cada tarjeta, deslizamientos de cristal, parallax, clic del botón, pulso del subrayado. Mezcla: voz alrededor de -16 LUFS, master -14 LUFS / -1.25 dBTP.
+
+MARCA
+La foto de perfil (asset 00) solo se mueve, escala, desenfoca o enmascara; jamás se redibuja ni se recolorea. Es de resolución moderada: usarla a tamaño medio y pedir el logo en alta resolución antes de la versión final.
+
+SEGURIDAD EN PANTALLA
+Contenido clave lejos de los 250 px superiores y los 340 px inferiores en 9:16. Máximo 3 o 4 palabras a la vez, alto contraste, ortografía correcta en español. Sin precios, teléfono, usuario de Instagram, dirección ni horarios. Sin nombres de venues ni de terceros. Sin personas identificables.
+
+REGLAS DE CALIDAD
+- Un solo plano continuo, cero cortes duros; ningún morph por fundido de opacidad.
+- Nada de estética PowerPoint, fotos con zoom y transiciones predeterminadas, glow excesivo ni siluetas planas.
+- Fotos nítidas: si una no alcanza resolución, reducir su tamaño en pantalla.
+- Cada movimiento tiene intención y un SFX; cada palabra aterriza en su palabra de la locución.
+- No inventar nada: si un dato no está en DATOS VERIFICADOS, no aparece.
+- Verificar fotograma por fotograma y en un celular real antes de enseñar la pieza. No afirmar que se renderizó o probó algo que no se ejecutó.
+- Es una pieza spec privada: no publicar sin permiso del negocio.
+
+PROCESO
+Trabaja por fases y espera mi aprobación en cada una.
+1. Revisar assets (resolución, texto o personas a recortar) y reportar.
+2. Brief con tiempos exactos por fotograma a 60 fps.
+3. Generar primero la voz y bloquear la línea de tiempo a ella.
+4. Construir en partes paralelas con una función frame(t) compartida, un solo campo líquido y una sola cámara.
+5. Prueba corta de dirección (3 a 5 s, baja resolución, 30 fps) y esperar aprobación antes del render completo.
+6. Preview, hoja de contactos y chequeo cuadro por cuadro, con una ronda de arreglos.
+7. Finales: 9:16 y 1:1 (re-layout real), master 60 fps y H.264 30 fps, más stems de voz, música y SFX.
+</pre>
+
+<h2>Assets de apoyo (carpeta ./assets)</h2>
+<div class="grid"><figure><img src="assets/00_logo_colors_boutique_perfil.jpg" loading="lazy"><figcaption>00_logo_colors_boutique_perfil</figcaption></figure><figure><img src="assets/01_girasoles_arreglo.jpg" loading="lazy"><figcaption>01_girasoles_arreglo</figcaption></figure><figure><img src="assets/02_arreglo_jarron_verde.jpg" loading="lazy"><figcaption>02_arreglo_jarron_verde</figcaption></figure><figure><img src="assets/03_orquideas_maceta_blanca.jpg" loading="lazy"><figcaption>03_orquideas_maceta_blanca</figcaption></figure><figure><img src="assets/04_bouquet_rosa_papel_rosa.jpg" loading="lazy"><figcaption>04_bouquet_rosa_papel_rosa</figcaption></figure><figure><img src="assets/05_ramo_papel_negro_liston_rojo.jpg" loading="lazy"><figcaption>05_ramo_papel_negro_liston_rojo</figcaption></figure><figure><img src="assets/06_caja_redonda_flores_rosas.jpg" loading="lazy"><figcaption>06_caja_redonda_flores_rosas</figcaption></figure><figure><img src="assets/07_centro_de_mesa_hacienda.jpg" loading="lazy"><figcaption>07_centro_de_mesa_hacienda</figcaption></figure><figure><img src="assets/08_mesa_larga_centros_de_mesa.jpg" loading="lazy"><figcaption>08_mesa_larga_centros_de_mesa</figcaption></figure><figure><img src="assets/09_centro_de_mesa_limones.jpg" loading="lazy"><figcaption>09_centro_de_mesa_limones</figcaption></figure><figure><img src="assets/10_florero_con_tulipanes.jpg" loading="lazy"><figcaption>10_florero_con_tulipanes</figcaption></figure></div>
+<script>
+document.getElementById('cp').addEventListener('click', function(){
+  var t = document.getElementById('prompt').innerText, st = document.getElementById('st');
+  function ok(){ st.textContent = 'Copiado'; setTimeout(function(){ st.textContent=''; }, 2000); }
+  function fb(){
+    try {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('prompt'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      document.execCommand('copy'); ok();
+    } catch(e){ st.textContent = 'Selecciona el texto y copia'; }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, fb); else fb();
+  } catch(e){ fb(); }
+});
+</script>
+</body>
+</html>
