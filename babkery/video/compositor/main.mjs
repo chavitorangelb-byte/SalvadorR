@@ -6,19 +6,17 @@ import {
   BRAID, braidStrand, braidPhase, S_SHAPE, sArm, DISK, FRAME, AVATAR_END,
   Field, mixSDF, sdSeg, sdCircle, sdRoundRect, smin,
 } from './field.mjs';
+import { C, cream, makeTimes, glyphRow, drawPage, drawClosing, frameRect, avatar, camMatrix, PG } from './page.mjs';
 
 const Q = new URLSearchParams(location.search);
 const SCALE = Number(Q.get('scale') || 1), SUBS = Number(Q.get('subs') || 8), FPS = Number(Q.get('fps') || 60);
 const RW = Math.round(W * SCALE), RH = Math.round(H * SCALE);
 const SHUTTER = 0.5 / FPS;                                    // obturador de 180°
 
-const C = { bg: '#1A0F0A', choc: '#3A2218', cream: '#F7E8B0', wine: '#7B1F2C', terra: '#B5683F', cara: '#E3A23B' };
-const cream = (a) => `rgba(247,232,176,${a})`;
 
 // ---------------------------------------------------------------- recursos
 const TL = await (await fetch('../timeline/timeline.json')).json();
-const word = (id, i) => TL.vo.find((p) => p.id === id).words[i].t;
-const WT = { capa: word('vo1', 0), por: word('vo1', 1), croissants: word('vo2', 0), babkas: word('vo2', 1), masa: word('vo2', 3) };
+const WT = makeTimes(TL);
 
 const fonts = [
   ['Fraunces', 'fraunces-latin-600-normal.woff2', { weight: '600' }],
@@ -26,6 +24,8 @@ const fonts = [
   ['Fraunces', 'fraunces-latin-400-italic.woff2', { weight: '400', style: 'italic' }],
   ['Inter', 'inter-latin-500-normal.woff2', { weight: '500' }],
   ['Inter', 'inter-latin-600-normal.woff2', { weight: '600' }],
+  ['Inter', 'inter-latin-700-normal.woff2', { weight: '700' }],
+  ['Inter', 'inter-latin-400-normal.woff2', { weight: '400' }],
 ];
 for (const [fam, file, d] of fonts) { const ff = new FontFace(fam, `url(./fonts/${file})`, d); await ff.load(); document.fonts.add(ff); }
 const img = async (p) => { const i = new Image(); i.src = p; await i.decode(); return i; };
@@ -35,6 +35,10 @@ const IM = {
   c1: await img('../../assets/09_croissant_relleno.jpg'),
   c2: await img('../../assets/03_baby_babkas.jpg'),
   c3: await img('../../assets/10_pan_de_caja_multisemillas.jpg'),
+  g1: await img('../../assets/05_rosca_de_babka.jpg'),
+  g2: await img('../../assets/07_rol_canela_y_nuez.jpg'),
+  g3: await img('../../assets/11_barra_rustica_natural.jpg'),
+  g4: await img('../../assets/08_chocolatine.jpg'),
 };
 
 // ---------------------------------------------------------------- WebGL
@@ -48,7 +52,7 @@ const FS_SCENE = `#version 300 es
 precision highp float;
 uniform sampler2D uSdf, uFree, uPage, uLogo;
 uniform float uScale, uRH, uLight, uDough, uDoughOn, uStripe, uGlass, uFlash, uStreak, uSweepX, uSweepA, uSweepW;
-uniform float uRefY, uRefA, uOver, uBraidK, uBraidX0, uBraidPh, uReveal, uBevel, uWeight, uPageA;
+uniform float uRefY, uRefA, uOver, uBraidK, uBraidX0, uBraidPh, uReveal, uBevel, uWeight, uPageA, uClip, uGSheen;
 uniform vec3 uAv;
 out vec4 o;
 const vec3 BG=vec3(26.,15.,10.)/255., CHOC=vec3(58.,34.,24.)/255., CREAM=vec3(247.,232.,176.)/255.,
@@ -103,19 +107,23 @@ void main(){
   col *= 1. - 0.50*uGlass*(1.-smoothstep(-12.,56.,dBs))*step(0.,dB);
   float inB = smoothstep(0.8,-0.8,dB)*uGlass;
   vec3 glass = mix(col, CHOC*0.92, 0.58) + CREAM*0.035*smoothstep(1200.,200.,p.y);
+  glass += CREAM*0.030*exp(-pow((p.x+0.45*p.y-uGSheen)/120.,2.));          // reflejo que viaja por el cristal
+  glass += CREAM*0.05*exp(min(dB,0.)/22.)*smoothstep(1100.,300.,p.y);       // luz interior del borde
   col = mix(col, glass, inB);
   vec2 lq = (p-uAv.xy)/uAv.z; float lr = length(lq);
   float lm = smoothstep(uReveal+0.6/uAv.z, uReveal-0.6/uAv.z, lr)*step(0.001,uReveal);
+  float inA0 = smoothstep(0.8,-0.8,s.a);
+  lm *= mix(1., inA0, uClip);
   col = mix(col, texture(uLogo, vec2(0.492,0.515)+lq*0.40).rgb, lm);
   vec4 pg = texture(uPage, p/DIM);
-  float inA = smoothstep(0.8,-0.8,s.a)*uPageA;
+  float inA = inA0*uPageA;
   col = col*(1.-pg.a*inA) + pg.rgb*inA;
   vec2 gb = vec2(dFdx(dB), -dFdy(dB));
   float lit = clamp(dot(normalize(gb+1e-6), normalize(vec2(-0.6,-0.8))),0.,1.);
   float band = smoothstep(-12.,0.,dB)*smoothstep(0.6,-0.6,dB);
   col += uGlass*(CREAM*0.16*exp(-abs(dB+0.5)/0.7) + CREAM*0.22*band*lit*lit);
   float ar = abs(lr-1.)*uAv.z;
-  col += CREAM*0.32*exp(-ar/1.1)*smoothstep(0.9,1.,uReveal)*clamp(dot(normalize(lq+1e-6),normalize(vec2(-0.6,-0.8))),0.25,1.);
+  col += CREAM*0.32*exp(-ar/1.1)*smoothstep(0.9,1.,uReveal)*mix(1., inA0, uClip)*clamp(dot(normalize(lq+1e-6),normalize(vec2(-0.6,-0.8))),0.25,1.);
   vec4 fr = texture(uFree, p/DIM);
   col = col*(1.-fr.a) + fr.rgb;
   o = vec4(col*uWeight, uWeight);
@@ -163,7 +171,7 @@ const U = (p) => new Proxy({}, { get: (_, k) => gl.getUniformLocation(p, k) });
 const us = U(PS), uo = U(PO);
 
 // ---------------------------------------------------------------- campo
-const FIELD = new Field(SCALE);
+const FIELD = new Field(Math.min(SCALE, Number(Q.get('fs') || 0.5)));
 const FAR = new Float32Array(FIELD.w * FIELD.h).fill(1e4);
 const cache = {};
 const sTop = () => (cache.sTop ||= FIELD.strokes([sArm(true)], S_SHAPE.T));
@@ -203,14 +211,21 @@ function buildSDF(t) {
     }
   }
   if (t >= T.disk0) {
-    const kf = frameMorph(t), av = avatarAt(t);
-    const RR = { cx: DISK.cx, cy: DISK.cy, hw: lerp(DISK.r, FRAME.hw, kf), hh: lerp(DISK.r, FRAME.hh, Math.pow(kf, 0.8)), r: lerp(DISK.r, FRAME.r, Math.pow(kf, 0.6)) };
-    A = FIELD.analytic((x, y) => sdRoundRect(x, y, RR));   // el círculo crece como rectángulo redondeado: un solo campo
-    const avs = { cx: av.cx, cy: av.cy, r: av.r };
-    B = new Float32Array(A.length);
-    const w = FIELD.w, s = FIELD.s;
-    for (let j = 0; j < FIELD.h; j++) for (let i = 0; i < w; i++) {
-      const k = j * w + i; B[k] = smin(A[k], sdCircle((i + 0.5) / s, (j + 0.5) / s, avs), 50);
+    const av = avatar(t), w = FIELD.w, fs = FIELD.s;
+    if (t < 3.6) {
+      const kf = frameMorph(t);
+      const RR = { cx: DISK.cx, cy: DISK.cy, hw: lerp(DISK.r, FRAME.hw, kf), hh: lerp(DISK.r, FRAME.hh, Math.pow(kf, 0.8)), r: lerp(DISK.r, FRAME.r, Math.pow(kf, 0.6)) };
+      A = FIELD.analytic((x, y) => sdRoundRect(x, y, RR));   // el círculo crece como rectángulo redondeado: un solo campo
+      const u = smooth(3.40, 3.6, t);                          // el avatar se funde en el marco y luego queda dentro
+      B = new Float32Array(A.length);
+      for (let j = 0; j < FIELD.h; j++) for (let i = 0; i < w; i++) {
+        const k = j * w + i; B[k] = lerp(smin(A[k], sdCircle((i + 0.5) / fs, (j + 0.5) / fs, av), 50), A[k], u);
+      }
+    } else if (t < 14.93) {
+      const RR = frameRect(t);
+      A = FIELD.analytic((x, y) => sdRoundRect(x, y, RR)); B = A;
+    } else {
+      B = FIELD.analytic((x, y) => sdCircle(x, y, { cx: av.cx, cy: av.cy, r: Math.max(av.r * av.reveal, 0.5) }));
     }
   }
   const n = FIELD.w * FIELD.h, px = new Float32Array(n * 4);
@@ -234,6 +249,12 @@ function sweepAt(t) {               // reflejo que recorre las capas tras cada p
   }
   return { x: -1e4, a: 0, w: 70 };
 }
+function gSheen(t) {                // reflejo del cristal del marco: viaja en cada desplazamiento de la página
+  for (const [a, d] of [[3.2, 0.9], [5.78, 0.6], [7.86, 0.6], [9.45, 0.8], [11.92, 0.6], [14.0, 0.7]]) {
+    const k = (t - a) / d; if (k >= 0 && k <= 1) return lerp(-300, 2300, easeIO(k));
+  }
+  return -9999;
+}
 function uniforms(t) {
   const c = camera(t);
   const light = (t < 0.9 ? 1 : lerp(1, 0.16, smooth(0.9, 1.9, t))) * (1 - smooth(2.6, 2.95, t));
@@ -242,19 +263,21 @@ function uniforms(t) {
   const stackBottom = H / 2 - (0 - c.cy) * c.z + thickness(t) * c.z / 2;
   const refY = t < T.braid0 ? stackBottom + 6 : lerp(lerp(stackBottom + 6, BRAID.cy + BRAID.A + BRAID.T / 2 + 6, kb), S_SHAPE.cy + 2 * S_SHAPE.R + 10, ks);
   const bevel = t < T.braid0 ? Math.max(2, thickness(t) * c.z * 0.5) : lerp(lerp(thickness(t) * c.z * 0.5, BRAID.T * 0.5, kb), S_SHAPE.T * 0.5, ks);
-  const av = avatarAt(t);
+  const av = avatar(t);
   const sw = sweepAt(t);
+  const glassW = smooth(2.84, 3.0, t) * (1 - smooth(14.70, 14.92, t)) + (t >= 14.95 ? smooth(14.98, 15.12, t) : 0);
   return {
     uLight: light, uDough: smooth(0.85, 1.35, t), uDoughOn: t < 3.02 ? 1 : 0,
-    uStripe: smooth(2.02, 2.35, t), uGlass: smooth(2.84, 3.0, t),
+    uStripe: smooth(2.02, 2.35, t), uGlass: glassW,
     uFlash: t >= 0 ? Math.exp(-t / 0.12) : 0,
     uStreak: t >= 0 ? (0.95 * Math.exp(-t / 0.26) + 0.16 * (1 - smooth(0.7, 1.0, t))) * smooth(0, 0.02, t) : 0,
     uSweepX: sw.x, uSweepA: sw.a, uSweepW: sw.w,
     uRefY: refY, uRefA: 1 - smooth(2.7, 3.0, t),
     uOver: smooth(2.05, 2.3, t) * (1 - smooth(2.55, 2.8, t)),
     uBraidK: (2 * Math.PI) / BRAID.lambda, uBraidX0: BRAID.cx - 0.25 * BRAID.lambda, uBraidPh: braidPhase(t),
-    uReveal: easeIO(clamp((t - 2.82) / 0.20)), uBevel: bevel,
-    uAv: [av.cx, av.cy, av.r], uPageA: t >= 3.0 ? 1 : 0,
+    uReveal: av.reveal, uBevel: bevel,
+    uAv: [av.cx, av.cy, av.r], uPageA: t >= 3.0 ? 1 - smooth(14.70, 14.90, t) : 0,
+    uClip: t >= 3.42 && t < 14.9 ? 1 : 0, uGSheen: gSheen(t),
   };
 }
 
@@ -263,27 +286,6 @@ const free = new OffscreenCanvas(RW, RH), fx = free.getContext('2d');
 const page = new OffscreenCanvas(RW, RH), px2 = page.getContext('2d');
 let seed = 7; const rnd = () => { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let x = Math.imul(seed ^ (seed >>> 15), 1 | seed); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; };
 const FLOUR = Array.from({ length: 26 }, () => ({ x: 60 + rnd() * 960, y: 300 + rnd() * 1350, p: 0.4 + rnd() * 0.9, r: 1.1 + rnd() * 2.0, a: 0.10 + rnd() * 0.20, ph: rnd() * 6.28 }));
-
-function glyphRow(ctx, t, text, font, size, cx, base, tLand, tOut, spacing, color) {
-  ctx.font = font;
-  const chars = [...text], ws = chars.map((ch) => ctx.measureText(ch).width);
-  const total = ws.reduce((a, b) => a + b, 0) + spacing * (chars.length - 1);
-  let x = cx - total / 2, gi = 0;
-  ctx.save(); ctx.beginPath(); ctx.rect(0, base - size * 1.05, W, size * 1.32); ctx.clip();
-  chars.forEach((ch, i) => {
-    if (ch !== ' ') {
-      const tl = tLand + gi * 0.028, k = clamp((t - (tl - 0.17)) / 0.17);
-      const e = k <= 0 ? 0 : 1 + 2.2 * Math.pow(k - 1, 3) + 1.2 * Math.pow(k - 1, 2);   // aterriza con un rebote mínimo
-      const ko = clamp((t - (tOut + gi * 0.02)) / 0.2);
-      const y = base + (1 - e) * size * 0.95 - Math.pow(ko, 2) * size * 1.1;
-      const a = clamp(k * 2.2) * (1 - ko);
-      if (a > 0) { ctx.globalAlpha = a; ctx.fillStyle = color; ctx.fillText(ch, x, y); }
-      gi++;
-    }
-    x += ws[i] + spacing;
-  });
-  ctx.restore(); ctx.globalAlpha = 1;
-}
 
 function drawFree(t) {
   const ctx = fx;
@@ -323,80 +325,23 @@ function drawFree(t) {
   // tipografía cinética: cada palabra aterriza sobre su palabra hablada
   glyphRow(ctx, t, 'CAPA', '600 176px Fraunces', 176, 540, 690, WT.capa, 1.74, 14, C.cream);
   glyphRow(ctx, t, 'POR CAPA', 'italic 400 76px Fraunces', 76, 540, 790, WT.por, 1.80, 9, C.cream);
-}
-
-function rrect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
-function cover(ctx, im, x, y, w, h, zoom = 1, ox = 0, oy = 0) {
-  const s = Math.max(w / im.width, h / im.height) * zoom, dw = im.width * s, dh = im.height * s;
-  ctx.drawImage(im, x + (w - dw) / 2 + ox, y + (h - dh) / 2 + oy, dw, dh);
-}
-function sheen(ctx, x, y, w, h, k) {   // reflejo diagonal que viaja sobre el cristal
-  if (k <= 0 || k >= 1) return;
-  const cx = x - w * 0.6 + k * w * 2.2;
-  const g = ctx.createLinearGradient(cx - 90, y, cx + 90, y + h * 0.35);
-  g.addColorStop(0, 'rgba(255,243,201,0)'); g.addColorStop(0.5, `rgba(255,243,201,${0.16 * Math.sin(Math.PI * k)})`); g.addColorStop(1, 'rgba(255,243,201,0)');
-  ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
-}
-
-function card(ctx, t, im, label, x, y, w, h, tLand) {
-  const e = clamp((t - (tLand - 0.24)) / 0.30);
-  if (e <= 0) return;
-  const reveal = easeIO(clamp(e / 0.5)), tilt = easeIO(clamp((e - 0.15) / 0.85));
-  const lift = 26 * tilt, a = lerp(1, 0.866, tilt), b = lerp(0, -0.5, tilt) * 0.42;   // isométrico a 30° sobre el eje vertical
-  const cx = x + w / 2, cy = y + h / 2;
-  // sombra de contacto que crece
-  ctx.save();
-  ctx.filter = `blur(${(6 + 18 * tilt).toFixed(1)}px)`;
-  ctx.fillStyle = `rgba(10,5,3,${0.55 * reveal})`;
-  ctx.beginPath(); ctx.ellipse(cx + 16 * tilt, y + h + 8, w * 0.46, 12 + 10 * tilt, 0, 0, 7); ctx.fill();
-  ctx.restore();
-  ctx.save();
-  ctx.translate(cx, cy - lift); ctx.transform(a, b, 0, 1, 0, 0);
-  ctx.beginPath(); ctx.rect(-w, h / 2 - h * reveal - 4, 2 * w, h * reveal + 30); ctx.clip();
-  // grosor del cristal (canto)
-  rrect(ctx, -w / 2 - 7 * tilt, -h / 2 + 9 * tilt, w, h, 22); ctx.fillStyle = '#24140D'; ctx.fill();
-  rrect(ctx, -w / 2 - 3.5 * tilt, -h / 2 + 4.5 * tilt, w, h, 22); ctx.fillStyle = 'rgba(181,104,63,0.35)'; ctx.fill();
-  // cara
-  rrect(ctx, -w / 2, -h / 2, w, h, 22); ctx.save(); ctx.clip();
-  cover(ctx, im, -w / 2, -h / 2, w, h - 84, 1.08, 0, -6 * (t - tLand));
-  ctx.fillStyle = 'rgba(30,17,11,0.86)'; ctx.fillRect(-w / 2, h / 2 - 84, w, 84);
-  ctx.fillStyle = cream(0.16); ctx.fillRect(-w / 2, h / 2 - 84, w, 1);
-  const hl = ctx.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2);
-  hl.addColorStop(0, 'rgba(255,243,201,0.12)'); hl.addColorStop(0.35, 'rgba(255,243,201,0)');
-  ctx.fillStyle = hl; ctx.fillRect(-w / 2, -h / 2, w, h);
-  sheen(ctx, -w / 2, -h / 2, w, h, (t - tLand - 0.05) / 0.7);
-  ctx.restore();
-  rrect(ctx, -w / 2 + 0.5, -h / 2 + 0.5, w - 1, h - 1, 22); ctx.strokeStyle = cream(0.18); ctx.lineWidth = 1; ctx.stroke();
-  ctx.font = '600 26px Inter'; ctx.fillStyle = C.cream; ctx.textAlign = 'center';
-  ctx.letterSpacing = '3px'; ctx.fillText(label, 1.5, h / 2 - 34); ctx.letterSpacing = '0px'; ctx.textAlign = 'left';
-  ctx.restore();
-}
-
-function drawPage(t) {
-  const ctx = px2;
-  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, RW, RH);
-  if (t < 3.0) return;
-  ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
-  // encabezado
-  glyphRow(ctx, t, 'Babkery', '600 78px Fraunces', 78, 540, 452, 3.50, 99, 1, C.cream);
-  glyphRow(ctx, t, 'panadería y café · Guadalajara', '500 27px Inter', 27, 540, 500, 3.62, 99, 1.2, 'rgba(247,232,176,0.80)');
-  // hero con paralaje
-  const k = easeIO(clamp((t - 3.10) / 0.42));
-  if (k > 0) {
-    const x = 150, y = 540, w = 780, h = 470;
-    ctx.save(); rrect(ctx, x, y, w, h * k, 36); ctx.clip();
-    cover(ctx, IM.hero, x, y, w, h, 1.12 - 0.05 * k, 0, 30 * (1 - k) - 16 * (t - 3.1));
-    const g = ctx.createLinearGradient(0, y + h * 0.55, 0, y + h); g.addColorStop(0, 'rgba(26,15,10,0)'); g.addColorStop(1, 'rgba(26,15,10,0.35)');
-    ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
-    sheen(ctx, x, y, w, h, (t - 3.55) / 0.8);
-    ctx.restore();
-    rrect(ctx, x + 0.5, y + 0.5, w - 1, h * k - 1, 36); ctx.strokeStyle = cream(0.16 * k); ctx.lineWidth = 1; ctx.stroke();
+  // la harina brillante vuela a las estrellas de la calificación
+  if (t > 5.9 && t < 6.7) {
+    const M = camMatrix(t);
+    for (let i = 0; i < 5; i++) {
+      const f = FLOUR[(i * 5 + 2) % FLOUR.length], ta = 6.05 + i * 0.12, k = clamp((t - (ta - 0.30)) / 0.30);
+      if (k <= 0 || t > ta + 0.05) continue;
+      const sx = f.x + 7 * t * f.p, sy = f.y - 10 * t * f.p;
+      const tx = M.a * (540 + (i - 2) * 124) + M.tx, ty = M.a * (PG.rating.stars + 30) + M.ty;
+      const e = k * k * (3 - 2 * k), x = lerp(sx, tx, e), y = lerp(sy, ty, e) - 90 * Math.sin(Math.PI * e);
+      const g = ctx.createRadialGradient(x, y, 0, x, y, 14);
+      g.addColorStop(0, 'rgba(255,243,201,0.95)'); g.addColorStop(1, 'rgba(255,243,201,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 14, 0, 7); ctx.fill();
+    }
   }
-  // tarjetas isométricas, una por palabra hablada
-  const cw = 250, ch = 372, cy0 = 1080;
-  card(ctx, t, IM.c1, 'CROISSANTS', 145, cy0, cw, ch, Math.max(WT.croissants, 3.44));
-  card(ctx, t, IM.c2, 'BABKAS', 415, cy0, cw, ch, WT.babkas);
-  card(ctx, t, IM.c3, 'MASA MADRE', 685, cy0, cw, ch, WT.masa);
+  // "TU PÁGINA": cada palabra sobre su palabra hablada, en el espacio que deja el alejamiento
+  glyphRow(ctx, t, 'TU PÁGINA', '600 112px Fraunces', 112, 540, 412, 0, 11.85, 6, C.cream, { land: (i) => (i < 2 ? WT.tu + i * 0.028 : WT.pagina + (i - 2) * 0.028) });
+  drawClosing(ctx, t, WT);
 }
 
 // ---------------------------------------------------------------- render
@@ -416,7 +361,7 @@ function subframe(t, weight) {
   gl.bindTexture(gl.TEXTURE_2D, tSdf);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, FIELD.w, FIELD.h, 0, gl.RGBA, gl.FLOAT, sdf);
   drawFree(t); upload(tFree, free);
-  drawPage(t); upload(tPage, page);
+  drawPage(px2, t, IM, WT, SCALE); upload(tPage, page);
   gl.useProgram(PS);
   [tSdf, tFree, tPage, tLogo].forEach((tx, i) => { gl.activeTexture(gl.TEXTURE0 + i); gl.bindTexture(gl.TEXTURE_2D, tx); });
   gl.uniform1i(us.uSdf, 0); gl.uniform1i(us.uFree, 1); gl.uniform1i(us.uPage, 2); gl.uniform1i(us.uLogo, 3);
