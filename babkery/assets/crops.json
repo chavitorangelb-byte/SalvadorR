@@ -1,0 +1,184 @@
+{
+ "03_baby_babkas.jpg": {
+  "src": "IMG_8541_baby_babkas.png",
+  "box": [
+   133,
+   349,
+   1186,
+   1622
+  ],
+  "size": [
+   1053,
+   1273
+  ]
+ },
+ "04_croissant_natural.jpg": {
+  "src": "IMG_8549_croissant.png",
+  "box": [
+   132,
+   349,
+   1182,
+   1622
+  ],
+  "size": [
+   1050,
+   1273
+  ]
+ },
+ "05_rosca_de_babka.jpg": {
+  "src": "IMG_8553_rosca.png",
+  "box": [
+   0,
+   637,
+   1320,
+   1377
+  ],
+  "size": [
+   1320,
+   740
+  ]
+ },
+ "06_babka_nutella.jpg": {
+  "src": "IMG_8552_babka.png",
+  "box": [
+   133,
+   349,
+   1186,
+   1666
+  ],
+  "size": [
+   1053,
+   1317
+  ]
+ },
+ "07_rol_canela_y_nuez.jpg": {
+  "src": "IMG_8551_rol.png",
+  "box": [
+   132,
+   349,
+   1188,
+   1622
+  ],
+  "size": [
+   1056,
+   1273
+  ]
+ },
+ "08_chocolatine.jpg": {
+  "src": "IMG_8542_chocolatine.png",
+  "box": [
+   0,
+   637,
+   1320,
+   1377
+  ],
+  "size": [
+   1320,
+   740
+  ]
+ },
+ "09_croissant_relleno.jpg": {
+  "src": "IMG_8548_croissant_relleno.png",
+  "box": [
+   132,
+   349,
+   1188,
+   1622
+  ],
+  "size": [
+   1056,
+   1273
+  ]
+ },
+ "10_pan_de_caja_multisemillas.jpg": {
+  "src": "IMG_8544_pan_caja_multisemillas.png",
+  "box": [
+   0,
+   571,
+   1320,
+   1445
+  ],
+  "size": [
+   1320,
+   874
+  ]
+ },
+ "11_barra_rustica_natural.jpg": {
+  "src": "IMG_8545_barra_natural.png",
+  "box": [
+   0,
+   386,
+   1300,
+   1627
+  ],
+  "size": [
+   1300,
+   1241
+  ]
+ },
+ "x12_pan_de_caja_avena_linaza.jpg": {
+  "src": "IMG_8547_pan_caja_avena.png",
+  "box": [
+   0,
+   571,
+   1320,
+   1445
+  ],
+  "size": [
+   1320,
+   874
+  ]
+ },
+ "x13_barra_rustica_multisemillas.jpg": {
+  "src": "IMG_8546_barra_multisemillas.png",
+  "box": [
+   0,
+   527,
+   1320,
+   1489
+  ],
+  "size": [
+   1320,
+   962
+  ]
+ },
+ "x14_pan_brioche.jpg": {
+  "src": "IMG_8550_brioche.png",
+  "box": [
+   133,
+   349,
+   1188,
+   1622
+  ],
+  "size": [
+   1055,
+   1273
+  ]
+ },
+ "02_avatar_logo_crema.jpg": {
+  "src": "IMG_8538_logo.png",
+  "box": [
+   0,
+   774,
+   1320,
+   2094
+  ],
+  "size": [
+   1320,
+   1320
+  ]
+ },
+ "01_logo_baja_resolucion_blanco_sobre_azul_oscuro.jpg": {
+  "src": "IMG_8552_babka.png",
+  "box": [
+   190,
+   350,
+   445,
+   600
+  ],
+  "size": [
+   255,
+   250
+  ]
+ }
+}
