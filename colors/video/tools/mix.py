@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 A = ROOT / "video/audio"
 MUSIC_BASE = -14.2      # musica sin ducking (stem); en los tramos sin voz es la que lleva el peso
 SR = 48000
-N = int(18.0 * SR)
+N = int(18.5 * SR)
 VO_WORDS = json.loads((ROOT / "video/timeline/vo_words.json").read_text())
 
 

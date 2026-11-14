@@ -488,7 +488,7 @@ function phoneSilhouette() {          // contorno del telefono proyectado (camar
 }
 
 // ---------- frame(t) ----------
-const KICKS = Array.from({ length: 37 }, (_, i) => i * 0.5);
+const KICKS = Array.from({ length: 38 }, (_, i) => i * 0.5);
 const kickPulse = (t, w = 0.22) => { const k = t - Math.floor(t / 0.5) * 0.5; return Math.exp(-k / w * 3.2); };
 const LU = liquid.mat.uniforms;
 function setLiquid(c, b, r, A, B, iris, rim) {
@@ -522,10 +522,10 @@ function frameState(t) {
   }
   // --- tarjetas isometricas que se estampan en su palabra ---
   for (const c of cards) {
-    const a = t - (c.land - 0.40), on = phoneOn && a >= 0 && t < T.cardsOff[1];
+    const a = t - (c.land - 0.34), on = phoneOn && a >= 0 && t < T.cardsOff[1];
     c.g.visible = on; c.sh.visible = on;
     if (!on) continue;
-    const fall = clamp(a / 0.40), k = easeIn(fall);                           // cae acelerando y pega en el kick
+    const fall = clamp(a / 0.34), k = easeIn(fall);                           // cae acelerando y pega en el kick
     const hit = t - c.land;
     const squash = hit >= 0 ? Math.exp(-hit * 9) * Math.cos(hit * 34) * 0.07 : 0;
     const off = easeIn(prog(t, [T.cardsOff[0] + c.i * 0.05, T.cardsOff[1]]));
@@ -617,7 +617,7 @@ function frameState(t) {
     const s = stroke('under', '#8CC474', '#4E8240', '#EAF8D8'); const u = LY.wa;
     const pts = smoothPath([[u.cx - u.w * 0.47, u.cy + u.h * 0.5 + 62], [u.cx - u.w * 0.1, u.cy + u.h * 0.5 + 74], [u.cx + u.w * 0.2, u.cy + u.h * 0.5 + 60], [u.cx + u.w * 0.47, u.cy + u.h * 0.5 + 68]], 20), L = pathLength(pts);
     const on = t >= T.underline[0] && t < T.waOut[1];
-    const pulse = t > T.underline[1] - 0.2 ? kickPulse(t) : 0;
+    const pulse = t > T.underline[1] - 0.25 ? kickPulse(t) : 0;
     s.set(on ? pts : null, L * easeIn(prog(t, T.waOut)), L * easeOut(prog(t, T.underline)), 13 * (1 + 0.5 * pulse), { seed: 4, headTaper: 46, tailTaper: 34 });
   }
 

@@ -17,7 +17,7 @@ const A = (k, d) => { const i = process.argv.indexOf('--' + k); return i > 0 ? p
 const FORMAT = A('format', '916');
 const SUBS = Number(A('subs', 8));
 const SCALE = Number(A('scale', 1));
-const FROM = Number(A('from', 0)), TO = Number(A('to', 1079));
+const FROM = Number(A('from', 0)), TO = Number(A('to', 1109));
 const OUT = A('out', null), PNG = A('png', null);
 const FRAMES = A('frames', null);
 const FPS = Number(A('fps', 60));

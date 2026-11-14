@@ -1,4 +1,4 @@
-"""Musica original en codigo para Colors Boutique. 120 BPM exactos, compas = 2.0 s, 18 s.
+"""Musica original en codigo para Colors Boutique. 120 BPM exactos, compas = 2.0 s, 18.5 s.
 Floral y elegante: arpa (cuerda pulsada), celesta, pizzicato, cuerdas suaves. Sin muestras.
 Una capa nueva por seccion; lift en la revelacion del telefono (3.0 s); respiro 14-16 s; golpe grave en 16.0 s.
 Salida: video/audio/stems/music_raw.wav (48 kHz estereo)
@@ -10,7 +10,7 @@ import numpy as np
 from scipy import signal
 
 ROOT = Path(__file__).resolve().parents[2]
-SR, DUR, BEAT = 48000, 18.0, 0.5
+SR, DUR, BEAT = 48000, 18.5, 0.5
 N = int(DUR * SR)
 rng = np.random.default_rng(11)
 L, R = np.zeros(N + SR * 4), np.zeros(N + SR * 4)
@@ -137,7 +137,7 @@ def ir(seed, dur=1.9):
 wetL = signal.fftconvolve(SEND, ir(1))[: len(L)]; wetR = signal.fftconvolve(SEND, ir(2))[: len(R)]
 k = 0.045
 out = np.vstack([L + wetL * k, R + wetR * k])[:, :N]
-fade = int(0.35 * SR); out[:, -fade:] *= np.linspace(1, 0, fade) ** 1.5
+fade = int(0.6 * SR); out[:, -fade:] *= np.linspace(1, 0, fade) ** 1.5
 out /= np.abs(out).max() / 0.8
 (ROOT / 'video/audio/stems').mkdir(parents=True, exist_ok=True)
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', '-', '-c:a', 'pcm_s24le', str(ROOT / 'video/audio/stems/music_raw.wav')],
