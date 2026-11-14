@@ -1,7 +1,7 @@
 # Colors Boutique · demo de Elevate Negocios
 
-Pieza spec (no oficial, no publicada): la página que se le propone a la florería y el video de 18 s
-(16 s + 2 s de end card) que la presenta. Idea del video: "El tallo", una sola línea que florece,
+Pieza spec (no oficial, no publicada): la página que se le propone a la florería y el video de 18.5 s
+(16 s + 2.5 s de end card) que la presenta. Idea del video: "El tallo", una sola línea que florece,
 se vuelve el marco del teléfono y termina como subrayado del botón de WhatsApp.
 
 ## Estructura
